@@ -6,4 +6,13 @@
     <string name="tab_text_2">Browse</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="settings">Settings</string>
+    <string name="help_tips"><![CDATA[Help & Tips]]></string>
+    <string name="profile">Profile</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="profile_name">Jane Doe</string>
+    <string name="profile_email">jane.doe@gmail.com</string>
+    <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
+    <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
 </resources>
+

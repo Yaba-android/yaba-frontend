@@ -27,10 +27,7 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:titleTextColor="@android:color/darker_gray"
-                app:titleTextAppearance="@style/Toolbar.TitleText"
-        >
-
-
+                app:titleTextAppearance="@style/Toolbar.TitleText">
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
@@ -40,8 +37,7 @@
                 android:background="@android:color/white"
                 app:tabIndicatorColor="@android:color/holo_blue_light"
                 app:tabTextColor="@android:color/black"
-                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-        >
+                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget">
 
             <android.support.design.widget.TabItem
                     android:id="@+id/tabItem"
@@ -54,8 +50,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tab_text_2"/>
-
         </android.support.design.widget.TabLayout>
+
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
