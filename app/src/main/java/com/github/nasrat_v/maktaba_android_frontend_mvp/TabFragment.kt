@@ -15,24 +15,27 @@ import android.view.ViewGroup
 class TabFragment : Fragment() {
 
     lateinit var mClickInterface: ClickInterface
+    lateinit var tabLayout: TabLayout
+    lateinit var viewPager: ViewPager
+    var int_items = 2
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val x = inflater.inflate(R.layout.tab_layout, null)
+        val rootView = inflater.inflate(R.layout.tab_layout, null)
 
-        tabLayout = x.findViewById<View>(R.id.tabs) as TabLayout
-        viewPager = x.findViewById<View>(R.id.viewpager) as ViewPager
+        tabLayout = rootView.findViewById<View>(R.id.tabs) as TabLayout
+        viewPager = rootView.findViewById<View>(R.id.viewpager) as ViewPager
 
-        viewPager.adapter = MyAdapter(childFragmentManager)
+        viewPager.adapter = TabFragmentAdapter(childFragmentManager)
         tabLayout.post { tabLayout.setupWithViewPager(viewPager) }
 
-        return x
+        return rootView
     }
 
     fun setClickInterface(cInterface: ClickInterface) {
         mClickInterface = cInterface
     }
 
-    internal inner class MyAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    internal inner class TabFragmentAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment? {
             when (position) {
                 0 -> return RecommendedTabbedFragment()
@@ -56,13 +59,5 @@ class TabFragment : Fragment() {
             }
             return null
         }
-    }
-
-    companion object {
-        @SuppressLint("StaticFieldLeak")
-        lateinit var tabLayout: TabLayout
-        @SuppressLint("StaticFieldLeak")
-        lateinit var viewPager: ViewPager
-        var int_items = 2
     }
 }

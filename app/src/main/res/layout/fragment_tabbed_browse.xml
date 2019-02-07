@@ -5,21 +5,29 @@
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Browse \nFragment"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"
-            android:layout_marginTop="55dp"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"
-            android:background="@android:color/white"/>
-
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="click"
             android:id="@+id/button_genre_nav"/>
+
+    <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/button_genre_nav"
+            android:id="@+id/test_recycler_view"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            tools:context=".TestRecyclerView">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
