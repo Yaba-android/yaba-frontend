@@ -9,29 +9,25 @@
         android:fitsSystemWindows="true"
         tools:context=".MainActivity">
 
+    <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:id="@+id/toolbar_profile"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            app:title="Book Store"
+            android:fitsSystemWindows="true"
+            app:titleTextColor="@android:color/darker_gray"/>
+
     <android.support.v4.widget.DrawerLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/drawer_layout_profile"
-            android:fitsSystemWindows="true">
+            android:id="@+id/drawer_layout_profile">
 
         <android.support.design.widget.CoordinatorLayout
                 android:id="@+id/rootLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-            <android.support.design.widget.AppBarLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <android.support.v7.widget.Toolbar
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="?attr/actionBarSize"
-                        android:id="@+id/toolbar_profile"
-                        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                        app:title="Book Store"
-                        app:titleTextColor="@android:color/darker_gray"/>
 
                 <FrameLayout
                         android:layout_width="match_parent"
@@ -39,7 +35,6 @@
                         android:orientation="vertical"
                         android:id="@+id/fragment_container_profile"/>
 
-            </android.support.design.widget.AppBarLayout>
 
         </android.support.design.widget.CoordinatorLayout>
 

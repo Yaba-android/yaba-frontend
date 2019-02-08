@@ -12,16 +12,16 @@
             android:layout_height="300dp">
 
         <ImageView
-                android:id="@+id/image_item"
+                android:id="@+id/horizontal_image"
                 android:src="@drawable/playa"
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"/>
 
         <TextView
-                android:id="@+id/row_title"
+                android:id="@+id/horizontal_title"
                 android:textColor="#262626"
-                android:layout_below="@id/image_item"
+                android:layout_below="@id/horizontal_image"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="16dp"
                 android:text="Brochure"
