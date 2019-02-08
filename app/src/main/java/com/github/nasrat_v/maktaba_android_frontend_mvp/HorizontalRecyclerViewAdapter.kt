@@ -9,7 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
-class HorizontalRecyclerViewAdapter(var context: Context, var list: ArrayList<HorizontalItemModel>) : RecyclerView.Adapter<HorizontalRecyclerViewAdapter.ViewHolder>() {
+class HorizontalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<HorizontalItemModel>)
+    : RecyclerView.Adapter<HorizontalRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView =  LayoutInflater.from(container.context).inflate(R.layout.item_horizontal, container, false)
@@ -29,9 +30,8 @@ class HorizontalRecyclerViewAdapter(var context: Context, var list: ArrayList<Ho
         }
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        var mTitle = itemView.findViewById<TextView>(R.id.horizontal_title)
-        var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        var mTitle = itemView.findViewById<TextView>(R.id.horizontal_title)!!
+        var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!
     }
 }

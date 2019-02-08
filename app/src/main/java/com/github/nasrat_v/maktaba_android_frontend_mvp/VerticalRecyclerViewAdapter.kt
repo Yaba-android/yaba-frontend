@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class VerticalRecyclerViewAdapter(var context: Context, var list: ArrayList<VerticalItemModel>) : RecyclerView.Adapter<VerticalRecyclerViewAdapter.ViewHolder>() {
+class VerticalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<VerticalItemModel>)
+    : RecyclerView.Adapter<VerticalRecyclerViewAdapter.ViewHolder>() {
 
-    var viewPool = RecyclerView.RecycledViewPool()
+    private var viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView =  LayoutInflater.from(container.context).inflate(R.layout.item_vertical, container, false)
@@ -28,14 +29,12 @@ class VerticalRecyclerViewAdapter(var context: Context, var list: ArrayList<Vert
         holder.mTitle.text = title
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
-        //holder.horizontalRecyclerView.isNestedScrollingEnabled = false
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = HorizontalRecyclerViewAdapter(context, model.items)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        var mTitle = itemView.findViewById<TextView>(R.id.vertical_title)
-        var horizontalRecyclerView = itemView.findViewById<RecyclerView>(R.id.horizontal_recyclerview)
+        var mTitle = itemView.findViewById<TextView>(R.id.vertical_title)!!
+        var horizontalRecyclerView = itemView.findViewById<RecyclerView>(R.id.horizontal_recyclerview)!!
     }
 }

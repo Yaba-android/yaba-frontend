@@ -12,17 +12,19 @@ import android.support.v4.app.FragmentStatePagerAdapter
 
 class ContainerFragment : Fragment() {
 
-    lateinit var mClickCallback: GenreNavigationClickCallback
-    lateinit var mToolbarSetupCallback: TabLayoutSetupCallback
-    val mTabNamesList = arrayListOf<String>()
+    private lateinit var mClickCallback: GenreNavigationClickCallback
+    private lateinit var mToolbarSetupCallback: TabLayoutSetupCallback
+    private val mTabNamesList = arrayListOf<String>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
         if (context is MainActivity) {
-            mToolbarSetupCallback = context as TabLayoutSetupCallback
+            // callback qui va permettre de recuperer le tablayout depuis activity_main et de lui setter le viewpager qui est dans fragment_container
+            // ceci regle le probleme de la nav view  qui passe sour la toolbar
+            mToolbarSetupCallback = context
         } else {
-            throw ClassCastException(context.toString() + " must implement TabLayoutSetupCallback")
+            throw ClassCastException("$context must implement TabLayoutSetupCallback")
         }
     }
 
@@ -38,7 +40,6 @@ class ContainerFragment : Fragment() {
         val viewPager = view.findViewById(R.id.viewpager_container_fragment) as ViewPager
         viewPager.adapter = ItemsPagerAdapter(childFragmentManager, mTabNamesList)
         mToolbarSetupCallback.setupTabLayout(viewPager)
-
         return view
     }
 
@@ -46,7 +47,8 @@ class ContainerFragment : Fragment() {
         mClickCallback = clickCallback
     }
 
-    internal inner class ItemsPagerAdapter(fm: FragmentManager, var tabNames: ArrayList<String>) : FragmentStatePagerAdapter(fm) {
+    internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>)
+        : FragmentStatePagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment? {
             when (position) {

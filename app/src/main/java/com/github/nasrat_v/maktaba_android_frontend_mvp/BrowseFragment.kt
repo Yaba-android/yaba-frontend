@@ -11,50 +11,47 @@ import android.widget.Button
 
 class BrowseFragment : Fragment() {
 
-    lateinit var mClickCallback: ContainerFragment.GenreNavigationClickCallback
-    lateinit var rootView: View
-
-    lateinit var verticalRecyclerView: RecyclerView
-    lateinit var adapter: VerticalRecyclerViewAdapter
-
-    var mDataset = arrayListOf<VerticalItemModel>()
+    private lateinit var mClickCallback: ContainerFragment.GenreNavigationClickCallback
+    private lateinit var rootView: View
+    private lateinit var verticalRecyclerView: RecyclerView
+    private lateinit var adapter: VerticalRecyclerViewAdapter
+    private var mDataset = arrayListOf<VerticalItemModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
         rootView = inflater.inflate(R.layout.fragment_browse, container, false)
 
-        var hmodels: ArrayList<HorizontalItemModel>
-
-        for (i in 1..10) {
-            hmodels = arrayListOf<HorizontalItemModel>()
-            for (n in 1..5) {
-                hmodels.add(HorizontalItemModel("Brochure #$n", "A lire #$n"))
-            }
-            mDataset.add(VerticalItemModel("Section #$i", hmodels))
-        }
+        mockDataset()
 
         adapter = VerticalRecyclerViewAdapter(container!!.context, mDataset)
         verticalRecyclerView = rootView.findViewById(R.id.vertical_recyclerview)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapter
-
         return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val buttonGenre = rootView.findViewById<Button>(R.id.button_genre_nav)
+
+        buttonGenre.setOnClickListener {
+            mClickCallback.eventButtonClicked() // l'event click est envoyé à l'activity parent grâce à l'interface
+        }
     }
 
     fun setGenreNavigationClickCallback(clickCallback: ContainerFragment.GenreNavigationClickCallback) {
         mClickCallback = clickCallback
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initButtonGenreNav()
-    }
+    private fun mockDataset() {
+        var hmodels: ArrayList<HorizontalItemModel>
 
-    private fun initButtonGenreNav() {
-        val buttonGenre = rootView.findViewById<Button>(R.id.button_genre_nav)
-
-        buttonGenre.setOnClickListener {
-            mClickCallback.eventButtonClicked() // l'event click est envoyé à l'activity parent grâce à l'interface
+        for (i in 1..3) {
+            hmodels = arrayListOf<HorizontalItemModel>()
+            for (n in 1..5) {
+                hmodels.add(HorizontalItemModel("Brochure #$n", "A lire #$n"))
+            }
+            mDataset.add(VerticalItemModel("Section #$i", hmodels))
         }
     }
 }
