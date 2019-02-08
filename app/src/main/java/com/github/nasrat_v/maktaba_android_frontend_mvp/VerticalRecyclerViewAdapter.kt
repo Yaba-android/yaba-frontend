@@ -13,7 +13,7 @@ class VerticalRecyclerViewAdapter(var context: Context, var list: ArrayList<Vert
     var viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.vertical_item, container, false)
+        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.item_vertical, container, false)
         return ViewHolder(rootView)
     }
 

@@ -12,7 +12,7 @@ import android.widget.Toast
 class HorizontalRecyclerViewAdapter(var context: Context, var list: ArrayList<HorizontalItemModel>) : RecyclerView.Adapter<HorizontalRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.horizontal_item, container, false)
+        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.item_horizontal, container, false)
         return ViewHolder(rootView)
     }
 

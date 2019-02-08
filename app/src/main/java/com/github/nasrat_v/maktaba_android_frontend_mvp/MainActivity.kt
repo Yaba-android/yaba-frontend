@@ -13,8 +13,10 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.support.design.widget.TabLayout
+import android.support.v4.view.ViewPager
 
-class MainActivity : AppCompatActivity(), ClickInterface {
+class MainActivity : AppCompatActivity(), ContainerFragment.GenreNavigationClickCallback, ContainerFragment.TabLayoutSetupCallback {
 
     lateinit var mDrawerLayout: DrawerLayout
     lateinit var mNavigationViewProfile: NavigationView
@@ -27,34 +29,42 @@ class MainActivity : AppCompatActivity(), ClickInterface {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val toolbar = findViewById<View>(R.id.toolbar_profile) as Toolbar
+        setSupportActionBar(toolbar)
+
         mDrawerLayout = findViewById<View>(R.id.drawer_layout_profile) as DrawerLayout
 
-        val tabFragment = TabFragment()
-        tabFragment.setClickInterface(this) // permet de gerer les click depuis le fragment
+        val mDrawerToggle = ActionBarDrawerToggle(this, mDrawerLayout,
+            toolbar, R.string.navigation_drawer_profile_open, R.string.navigation_drawer_profile_close)
+
+        mDrawerToggle.syncState()
+        mDrawerLayout.setDrawerListener(mDrawerToggle)
+
+        val containerFragment = ContainerFragment()
+        containerFragment.setGenreNavigationClickCallback(this) // permet de gerer les click depuis le fragment
 
         mFragmentManager = supportFragmentManager
+        mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         mFragmentTransaction = mFragmentManager.beginTransaction()
-        mFragmentTransaction.replace(R.id.fragment_container_profile, tabFragment).commit()
-
-        /*mNavigationView.setNavigationItemSelectedListener {
-            menuItem -> mDrawerLayout.closeDrawers()
-
-            if (menuItem.itemId == R.id.nav_profile) {
-
-            }
-        }*/
-
-        val toolbar = findViewById<View>(R.id.toolbar_profile) as Toolbar
-        val mDrawerToggle = ActionBarDrawerToggle(this, mDrawerLayout,
-            toolbar, R.string.app_name, R.string.app_name)
-        mDrawerLayout.setDrawerListener(mDrawerToggle)
-        mDrawerToggle.syncState()
+        mFragmentTransaction.replace(R.id.fragment_container_profile, containerFragment).commit()
     }
 
-    override fun buttonClicked() {
-            if (mDrawerLayout.isDrawerOpen(Gravity.END))
-                mDrawerLayout.closeDrawer(Gravity.END)
-            else
-                mDrawerLayout.openDrawer(Gravity.END)
+    override fun setupTabLayout(viewPager: ViewPager) {
+        val tabLayout = findViewById(R.id.tabs) as TabLayout
+        tabLayout.setupWithViewPager(viewPager)
+    }
+
+    override fun onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(Gravity.START))
+            mDrawerLayout.closeDrawer(Gravity.START)
+        else
+            super.onBackPressed()
+    }
+
+    override fun eventButtonClicked() {
+        if (mDrawerLayout.isDrawerOpen(Gravity.END))
+            mDrawerLayout.closeDrawer(Gravity.END)
+        else
+            mDrawerLayout.openDrawer(Gravity.END)
     }
 }
