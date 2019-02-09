@@ -9,4 +9,9 @@ class BookDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
     }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
 }

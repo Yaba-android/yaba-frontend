@@ -12,7 +12,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 
 class ContainerFragment : Fragment() {
 
-    private lateinit var mClickCallback: GenreNavigationClickCallback
+    private lateinit var mClickCallback: ClickCallback
     private lateinit var mToolbarSetupCallback: TabLayoutSetupCallback
     private val mTabNamesList = arrayListOf<String>()
 
@@ -43,7 +43,7 @@ class ContainerFragment : Fragment() {
         return view
     }
 
-    fun setGenreNavigationClickCallback(clickCallback: ContainerFragment.GenreNavigationClickCallback) {
+    fun setClickCallback(clickCallback: ContainerFragment.ClickCallback) {
         mClickCallback = clickCallback
     }
 
@@ -52,10 +52,14 @@ class ContainerFragment : Fragment() {
 
         override fun getItem(position: Int): Fragment? {
             when (position) {
-                0 -> return RecommendedFragment()
+                0 -> {
+                    val recommended = RecommendedFragment()
+                    recommended.setClickCallback(mClickCallback)
+                    return recommended
+                }
                 1 ->  {
                     val browse = BrowseFragment()
-                    browse.setGenreNavigationClickCallback(mClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
+                    browse.setClickCallback(mClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
                     return browse
                 }
             }
@@ -79,7 +83,8 @@ class ContainerFragment : Fragment() {
         fun setupTabLayout(viewPager: ViewPager)
     }
 
-    interface GenreNavigationClickCallback {
-        fun eventButtonClicked()
+    interface ClickCallback {
+        fun genreNavigationEventButtonClicked()
+        fun bookEventButtonClicked()
     }
 }

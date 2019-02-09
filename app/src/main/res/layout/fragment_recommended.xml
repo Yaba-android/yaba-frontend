@@ -32,16 +32,37 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:text="@string/based_on_your_most_read_books"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:id="@+id/title_bis_carousel"/>
 
-            <in.goodiebag.carouselpicker.CarouselPicker
-                    android:id="@+id/carousel"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+            <RelativeLayout
+                    android:id="@+id/imagePreview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#F5F5F5"
-                    app:items_visible="three"/>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="0dp" >
+
+                <in.goodiebag.carouselpicker.CarouselPicker
+                        android:id="@+id/carousel"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#F5F5F5"
+                        app:items_visible="three"/>
+
+                <Button
+                        android:id="@+id/button_carousel"
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
 
             <TextView
                     android:layout_width="match_parent"

@@ -8,7 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class VerticalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<VerticalItemModel>)
+class VerticalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<VerticalItemModel>,
+                                  private var mClickCallback: ContainerFragment.ClickCallback)
     : RecyclerView.Adapter<VerticalRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
@@ -25,12 +26,14 @@ class VerticalRecyclerViewAdapter(private var context: Context, private var list
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
         val title = model.title
+        val horizontalRecyclerViewAdapter = HorizontalRecyclerViewAdapter(context, model.items)
 
+        horizontalRecyclerViewAdapter.setClickCallback(mClickCallback)
         holder.mTitle.text = title
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        holder.horizontalRecyclerView.adapter = HorizontalRecyclerViewAdapter(context, model.items)
+        holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

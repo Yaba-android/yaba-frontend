@@ -11,7 +11,7 @@ import android.widget.Button
 
 class BrowseFragment : Fragment() {
 
-    private lateinit var mClickCallback: ContainerFragment.GenreNavigationClickCallback
+    private lateinit var mClickCallback: ContainerFragment.ClickCallback
     private lateinit var rootView: View
     private lateinit var verticalRecyclerView: RecyclerView
     private lateinit var adapter: VerticalRecyclerViewAdapter
@@ -23,7 +23,7 @@ class BrowseFragment : Fragment() {
 
         mockDataset()
 
-        adapter = VerticalRecyclerViewAdapter(container!!.context, mDataset)
+        adapter = VerticalRecyclerViewAdapter(container!!.context, mDataset, mClickCallback)
         verticalRecyclerView = rootView.findViewById(R.id.vertical_recyclerview)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
@@ -35,11 +35,11 @@ class BrowseFragment : Fragment() {
         val buttonGenre = rootView.findViewById<Button>(R.id.button_genre_nav)
 
         buttonGenre.setOnClickListener {
-            mClickCallback.eventButtonClicked() // l'event click est envoyé à l'activity parent grâce à l'interface
+            mClickCallback.genreNavigationEventButtonClicked() // l'event click est envoyé à l'activity parent grâce à l'interface
         }
     }
 
-    fun setGenreNavigationClickCallback(clickCallback: ContainerFragment.GenreNavigationClickCallback) {
+    fun setClickCallback(clickCallback: ContainerFragment.ClickCallback) {
         mClickCallback = clickCallback
     }
 

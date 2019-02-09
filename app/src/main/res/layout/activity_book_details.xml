@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,4 +7,14 @@
         android:layout_height="match_parent"
         tools:context=".BookDetails">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="Book details"
+            android:paddingTop="20dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+
+</LinearLayout>
