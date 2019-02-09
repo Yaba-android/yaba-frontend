@@ -49,9 +49,9 @@ class BrowseFragment : Fragment() {
         for (i in 1..3) {
             hmodels = arrayListOf<HorizontalItemModel>()
             for (n in 1..5) {
-                hmodels.add(HorizontalItemModel("Brochure #$n", "A lire #$n"))
+                hmodels.add(HorizontalItemModel("Brochure $n", "A lire $n"))
             }
-            mDataset.add(VerticalItemModel("Section #$i", hmodels))
+            mDataset.add(VerticalItemModel("Section $i", hmodels))
         }
     }
 }

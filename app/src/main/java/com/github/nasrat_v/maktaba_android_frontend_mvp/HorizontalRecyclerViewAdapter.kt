@@ -5,16 +5,18 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import android.util.Xml
 
 class HorizontalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<HorizontalItemModel>)
     : RecyclerView.Adapter<HorizontalRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView =  LayoutInflater.from(container.context).inflate(R.layout.item_horizontal, container, false)
-        return ViewHolder(rootView)
+        return ViewHolder(rootView, context)
     }
 
     override fun getItemCount(): Int {
@@ -30,7 +32,7 @@ class HorizontalRecyclerViewAdapter(private var context: Context, private var li
         }
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, var context: Context): RecyclerView.ViewHolder(itemView) {
         var mTitle = itemView.findViewById<TextView>(R.id.horizontal_title)!!
         var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!
     }
