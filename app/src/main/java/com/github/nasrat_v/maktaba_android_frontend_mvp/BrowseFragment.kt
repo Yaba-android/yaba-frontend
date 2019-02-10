@@ -11,7 +11,7 @@ import android.widget.Button
 
 class BrowseFragment : Fragment() {
 
-    private lateinit var mClickCallback: ContainerFragment.ClickCallback
+    private lateinit var mClickCallback: MainContainerFragment.ClickCallback
     private lateinit var rootView: View
     private lateinit var verticalRecyclerView: RecyclerView
     private lateinit var adapter: VerticalRecyclerViewAdapter
@@ -39,7 +39,7 @@ class BrowseFragment : Fragment() {
         }
     }
 
-    fun setClickCallback(clickCallback: ContainerFragment.ClickCallback) {
+    fun setClickCallback(clickCallback: MainContainerFragment.ClickCallback) {
         mClickCallback = clickCallback
     }
 
@@ -49,7 +49,7 @@ class BrowseFragment : Fragment() {
         for (i in 1..3) {
             hmodels = arrayListOf<HorizontalItemModel>()
             for (n in 1..5) {
-                hmodels.add(HorizontalItemModel("Brochure $n", "A lire $n"))
+                hmodels.add(HorizontalItemModel("Book $n", "A lire $n"))
             }
             mDataset.add(VerticalItemModel("Section $i", hmodels))
         }

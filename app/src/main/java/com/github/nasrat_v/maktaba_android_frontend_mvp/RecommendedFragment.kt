@@ -12,11 +12,10 @@ import android.view.ViewGroup
 import android.support.v4.view.ViewPager
 import android.widget.Button
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_recommended.*
 
 class RecommendedFragment : Fragment() {
 
-    private lateinit var mClickCallback: ContainerFragment.ClickCallback
+    private lateinit var mClickCallback: MainContainerFragment.ClickCallback
     private lateinit var rootView: View
     private lateinit var verticalRecyclerView: RecyclerView
     private lateinit var adapter: VerticalRecyclerViewAdapter
@@ -33,7 +32,7 @@ class RecommendedFragment : Fragment() {
         return rootView
     }
 
-    fun setClickCallback(clickCallback: ContainerFragment.ClickCallback) {
+    fun setClickCallback(clickCallback: MainContainerFragment.ClickCallback) {
         mClickCallback = clickCallback
     }
 

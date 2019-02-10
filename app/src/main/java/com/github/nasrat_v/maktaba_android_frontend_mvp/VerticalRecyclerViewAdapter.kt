@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 class VerticalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<VerticalItemModel>,
-                                  private var mClickCallback: ContainerFragment.ClickCallback)
+                                  private var mClickCallback: MainContainerFragment.ClickCallback)
     : RecyclerView.Adapter<VerticalRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()

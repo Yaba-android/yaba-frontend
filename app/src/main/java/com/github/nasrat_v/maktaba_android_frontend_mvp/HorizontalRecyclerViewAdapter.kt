@@ -13,7 +13,7 @@ import android.widget.Toast
 class HorizontalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<HorizontalItemModel>)
     : RecyclerView.Adapter<HorizontalRecyclerViewAdapter.ViewHolder>() {
 
-    private lateinit var mClickCallback: ContainerFragment.ClickCallback
+    private lateinit var mClickCallback: MainContainerFragment.ClickCallback
     private var mLastClickTime: Long = 0
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
@@ -39,7 +39,7 @@ class HorizontalRecyclerViewAdapter(private var context: Context, private var li
         }
     }
 
-    fun setClickCallback(clickCallback: ContainerFragment.ClickCallback) {
+    fun setClickCallback(clickCallback: MainContainerFragment.ClickCallback) {
         mClickCallback = clickCallback
     }
 

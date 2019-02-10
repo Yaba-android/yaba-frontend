@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
 
-class ContainerFragment : Fragment() {
+class MainContainerFragment : Fragment() {
 
     private lateinit var mClickCallback: ClickCallback
     private lateinit var mToolbarSetupCallback: TabLayoutSetupCallback
@@ -43,7 +43,7 @@ class ContainerFragment : Fragment() {
         return view
     }
 
-    fun setClickCallback(clickCallback: ContainerFragment.ClickCallback) {
+    fun setClickCallback(clickCallback: MainContainerFragment.ClickCallback) {
         mClickCallback = clickCallback
     }
 

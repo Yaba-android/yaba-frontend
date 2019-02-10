@@ -5,12 +5,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/drawer_layout_profile"
+        android:id="@+id/drawer_main"
         android:fitsSystemWindows="true"
         tools:context=".MainActivity">
 
     <android.support.design.widget.CoordinatorLayout
-            android:id="@+id/rootLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -23,14 +22,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="?attr/actionBarSize"
-                    android:id="@+id/toolbar_profile"
+                    android:id="@+id/toolbar_main"
                     android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
                     app:title="Book Store"
                     android:fitsSystemWindows="true"
                     app:titleTextColor="@android:color/darker_gray"/>
 
             <android.support.design.widget.TabLayout
-                    android:id="@+id/tabs"
+                    android:id="@+id/tabs_main"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
@@ -46,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:id="@+id/fragment_container_profile"
+                android:id="@+id/fragment_container_main"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     </android.support.design.widget.CoordinatorLayout>

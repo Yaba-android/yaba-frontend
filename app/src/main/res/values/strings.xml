@@ -16,5 +16,8 @@
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
     <string name="more_reading_for_you">More reading for you</string>
     <string name="based_on_your_most_read_books">Based on your most read books</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
 

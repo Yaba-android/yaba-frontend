@@ -31,7 +31,6 @@
             android:layout_height="160dp"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal"
-            android:id="@+id/horizontal_recyclerview"
-            android:scrollbars="horizontal"/>
+            android:id="@+id/horizontal_recyclerview"/>
 
 </LinearLayout>

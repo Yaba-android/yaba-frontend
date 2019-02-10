@@ -10,7 +10,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".BookDetails">
+        <activity android:name=".BookDetailsActivity">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
