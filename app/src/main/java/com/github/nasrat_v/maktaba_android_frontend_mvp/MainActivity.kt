@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity(),
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_main)
         setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
 
         mDrawerLayout = findViewById(R.id.drawer_main)
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END);

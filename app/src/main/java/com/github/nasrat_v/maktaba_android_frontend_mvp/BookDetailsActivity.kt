@@ -23,6 +23,7 @@ class BookDetailsActivity : AppCompatActivity(), BookDetailsContainerFragment.Ta
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_book_details)
         setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
 
         mDrawerLayout = findViewById(R.id.drawer_book_details)
         val mDrawerToggle = ActionBarDrawerToggle(this, mDrawerLayout, toolbar,

@@ -24,9 +24,18 @@
                     android:minHeight="?attr/actionBarSize"
                     android:id="@+id/toolbar_book_details"
                     android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-                    app:title="Book Store"
                     android:fitsSystemWindows="true"
-                    app:titleTextColor="@android:color/darker_gray"/>
+                    android:background="@android:color/white">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/book_store"
+                        android:layout_gravity="center"
+                        android:id="@+id/toolbar_title"
+                        android:textSize="16sp"/>
+
+            </android.support.v7.widget.Toolbar>
 
             <RelativeLayout
                     android:layout_width="match_parent"
@@ -106,9 +115,7 @@
                     android:background="@android:color/white"
                     app:tabIndicatorColor="@android:color/holo_blue_light"
                     app:tabTextColor="@android:color/black"
-                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget">
-
-            </android.support.design.widget.TabLayout>
+                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"/>
 
         </android.support.design.widget.AppBarLayout>
 
