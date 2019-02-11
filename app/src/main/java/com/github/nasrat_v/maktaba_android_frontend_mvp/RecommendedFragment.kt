@@ -15,11 +15,11 @@ import android.widget.Toast
 
 class RecommendedFragment : Fragment() {
 
-    private lateinit var mClickCallback: MainContainerFragment.ClickCallback
+    private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
     private lateinit var rootView: View
     private lateinit var verticalRecyclerView: RecyclerView
-    private lateinit var adapter: VerticalRecyclerViewAdapter
-    private var mDataset = arrayListOf<VerticalItemModel>()
+    private lateinit var adapterBookVertical: BookVerticalRecyclerViewAdapter
+    private var mDataset = arrayListOf<BookVerticalModel>()
     private var bookSelectedCarousel = 0
     private var mLastClickTime: Long = 0
 
@@ -32,19 +32,22 @@ class RecommendedFragment : Fragment() {
         return rootView
     }
 
-    fun setClickCallback(clickCallback: MainContainerFragment.ClickCallback) {
-        mClickCallback = clickCallback
+    fun setTabFragmentClickCallback(tabFragmentClickCallback: ITabFragmentClickCallback) {
+        mTabFragmentClickCallback = tabFragmentClickCallback
     }
 
     private fun initCarousel(container: ViewGroup) {
         val carouselPicker = rootView.findViewById<CarouselPicker>(R.id.carousel)
 
         val imageItems = arrayListOf<CarouselPicker.PickerItem>()
-        imageItems.add(CarouselPicker.DrawableItem(R.mipmap.ic_launcher_round))
-        imageItems.add(CarouselPicker.DrawableItem(R.mipmap.ic_launcher))
-        imageItems.add(CarouselPicker.DrawableItem(R.mipmap.ic_launcher))
-        imageItems.add(CarouselPicker.DrawableItem(R.mipmap.ic_launcher))
-        imageItems.add(CarouselPicker.DrawableItem(R.mipmap.ic_launcher))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
         val imageAdapter = CarouselPicker.CarouselViewAdapter(container.context, imageItems, 0)
         carouselPicker.adapter = imageAdapter
 
@@ -66,7 +69,7 @@ class RecommendedFragment : Fragment() {
             Toast.makeText(context, "Book Carousel", Toast.LENGTH_SHORT).show()
             if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
                 // envoyer le bon livre grace à bookSelectedCarousel
-                mClickCallback.bookEventButtonClicked()
+                mTabFragmentClickCallback.bookEventButtonClicked()
             }
             mLastClickTime = SystemClock.elapsedRealtime();
         }
@@ -74,22 +77,23 @@ class RecommendedFragment : Fragment() {
 
     private fun initVerticalRecycler(container: ViewGroup) {
         mockDataset()
-        adapter = VerticalRecyclerViewAdapter(container.context, mDataset, mClickCallback)
-        verticalRecyclerView = rootView.findViewById(R.id.vertical_recyclerview)
+        adapterBookVertical = BookVerticalRecyclerViewAdapter(container.context, mDataset, mTabFragmentClickCallback)
+        verticalRecyclerView = rootView.findViewById(R.id.book_vertical_recyclerview_recommended)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapter
+        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.addItemDecoration(BookVerticalRecyclerViewBottomOffsetDecoration(container.context, R.dimen.book_vertical_recycler_view))
     }
 
     private fun mockDataset() {
-        var hmodels: ArrayList<HorizontalItemModel>
+        var hmodels: ArrayList<BookHorizontalModel>
 
         for (i in 1..2) {
-            hmodels = arrayListOf<HorizontalItemModel>()
+            hmodels = arrayListOf<BookHorizontalModel>()
             for (n in 1..5) {
-                hmodels.add(HorizontalItemModel("Brochure $n", "A lire $n"))
+                hmodels.add(BookHorizontalModel("Brochure $n", "A lire $n"))
             }
-            mDataset.add(VerticalItemModel("Section $i", hmodels))
+            mDataset.add(BookVerticalModel("Section $i", hmodels))
         }
     }
 }

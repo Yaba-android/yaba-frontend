@@ -1,5 +1,6 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -11,7 +12,8 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.Gravity
 
-class BookDetailsActivity : AppCompatActivity(), BookDetailsContainerFragment.TabLayoutSetupCallback {
+class BookDetailsActivity : AppCompatActivity(),
+    ITabFragmentClickCallback, ITabLayoutSetupCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mFragmentManager: FragmentManager
@@ -21,7 +23,7 @@ class BookDetailsActivity : AppCompatActivity(), BookDetailsContainerFragment.Ta
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_book_details)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
@@ -32,7 +34,7 @@ class BookDetailsActivity : AppCompatActivity(), BookDetailsContainerFragment.Ta
         mDrawerLayout.setDrawerListener(mDrawerToggle)
 
         val containerFragment = BookDetailsContainerFragment()
-        //containerFragment.setClickCallback(this) // permet de gerer les click depuis le fragment
+        containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis le fragment
 
         if (savedInstanceState == null) {
             mFragmentManager = supportFragmentManager
@@ -45,6 +47,13 @@ class BookDetailsActivity : AppCompatActivity(), BookDetailsContainerFragment.Ta
     override fun setupTabLayout(viewPager: ViewPager) {
         val tabLayout = findViewById<TabLayout>(R.id.tabs_book_details)
         tabLayout.setupWithViewPager(viewPager)
+    }
+
+    override fun bookEventButtonClicked() {
+        val intent = Intent(this, BookDetailsActivity::class.java)
+
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     override fun finish() {

@@ -12,8 +12,8 @@ import android.support.v4.app.FragmentStatePagerAdapter
 
 class BookDetailsContainerFragment : Fragment() {
 
-    //private lateinit var mClickCallback: ClickCallback
-    private lateinit var mToolbarSetupCallback: TabLayoutSetupCallback
+    private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
+    private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
     private val mTabNamesList = arrayListOf<String>()
 
     override fun onAttach(context: Context) {
@@ -22,7 +22,7 @@ class BookDetailsContainerFragment : Fragment() {
         if (context is BookDetailsActivity) {
             // callback qui va permettre de recuperer le tablayout depuis activity_main et de lui setter le viewpager qui est dans fragment_container
             // ceci regle le probleme de la nav view  qui passe sour la toolbar
-            mToolbarSetupCallback = context
+            mTabLayoutSetupCallback = context as ITabLayoutSetupCallback
         } else {
             throw ClassCastException("$context must implement TabLayoutSetupCallback")
         }
@@ -39,13 +39,13 @@ class BookDetailsContainerFragment : Fragment() {
 
         val viewPager = view.findViewById(R.id.viewpager_container_fragment) as ViewPager
         viewPager.adapter = ItemsPagerAdapter(childFragmentManager, mTabNamesList)
-        mToolbarSetupCallback.setupTabLayout(viewPager)
+        mTabLayoutSetupCallback.setupTabLayout(viewPager)
         return view
     }
 
-    /*fun setClickCallback(clickCallback: BookDetailsContainerFragment.ClickCallback) {
-        mClickCallback = clickCallback
-    }*/
+    fun setTabFragmentClickCallback(tabFragmentClickCallback: ITabFragmentClickCallback) {
+        mTabFragmentClickCallback = tabFragmentClickCallback
+    }
 
     internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>)
         : FragmentStatePagerAdapter(fm) {
@@ -54,12 +54,12 @@ class BookDetailsContainerFragment : Fragment() {
             when (position) {
                 0 -> {
                     val review = ReviewFragment()
-                    //recommended.setClickCallback(mClickCallback)
+                    //review.setClickCallback(mClickCallback)
                     return review
                 }
                 1 ->  {
                     val overview = OverviewFragment()
-                    //browse.setClickCallback(mClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
+                    overview.setTabFragmentClickCallback(mTabFragmentClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
                     return overview
                 }
             }
@@ -78,13 +78,4 @@ class BookDetailsContainerFragment : Fragment() {
             return tabNames[position]
         }
     }
-
-    interface TabLayoutSetupCallback {
-        fun setupTabLayout(viewPager: ViewPager)
-    }
-
-    /*interface ClickCallback {
-        fun genreNavigationEventButtonClicked()
-        fun bookEventButtonClicked()
-    }*/
 }

@@ -19,7 +19,7 @@
                 android:id="@+id/button_genre_nav"/>
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/vertical_recyclerview"
+                android:id="@+id/book_vertical_recyclerview_browse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"

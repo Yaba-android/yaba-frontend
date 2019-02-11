@@ -20,5 +20,18 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="book_store">Book Store</string>
+    <string name="more">+ More</string>
+    <string name="more_reviews">More reviews</string>
+    <string name="about_the_author">About the author</string>
+    <string name="mohamed_abdel_nabi_description">Mohamed Abdel Nabi is an Egyptian writer, born in 1977. He obtain a BA
+        in Languages and Translation from the
+    </string>
+    <string name="mohamed_abdel_nabi">Mohamed Abdel Nabi</string>
+    <string name="more_books_from_this_author">More Books from this Author</string>
+    <string name="page_length">Page length</string>
+    <string name="publisher">Publisher</string>
+    <string name="isbn">ISBN</string>
+    <string name="buy_now">Buy now</string>
+    <string name="download_sample">Download sample</string>
 </resources>
 

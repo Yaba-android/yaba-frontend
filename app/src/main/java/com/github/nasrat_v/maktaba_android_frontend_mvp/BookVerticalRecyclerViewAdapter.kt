@@ -8,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class VerticalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<VerticalItemModel>,
-                                  private var mClickCallback: MainContainerFragment.ClickCallback)
-    : RecyclerView.Adapter<VerticalRecyclerViewAdapter.ViewHolder>() {
+class BookVerticalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BookVerticalModel>,
+                                      private var mTabFragmentClickCallback: ITabFragmentClickCallback)
+    : RecyclerView.Adapter<BookVerticalRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.item_vertical, container, false)
+        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.vertical_book, container, false)
         return ViewHolder(rootView)
     }
 
@@ -26,9 +26,9 @@ class VerticalRecyclerViewAdapter(private var context: Context, private var list
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
         val title = model.title
-        val horizontalRecyclerViewAdapter = HorizontalRecyclerViewAdapter(context, model.items)
+        val horizontalRecyclerViewAdapter = BookHorizontalRecyclerViewAdapter(context, model.bookHorizontalModels)
 
-        horizontalRecyclerViewAdapter.setClickCallback(mClickCallback)
+        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mTabFragmentClickCallback)
         holder.mTitle.text = title
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:orientation="vertical">
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="2dp">
+            android:padding="10dp">
 
         <TextView
                 android:layout_width="match_parent"
@@ -22,15 +22,16 @@
                 android:textSize="16sp"
                 android:id="@+id/vertical_title"
                 android:textStyle="bold"
+                android:paddingBottom="10dp"
                 tools:ignore="RtlHardcoded"/>
 
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            android:id="@+id/horizontal_recyclerview"/>
+            android:orientation="horizontal"/>
 
 </LinearLayout>

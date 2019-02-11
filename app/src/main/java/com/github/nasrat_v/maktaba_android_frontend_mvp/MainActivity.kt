@@ -14,7 +14,7 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 
 class MainActivity : AppCompatActivity(),
-    MainContainerFragment.ClickCallback, MainContainerFragment.TabLayoutSetupCallback {
+    ITabFragmentClickCallback, ITabLayoutSetupCallback, MainContainerFragment.AdditionalClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mFragmentManager: FragmentManager
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_main)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
@@ -37,7 +37,8 @@ class MainActivity : AppCompatActivity(),
         mDrawerLayout.setDrawerListener(mDrawerToggle)
 
         val containerFragment = MainContainerFragment()
-        containerFragment.setClickCallback(this) // permet de gerer les click depuis le fragment
+        containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis les fragments
+        containerFragment.setAdditionalClickCallback(this) // click additionnel uniquement pour le fragment browse
 
         if (savedInstanceState == null) {
             mFragmentManager = supportFragmentManager

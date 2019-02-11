@@ -1,14 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Fragment Overview"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp">
 
-</LinearLayout>
+        <TextView
+                android:id="@+id/desc_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text=" هذا هو وصف كتاب على الانترنت. هذا الوصف يجب أن هذا هو وصف كتاب على أن يكتمل"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded"
+                android:padding="10dp"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+            <TextView
+                    android:id="@+id/page_lenght_title_overview"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="right"
+                    android:text="@string/page_length"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"
+                    android:paddingBottom="2dp"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/page_lenght_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="200"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:paddingBottom="2dp"
+                    android:paddingEnd="70dp"
+                    android:layout_toStartOf="@id/page_lenght_title_overview"
+                    tools:ignore="RtlHardcoded,RtlSymmetry"/>
+
+            <TextView
+                    android:id="@+id/publisher_title_overview"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="right"
+                    android:text="@string/publisher"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"
+                    android:paddingBottom="2dp"
+                    android:layout_below="@+id/page_lenght_title_overview"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/publisher_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="Publishing House"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:paddingBottom="2dp"
+                    android:paddingEnd="70dp"
+                    android:layout_toStartOf="@id/publisher_title_overview"
+                    android:layout_below="@+id/page_lenght_overview"
+                    tools:ignore="RtlHardcoded,RtlSymmetry"/>
+
+            <TextView
+                    android:id="@+id/isbn_title_overview"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="right"
+                    android:text="@string/isbn"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"
+                    android:layout_below="@+id/publisher_title_overview"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/isbn_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="48974589754-9"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:paddingBottom="2dp"
+                    android:paddingEnd="70dp"
+                    android:layout_toStartOf="@id/isbn_title_overview"
+                    android:layout_below="@+id/publisher_overview"
+                    tools:ignore="RtlHardcoded,RtlSymmetry"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="30dp">
+
+            <TextView
+                    android:id="@+id/genre_fiction_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Fiction   "
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag"
+                    android:padding="10dp"
+                    android:layout_marginEnd="10dp"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_crime_thriller_mystery_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Crime, Thrillers &amp; Mystery   "
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag"
+                    android:padding="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toStartOf="@id/genre_fiction_overview"
+                    tools:ignore="RtlHardcoded"/>
+
+        </RelativeLayout>
+
+        <TextView
+                android:id="@+id/author_title_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/about_the_author"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded"
+                android:padding="10dp"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                tools:ignore="RtlSymmetry">
+
+            <ImageView
+                    android:id="@+id/author_picture_overview"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="40dp"/>
+
+            <TextView
+                    android:id="@+id/author_name_overview"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/mohamed_abdel_nabi"
+                    android:paddingTop="20dp"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:layout_toStartOf="@id/author_picture_overview"
+                    android:layout_marginEnd="20dp"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/author_desc_overview"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/author_name_overview"
+                    android:gravity="right"
+                    android:text="@string/mohamed_abdel_nabi_description"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_toStartOf="@id/author_picture_overview"
+                    android:layout_marginEnd="20dp"
+                    tools:ignore="RtlHardcoded"/>
+
+            <Button
+                    android:id="@+id/button_more_author_overview"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:text="@string/more"
+                    android:textSize="12sp"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:layout_toStartOf="@id/author_picture_overview"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@android:color/transparent"
+                    android:layout_below="@+id/author_desc_overview"/>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/book_vertical_recyclerview_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

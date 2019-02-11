@@ -10,14 +10,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
-class HorizontalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<HorizontalItemModel>)
-    : RecyclerView.Adapter<HorizontalRecyclerViewAdapter.ViewHolder>() {
+class BookHorizontalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BookHorizontalModel>)
+    : RecyclerView.Adapter<BookHorizontalRecyclerViewAdapter.ViewHolder>() {
 
-    private lateinit var mClickCallback: MainContainerFragment.ClickCallback
+    private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
     private var mLastClickTime: Long = 0
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.item_horizontal, container, false)
+        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.horizontal_book, container, false)
         return ViewHolder(rootView, context)
     }
 
@@ -33,14 +33,14 @@ class HorizontalRecyclerViewAdapter(private var context: Context, private var li
             Toast.makeText(context, model.title, Toast.LENGTH_SHORT).show()
             if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
                 // envoyer le bon livre grace à position
-                mClickCallback.bookEventButtonClicked()
+                mTabFragmentClickCallback.bookEventButtonClicked()
             }
             mLastClickTime = SystemClock.elapsedRealtime();
         }
     }
 
-    fun setClickCallback(clickCallback: MainContainerFragment.ClickCallback) {
-        mClickCallback = clickCallback
+    fun setTabFragmentClickCallback(tabFragmentClickCallback: ITabFragmentClickCallback) {
+        mTabFragmentClickCallback = tabFragmentClickCallback
     }
 
     class ViewHolder(itemView: View, var context: Context): RecyclerView.ViewHolder(itemView) {

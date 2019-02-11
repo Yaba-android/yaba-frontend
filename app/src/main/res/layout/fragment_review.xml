@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:orientation="vertical">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/review_vertical_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Fragment Review"/>
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <Button
+            android:id="@+id/button_more_review"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="@string/more_reviews"
+            android:textSize="12sp"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="30dp"
+            android:layout_margin="30dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_corner_button"
+            android:layout_gravity="center"/>
 
 </LinearLayout>

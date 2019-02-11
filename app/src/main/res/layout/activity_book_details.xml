@@ -18,29 +18,13 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme.AppBarOverlay">
 
-            <android.support.v7.widget.Toolbar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="?attr/actionBarSize"
-                    android:id="@+id/toolbar_book_details"
-                    android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-                    android:fitsSystemWindows="true"
-                    android:background="@android:color/white">
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/book_store"
-                        android:layout_gravity="center"
-                        android:id="@+id/toolbar_title"
-                        android:textSize="16sp"/>
-
-            </android.support.v7.widget.Toolbar>
+            <include layout="@layout/toolbar_application"/>
 
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/white">
+                    android:background="@android:color/white"
+                    app:layout_scrollFlags="scroll|enterAlways">
 
                 <ImageView
                         android:id="@+id/image_book"
@@ -54,8 +38,9 @@
                         android:layout_marginBottom="40dp"/>
 
                 <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="225dp"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:text="The Friend"
                         android:paddingTop="20dp"
                         android:textSize="20sp"
@@ -68,9 +53,10 @@
 
                 <TextView
                         android:id="@+id/author_book"
-                        android:layout_width="wrap_content"
+                        android:layout_width="225dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/title_book"
+                        android:gravity="right"
                         android:text="Sigrid Nunez"
                         android:textSize="14sp"
                         android:textColor="@android:color/darker_gray"
@@ -81,21 +67,21 @@
                         android:id="@+id/button_buy_book"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:text="Buy now"
+                        android:text="@string/buy_now"
                         android:textSize="14sp"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white"
                         android:layout_toStartOf="@id/image_book"
                         android:layout_marginStart="30dp"
                         android:layout_marginEnd="20dp"
-                        android:background="@android:color/holo_purple"
+                        android:background="#4B0082"
                         android:layout_above="@+id/button_download_book"/>
 
                 <Button
                         android:id="@+id/button_download_book"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:text="Download sample"
+                        android:text="@string/download_sample"
                         android:textSize="10sp"
                         android:textAllCaps="false"
                         android:textColor="@android:color/black"
@@ -115,7 +101,8 @@
                     android:background="@android:color/white"
                     app:tabIndicatorColor="@android:color/holo_blue_light"
                     app:tabTextColor="@android:color/black"
-                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"/>
+                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                    app:layout_scrollFlags="scroll|enterAlways"/>
 
         </android.support.design.widget.AppBarLayout>
 

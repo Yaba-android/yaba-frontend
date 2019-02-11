@@ -11,11 +11,12 @@ import android.widget.Button
 
 class BrowseFragment : Fragment() {
 
-    private lateinit var mClickCallback: MainContainerFragment.ClickCallback
+    private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
+    private lateinit var mAdditionalClickCallback: MainContainerFragment.AdditionalClickCallback
     private lateinit var rootView: View
     private lateinit var verticalRecyclerView: RecyclerView
-    private lateinit var adapter: VerticalRecyclerViewAdapter
-    private var mDataset = arrayListOf<VerticalItemModel>()
+    private lateinit var adapterBookVertical: BookVerticalRecyclerViewAdapter
+    private var mDataset = arrayListOf<BookVerticalModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -23,11 +24,12 @@ class BrowseFragment : Fragment() {
 
         mockDataset()
 
-        adapter = VerticalRecyclerViewAdapter(container!!.context, mDataset, mClickCallback)
-        verticalRecyclerView = rootView.findViewById(R.id.vertical_recyclerview)
+        adapterBookVertical = BookVerticalRecyclerViewAdapter(container!!.context, mDataset, mTabFragmentClickCallback)
+        verticalRecyclerView = rootView.findViewById(R.id.book_vertical_recyclerview_browse)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapter
+        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.addItemDecoration(BookVerticalRecyclerViewBottomOffsetDecoration(container.context, R.dimen.book_vertical_recycler_view))
         return rootView
     }
 
@@ -35,23 +37,27 @@ class BrowseFragment : Fragment() {
         val buttonGenre = rootView.findViewById<Button>(R.id.button_genre_nav)
 
         buttonGenre.setOnClickListener {
-            mClickCallback.genreNavigationEventButtonClicked() // l'event click est envoyé à l'activity parent grâce à l'interface
+            mAdditionalClickCallback.genreNavigationEventButtonClicked() // l'event click est envoyé à l'activity parent grâce à l'interface
         }
     }
 
-    fun setClickCallback(clickCallback: MainContainerFragment.ClickCallback) {
-        mClickCallback = clickCallback
+    fun setTabFragmentClickCallback(tabFragmentClickCallback: ITabFragmentClickCallback) {
+        mTabFragmentClickCallback = tabFragmentClickCallback
+    }
+
+    fun setAdditionalClickCallback(additionalClickCallback: MainContainerFragment.AdditionalClickCallback) {
+        mAdditionalClickCallback = additionalClickCallback
     }
 
     private fun mockDataset() {
-        var hmodels: ArrayList<HorizontalItemModel>
+        var hmodels: ArrayList<BookHorizontalModel>
 
         for (i in 1..3) {
-            hmodels = arrayListOf<HorizontalItemModel>()
+            hmodels = arrayListOf<BookHorizontalModel>()
             for (n in 1..5) {
-                hmodels.add(HorizontalItemModel("Book $n", "A lire $n"))
+                hmodels.add(BookHorizontalModel("Book $n", "A lire $n"))
             }
-            mDataset.add(VerticalItemModel("Section $i", hmodels))
+            mDataset.add(BookVerticalModel("Section $i", hmodels))
         }
     }
 }

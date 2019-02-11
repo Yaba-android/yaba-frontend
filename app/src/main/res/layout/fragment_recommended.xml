@@ -39,8 +39,7 @@
                     android:id="@+id/imagePreview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="0dp" >
+                    android:orientation="vertical">
 
                 <in.goodiebag.carouselpicker.CarouselPicker
                         android:id="@+id/carousel"
@@ -53,8 +52,8 @@
 
                 <Button
                         android:id="@+id/button_carousel"
-                        android:layout_width="40dp"
-                        android:layout_height="50dp"
+                        android:layout_width="75dp"
+                        android:layout_height="130dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
@@ -86,7 +85,7 @@
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/vertical_recyclerview"
+                android:id="@+id/book_vertical_recyclerview_recommended"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"
