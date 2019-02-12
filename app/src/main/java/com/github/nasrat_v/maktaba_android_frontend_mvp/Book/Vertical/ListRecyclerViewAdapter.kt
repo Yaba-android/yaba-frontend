@@ -20,9 +20,8 @@ class ListRecyclerViewAdapter(private var context: Context, private var list: Ar
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView =  LayoutInflater.from(container.context).inflate(R.layout.vertical_recyclerview_book, container, false)
-        return ViewHolder(
-            rootView
-        )
+
+        return ViewHolder(rootView)
     }
 
     override fun getItemCount(): Int {
@@ -32,11 +31,7 @@ class ListRecyclerViewAdapter(private var context: Context, private var list: Ar
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
         val title = model.title
-        val horizontalRecyclerViewAdapter =
-            RecyclerViewAdapter(
-                context,
-                model.bookHorizontalModels
-            )
+        val horizontalRecyclerViewAdapter = RecyclerViewAdapter(context, model.bookHorizontalModels)
 
         horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mTabFragmentClickCallback)
         holder.mTitle.text = title

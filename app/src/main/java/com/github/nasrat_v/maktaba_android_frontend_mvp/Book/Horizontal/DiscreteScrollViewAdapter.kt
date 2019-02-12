@@ -19,9 +19,8 @@ class DiscreteScrollViewAdapter(private var context: Context, private var list: 
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView =  LayoutInflater.from(container.context).inflate(R.layout.horizontal_discretescrollview_book, container, false)
-        return ViewHolder(
-            rootView
-        )
+
+        return ViewHolder(rootView)
     }
 
     override fun getItemCount(): Int {
@@ -36,7 +35,7 @@ class DiscreteScrollViewAdapter(private var context: Context, private var list: 
             Toast.makeText(context, model.title, Toast.LENGTH_SHORT).show()
             if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
                 // envoyer le bon livre grace à position
-                mTabFragmentClickCallback.bookEventButtonClicked()
+                mTabFragmentClickCallback.bookEventButtonClicked(list[position])
             }
             mLastClickTime = SystemClock.elapsedRealtime();
         }

@@ -11,44 +11,31 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.Menu
+import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.TextView
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.Model
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class BookDetailsActivity : AppCompatActivity(),
-    ITabFragmentClickCallback,
-    ITabLayoutSetupCallback {
+class BookDetailsActivity : AppCompatActivity(), ITabFragmentClickCallback, ITabLayoutSetupCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var selectedBook: Model
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_book_details)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
-
-        mDrawerLayout = findViewById(R.id.drawer_book_details)
-        val mDrawerToggle = ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
-            R.string.navigation_drawer_profile_open,
-            R.string.navigation_drawer_profile_close
-        )
-        mDrawerToggle.syncState()
-        mDrawerLayout.setDrawerListener(mDrawerToggle)
-
-        val containerFragment =
-            BookDetailsContainerFragment()
-        containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis le fragment
-
+        selectedBook = intent.getParcelableExtra<Model>("SelectedBook")
+        setBookDetailsAttributes()
+        initRootDrawerLayout()
         if (savedInstanceState == null) {
-            val mFragmentManager = supportFragmentManager
-            mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-            val mFragmentTransaction = mFragmentManager.beginTransaction()
-            mFragmentTransaction.replace(R.id.fragment_container_book_details, containerFragment).commit()
+            initFragmentManager()
         }
     }
 
@@ -77,13 +64,48 @@ class BookDetailsActivity : AppCompatActivity(),
         tabLayout.setupWithViewPager(viewPager)
     }
 
-    override fun bookEventButtonClicked() {
+    override fun bookEventButtonClicked(book: Model) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
+        intent.putExtra("SelectedBook", book)
         startActivity(intent)
         overridePendingTransition(
             R.anim.slide_in_left,
             R.anim.slide_out_right
         )
+    }
+
+    private fun setBookDetailsAttributes() {
+        val image = findViewById<ImageView>(R.id.image_book)
+        val title = findViewById<TextView>(R.id.title_book)
+        val author = findViewById<TextView>(R.id.author_book)
+
+        image.setImageResource(selectedBook.image)
+        title.text = selectedBook.title
+        author.text = selectedBook.author
+    }
+
+    private fun initRootDrawerLayout() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
+
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        mDrawerLayout = findViewById(R.id.drawer_book_details)
+        val mDrawerToggle = ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
+            R.string.navigation_drawer_profile_open,
+            R.string.navigation_drawer_profile_close
+        )
+        mDrawerToggle.syncState()
+        mDrawerLayout.setDrawerListener(mDrawerToggle)
+    }
+
+    private fun initFragmentManager() {
+        val containerFragment = BookDetailsContainerFragment()
+        val mFragmentManager = supportFragmentManager
+
+        containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis le fragment
+        mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        val mFragmentTransaction = mFragmentManager.beginTransaction()
+        mFragmentTransaction.replace(R.id.fragment_container_book_details, containerFragment).commit()
     }
 }

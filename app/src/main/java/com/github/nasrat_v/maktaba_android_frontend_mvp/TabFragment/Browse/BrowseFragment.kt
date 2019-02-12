@@ -28,26 +28,7 @@ class BrowseFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_browse, container, false)
 
         mockDataset()
-
-        val linearLayout = rootView.findViewById<LinearLayout>(R.id.root_linear_layout_browse)
-        val adapterBookVertical =
-            ListRecyclerViewAdapter(
-                container!!.context,
-                mDataset,
-                mTabFragmentClickCallback
-            )
-        val verticalRecyclerView = rootView.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_browse)
-        verticalRecyclerView.setHasFixedSize(true)
-        verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
-        verticalRecyclerView.addItemDecoration(
-            ListRecyclerViewBottomOffsetDecoration(
-                container.context,
-                R.dimen.book_vertical_recycler_view
-            )
-        )
-        verticalRecyclerView.isFocusable = false
-        linearLayout.requestFocus()
+        initVerticalRecyclerView(rootView, container!!)
         return rootView
     }
 
@@ -68,56 +49,29 @@ class BrowseFragment : Fragment() {
         mAdditionalClickCallback = additionalClickCallback
     }
 
+    private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
+        val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_browse)
+        val adapterBookVertical = ListRecyclerViewAdapter(container.context, mDataset, mTabFragmentClickCallback)
+        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_browse)
+
+        verticalRecyclerView.setHasFixedSize(true)
+        verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.addItemDecoration(ListRecyclerViewBottomOffsetDecoration(container.context, R.dimen.book_vertical_recycler_view))
+        verticalRecyclerView.isFocusable = false
+        linearLayout.requestFocus()
+    }
+
     private fun mockDataset() {
         val hmodels = arrayListOf<Model>()
-        hmodels.add(
-            Model(
-                R.drawable.forest_small,
-                "The Forest",
-                "Lombok Indonesia"
-            )
-        )
-        hmodels.add(
-            Model(
-                R.drawable.kohlarn_small,
-                "Beach",
-                "Koh Larn"
-            )
-        )
-        hmodels.add(
-            Model(
-                R.drawable.forest_small,
-                "The Waterfall",
-                "Water"
-            )
-        )
-        hmodels.add(
-            Model(
-                R.drawable.kohlarn_small,
-                "View Point",
-                "Thailand"
-            )
-        )
-        hmodels.add(
-            Model(
-                R.drawable.forest_small,
-                "Monkey forest",
-                "Indonesia Traveler"
-            )
-        )
-        hmodels.add(
-            Model(
-                R.drawable.kohlarn_small,
-                "Sea and beach",
-                "Next Pattaya"
-            )
-        )
-        mDataset.add(
-            ListModel(
-                "All Books",
-                hmodels
-            )
-        )
+
+        hmodels.add(Model(R.drawable.forest_small, "The Forest", "Lombok Indonesia"))
+        hmodels.add(Model(R.drawable.kohlarn_small, "Beach", "Koh Larn"))
+        hmodels.add(Model(R.drawable.forest_small, "The Waterfall", "Water"))
+        hmodels.add(Model(R.drawable.kohlarn_small, "View Point", "Thailand"))
+        hmodels.add(Model(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler"))
+        hmodels.add(Model(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya"))
+        mDataset.add(ListModel("All Books", hmodels))
         mDataset.add(ListModel("", hmodels))
     }
 }

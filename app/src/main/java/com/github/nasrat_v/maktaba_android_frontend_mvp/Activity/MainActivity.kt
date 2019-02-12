@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.WindowManager
 import android.widget.Button
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.Model
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.MainContainerFragment
@@ -86,9 +87,10 @@ class MainActivity : AppCompatActivity(),
             mDrawerLayout.openDrawer(Gravity.END)
     }
 
-    override fun bookEventButtonClicked() {
+    override fun bookEventButtonClicked(book: Model) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
+        intent.putExtra("SelectedBook", book)
         startActivity(intent)
         overridePendingTransition(
             R.anim.slide_in_left,

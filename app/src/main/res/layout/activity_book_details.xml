@@ -38,6 +38,7 @@
                         android:layout_marginBottom="40dp"/>
 
                 <TextView
+                        android:id="@+id/title_book"
                         android:layout_width="225dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -46,7 +47,6 @@
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@android:color/black"
-                        android:id="@+id/title_book"
                         android:layout_toStartOf="@id/image_book"
                         android:layout_marginEnd="20dp"
                         android:layout_marginTop="20dp"/>
@@ -119,8 +119,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/nav_view_profile"
+            android:fitsSystemWindows="true"
+            android:layout_marginEnd="-65dp"
+            android:layout_marginRight="-65dp"
+            android:layout_gravity="start"
+            android:layoutDirection="rtl"
+            android:background="#E6E6E6"
             app:headerLayout="@layout/nav_profile_header"
             app:menu="@menu/drawer_profile_menu"
-            android:layout_gravity="start"/>
+            tools:ignore="RtlHardcoded">
+
+        <include layout="@layout/nav_profile_footer"/>
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
