@@ -11,24 +11,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.support.v4.view.ViewPager
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.Toast
 
 class RecommendedFragment : Fragment() {
 
     private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
-    private lateinit var rootView: View
-    private lateinit var verticalRecyclerView: RecyclerView
-    private lateinit var adapterBookVertical: BookVerticalRecyclerViewAdapter
     private var mDataset = arrayListOf<BookVerticalModel>()
     private var bookSelectedCarousel = 0
     private var mLastClickTime: Long = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
-        rootView = inflater.inflate(R.layout.fragment_recommended, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_recommended, container, false)
 
-        initCarousel(container!!)
-        initVerticalRecycler(container)
+        initCarousel(rootView, container!!)
+        initVerticalRecycler(rootView, container)
         return rootView
     }
 
@@ -36,8 +34,8 @@ class RecommendedFragment : Fragment() {
         mTabFragmentClickCallback = tabFragmentClickCallback
     }
 
-    private fun initCarousel(container: ViewGroup) {
-        val carouselPicker = rootView.findViewById<CarouselPicker>(R.id.carousel)
+    private fun initCarousel(view: View, container: ViewGroup) {
+        val carouselPicker = view.findViewById<CarouselPicker>(R.id.carousel)
 
         val imageItems = arrayListOf<CarouselPicker.PickerItem>()
         imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
@@ -63,7 +61,7 @@ class RecommendedFragment : Fragment() {
             }
         })
 
-        val buttonCarousel = rootView.findViewById<Button>(R.id.button_carousel)
+        val buttonCarousel = view.findViewById<Button>(R.id.button_carousel)
 
         buttonCarousel.setOnClickListener {
             Toast.makeText(context, "Book Carousel", Toast.LENGTH_SHORT).show()
@@ -75,14 +73,17 @@ class RecommendedFragment : Fragment() {
         }
     }
 
-    private fun initVerticalRecycler(container: ViewGroup) {
+    private fun initVerticalRecycler(view: View, container: ViewGroup) {
         mockDataset()
-        adapterBookVertical = BookVerticalRecyclerViewAdapter(container.context, mDataset, mTabFragmentClickCallback)
-        verticalRecyclerView = rootView.findViewById(R.id.book_vertical_recyclerview_recommended)
+        val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
+        val adapterBookVertical = BookVerticalRecyclerViewAdapter(container.context, mDataset, mTabFragmentClickCallback)
+        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_recommended)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(BookVerticalRecyclerViewBottomOffsetDecoration(container.context, R.dimen.book_vertical_recycler_view))
+        verticalRecyclerView.isFocusable = false
+        linearLayout.requestFocus()
     }
 
     private fun mockDataset() {

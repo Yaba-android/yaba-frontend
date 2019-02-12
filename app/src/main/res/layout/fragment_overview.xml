@@ -7,8 +7,11 @@
         android:layout_height="match_parent">
 
     <LinearLayout
+            android:id="@+id/root_linear_layout_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:orientation="vertical"
             android:paddingTop="30dp"
             android:paddingBottom="30dp">
@@ -110,10 +113,11 @@
 
         </RelativeLayout>
 
-        <RelativeLayout android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="30dp">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:paddingBottom="30dp">
 
             <TextView
                     android:id="@+id/genre_fiction_overview"
@@ -123,7 +127,7 @@
                     android:text="   Fiction   "
                     android:textColor="@android:color/white"
                     android:textSize="12sp"
-                    android:background="@drawable/rounded_corner_genre_flag"
+                    android:background="@drawable/rounded_corner_genre_flag_purple"
                     android:padding="10dp"
                     android:layout_marginEnd="10dp"
                     tools:ignore="RtlHardcoded"/>
@@ -135,7 +139,7 @@
                     android:text="   Crime, Thrillers &amp; Mystery   "
                     android:textColor="@android:color/white"
                     android:textSize="12sp"
-                    android:background="@drawable/rounded_corner_genre_flag"
+                    android:background="@drawable/rounded_corner_genre_flag_purple"
                     android:padding="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_toStartOf="@id/genre_fiction_overview"

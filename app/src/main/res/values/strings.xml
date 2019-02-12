@@ -33,5 +33,8 @@
     <string name="isbn">ISBN</string>
     <string name="buy_now">Buy now</string>
     <string name="download_sample">Download sample</string>
+    <string name="search">Search</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="select_genre">Select genre</string>
 </resources>
 

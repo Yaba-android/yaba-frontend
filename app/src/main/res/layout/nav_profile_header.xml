@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="176dp"
-              android:background="@color/colorAccent"
-              android:gravity="bottom"
-              android:padding="16dp"
-              android:theme="@style/ThemeOverlay.AppCompat.Dark">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:src="@mipmap/ic_launcher"
-               android:contentDescription="@string/profile_picture"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E6E6E6"
+            android:gravity="center_horizontal"
+            android:padding="20dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:padding="8dp"
-              android:text="@string/profile_name"
-              android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher"
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                android:contentDescription="@string/profile_picture"/>
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:padding="8dp"
-              android:text="@string/profile_email"
-              android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_name"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"/>
 
-</LinearLayout>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_email"
+                android:textColor="@android:color/darker_gray"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

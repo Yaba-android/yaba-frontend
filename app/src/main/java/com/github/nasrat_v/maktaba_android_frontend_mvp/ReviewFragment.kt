@@ -10,19 +10,16 @@ import android.view.ViewGroup
 
 class ReviewFragment : Fragment() {
 
-    private lateinit var rootView: View
-    private lateinit var verticalRecyclerView: RecyclerView
-    private lateinit var adapterReviewVertical: ReviewVerticalRecyclerViewAdapter
     private var mDataset = arrayListOf<ReviewVerticalModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
-        rootView = inflater.inflate(R.layout.fragment_review, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_review, container, false)
 
         mockDataset()
 
-        adapterReviewVertical = ReviewVerticalRecyclerViewAdapter(container!!.context, mDataset)
-        verticalRecyclerView = rootView.findViewById(R.id.review_vertical_recyclerview)
+        val adapterReviewVertical = ReviewVerticalRecyclerViewAdapter(container!!.context, mDataset)
+        val verticalRecyclerView = rootView.findViewById<RecyclerView>(R.id.review_vertical_recyclerview)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterReviewVertical

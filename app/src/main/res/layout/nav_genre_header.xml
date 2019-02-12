@@ -8,8 +8,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="176dp"
-            android:background="@color/colorAccent"
-            android:gravity="bottom"
+            android:background="#F5F5F5"
+            android:gravity="center_horizontal"
             android:padding="16dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 

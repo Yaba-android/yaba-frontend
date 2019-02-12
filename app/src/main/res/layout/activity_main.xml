@@ -18,17 +18,17 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme.AppBarOverlay">
 
-                <include layout="@layout/toolbar_application"/>
+            <include layout="@layout/toolbar_application"/>
 
-                <android.support.design.widget.TabLayout
-                        android:id="@+id/tabs_main"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        app:tabIndicatorColor="@android:color/holo_blue_light"
-                        app:tabTextColor="@android:color/black"
-                        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-                        app:layout_scrollFlags="scroll|enterAlways"/>
+            <android.support.design.widget.TabLayout
+                    android:id="@+id/tabs_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    app:tabIndicatorColor="@android:color/holo_blue_light"
+                    app:tabTextColor="@android:color/black"
+                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                    app:layout_scrollFlags="scroll"/>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -45,16 +45,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/nav_view_profile"
+            android:fitsSystemWindows="true"
+            android:layout_marginEnd="-65dp"
+            android:layout_marginRight="-65dp"
+            android:layout_gravity="start"
+            android:layoutDirection="rtl"
+            android:background="#E6E6E6"
             app:headerLayout="@layout/nav_profile_header"
             app:menu="@menu/drawer_profile_menu"
-            android:layout_gravity="start"/>
+            tools:ignore="RtlHardcoded">
+
+        <include layout="@layout/nav_profile_footer"/>
+
+    </android.support.design.widget.NavigationView>
 
     <android.support.design.widget.NavigationView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/nav_view_genre"
-            app:headerLayout="@layout/nav_genre_header"
-            app:menu="@menu/drawer_genre_menu"
-            android:layout_gravity="end"/>
+            android:fitsSystemWindows="true"
+            android:layout_marginEnd="-65dp"
+            android:layout_marginRight="-65dp"
+            android:layout_gravity="end"
+            tools:ignore="RtlHardcoded">
+
+        <include layout="@layout/nav_genre_content"/>
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

@@ -24,7 +24,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/white"
-                    app:layout_scrollFlags="scroll|enterAlways">
+                    app:layout_scrollFlags="scroll">
 
                 <ImageView
                         android:id="@+id/image_book"
@@ -102,7 +102,7 @@
                     app:tabIndicatorColor="@android:color/holo_blue_light"
                     app:tabTextColor="@android:color/black"
                     app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-                    app:layout_scrollFlags="scroll|enterAlways"/>
+                    app:layout_scrollFlags="scroll"/>
 
         </android.support.design.widget.AppBarLayout>
 
