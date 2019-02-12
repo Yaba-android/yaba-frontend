@@ -52,14 +52,14 @@ class BrowseFragment : Fragment() {
     }
 
     private fun mockDataset() {
-        var hmodels: ArrayList<BookHorizontalModel>
-
-        for (i in 1..3) {
-            hmodels = arrayListOf<BookHorizontalModel>()
-            for (n in 1..5) {
-                hmodels.add(BookHorizontalModel("Book $n", "A lire $n"))
-            }
-            mDataset.add(BookVerticalModel("Section $i", hmodels))
-        }
+        val hmodels = arrayListOf<BookHorizontalModel>()
+        hmodels.add(BookHorizontalModel(R.drawable.forest_small, "The Forest", "Lombok Indonesia"))
+        hmodels.add(BookHorizontalModel(R.drawable.kohlarn_small, "Beach", "Koh Larn"))
+        hmodels.add(BookHorizontalModel(R.drawable.forest_small, "The Waterfall", "Water"))
+        hmodels.add(BookHorizontalModel(R.drawable.kohlarn_small, "View Point", "Thailand"))
+        hmodels.add(BookHorizontalModel(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler"))
+        hmodels.add(BookHorizontalModel(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya"))
+        mDataset.add(BookVerticalModel("All Books", hmodels))
+        mDataset.add(BookVerticalModel("", hmodels))
     }
 }

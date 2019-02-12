@@ -29,6 +29,7 @@ class BookHorizontalRecyclerViewAdapter(private var context: Context, private va
         val model = list[position]
 
         holder.mTitle.text = model.title
+        holder.mImage.setImageResource(model.image)
         holder.itemView.setOnClickListener {
             Toast.makeText(context, model.title, Toast.LENGTH_SHORT).show()
             if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click

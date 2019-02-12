@@ -35,17 +35,17 @@ class RecommendedFragment : Fragment() {
     }
 
     private fun initCarousel(view: View, container: ViewGroup) {
-        val carouselPicker = view.findViewById<CarouselPicker>(R.id.carousel)
+        val carouselPicker = view.findViewById(R.id.carousel) as CarouselPicker
 
         val imageItems = arrayListOf<CarouselPicker.PickerItem>()
-        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
-        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
-        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
-        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
-        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
-        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
-        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
-        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest_big))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.kohlarn_big))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.kohlarn_big))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest_big))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest_big))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest_big))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.kohlarn_big))
+        imageItems.add(CarouselPicker.DrawableItem(R.drawable.forest_big))
         val imageAdapter = CarouselPicker.CarouselViewAdapter(container.context, imageItems, 0)
         carouselPicker.adapter = imageAdapter
 
@@ -87,14 +87,14 @@ class RecommendedFragment : Fragment() {
     }
 
     private fun mockDataset() {
-        var hmodels: ArrayList<BookHorizontalModel>
-
-        for (i in 1..2) {
-            hmodels = arrayListOf<BookHorizontalModel>()
-            for (n in 1..5) {
-                hmodels.add(BookHorizontalModel("Brochure $n", "A lire $n"))
-            }
-            mDataset.add(BookVerticalModel("Section $i", hmodels))
-        }
+        val hmodels = arrayListOf<BookHorizontalModel>()
+        hmodels.add(BookHorizontalModel(R.drawable.forest_small, "The Forest", "Lombok Indonesia"))
+        hmodels.add(BookHorizontalModel(R.drawable.kohlarn_small, "Beach", "Koh Larn"))
+        hmodels.add(BookHorizontalModel(R.drawable.forest_small, "The Waterfall", "Water"))
+        hmodels.add(BookHorizontalModel(R.drawable.kohlarn_small, "View Point", "Thailand"))
+        hmodels.add(BookHorizontalModel(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler"))
+        hmodels.add(BookHorizontalModel(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya"))
+        mDataset.add(BookVerticalModel("Authors recommended for you", hmodels))
+        mDataset.add(BookVerticalModel("Recommended for you", hmodels))
     }
 }

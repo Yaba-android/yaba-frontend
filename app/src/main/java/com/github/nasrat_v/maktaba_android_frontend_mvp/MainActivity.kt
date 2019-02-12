@@ -13,6 +13,7 @@ import android.view.Gravity
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.view.Menu
+import android.view.WindowManager
 import android.widget.Button
 
 class MainActivity : AppCompatActivity(),
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity(),
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_application)

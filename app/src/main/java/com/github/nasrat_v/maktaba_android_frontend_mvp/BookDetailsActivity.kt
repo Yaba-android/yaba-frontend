@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.Menu
+import android.view.WindowManager
 
 class BookDetailsActivity : AppCompatActivity(),
     ITabFragmentClickCallback, ITabLayoutSetupCallback {
@@ -20,6 +21,7 @@ class BookDetailsActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_book_details)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
