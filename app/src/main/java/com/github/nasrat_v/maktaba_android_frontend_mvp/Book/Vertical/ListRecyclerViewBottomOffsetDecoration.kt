@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical
 
 import android.content.Context
 import android.graphics.Rect
@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.annotation.DimenRes
 import android.view.View
 
-class BookVerticalRecyclerViewBottomOffsetDecoration(private val mItemOffset: Int)
+class ListRecyclerViewBottomOffsetDecoration(private val mItemOffset: Int)
     : RecyclerView.ItemDecoration() {
 
     constructor(context: Context, @DimenRes itemOffsetId: Int)

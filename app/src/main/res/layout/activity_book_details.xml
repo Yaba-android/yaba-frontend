@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:id="@+id/drawer_book_details"
         android:fitsSystemWindows="true"
-        tools:context=".BookDetailsActivity">
+        tools:context=".Activity.BookDetailsActivity">
 
     <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"

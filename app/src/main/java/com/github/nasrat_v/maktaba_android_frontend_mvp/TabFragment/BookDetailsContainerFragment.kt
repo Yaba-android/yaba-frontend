@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp
+package com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment
 
 import android.content.Context
 import android.support.v4.app.Fragment
@@ -9,6 +9,12 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.BookDetailsActivity
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Overview.OverviewFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Review.ReviewFragment
 
 class BookDetailsContainerFragment : Fragment() {
 
@@ -58,7 +64,8 @@ class BookDetailsContainerFragment : Fragment() {
                     return review
                 }
                 1 ->  {
-                    val overview = OverviewFragment()
+                    val overview =
+                        OverviewFragment()
                     overview.setTabFragmentClickCallback(mTabFragmentClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
                     return overview
                 }

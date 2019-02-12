@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp
+package com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment
 
 import android.content.Context
 import android.support.v4.app.Fragment
@@ -9,6 +9,12 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.MainActivity
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Browse.BrowseFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Recommended.RecommendedFragment
 
 class MainContainerFragment : Fragment() {
 
@@ -48,7 +54,7 @@ class MainContainerFragment : Fragment() {
         mTabFragmentClickCallback = tabFragmentClickCallback
     }
 
-    fun setAdditionalClickCallback(additionalClickCallback: MainContainerFragment.AdditionalClickCallback) {
+    fun setAdditionalClickCallback(additionalClickCallback: AdditionalClickCallback) {
         mAdditionalClickCallback = additionalClickCallback
     }
 
@@ -58,12 +64,14 @@ class MainContainerFragment : Fragment() {
         override fun getItem(position: Int): Fragment? {
             when (position) {
                 0 -> {
-                    val recommended = RecommendedFragment()
+                    val recommended =
+                        RecommendedFragment()
                     recommended.setTabFragmentClickCallback(mTabFragmentClickCallback)
                     return recommended
                 }
                 1 ->  {
-                    val browse = BrowseFragment()
+                    val browse =
+                        BrowseFragment()
                     browse.setTabFragmentClickCallback(mTabFragmentClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
                     browse.setAdditionalClickCallback(mAdditionalClickCallback)
                     return browse

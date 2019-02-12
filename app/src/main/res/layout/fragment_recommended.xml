@@ -36,6 +36,7 @@
                     android:gravity="center_horizontal"
                     android:text="@string/based_on_your_most_read_books"
                     android:textSize="12sp"
+                    android:paddingBottom="5dp"
                     android:id="@+id/title_bis_carousel"/>
 
             <RelativeLayout
@@ -44,40 +45,27 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                <in.goodiebag.carouselpicker.CarouselPicker
-                        android:id="@+id/carousel"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
+                <com.yarolegovich.discretescrollview.DiscreteScrollView
+                        android:id="@+id/discrete_scroll_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#F5F5F5"
-                        app:items_visible="three"/>
-
-                <Button
-                        android:id="@+id/button_carousel"
-                        android:layout_width="156dp"
-                        android:layout_height="250dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@android:color/transparent"/>
+                        app:dsv_orientation="horizontal"/>
 
             </RelativeLayout>
 
             <TextView
+                    android:id="@+id/title_book_discretescrollview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:text="The Friend"
-                    android:paddingTop="20dp"
+                    android:paddingTop="5dp"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/titleBook"/>
+                    android:textColor="@android:color/black"/>
 
             <TextView
+                    android:id="@+id/author_book_discretescrollview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"

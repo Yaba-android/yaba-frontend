@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp
+package com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback
 
 import android.support.v4.view.ViewPager
 

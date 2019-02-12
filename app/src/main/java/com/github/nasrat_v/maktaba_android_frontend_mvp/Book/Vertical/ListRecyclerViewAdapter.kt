@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
@@ -7,16 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.RecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class BookVerticalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BookVerticalModel>,
-                                      private var mTabFragmentClickCallback: ITabFragmentClickCallback)
-    : RecyclerView.Adapter<BookVerticalRecyclerViewAdapter.ViewHolder>() {
+class ListRecyclerViewAdapter(private var context: Context, private var list: ArrayList<ListModel>,
+                              private var mTabFragmentClickCallback: ITabFragmentClickCallback
+)
+    : RecyclerView.Adapter<ListRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.vertical_book, container, false)
-        return ViewHolder(rootView)
+        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.vertical_recyclerview_book, container, false)
+        return ViewHolder(
+            rootView
+        )
     }
 
     override fun getItemCount(): Int {
@@ -26,7 +32,11 @@ class BookVerticalRecyclerViewAdapter(private var context: Context, private var 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
         val title = model.title
-        val horizontalRecyclerViewAdapter = BookHorizontalRecyclerViewAdapter(context, model.bookHorizontalModels)
+        val horizontalRecyclerViewAdapter =
+            RecyclerViewAdapter(
+                context,
+                model.bookHorizontalModels
+            )
 
         horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mTabFragmentClickCallback)
         holder.mTitle.text = title

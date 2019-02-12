@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp
+package com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Review
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class ReviewFragment : Fragment() {
 
@@ -18,7 +19,11 @@ class ReviewFragment : Fragment() {
 
         mockDataset()
 
-        val adapterReviewVertical = ReviewVerticalRecyclerViewAdapter(container!!.context, mDataset)
+        val adapterReviewVertical =
+            ReviewVerticalRecyclerViewAdapter(
+                container!!.context,
+                mDataset
+            )
         val verticalRecyclerView = rootView.findViewById<RecyclerView>(R.id.review_vertical_recyclerview)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)

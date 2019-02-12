@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp
+package com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Review
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class ReviewVerticalRecyclerViewAdapter(private var context: Context, private var list: ArrayList<ReviewVerticalModel>)
     : RecyclerView.Adapter<ReviewVerticalRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(R.layout.vertical_review, container, false)
-        return ViewHolder(rootView)
+        return ViewHolder(
+            rootView
+        )
     }
 
     override fun getItemCount(): Int {
