@@ -12,7 +12,8 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="vertical"
-            android:paddingTop="30dp">
+            android:paddingTop="30dp"
+            android:background="@color/colorAppBarGrey">
 
         <TextView
                 android:id="@+id/desc_overview"
