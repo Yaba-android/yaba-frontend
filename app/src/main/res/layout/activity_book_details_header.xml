@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@color/colorAppBarGrey"
         app:layout_scrollFlags="scroll">
 
     <ImageView
@@ -14,7 +14,7 @@
             android:layout_height="214dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginTop="40dp"
             android:src="@drawable/forest_medium"
             android:layout_marginBottom="40dp"/>
@@ -24,15 +24,14 @@
             android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@id/image_book"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="5dp"
             android:gravity="right"
             android:text="@string/title"
             android:paddingTop="20dp"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorTextBlack"
             tools:ignore="RtlHardcoded"/>
 
     <TextView
@@ -41,12 +40,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title_book"
             android:layout_toStartOf="@id/image_book"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:gravity="right"
             android:text="@string/author"
             android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/colorTextGrey"
             tools:ignore="RtlHardcoded"/>
 
     <RatingBar
@@ -55,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/author_book"
             android:layout_toStartOf="@id/image_book"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:layoutDirection="rtl"
             android:isIndicator="true"
@@ -72,9 +71,9 @@
             android:layout_below="@id/author_book"
             android:layout_toStartOf="@+id/rating_bar_book"
             android:text="@string/number_rating"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorTextBlack"
             android:textSize="10sp"
-            android:padding="2dp"
+            android:padding="1dp"
             tools:ignore="SmallSp"/>
 
     <TextView
@@ -83,40 +82,40 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rating_bar_book"
             android:layout_toStartOf="@id/image_book"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:gravity="right"
             android:text="@string/price"
             android:textSize="14sp"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorTextBlack"
             tools:ignore="RtlHardcoded"/>
 
     <Button
             android:id="@+id/button_buy_book"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_toStartOf="@id/image_book"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
             android:layout_above="@+id/button_download_book"
             android:text="@string/buy_now"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:background="#33005F"/>
+            android:background="@color/colorPurple"/>
 
     <Button
             android:id="@+id/button_download_book"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_toStartOf="@id/image_book"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
             android:layout_alignBottom="@+id/image_book"
             android:text="@string/download_sample"
             android:textSize="10sp"
             android:textAllCaps="false"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorTextBlack"
             android:background="@android:color/transparent"
             tools:ignore="SmallSp"/>
 

@@ -3,7 +3,17 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!-- custom -->
     <color name="colorStarRated">#FFC400</color>
     <color name="colorStarNotRated">#C6C6C6</color>
+    <color name="colorTextBlack">#1F1F1F</color>
+    <color name="colorReviewTextBlack">#0C0015</color>
+    <color name="colorTextGrey">#8B8B8B</color>
+    <color name="colorNavGrey">#DBDBDB</color>
+    <color name="colorNavFooterGrey">#FFFFFF</color>
+    <color name="colorAppBarGrey">#F8F8F8</color>
+    <color name="colorTextBlueHolo">#5FDCE6</color>
+    <color name="colorPurple">#33005F</color>
 </resources>
 

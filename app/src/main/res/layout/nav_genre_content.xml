@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#EFEFEF"
+            android:background="@color/colorNavGrey"
             tools:ignore="RtlSymmetry">
 
         <RelativeLayout
@@ -23,7 +23,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="@string/select_genre"
-                    android:textColor="#1F1F1F"
+                    android:textColor="@color/colorTextBlack"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded"
@@ -37,7 +37,7 @@
                     android:layout_height="50dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:text="⬅"
-                    android:textColor="#1F1F1F"
+                    android:textColor="@color/colorTextBlack"
                     android:textSize="30sp"/>
 
         </RelativeLayout>
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="   Biography   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -66,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Art &amp; Photography   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="   Business   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Computing   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Children's   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="   Crime, Thrillers &amp; Mystery   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -140,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Education   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="   Fiction   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -170,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Food &amp; Drink   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="   Graphic Novels   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -200,7 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Health &amp; Lifestyle   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -216,7 +216,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="   History   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -230,7 +230,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Home &amp; Garden   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -245,7 +245,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Horror   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -261,7 +261,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="   Humour   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -275,7 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Languages   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -291,7 +291,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="   Mind, Body &amp; Spirit   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -305,7 +305,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Music &amp; Screen   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -321,7 +321,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="   Reference   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -335,7 +335,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Religion &amp; Spirituality   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -351,7 +351,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="   Poetry   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -365,7 +365,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="   Politics &amp; Social Sciences   "
-                    android:textColor="#33005F"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12sp"
                     android:background="@drawable/rounded_corner_genre_flag_white"
                     android:padding="10dp"
@@ -388,17 +388,17 @@
                     android:layout_height="wrap_content"
                     android:text="⇅  Sort"
                     android:textSize="14sp"
-                    android:textColor="#1F1F1F"
+                    android:textColor="@color/colorTextBlack"
                     android:textAllCaps="false"
                     android:textStyle="bold"
                     android:layout_gravity="end"
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="@android:color/transparent"
                     android:padding="15dp"/>
 
             <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#FFFFFF">
+                    android:background="@color/colorNavFooterGrey">
 
                 <Button
                         android:id="@+id/button_popularity_nav_genre"
@@ -411,7 +411,7 @@
                         android:padding="15dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:background="?android:attr/selectableItemBackground"
+                        android:background="@android:color/transparent"
                         tools:ignore="RtlSymmetry"/>
 
                 <Button
@@ -426,7 +426,7 @@
                         android:padding="15dp"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:background="?android:attr/selectableItemBackground"/>
+                        android:background="@android:color/transparent"/>
 
                 <Button
                         android:id="@+id/button_review_score_nav_genre"
@@ -439,7 +439,7 @@
                         android:padding="15dp"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentStart="true"
-                        android:background="?android:attr/selectableItemBackground"/>
+                        android:background="@android:color/transparent"/>
 
             </RelativeLayout>
 

@@ -8,7 +8,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#E6E6E6"
+            android:background="@color/colorNavGrey"
             android:gravity="center_horizontal"
             android:padding="20dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -27,13 +27,13 @@
                 android:text="@string/profile_name"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@color/colorTextBlack"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/profile_email"
-                android:textColor="@android:color/darker_gray"/>
+                android:textColor="@color/colorTextGrey"/>
 
     </LinearLayout>
 

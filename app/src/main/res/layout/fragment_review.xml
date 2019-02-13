@@ -33,7 +33,7 @@
                     android:text="@string/more_reviews"
                     android:textSize="12sp"
                     android:textAllCaps="false"
-                    android:textColor="@android:color/black"
+                    android:textColor="#1F1F1F"
                     android:layout_marginTop="30dp"
                     android:layout_margin="30dp"
                     android:layout_marginEnd="20dp"

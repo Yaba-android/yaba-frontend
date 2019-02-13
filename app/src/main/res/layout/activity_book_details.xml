@@ -26,9 +26,9 @@
                     android:id="@+id/tabs_book_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    app:tabIndicatorColor="@android:color/holo_blue_light"
-                    app:tabTextColor="@android:color/black"
+                    android:background="@color/colorAppBarGrey"
+                    app:tabIndicatorColor="@color/colorTextBlueHolo"
+                    app:tabTextColor="@color/colorTextBlack"
                     app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
                     app:layout_scrollFlags="scroll"/>
 
@@ -52,7 +52,7 @@
             android:layout_marginRight="-65dp"
             android:layout_gravity="start"
             android:layoutDirection="rtl"
-            android:background="#E6E6E6"
+            android:background="@color/colorNavGrey"
             app:headerLayout="@layout/nav_profile_header"
             app:menu="@menu/drawer_profile_menu"
             tools:ignore="RtlHardcoded">
