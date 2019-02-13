@@ -59,7 +59,9 @@ class BookDetailsContainerFragment : Fragment() {
         override fun getItem(position: Int): Fragment? {
             when (position) {
                 0 -> {
-                    return ReviewFragment()
+                    val review = ReviewFragment()
+                    review.setTabFragmentClickCallback(mTabFragmentClickCallback)
+                    return review
                 }
                 1 ->  {
                     val overview = OverviewFragment()

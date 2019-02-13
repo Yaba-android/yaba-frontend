@@ -36,7 +36,8 @@ class OverviewFragment : Fragment() {
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_overview)
         val adapterBookVertical = ListRecyclerViewAdapter(container.context, mDataset, mTabFragmentClickCallback)
-        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_overview)
+        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
+
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical

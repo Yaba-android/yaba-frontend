@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,8 +12,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="vertical"
-            android:paddingTop="30dp"
-            android:paddingBottom="30dp">
+            android:paddingTop="30dp">
 
         <TextView
                 android:id="@+id/desc_overview"
@@ -147,84 +145,7 @@
 
         </RelativeLayout>
 
-        <TextView
-                android:id="@+id/author_title_overview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="@string/about_the_author"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:ignore="RtlHardcoded"
-                android:padding="10dp"/>
-
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="10dp"
-                tools:ignore="RtlSymmetry">
-
-            <ImageView
-                    android:id="@+id/author_picture_overview"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="40dp"/>
-
-            <TextView
-                    android:id="@+id/author_name_overview"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="@string/mohamed_abdel_nabi"
-                    android:paddingTop="20dp"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/black"
-                    android:layout_toStartOf="@id/author_picture_overview"
-                    android:layout_marginEnd="20dp"
-                    tools:ignore="RtlHardcoded"/>
-
-            <TextView
-                    android:id="@+id/author_desc_overview"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/author_name_overview"
-                    android:gravity="right"
-                    android:text="@string/mohamed_abdel_nabi_description"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/darker_gray"
-                    android:layout_toStartOf="@id/author_picture_overview"
-                    android:layout_marginEnd="20dp"
-                    tools:ignore="RtlHardcoded"/>
-
-            <Button
-                    android:id="@+id/button_more_author_overview"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:text="@string/more"
-                    android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:layout_toStartOf="@id/author_picture_overview"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@android:color/transparent"
-                    android:layout_below="@+id/author_desc_overview"/>
-
-        </RelativeLayout>
-
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/book_vertical_recyclerview_overview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        <include layout="@layout/fragment_review_overview_footer"/>
 
     </LinearLayout>
 

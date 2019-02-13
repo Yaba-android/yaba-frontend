@@ -13,7 +13,7 @@ class ReviewVerticalRecyclerViewAdapter(private var context: Context, private va
     : RecyclerView.Adapter<ReviewVerticalRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView = LayoutInflater.from(container.context).inflate(R.layout.vertical_review, container, false)
+        val rootView = LayoutInflater.from(container.context).inflate(R.layout.vertical_recyclerview_review, container, false)
         return ViewHolder(
             rootView
         )
