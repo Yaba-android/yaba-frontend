@@ -14,9 +14,9 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
         <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="84dp"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/portrait_profile"
                 android:paddingTop="20dp"
                 android:paddingBottom="10dp"
                 android:contentDescription="@string/profile_picture"/>
