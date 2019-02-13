@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="107dp"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="107dp"
         android:layout_height="284dp"
         android:layout_margin="8dp"
         android:textDirection="rtl"
@@ -23,7 +23,7 @@
             android:layout_below="@id/horizontal_image"
             android:text="@string/title"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:paddingBottom="2dp"/>
 
     <TextView
@@ -33,16 +33,40 @@
             android:layout_below="@id/horizontal_title"
             android:text="@string/author"
             android:textColor="@android:color/darker_gray"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:paddingBottom="2dp"/>
+
+    <RatingBar
+            android:id="@+id/horizontal_rating_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horizontal_author"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize=".5"
+            android:rating="4"
+            android:theme="@style/RatingBar"
+            style="?android:attr/ratingBarStyleSmall"/>
+
+    <TextView
+            android:id="@+id/horizontal_number_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horizontal_author"
+            android:layout_toEndOf="@+id/horizontal_rating_bar"
+            android:text="@string/number_rating"
+            android:textColor="@android:color/black"
+            android:textSize="10sp"
+            android:padding="1dp"
+            tools:ignore="SmallSp"/>
 
     <TextView
             android:id="@+id/horizontal_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/horizontal_author"
+            android:layout_below="@id/horizontal_rating_bar"
             android:text="@string/price"
             android:textColor="@android:color/black"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
 
 </RelativeLayout>

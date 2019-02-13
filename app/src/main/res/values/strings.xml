@@ -40,5 +40,6 @@
     <string name="author">Author</string>
     <string name="view_all">View all</string>
     <string name="price">$9.99</string>
+    <string name="number_rating">(188)</string>
 </resources>
 
