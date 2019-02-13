@@ -2,13 +2,17 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Recommended
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.view.ContextThemeWrapper
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import android.widget.RatingBar
+import android.widget.TextSwitcher
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewScrollStateChangeListener
@@ -49,7 +53,8 @@ class RecommendedFragment : Fragment() {
         val author = view.findViewById<TextView>(R.id.author_book_discretescrollview)
         val ratingBar = view.findViewById<RatingBar>(R.id.rating_bar_book_discretescrollview)
         val numberRating = view.findViewById<TextView>(R.id.number_rating_book_discretescrollview)
-        val listener = DiscreteScrollViewScrollStateChangeListener(title, author, ratingBar, numberRating, hmodels)
+        val fadeIn = AnimationUtils.loadAnimation(container.context, R.anim.fade_in);
+        val listener = DiscreteScrollViewScrollStateChangeListener(title, author, ratingBar, numberRating, fadeIn, hmodels)
 
         discreteRecyclerViewAdapter.setTabFragmentClickCallback(mTabFragmentClickCallback)
         discreteScrollView.setHasFixedSize(true)
@@ -68,7 +73,7 @@ class RecommendedFragment : Fragment() {
             ratingBar.rating = hmodels[adapterPosition].rating
             numberRating.text = ("(" + hmodels[adapterPosition].numberRating + ")")
         }
-        discreteScrollView.addScrollStateChangeListener(listener) // scrool event carousel
+        discreteScrollView.addScrollStateChangeListener(listener) // scroll event carousel
     }
 
     private fun initVerticalRecycler(view: View, container: ViewGroup) {
