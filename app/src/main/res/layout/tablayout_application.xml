@@ -1,0 +1,10 @@
+<android.support.design.widget.TabLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAppBarGrey"
+        app:layout_scrollFlags="scroll"
+        app:tabBackground="@drawable/tab_layout_color"
+        style="@style/TabLayout"/>

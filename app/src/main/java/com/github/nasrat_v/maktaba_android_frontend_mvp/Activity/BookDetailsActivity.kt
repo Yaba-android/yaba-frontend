@@ -64,7 +64,7 @@ class BookDetailsActivity : AppCompatActivity(),
     }
 
     override fun setupTabLayout(viewPager: ViewPager) {
-        val tabLayout = findViewById<TabLayout>(R.id.tabs_book_details)
+        val tabLayout = findViewById<TabLayout>(R.id.tabs)
 
         tabLayout.setupWithViewPager(viewPager)
         setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)

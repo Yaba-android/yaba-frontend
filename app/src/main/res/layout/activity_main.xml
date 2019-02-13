@@ -20,14 +20,7 @@
 
             <include layout="@layout/toolbar_application"/>
 
-            <android.support.design.widget.TabLayout
-                    android:id="@+id/tabs_main"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorAppBarGrey"
-                    app:layout_scrollFlags="scroll"
-                    app:tabBackground="@drawable/tab_layout_color"
-                    style="@style/TabLayout"/>
+            <include layout="@layout/tablayout_application"/>
 
         </android.support.design.widget.AppBarLayout>
 
