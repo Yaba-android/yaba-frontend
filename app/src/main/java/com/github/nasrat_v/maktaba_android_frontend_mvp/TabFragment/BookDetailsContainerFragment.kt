@@ -20,6 +20,7 @@ class BookDetailsContainerFragment : Fragment() {
 
     private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
     private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
+    private var mNumberRating = 0
     private val mTabNamesList = arrayListOf<String>()
 
     override fun onAttach(context: Context) {
@@ -36,7 +37,7 @@ class BookDetailsContainerFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mTabNamesList.add("Reviews (188)")
+        mTabNamesList.add("Reviews ($mNumberRating)")
         mTabNamesList.add("Overview")
     }
 
@@ -51,6 +52,10 @@ class BookDetailsContainerFragment : Fragment() {
 
     fun setTabFragmentClickCallback(tabFragmentClickCallback: ITabFragmentClickCallback) {
         mTabFragmentClickCallback = tabFragmentClickCallback
+    }
+
+    fun setNumberRatingTabNameReview(numberRating: Int) {
+        mNumberRating = numberRating
     }
 
     internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>)

@@ -65,12 +65,12 @@ class BrowseFragment : Fragment() {
     private fun mockDataset() {
         val hmodels = arrayListOf<Model>()
 
-        hmodels.add(Model(R.drawable.forest_small, "The Forest", "Lombok Indonesia"))
-        hmodels.add(Model(R.drawable.kohlarn_small, "Beach", "Koh Larn"))
-        hmodels.add(Model(R.drawable.forest_small, "The Waterfall", "Water"))
-        hmodels.add(Model(R.drawable.kohlarn_small, "View Point", "Thailand"))
-        hmodels.add(Model(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler"))
-        hmodels.add(Model(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya"))
+        hmodels.add(Model(R.drawable.forest_small, "The Forest", "Lombok Indonesia", 4f, 102))
+        hmodels.add(Model(R.drawable.kohlarn_small, "Beach", "Koh Larn", 5f, 28))
+        hmodels.add(Model(R.drawable.forest_small, "The Waterfall", "Water", 4.5f, 356))
+        hmodels.add(Model(R.drawable.kohlarn_small, "View Point", "Thailand", 3.5f, 188))
+        hmodels.add(Model(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler", 4f, 9))
+        hmodels.add(Model(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya", 3f, 42))
         mDataset.add(ListModel("All Books", hmodels))
         mDataset.add(ListModel("", hmodels))
     }

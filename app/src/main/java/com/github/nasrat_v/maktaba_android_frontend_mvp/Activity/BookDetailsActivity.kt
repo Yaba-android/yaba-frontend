@@ -11,9 +11,9 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.Menu
-import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.Model
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
@@ -21,7 +21,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentCl
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class BookDetailsActivity : AppCompatActivity(), ITabFragmentClickCallback, ITabLayoutSetupCallback {
+class BookDetailsActivity : AppCompatActivity(),
+    ITabFragmentClickCallback, ITabLayoutSetupCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var selectedBook: Model
@@ -79,10 +80,14 @@ class BookDetailsActivity : AppCompatActivity(), ITabFragmentClickCallback, ITab
         val image = findViewById<ImageView>(R.id.image_book)
         val title = findViewById<TextView>(R.id.title_book)
         val author = findViewById<TextView>(R.id.author_book)
+        val ratingBar = findViewById<RatingBar>(R.id.rating_bar_book)
+        val numberRating = findViewById<TextView>(R.id.number_rating_book)
 
         image.setImageResource(selectedBook.image)
         title.text = selectedBook.title
         author.text = selectedBook.author
+        ratingBar.rating = selectedBook.rating
+        numberRating.text = ("(" + selectedBook.numberRating + ")")
     }
 
     private fun initRootDrawerLayout() {
@@ -103,6 +108,7 @@ class BookDetailsActivity : AppCompatActivity(), ITabFragmentClickCallback, ITab
         val containerFragment = BookDetailsContainerFragment()
         val mFragmentManager = supportFragmentManager
 
+        containerFragment.setNumberRatingTabNameReview(selectedBook.numberRating)
         containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis le fragment
         mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         val mFragmentTransaction = mFragmentManager.beginTransaction()

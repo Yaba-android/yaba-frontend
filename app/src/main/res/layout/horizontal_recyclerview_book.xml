@@ -44,7 +44,7 @@
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize=".5"
-            android:rating="4"
+            android:rating="1"
             android:theme="@style/RatingBar"
             style="?android:attr/ratingBarStyleSmall"/>
 

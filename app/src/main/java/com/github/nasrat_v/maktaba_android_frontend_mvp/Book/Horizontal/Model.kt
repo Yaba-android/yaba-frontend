@@ -4,18 +4,23 @@ import android.os.Parcel
 import android.os.Parcelable
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class Model(var image: Int, var title: String, var author: String) : Parcelable {
+class Model(var image: Int, var title: String, var author: String, var rating: Float, var numberRating: Int)
+    : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readFloat(),
+        parcel.readInt()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(image)
         parcel.writeString(title)
         parcel.writeString(author)
+        parcel.writeFloat(rating)
+        parcel.writeInt(numberRating)
     }
 
     override fun describeContents(): Int {

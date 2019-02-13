@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RatingBar
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewScrollStateChangeListener
@@ -20,7 +21,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
-
 
 class RecommendedFragment : Fragment() {
 
@@ -47,7 +47,9 @@ class RecommendedFragment : Fragment() {
         val discreteRecyclerViewAdapter = DiscreteScrollViewAdapter(container.context, hmodels)
         val title = view.findViewById<TextView>(R.id.title_book_discretescrollview)
         val author = view.findViewById<TextView>(R.id.author_book_discretescrollview)
-        val listener = DiscreteScrollViewScrollStateChangeListener(title, author, hmodels)
+        val ratingBar = view.findViewById<RatingBar>(R.id.rating_bar_book_discretescrollview)
+        val numberRating = view.findViewById<TextView>(R.id.number_rating_book_discretescrollview)
+        val listener = DiscreteScrollViewScrollStateChangeListener(title, author, ratingBar, numberRating, hmodels)
 
         discreteRecyclerViewAdapter.setTabFragmentClickCallback(mTabFragmentClickCallback)
         discreteScrollView.setHasFixedSize(true)
@@ -60,11 +62,13 @@ class RecommendedFragment : Fragment() {
                 .setPivotY(Pivot.Y.CENTER)
                 .build()
         )
-        discreteScrollView.addOnItemChangedListener { _, adapterPosition ->
+        discreteScrollView.addOnItemChangedListener { _, adapterPosition -> // initialisation carousel
             title.text = hmodels[adapterPosition].title
             author.text = hmodels[adapterPosition].author
+            ratingBar.rating = hmodels[adapterPosition].rating
+            numberRating.text = ("(" + hmodels[adapterPosition].numberRating + ")")
         }
-        discreteScrollView.addScrollStateChangeListener(listener)
+        discreteScrollView.addScrollStateChangeListener(listener) // scrool event carousel
     }
 
     private fun initVerticalRecycler(view: View, container: ViewGroup) {
@@ -83,12 +87,12 @@ class RecommendedFragment : Fragment() {
     private fun mockDataset() {
         hmodels = arrayListOf<Model>()
 
-        hmodels.add(Model(R.drawable.forest_small, "The Forest", "Lombok Indonesia"))
-        hmodels.add(Model(R.drawable.kohlarn_small, "Beach", "Koh Larn"))
-        hmodels.add(Model(R.drawable.forest_small, "The Waterfall", "Water"))
-        hmodels.add(Model(R.drawable.kohlarn_small, "View Point", "Thailand"))
-        hmodels.add(Model(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler"))
-        hmodels.add(Model(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya"))
+        hmodels.add(Model(R.drawable.forest_small, "The Forest", "Lombok Indonesia", 4f, 102))
+        hmodels.add(Model(R.drawable.kohlarn_small, "Beach", "Koh Larn", 5f, 28))
+        hmodels.add(Model(R.drawable.forest_small, "The Waterfall", "Water", 4.5f, 356))
+        hmodels.add(Model(R.drawable.kohlarn_small, "View Point", "Thailand", 3.5f, 188))
+        hmodels.add(Model(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler", 4f, 9))
+        hmodels.add(Model(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya", 3f, 42))
         mDataset.add(ListModel("Authors recommended for you", hmodels))
         mDataset.add(ListModel("Recommended for you", hmodels))
     }
