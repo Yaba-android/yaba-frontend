@@ -1,6 +1,7 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -11,8 +12,10 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.Menu
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RatingBar
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.Model
@@ -24,15 +27,15 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 class BookDetailsActivity : AppCompatActivity(),
     ITabFragmentClickCallback, ITabLayoutSetupCallback {
 
-    private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var selectedBook: Model
+    private lateinit var mDrawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_book_details)
 
-        selectedBook = intent.getParcelableExtra<Model>("SelectedBook")
+        selectedBook = intent.getParcelableExtra("SelectedBook")
         setBookDetailsAttributes()
         initRootDrawerLayout()
         if (savedInstanceState == null) {
@@ -62,7 +65,10 @@ class BookDetailsActivity : AppCompatActivity(),
 
     override fun setupTabLayout(viewPager: ViewPager) {
         val tabLayout = findViewById<TabLayout>(R.id.tabs_book_details)
+
         tabLayout.setupWithViewPager(viewPager)
+        setTabTextToBold(tabLayout, 0) // 0 = init text premier tab en bold
+        setListenerTabLayout(tabLayout)
     }
 
     override fun bookEventButtonClicked(book: Model) {
@@ -90,13 +96,44 @@ class BookDetailsActivity : AppCompatActivity(),
         numberRating.text = ("(" + selectedBook.numberRating + ")")
     }
 
+    private fun setListenerTabLayout(tabLayout: TabLayout) {
+        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                setTabTextToBold(tabLayout, tab.position)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                setTabTextToNormal(tabLayout, tab.position)
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+            }
+        })
+    }
+
+    private fun setTabTextToBold(tabLayout: TabLayout, indexTab: Int) {
+        val linearLayout = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(indexTab) as LinearLayout
+        val tabTextView = linearLayout.getChildAt(1) as TextView
+
+        tabTextView.setTypeface(tabTextView.typeface, Typeface.BOLD)
+    }
+
+    private fun setTabTextToNormal(tabLayout: TabLayout, indexTab: Int) {
+        val linearLayout = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(indexTab) as LinearLayout
+        val tabTextView = linearLayout.getChildAt(1) as TextView
+
+        tabTextView.setTypeface(null, Typeface.NORMAL)
+    }
+
     private fun initRootDrawerLayout() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
 
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         mDrawerLayout = findViewById(R.id.drawer_book_details)
-        val mDrawerToggle = ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
+        val mDrawerToggle = ActionBarDrawerToggle(
+            this, mDrawerLayout, toolbar,
             R.string.navigation_drawer_profile_open,
             R.string.navigation_drawer_profile_close
         )

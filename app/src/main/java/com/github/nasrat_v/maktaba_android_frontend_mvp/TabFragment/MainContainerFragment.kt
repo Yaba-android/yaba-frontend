@@ -43,8 +43,8 @@ class MainContainerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_container, container, false)
-
         val viewPager = view.findViewById(R.id.viewpager_container_fragment) as ViewPager
+
         viewPager.adapter = ItemsPagerAdapter(childFragmentManager, mTabNamesList)
         mTabLayoutSetupCallback.setupTabLayout(viewPager)
         return view

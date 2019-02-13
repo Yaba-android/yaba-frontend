@@ -19,6 +19,10 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentCl
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.MainContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import android.graphics.Typeface
+import android.widget.TextView
+import android.view.ViewGroup
+import android.widget.LinearLayout
 
 class MainActivity : AppCompatActivity(),
     ITabFragmentClickCallback,
@@ -33,33 +37,10 @@ class MainActivity : AppCompatActivity(),
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
-
-        mDrawerLayout = findViewById(R.id.drawer_main)
-        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END);
-        val mDrawerToggle = ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
-            R.string.navigation_drawer_profile_open,
-            R.string.navigation_drawer_profile_close
-        )
-        mDrawerToggle.syncState()
-        mDrawerLayout.setDrawerListener(mDrawerToggle)
-
-        val containerFragment = MainContainerFragment()
-        containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis les fragments
-        containerFragment.setAdditionalClickCallback(this) // click additionnel uniquement pour le fragment browse
-
-        val buttonCloseGenre = findViewById<Button>(R.id.button_close_nav_genre)
-        buttonCloseGenre.setOnClickListener {
-            genreNavigationEventButtonClicked()
-        }
-
+        setListenerButtonCloseGenre()
+        initDrawerLayout()
         if (savedInstanceState == null) {
-            val mFragmentManager = supportFragmentManager
-            mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-            val mFragmentTransaction = mFragmentManager.beginTransaction()
-            mFragmentTransaction.replace(R.id.fragment_container_main, containerFragment).commit()
+            initFragmentManager()
         }
     }
 
@@ -77,7 +58,10 @@ class MainActivity : AppCompatActivity(),
 
     override fun setupTabLayout(viewPager: ViewPager) {
         val tabLayout = findViewById<TabLayout>(R.id.tabs_main)
+
         tabLayout.setupWithViewPager(viewPager)
+        setTabTextToBold(tabLayout, 0) // 0 = init text premier tab en bold
+        setListenerTabLayout(tabLayout)
     }
 
     override fun genreNavigationEventButtonClicked() {
@@ -96,5 +80,70 @@ class MainActivity : AppCompatActivity(),
             R.anim.slide_in_left,
             R.anim.slide_out_right
         )
+    }
+
+    private fun setListenerButtonCloseGenre() {
+        val buttonCloseGenre = findViewById<Button>(R.id.button_close_nav_genre)
+
+        buttonCloseGenre.setOnClickListener {
+            genreNavigationEventButtonClicked()
+        }
+    }
+
+    private fun setListenerTabLayout(tabLayout: TabLayout) {
+        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                setTabTextToBold(tabLayout, tab.position)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                setTabTextToNormal(tabLayout, tab.position)
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+            }
+        })
+    }
+
+    private fun setTabTextToBold(tabLayout: TabLayout, indexTab: Int) {
+        val linearLayout = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(indexTab) as LinearLayout
+        val tabTextView = linearLayout.getChildAt(1) as TextView
+
+        tabTextView.setTypeface(tabTextView.typeface, Typeface.BOLD)
+    }
+
+    private fun setTabTextToNormal(tabLayout: TabLayout, indexTab: Int) {
+        val linearLayout = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(indexTab) as LinearLayout
+        val tabTextView = linearLayout.getChildAt(1) as TextView
+
+        tabTextView.setTypeface(null, Typeface.NORMAL)
+    }
+
+    private fun initDrawerLayout() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
+
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        mDrawerLayout = findViewById(R.id.drawer_main)
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END);
+        val mDrawerToggle = ActionBarDrawerToggle(
+            this, mDrawerLayout, toolbar,
+            R.string.navigation_drawer_profile_open,
+            R.string.navigation_drawer_profile_close
+        )
+        mDrawerToggle.syncState()
+        mDrawerLayout.setDrawerListener(mDrawerToggle)
+    }
+
+    private fun initFragmentManager() {
+        val containerFragment = MainContainerFragment()
+        val mFragmentManager = supportFragmentManager
+
+        containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis les fragments
+        containerFragment.setAdditionalClickCallback(this) // click additionnel uniquement pour le fragment browse
+        mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        val mFragmentTransaction = mFragmentManager.beginTransaction()
+        mFragmentTransaction.replace(R.id.fragment_container_main, containerFragment).commit()
     }
 }
