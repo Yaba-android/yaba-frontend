@@ -29,11 +29,11 @@
 
         <ImageView
                 android:id="@+id/author_picture_overview"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/author_round"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="40dp"/>
 
@@ -44,7 +44,7 @@
                 android:gravity="right"
                 android:text="@string/mohamed_abdel_nabi"
                 android:paddingTop="20dp"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_toStartOf="@id/author_picture_overview"
                 android:layout_marginEnd="20dp"
@@ -57,7 +57,7 @@
                 android:layout_below="@+id/author_name_overview"
                 android:gravity="right"
                 android:text="@string/mohamed_abdel_nabi_description"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@android:color/darker_gray"
                 android:layout_toStartOf="@id/author_picture_overview"
                 android:layout_marginEnd="20dp"

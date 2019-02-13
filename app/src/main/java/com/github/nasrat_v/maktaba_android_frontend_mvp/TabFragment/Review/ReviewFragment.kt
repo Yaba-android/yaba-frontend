@@ -62,7 +62,7 @@ class ReviewFragment : Fragment() {
         for (i in 1..3) {
             mDatasetReview.add(
                 ReviewVerticalModel(
-                    "Jane Bloggs", "This book was really cool, " +
+                    "Vlad Poutin", "This book was really cool, " +
                             "and I would definitely read more by this author"
                 )
             )

@@ -41,5 +41,7 @@
     <string name="view_all">View all</string>
     <string name="price">$9.99</string>
     <string name="number_rating">(188)</string>
+    <string name="author_review">Author Review</string>
+    <string name="comment_review">Comment Review</string>
 </resources>
 
