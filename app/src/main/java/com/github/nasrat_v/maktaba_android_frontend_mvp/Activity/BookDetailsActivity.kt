@@ -67,7 +67,7 @@ class BookDetailsActivity : AppCompatActivity(),
         val tabLayout = findViewById<TabLayout>(R.id.tabs_book_details)
 
         tabLayout.setupWithViewPager(viewPager)
-        setTabTextToBold(tabLayout, 0) // 0 = init text premier tab en bold
+        setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
         setListenerTabLayout(tabLayout)
     }
 

@@ -25,10 +25,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorAppBarGrey"
-                    app:tabIndicatorColor="@color/colorTextBlueHolo"
-                    app:tabTextColor="@color/colorTextBlack"
-                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-                    app:layout_scrollFlags="scroll"/>
+                    app:layout_scrollFlags="scroll"
+                    app:tabBackground="@drawable/tab_layout_color"
+                    style="@style/TabLayout"/>
 
         </android.support.design.widget.AppBarLayout>
 
