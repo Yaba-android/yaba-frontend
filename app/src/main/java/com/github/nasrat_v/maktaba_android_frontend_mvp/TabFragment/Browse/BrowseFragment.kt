@@ -9,9 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.Model
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListRecyclerViewBottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.MainContainerFragment
@@ -21,7 +22,7 @@ class BrowseFragment : Fragment() {
 
     private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
     private lateinit var mAdditionalClickCallback: MainContainerFragment.AdditionalClickCallback
-    private var mDataset = arrayListOf<ListModel>()
+    private var mDataset = arrayListOf<ListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -51,7 +52,7 @@ class BrowseFragment : Fragment() {
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_browse)
-        val adapterBookVertical = ListRecyclerViewAdapter(container.context, mDataset, mTabFragmentClickCallback)
+        val adapterBookVertical = ListBrowseBRecyclerViewAdapter(container.context, mDataset, mTabFragmentClickCallback)
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_browse)
 
         verticalRecyclerView.setHasFixedSize(true)
@@ -63,15 +64,15 @@ class BrowseFragment : Fragment() {
     }
 
     private fun mockDataset() {
-        val hmodels = arrayListOf<Model>()
+        val hmodels = arrayListOf<BModel>()
 
-        hmodels.add(Model(R.drawable.forest_small, "The Forest", "Lombok Indonesia", 4f, 102))
-        hmodels.add(Model(R.drawable.kohlarn_small, "Beach", "Koh Larn", 5f, 28))
-        hmodels.add(Model(R.drawable.forest_small, "The Waterfall", "Water", 4.5f, 356))
-        hmodels.add(Model(R.drawable.kohlarn_small, "View Point", "Thailand", 3.5f, 188))
-        hmodels.add(Model(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler", 4f, 9))
-        hmodels.add(Model(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya", 3f, 42))
-        mDataset.add(ListModel("All Books", hmodels))
-        mDataset.add(ListModel("", hmodels))
+        hmodels.add(BModel(R.drawable.forest_small, "The Forest", "Lombok Indonesia", 4f, 102))
+        hmodels.add(BModel(R.drawable.kohlarn_small, "Beach", "Koh Larn", 5f, 28))
+        hmodels.add(BModel(R.drawable.forest_small, "The Waterfall", "Water", 4.5f, 356))
+        hmodels.add(BModel(R.drawable.kohlarn_small, "View Point", "Thailand", 3.5f, 188))
+        hmodels.add(BModel(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler", 4f, 9))
+        hmodels.add(BModel(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya", 3f, 42))
+        mDataset.add(ListBModel("All Books", hmodels))
+        mDataset.add(ListBModel("", hmodels))
     }
 }

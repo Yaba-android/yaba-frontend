@@ -18,7 +18,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RatingBar
 import android.widget.TextView
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.Model
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
@@ -27,7 +27,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 class BookDetailsActivity : AppCompatActivity(),
     ITabFragmentClickCallback, ITabLayoutSetupCallback {
 
-    private lateinit var selectedBook: Model
+    private lateinit var selectedBook: BModel
     private lateinit var mDrawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +71,7 @@ class BookDetailsActivity : AppCompatActivity(),
         setListenerTabLayout(tabLayout)
     }
 
-    override fun bookEventButtonClicked(book: Model) {
+    override fun bookEventButtonClicked(book: BModel) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
         intent.putExtra("SelectedBook", book)

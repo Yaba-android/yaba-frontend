@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="94dp"
+        android:layout_height="250dp"
+        android:layout_margin="8dp"
+        android:textDirection="rtl"
+        android:layoutDirection="rtl"
+        android:background="@android:color/transparent">
+
+    <ImageView
+            android:id="@+id/horizontal_image_browse"
+            android:src="@drawable/forest_very_small"
+            android:scaleType="centerCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"/>
+
+    <TextView
+            android:id="@+id/horizontal_title_browse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horizontal_image_browse"
+            android:text="@string/title"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="14sp"
+            android:paddingBottom="2dp"/>
+
+    <TextView
+            android:id="@+id/horizontal_author_browse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horizontal_title_browse"
+            android:text="@string/author"
+            android:textColor="@color/colorTextGrey"
+            android:textSize="12sp"
+            android:paddingBottom="2dp"/>
+
+    <RatingBar
+            android:id="@+id/horizontal_rating_bar_browse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horizontal_author_browse"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize=".5"
+            android:rating="1"
+            android:theme="@style/RatingBar"
+            style="?android:attr/ratingBarStyleSmall"/>
+
+    <TextView
+            android:id="@+id/horizontal_number_rating_browse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horizontal_author_browse"
+            android:layout_toEndOf="@+id/horizontal_rating_bar_browse"
+            android:text="@string/number_rating"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="8sp"
+            android:padding="1dp"
+            tools:ignore="SmallSp"/>
+
+    <TextView
+            android:id="@+id/horizontal_price_browse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horizontal_rating_bar_browse"
+            android:text="@string/price"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="12sp"/>
+
+</RelativeLayout>

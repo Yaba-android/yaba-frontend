@@ -10,7 +10,7 @@ class DiscreteScrollViewScrollStateChangeListener(private var title: TextView,
                                                   private var ratingBar: RatingBar,
                                                   private var numberRating: TextView,
                                                   private var fadeIn: Animation,
-                                                  private var list: ArrayList<Model>)
+                                                  private var list: ArrayList<BModel>)
     : DiscreteScrollView.ScrollStateChangeListener<DiscreteScrollViewAdapter.ViewHolder> {
 
     override fun onScrollStart(currentItemHolder: DiscreteScrollViewAdapter.ViewHolder,

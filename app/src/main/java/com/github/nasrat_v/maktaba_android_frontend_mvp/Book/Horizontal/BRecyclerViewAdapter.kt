@@ -13,15 +13,16 @@ import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class RecyclerViewAdapter(private var context: Context, private var list: ArrayList<Model>)
-    : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class BRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BModel>)
+    : RecyclerView.Adapter<BRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
     private var mLastClickTime: Long = 0
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.horizontal_recyclerview_book, container, false)
-
+        val rootView = LayoutInflater.from(container.context).inflate(
+                R.layout.horizontal_recyclerview_book, container, false
+            )
         return ViewHolder(rootView)
     }
 

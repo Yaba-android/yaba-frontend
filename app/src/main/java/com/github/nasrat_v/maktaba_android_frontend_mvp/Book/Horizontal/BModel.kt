@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class Model(var image: Int, var title: String, var author: String, var rating: Float, var numberRating: Int)
+class BModel(var image: Int, var title: String, var author: String, var rating: Float, var numberRating: Int)
     : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -27,12 +27,12 @@ class Model(var image: Int, var title: String, var author: String, var rating: F
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<Model> {
-        override fun createFromParcel(parcel: Parcel): Model {
-            return Model(parcel)
+    companion object CREATOR : Parcelable.Creator<BModel> {
+        override fun createFromParcel(parcel: Parcel): BModel {
+            return BModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<Model?> {
+        override fun newArray(size: Int): Array<BModel?> {
             return arrayOfNulls(size)
         }
     }

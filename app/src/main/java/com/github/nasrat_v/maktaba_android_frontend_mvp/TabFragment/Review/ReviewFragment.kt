@@ -8,17 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.Model
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListRecyclerViewBottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Review.Vertical.RModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Review.Vertical.RRecyclerViewAdapter
 
 class ReviewFragment : Fragment() {
 
-    private var mDatasetReview = arrayListOf<ReviewVerticalModel>()
-    private var mDatasetBook = arrayListOf<ListModel>()
+    private var mDatasetReview = arrayListOf<RModel>()
+    private var mDatasetBook = arrayListOf<ListBModel>()
     private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,7 +39,7 @@ class ReviewFragment : Fragment() {
     }
 
     private fun initReviewVerticalRecyclerView(view: View, container: ViewGroup) {
-        val adapterReviewVertical = ReviewVerticalRecyclerViewAdapter(container.context, mDatasetReview)
+        val adapterReviewVertical = RRecyclerViewAdapter(container.context, mDatasetReview)
         val reviewVerticalRecyclerView = view.findViewById<RecyclerView>(R.id.review_vertical_recyclerview)
 
         reviewVerticalRecyclerView.setHasFixedSize(true)
@@ -47,7 +49,7 @@ class ReviewFragment : Fragment() {
 
     private fun initBookVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_review)
-        val adapterBookVertical = ListRecyclerViewAdapter(container.context, mDatasetBook, mTabFragmentClickCallback)
+        val adapterBookVertical = ListBRecyclerViewAdapter(container.context, mDatasetBook, mTabFragmentClickCallback)
         val bookVerticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
 
         bookVerticalRecyclerView.setHasFixedSize(true)
@@ -61,7 +63,7 @@ class ReviewFragment : Fragment() {
     private fun mockDatasetReview() {
         for (i in 1..3) {
             mDatasetReview.add(
-                ReviewVerticalModel(
+                com.github.nasrat_v.maktaba_android_frontend_mvp.Review.Vertical.RModel(
                     "Vlad Poutin", "This book was really cool, " +
                             "and I would definitely read more by this author"
                 )
@@ -70,14 +72,14 @@ class ReviewFragment : Fragment() {
     }
 
     private fun mockDatasetBook() {
-        val hmodels = arrayListOf<Model>()
+        val hmodels = arrayListOf<BModel>()
 
-        hmodels.add(Model(R.drawable.forest_small, "The Forest", "Lombok Indonesia", 4f, 102))
-        hmodels.add(Model(R.drawable.kohlarn_small, "Beach", "Koh Larn", 5f, 28))
-        hmodels.add(Model(R.drawable.forest_small, "The Waterfall", "Water", 4.5f, 356))
-        hmodels.add(Model(R.drawable.kohlarn_small, "View Point", "Thailand", 3.5f, 188))
-        hmodels.add(Model(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler", 4f, 9))
-        hmodels.add(Model(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya", 3f, 42))
-        mDatasetBook.add(ListModel("More Books from this Author", hmodels))
+        hmodels.add(BModel(R.drawable.forest_small, "The Forest", "Lombok Indonesia", 4f, 102))
+        hmodels.add(BModel(R.drawable.kohlarn_small, "Beach", "Koh Larn", 5f, 28))
+        hmodels.add(BModel(R.drawable.forest_small, "The Waterfall", "Water", 4.5f, 356))
+        hmodels.add(BModel(R.drawable.kohlarn_small, "View Point", "Thailand", 3.5f, 188))
+        hmodels.add(BModel(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler", 4f, 9))
+        hmodels.add(BModel(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya", 3f, 42))
+        mDatasetBook.add(ListBModel("More Books from this Author", hmodels))
     }
 }
