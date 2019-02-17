@@ -10,13 +10,17 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.MainActivity">
+        <activity
+                android:name=".Activity.MainActivity"
+                tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.BookDetailsActivity">
+        <activity
+                android:name=".Activity.BookDetailsActivity"
+                tools:ignore="InnerclassSeparator">
         </activity>
     </application>
 
