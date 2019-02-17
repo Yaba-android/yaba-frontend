@@ -58,7 +58,7 @@ class BrowseFragment : Fragment() {
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(
-            ListBRecyclerViewBottomOffsetDecoration(container.context, R.dimen.bottom_book_vertical_recycler_view)
+            ListBRecyclerViewBottomOffsetDecoration(container.context, R.dimen.bottom_browse_book_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()

@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="94dp"
-        android:layout_height="250dp"
+        android:layout_height="284dp"
         android:layout_margin="8dp"
         android:textDirection="rtl"
         android:layoutDirection="rtl"
@@ -42,12 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/horizontal_author_browse"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:stepSize=".5"
-            android:rating="1"
-            android:theme="@style/RatingBar"
-            style="?android:attr/ratingBarStyleSmall"/>
+            style="@style/RatingBar"/>
 
     <TextView
             android:id="@+id/horizontal_number_rating_browse"
@@ -58,8 +53,8 @@
             android:text="@string/number_rating"
             android:textColor="@color/colorTextBlack"
             android:textSize="8sp"
-            android:padding="1dp"
-            tools:ignore="SmallSp"/>
+            android:paddingStart="2dp"
+            tools:ignore="RtlSymmetry,SmallSp"/>
 
     <TextView
             android:id="@+id/horizontal_price_browse"

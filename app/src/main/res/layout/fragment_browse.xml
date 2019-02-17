@@ -15,25 +15,17 @@
             android:background="@android:color/white"
             android:orientation="vertical">
 
-        <Button
-                android:id="@+id/button_open_nav_genre"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:text="@string/open_genre"
-                android:textAllCaps="false"
-                android:background="@color/colorPurple"
-                android:textColor="@android:color/white"/>
-
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:paddingEnd="10dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="10dp"
                 android:paddingStart="10dp"
                 tools:ignore="RtlSymmetry">
 
             <TextView
+                    android:id="@+id/horizontal_title_browse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -42,21 +34,16 @@
                     android:text="@string/all_books"
                     android:textColor="@color/colorReviewTextBlack"
                     android:textSize="14sp"
-                    android:id="@+id/horizontal_title_browse"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded"/>
 
             <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/view_all"
-                    android:textAllCaps="false"
-                    android:textSize="12sp"
-                    android:textColor="@color/colorTextGrey"
-                    android:background="@android:color/transparent"
+                    android:id="@+id/button_open_nav_genre"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/controls"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:gravity="start|center_vertical"/>
+                    android:layout_centerVertical="true"/>
 
         </RelativeLayout>
 
