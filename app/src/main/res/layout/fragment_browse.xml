@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -14,29 +15,59 @@
             android:background="@android:color/white"
             android:orientation="vertical">
 
-        <LinearLayout
+        <Button
+                android:id="@+id/button_open_nav_genre"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:text="@string/open_genre"
+                android:textAllCaps="false"
+                android:background="@color/colorPurple"
+                android:textColor="@android:color/white"/>
+
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                tools:ignore="RtlSymmetry">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="right"
+                    android:text="@string/all_books"
+                    android:textColor="@color/colorReviewTextBlack"
+                    android:textSize="14sp"
+                    android:id="@+id/horizontal_title_browse"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"/>
 
             <Button
-                    android:id="@+id/button_open_nav_genre"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="15dp"
-                    android:text="Open genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_all"
                     android:textAllCaps="false"
-                    android:background="@color/colorPurple"
-                    android:textColor="@android:color/white"/>
+                    android:textSize="12sp"
+                    android:textColor="@color/colorTextGrey"
+                    android:background="@android:color/transparent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="start|center_vertical"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/book_vertical_recyclerview_browse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                android:paddingEnd="4dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:ignore="RtlSymmetry"/>
 
     </LinearLayout>
 

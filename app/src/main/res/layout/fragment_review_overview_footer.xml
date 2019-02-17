@@ -16,8 +16,8 @@
             android:textColor="@color/colorTextBlack"
             android:textSize="14sp"
             android:textStyle="bold"
-            tools:ignore="RtlHardcoded"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            tools:ignore="RtlHardcoded"/>
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -84,6 +84,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:paddingEnd="4dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:ignore="RtlSymmetry"/>
 
 </LinearLayout>

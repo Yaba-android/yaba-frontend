@@ -43,5 +43,7 @@
     <string name="number_rating">(188)</string>
     <string name="author_review">Author Review</string>
     <string name="comment_review">Comment Review</string>
+    <string name="open_genre">Open genre</string>
+    <string name="all_books">All Books</string>
 </resources>
 

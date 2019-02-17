@@ -6,8 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BRecyclerViewLeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
@@ -39,6 +38,9 @@ class ListBrowseBRecyclerViewAdapter(private var context: Context, private var l
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
+        holder.horizontalRecyclerView.addItemDecoration(
+            BRecyclerViewLeftOffsetDecoration(context, R.dimen.left_book_horizontal_recycler_view)
+        )
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
