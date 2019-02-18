@@ -24,7 +24,6 @@ import android.os.SystemClock
 import android.widget.TextView
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.folioreader.FolioReader
 
 class StoreActivity : AppCompatActivity(),
     ITabFragmentClickCallback,
@@ -137,7 +136,6 @@ class StoreActivity : AppCompatActivity(),
 
     private fun initDrawerLayout() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
-        val openEpubReader = findViewById<Button>(R.id.open_epub_reader)
 
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
@@ -150,10 +148,6 @@ class StoreActivity : AppCompatActivity(),
         )
         mDrawerToggle.syncState()
         mDrawerLayout.setDrawerListener(mDrawerToggle)
-        openEpubReader.setOnClickListener {
-            val folioReader = FolioReader.get()
-            folioReader.openBook("/storage/emulated/0/Download/pg58892-images.epub")
-        }
     }
 
     private fun initFragmentManager() {
