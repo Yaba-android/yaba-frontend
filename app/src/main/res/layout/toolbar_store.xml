@@ -12,12 +12,12 @@
         app:layout_scrollFlags="scroll">
 
     <TextView
+            android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/book_store"
             android:textColor="@color/colorTextGrey"
-            android:id="@+id/toolbar_title"
             android:textSize="16sp"/>
 
 </android.support.v7.widget.Toolbar>

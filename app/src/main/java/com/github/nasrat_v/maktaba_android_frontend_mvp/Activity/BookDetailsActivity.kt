@@ -14,10 +14,7 @@ import android.view.Gravity
 import android.view.Menu
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RatingBar
-import android.widget.TextView
+import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
@@ -37,6 +34,7 @@ class BookDetailsActivity : AppCompatActivity(),
 
         selectedBook = intent.getParcelableExtra("SelectedBook")
         setBookDetailsAttributes()
+        setListenerBackButtonToolbar()
         initRootDrawerLayout()
         if (savedInstanceState == null) {
             initFragmentManager()
@@ -76,10 +74,7 @@ class BookDetailsActivity : AppCompatActivity(),
 
         intent.putExtra("SelectedBook", book)
         startActivity(intent)
-        overridePendingTransition(
-            R.anim.slide_in_left,
-            R.anim.slide_out_right
-        )
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     private fun setBookDetailsAttributes() {
@@ -110,6 +105,14 @@ class BookDetailsActivity : AppCompatActivity(),
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
         })
+    }
+
+    private fun setListenerBackButtonToolbar() {
+        val arrowBack = findViewById<Button>(R.id.button_back_to_store_toolbar)
+
+        arrowBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setTabTextToBold(tabLayout: TabLayout, indexTab: Int) {

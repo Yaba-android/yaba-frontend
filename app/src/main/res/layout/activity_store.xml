@@ -18,9 +18,9 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme.AppBarOverlay">
 
-            <include layout="@layout/application_toolbar"/>
+            <include layout="@layout/toolbar_store"/>
 
-            <include layout="@layout/application_tablayout"/>
+            <include layout="@layout/tablayout_store_book_details"/>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -71,7 +71,7 @@
             android:orientation="vertical"
             android:gravity="bottom">
 
-        <include layout="@layout/application_footer"/>
+        <include layout="@layout/button_store_library_footer"/>
 
     </LinearLayout>
 
