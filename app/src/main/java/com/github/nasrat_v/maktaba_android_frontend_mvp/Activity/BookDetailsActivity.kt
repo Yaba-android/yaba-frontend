@@ -10,10 +10,7 @@ import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
-import android.view.Gravity
-import android.view.Menu
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
@@ -34,7 +31,6 @@ class BookDetailsActivity : AppCompatActivity(),
 
         selectedBook = intent.getParcelableExtra("SelectedBook")
         setBookDetailsAttributes()
-        setListenerBackButtonToolbar()
         initRootDrawerLayout()
         if (savedInstanceState == null) {
             initFragmentManager()
@@ -42,7 +38,14 @@ class BookDetailsActivity : AppCompatActivity(),
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.search_toolbar_menu, menu)
+        menuInflater.inflate(R.menu.toolbar_book_details_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item!!.itemId == R.id.action_back) {
+            finish()
+        }
         return true
     }
 
@@ -105,14 +108,6 @@ class BookDetailsActivity : AppCompatActivity(),
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
         })
-    }
-
-    private fun setListenerBackButtonToolbar() {
-        val arrowBack = findViewById<Button>(R.id.button_back_to_store_toolbar)
-
-        arrowBack.setOnClickListener {
-            finish()
-        }
     }
 
     private fun setTabTextToBold(tabLayout: TabLayout, indexTab: Int) {
