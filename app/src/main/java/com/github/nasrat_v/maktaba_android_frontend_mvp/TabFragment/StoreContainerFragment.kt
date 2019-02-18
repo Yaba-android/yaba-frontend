@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.MainActivity
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.StoreActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Browse.BrowseFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Recommended.RecommendedFragment
 
-class MainContainerFragment : Fragment() {
+class StoreContainerFragment : Fragment() {
 
     private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
     private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
@@ -26,8 +26,8 @@ class MainContainerFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        if (context is MainActivity) {
-            // callback qui va permettre de recuperer le tablayout depuis activity_main et de lui setter le viewpager qui est dans fragment_container
+        if (context is StoreActivity) {
+            // callback qui va permettre de recuperer le tablayout depuis store et de lui setter le viewpager qui est dans fragment_container
             // ceci regle le probleme de la nav view  qui passe sour la toolbar
             mTabLayoutSetupCallback = context as ITabLayoutSetupCallback
         } else {

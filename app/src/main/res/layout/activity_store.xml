@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:id="@+id/drawer_main"
         android:fitsSystemWindows="true"
-        tools:context=".Activity.MainActivity">
+        tools:context=".Activity.StoreActivity">
 
     <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:id="@+id/fragment_container_main"
+                android:id="@+id/fragment_container_store"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     </android.support.design.widget.CoordinatorLayout>
@@ -64,5 +64,15 @@
         <include layout="@layout/nav_genre_content"/>
 
     </android.support.design.widget.NavigationView>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom">
+
+        <include layout="@layout/application_footer"/>
+
+    </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

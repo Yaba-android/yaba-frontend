@@ -45,5 +45,7 @@
     <string name="comment_review">Comment Review</string>
     <string name="open_genre">Open genre</string>
     <string name="all_books">All Books</string>
+    <string name="store">Store</string>
+    <string name="library">Library</string>
 </resources>
 

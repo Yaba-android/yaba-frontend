@@ -14,13 +14,13 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewBottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.MainContainerFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.StoreContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class BrowseFragment : Fragment() {
 
     private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
-    private lateinit var mAdditionalClickCallback: MainContainerFragment.AdditionalClickCallback
+    private lateinit var mAdditionalClickCallback: StoreContainerFragment.AdditionalClickCallback
     private var mDataset = arrayListOf<ListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,7 +45,7 @@ class BrowseFragment : Fragment() {
         mTabFragmentClickCallback = tabFragmentClickCallback
     }
 
-    fun setAdditionalClickCallback(additionalClickCallback: MainContainerFragment.AdditionalClickCallback) {
+    fun setAdditionalClickCallback(additionalClickCallback: StoreContainerFragment.AdditionalClickCallback) {
         mAdditionalClickCallback = additionalClickCallback
     }
 

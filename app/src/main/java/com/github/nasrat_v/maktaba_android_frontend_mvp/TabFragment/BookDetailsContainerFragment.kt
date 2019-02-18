@@ -27,7 +27,7 @@ class BookDetailsContainerFragment : Fragment() {
         super.onAttach(context)
 
         if (context is BookDetailsActivity) {
-            // callback qui va permettre de recuperer le tablayout depuis activity_main et de lui setter le viewpager qui est dans fragment_container
+            // callback qui va permettre de recuperer le tablayout depuis bookdetails et de lui setter le viewpager qui est dans fragment_container
             // ceci regle le probleme de la nav view  qui passe sour la toolbar
             mTabLayoutSetupCallback = context as ITabLayoutSetupCallback
         } else {

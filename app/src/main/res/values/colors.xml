@@ -13,6 +13,9 @@
     <color name="colorNavGrey">#DBDBDB</color>
     <color name="colorNavFooterGrey">#FFFFFF</color>
     <color name="colorAppBarGrey">#F8F8F8</color>
+    <color name="colorCarouselGrey">#FAFAFA</color>
+    <color name="colorFragmentGrey">#FDFDFD</color>
+    <color name="colorButtonFooterGrey">#EAEAEA</color>
     <color name="colorTextBlueHolo">#5FDCE6</color>
     <color name="colorPurple">#33005F</color>
 

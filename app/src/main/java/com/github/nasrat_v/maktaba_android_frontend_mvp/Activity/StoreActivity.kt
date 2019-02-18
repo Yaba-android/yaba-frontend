@@ -17,28 +17,31 @@ import android.widget.Button
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.MainContainerFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.StoreContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import android.graphics.Typeface
+import android.os.SystemClock
 import android.widget.TextView
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.folioreader.FolioReader
 
-class MainActivity : AppCompatActivity(),
+class StoreActivity : AppCompatActivity(),
     ITabFragmentClickCallback,
     ITabLayoutSetupCallback,
-    MainContainerFragment.AdditionalClickCallback {
+    StoreContainerFragment.AdditionalClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
+    private var mLastClickTime: Long = 0
 
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_store)
 
         setListenerButtonCloseGenre()
+        setListenerButtonFooter()
         initDrawerLayout()
         if (savedInstanceState == null) {
             initFragmentManager()
@@ -77,10 +80,7 @@ class MainActivity : AppCompatActivity(),
 
         intent.putExtra("SelectedBook", book)
         startActivity(intent)
-        overridePendingTransition(
-            R.anim.slide_in_left,
-            R.anim.slide_out_right
-        )
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     private fun setListenerButtonCloseGenre() {
@@ -88,6 +88,20 @@ class MainActivity : AppCompatActivity(),
 
         buttonCloseGenre.setOnClickListener {
             genreNavigationEventButtonClicked()
+        }
+    }
+
+    private fun setListenerButtonFooter() {
+        val intent = Intent(this, LibraryActivity::class.java)
+        val button = findViewById<Button>(R.id.button_library_footer)
+
+        button.setOnClickListener {
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                finish()
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
         }
     }
 
@@ -143,13 +157,13 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun initFragmentManager() {
-        val containerFragment = MainContainerFragment()
+        val containerFragment = StoreContainerFragment()
         val mFragmentManager = supportFragmentManager
 
         containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis les fragments
         containerFragment.setAdditionalClickCallback(this) // click additionnel uniquement pour le fragment browse
         mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         val mFragmentTransaction = mFragmentManager.beginTransaction()
-        mFragmentTransaction.replace(R.id.fragment_container_main, containerFragment).commit()
+        mFragmentTransaction.replace(R.id.fragment_container_store, containerFragment).commit()
     }
 }
