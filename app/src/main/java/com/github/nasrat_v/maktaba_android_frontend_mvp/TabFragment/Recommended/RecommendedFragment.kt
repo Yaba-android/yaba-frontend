@@ -9,10 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
-import android.widget.RatingBar
-import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewScrollStateChangeListener
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
@@ -46,12 +43,7 @@ class RecommendedFragment : Fragment() {
     private fun initDiscreteScrollView(view: View, container: ViewGroup) {
         val discreteScrollView = view.findViewById<DiscreteScrollView>(R.id.discrete_scroll_view)
         val discreteRecyclerViewAdapter = DiscreteScrollViewAdapter(container.context, hmodels)
-        val title = view.findViewById<TextView>(R.id.title_book_discretescrollview)
-        val author = view.findViewById<TextView>(R.id.author_book_discretescrollview)
-        val ratingBar = view.findViewById<RatingBar>(R.id.rating_bar_book_discretescrollview)
-        val numberRating = view.findViewById<TextView>(R.id.number_rating_book_discretescrollview)
         val fadeIn = AnimationUtils.loadAnimation(container.context, R.anim.fade_in);
-        val listener = DiscreteScrollViewScrollStateChangeListener(title, author, ratingBar, numberRating, fadeIn, hmodels)
 
         discreteRecyclerViewAdapter.setTabFragmentClickCallback(mTabFragmentClickCallback)
         discreteScrollView.setHasFixedSize(true)
@@ -64,13 +56,6 @@ class RecommendedFragment : Fragment() {
                 .setPivotY(Pivot.Y.CENTER)
                 .build()
         )
-        discreteScrollView.addOnItemChangedListener { _, adapterPosition -> // initialisation carousel
-            title.text = hmodels[adapterPosition].title
-            author.text = hmodels[adapterPosition].author
-            ratingBar.rating = hmodels[adapterPosition].rating
-            numberRating.text = ("(" + hmodels[adapterPosition].numberRating + ")")
-        }
-        discreteScrollView.addScrollStateChangeListener(listener) // scroll event carousel
         if (hmodels.size > 0) {
             discreteScrollView.scrollToPosition((hmodels.size / 2))
         }

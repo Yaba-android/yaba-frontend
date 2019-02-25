@@ -5,29 +5,48 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:background="@color/colorCarouselGrey"
         android:orientation="vertical"
-        android:layout_marginBottom="20dp">
+        android:paddingTop="20dp">
 
-    <TextView
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:text="@string/more_reading_for_you"
-            android:paddingTop="20dp"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorTextBlack"/>
+            android:layout_height="wrap_content"
+            android:paddingEnd="40dp"
+            android:orientation="vertical"
+            tools:ignore="RtlSymmetry">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:text="@string/based_on_your_most_read_books"
-            android:textSize="12sp"
-            android:textColor="@color/colorTextGrey"
-            android:paddingBottom="3dp"
-            android:id="@+id/title_bis_carousel"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/carousel_title_first"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextBlack"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/carousel_title_second"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextBlack"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/carousel_title_third"
+                android:textSize="12sp"
+                android:textColor="@color/colorTextGrey"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/title_bis_carousel"/>
+
+    </LinearLayout>
 
     <RelativeLayout
             android:id="@+id/imagePreview"
@@ -40,59 +59,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:dsv_orientation="horizontal"/>
-
-    </RelativeLayout>
-
-    <TextView
-            android:id="@+id/title_book_discretescrollview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:paddingTop="2dp"
-            android:text="@string/title"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorTextBlack"/>
-
-    <TextView
-            android:id="@+id/author_book_discretescrollview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="2dp"
-            android:gravity="center_horizontal"
-            android:text="@string/author"
-            android:textColor="@color/colorTextGrey"
-            android:textSize="14sp"/>
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp">
-
-        <RatingBar
-                android:id="@+id/rating_bar_book_discretescrollview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layoutDirection="rtl"
-                android:layout_centerHorizontal="true"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:stepSize=".5"
-                android:rating="1"
-                android:theme="@style/RatingBar"
-                style="?android:attr/ratingBarStyleSmall"/>
-
-        <TextView
-                android:id="@+id/number_rating_book_discretescrollview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toStartOf="@+id/rating_bar_book_discretescrollview"
-                android:text="@string/number_rating"
-                android:textColor="@color/colorTextBlack"
-                android:textSize="10sp"
-                android:padding="2dp"
-                tools:ignore="SmallSp"/>
 
     </RelativeLayout>
 

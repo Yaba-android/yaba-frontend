@@ -14,7 +14,9 @@
     <string name="profile_email">kostas.mitroglou@gmail.com</string>
     <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
-    <string name="more_reading_for_you">More reading for you</string>
+    <string name="carousel_title_first">Recommended</string>
+    <string name="carousel_title_second">reading for you</string>
+    <string name="carousel_title_third">Based on your purchase history</string>
     <string name="based_on_your_most_read_books">Based on your most read books</string>
 
     <!-- TODO: Remove or change this placeholder text -->
