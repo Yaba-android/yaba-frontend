@@ -8,7 +8,7 @@
         android:layout_marginBottom="20dp"
         android:background="@color/colorCarouselGrey"
         android:orientation="vertical"
-        android:paddingTop="20dp">
+        android:paddingTop="50dp">
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +43,6 @@
                 android:textSize="12sp"
                 android:textColor="@color/colorTextGrey"
                 android:paddingTop="5dp"
-                android:paddingBottom="5dp"
                 android:id="@+id/title_bis_carousel"/>
 
     </LinearLayout>
@@ -52,6 +51,7 @@
             android:id="@+id/imagePreview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
             android:orientation="vertical">
 
         <com.yarolegovich.discretescrollview.DiscreteScrollView
@@ -59,6 +59,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:dsv_orientation="horizontal"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="40dp"
+            android:paddingEnd="40dp"
+            tools:ignore="RtlSymmetry">
+
+        <Button
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:text="@string/view_all"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                android:textColor="@color/colorTextGrey"
+                android:background="@android:color/transparent"
+                tools:ignore="SmallSp"/>
 
     </RelativeLayout>
 

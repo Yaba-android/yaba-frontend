@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewLeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewBottomOffsetDecoration
@@ -43,7 +44,6 @@ class RecommendedFragment : Fragment() {
     private fun initDiscreteScrollView(view: View, container: ViewGroup) {
         val discreteScrollView = view.findViewById<DiscreteScrollView>(R.id.discrete_scroll_view)
         val discreteRecyclerViewAdapter = DiscreteScrollViewAdapter(container.context, hmodels)
-        val fadeIn = AnimationUtils.loadAnimation(container.context, R.anim.fade_in);
 
         discreteRecyclerViewAdapter.setTabFragmentClickCallback(mTabFragmentClickCallback)
         discreteScrollView.setHasFixedSize(true)
@@ -51,11 +51,14 @@ class RecommendedFragment : Fragment() {
         discreteScrollView.setItemTransformer(
             ScaleTransformer.Builder()
                 .setMaxScale(1f)
-                .setMinScale(0.75f)
+                .setMinScale(0.80f)
                 .setPivotX(Pivot.X.CENTER)
-                .setPivotY(Pivot.Y.CENTER)
+                .setPivotY(Pivot.Y.BOTTOM)
                 .build()
         )
+        /*discreteScrollView.addItemDecoration(
+            DiscreteScrollViewLeftOffsetDecoration(container.context, R.dimen.left_book_horizontal_recycler_view)
+        )*/
         if (hmodels.size > 0) {
             discreteScrollView.scrollToPosition((hmodels.size / 2))
         }
