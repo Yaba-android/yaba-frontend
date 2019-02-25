@@ -11,12 +11,16 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".Activity.StoreActivity"
+                android:name=".Activity.RecommendedActivity"
                 tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".Activity.BrowseActivity"
+                tools:ignore="InnerclassSeparator">
         </activity>
         <activity
                 android:name=".Activity.LibraryActivity"

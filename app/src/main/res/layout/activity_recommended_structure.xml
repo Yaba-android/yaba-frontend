@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:id="@+id/drawer_main"
         android:fitsSystemWindows="true"
-        tools:context=".Activity.StoreActivity">
+        tools:context=".Activity.RecommendedActivity">
 
     <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -20,16 +20,9 @@
 
             <include layout="@layout/toolbar_store"/>
 
-            <include layout="@layout/tablayout_store_book_details"/>
-
         </android.support.design.widget.AppBarLayout>
 
-        <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:id="@+id/fragment_container_store"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        <include layout="@layout/activity_recommended_content"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

@@ -16,7 +16,7 @@
             android:background="@color/colorFragmentGrey"
             android:orientation="vertical">
 
-       <include layout="@layout/fragment_recommended_carousel"/>
+        <include layout="@layout/fragment_recommended_carousel"/>
 
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/book_vertical_recyclerview_recommended"

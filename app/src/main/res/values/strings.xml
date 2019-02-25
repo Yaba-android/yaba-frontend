@@ -50,5 +50,7 @@
     <string name="store">Store</string>
     <string name="library">Library</string>
     <string name="back">Back</string>
+    <string name="browse">Browse</string>
+    <string name="recommended">Recommended</string>
 </resources>
 

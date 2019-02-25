@@ -9,12 +9,11 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.StoreActivity
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.RecommendedActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Browse.BrowseFragment
-import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Recommended.RecommendedFragment
 
 class StoreContainerFragment : Fragment() {
 
@@ -26,8 +25,8 @@ class StoreContainerFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        if (context is StoreActivity) {
-            // callback qui va permettre de recuperer le tablayout depuis store et de lui setter le viewpager qui est dans fragment_container
+        if (context is RecommendedActivity) {
+            // callback qui va permettre de recuperer le tablayout depuis sstore et de lui setter le viewpager qui est dans fragment_container
             // ceci regle le probleme de la nav view  qui passe sour la toolbar
             mTabLayoutSetupCallback = context as ITabLayoutSetupCallback
         } else {
@@ -65,7 +64,8 @@ class StoreContainerFragment : Fragment() {
             when (position) {
                 0 -> {
                     val recommended =
-                        RecommendedFragment()
+                        //RecommendedFragment()
+                        BrowseFragment() // just to compile
                     recommended.setTabFragmentClickCallback(mTabFragmentClickCallback)
                     return recommended
                 }

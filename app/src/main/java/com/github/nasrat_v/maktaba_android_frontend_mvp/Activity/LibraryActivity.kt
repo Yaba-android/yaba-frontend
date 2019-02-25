@@ -18,15 +18,31 @@ class LibraryActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_library)
 
-        setListenerButtonFooter()
+        setListenerBrowseButtonFooter()
+        setListenerRecommendedButtonFooter()
         setListenerButtonFolioReader()
     }
 
-    private fun setListenerButtonFooter() {
-        val intent = Intent(this, StoreActivity::class.java)
-        val button = findViewById<Button>(R.id.button_store_footer)
+    private fun setListenerBrowseButtonFooter() {
+        val intent = Intent(this, BrowseActivity::class.java)
+        val buttonBrowse = findViewById<Button>(R.id.button_browse_footer)
 
-        button.setOnClickListener {
+        buttonBrowse.setOnClickListener {
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                finish()
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+        }
+    }
+
+    private fun setListenerRecommendedButtonFooter() {
+        val intent = Intent(this, RecommendedActivity::class.java)
+        val buttonRecommended = findViewById<Button>(R.id.button_recommended_footer)
+
+
+        buttonRecommended.setOnClickListener {
             if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
