@@ -9,6 +9,8 @@
         android:fitsSystemWindows="true"
         tools:context=".Activity.RecommendedActivity">
 
+    <include layout="@layout/activity_recommended_content"/>
+
     <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -21,8 +23,6 @@
             <include layout="@layout/toolbar_store"/>
 
         </android.support.design.widget.AppBarLayout>
-
-        <include layout="@layout/activity_recommended_content"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
@@ -64,7 +64,7 @@
             android:orientation="vertical"
             android:gravity="bottom">
 
-        <include layout="@layout/button_store_library_footer"/>
+        <include layout="@layout/change_activity_footer"/>
 
     </LinearLayout>
 

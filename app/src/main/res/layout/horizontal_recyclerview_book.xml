@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="107dp"
-        android:layout_height="284dp"
+        android:layout_height="300dp"
         android:layout_margin="8dp"
         android:textDirection="rtl"
         android:layoutDirection="rtl"
@@ -11,11 +11,12 @@
 
     <ImageView
             android:id="@+id/horizontal_image"
-            android:src="@drawable/forest_small"
+            android:src="@drawable/book1"
             android:scaleType="centerCrop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="2dp"/>
+            android:layout_width="107dp"
+            android:layout_height="176dp"
+            android:paddingBottom="2dp"
+            android:adjustViewBounds="true"/>
 
     <TextView
             android:id="@+id/horizontal_title"
@@ -24,8 +25,10 @@
             android:layout_below="@id/horizontal_image"
             android:text="@string/title"
             android:textColor="@color/colorTextBlack"
-            android:textSize="16sp"
-            android:paddingBottom="2dp"/>
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:paddingTop="17dp"
+            android:paddingBottom="8dp"/>
 
     <TextView
             android:id="@+id/horizontal_author"
@@ -34,14 +37,15 @@
             android:layout_below="@id/horizontal_title"
             android:text="@string/author"
             android:textColor="@color/colorTextGrey"
-            android:textSize="14sp"
-            android:paddingBottom="2dp"/>
+            android:textSize="12sp"
+            android:paddingBottom="6dp"/>
 
     <RatingBar
             android:id="@+id/horizontal_rating_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/horizontal_author"
+            android:paddingBottom="8dp"
             style="@style/RatingBar"/>
 
     <TextView
@@ -52,8 +56,7 @@
             android:layout_toEndOf="@+id/horizontal_rating_bar"
             android:text="@string/number_rating"
             android:textColor="@color/colorTextBlack"
-            android:textSize="9sp"
-            android:paddingStart="2dp"
+            android:textSize="10sp"
             tools:ignore="RtlSymmetry,SmallSp"/>
 
     <TextView
@@ -63,6 +66,6 @@
             android:layout_below="@id/horizontal_rating_bar"
             android:text="@string/price"
             android:textColor="@color/colorTextBlack"
-            android:textSize="14sp"/>
+            android:textSize="12sp"/>
 
 </RelativeLayout>

@@ -39,7 +39,6 @@ class RecommendedActivity : AppCompatActivity(),
     private lateinit var mDrawerLayout: DrawerLayout
     private var mLastClickTime: Long = 0
     private var mDataset = arrayListOf<ListBModel>()
-    private var hmodels = arrayListOf<BModel>()
 
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +50,6 @@ class RecommendedActivity : AppCompatActivity(),
         setListenerBrowseButtonFooter()
         setListenerLibraryButtonFooter()
         initDrawerLayout()
-        mockDataset()
         initDiscreteScrollView()
         initVerticalRecycler()
         /*if (savedInstanceState == null) {
@@ -188,6 +186,10 @@ class RecommendedActivity : AppCompatActivity(),
     }*/
 
     private fun initDiscreteScrollView() {
+        val hmodels = arrayListOf<BModel>()
+
+        mockDatasetDiscreteScrollView(hmodels)
+
         val discreteScrollView = findViewById<DiscreteScrollView>(R.id.discrete_scroll_view)
         val discreteRecyclerViewAdapter = DiscreteScrollViewAdapter(this, hmodels)
 
@@ -197,7 +199,7 @@ class RecommendedActivity : AppCompatActivity(),
         discreteScrollView.setItemTransformer(
             ScaleTransformer.Builder()
                 .setMaxScale(1f)
-                .setMinScale(0.80f)
+                .setMinScale(0.68f)
                 .setPivotX(Pivot.X.CENTER)
                 .setPivotY(Pivot.Y.BOTTOM)
                 .build()
@@ -211,6 +213,8 @@ class RecommendedActivity : AppCompatActivity(),
     }
 
     private fun initVerticalRecycler() {
+        mockDatasetRecyclerView()
+
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
         val adapterBookVertical = ListBRecyclerViewAdapter(this, mDataset, this)
@@ -225,16 +229,25 @@ class RecommendedActivity : AppCompatActivity(),
         linearLayout.requestFocus()
     }
 
-    private fun mockDataset() {
-        hmodels = arrayListOf<BModel>()
+    private fun mockDatasetRecyclerView() {
+        val hmodelsOne = arrayListOf<BModel>()
+        val hmodelsTwo = arrayListOf<BModel>()
 
-        hmodels.add(BModel(R.drawable.forest_small, "The Forest", "Lombok Indonesia", 4f, 102))
-        hmodels.add(BModel(R.drawable.kohlarn_small, "Beach", "Koh Larn", 5f, 28))
-        hmodels.add(BModel(R.drawable.forest_small, "The Waterfall", "Water", 4.5f, 356))
-        hmodels.add(BModel(R.drawable.kohlarn_small, "View Point", "Thailand", 3.5f, 188))
-        hmodels.add(BModel(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler", 4f, 9))
-        hmodels.add(BModel(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya", 3f, 42))
-        mDataset.add(ListBModel("Authors recommended for you", hmodels))
-        mDataset.add(ListBModel("Recommended for you", hmodels))
+        hmodelsOne.add(BModel(R.drawable.book1, "Here", "Taleb Al-Refai", 5f, 219))
+        hmodelsOne.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188))
+        hmodelsOne.add(BModel(R.drawable.book3, "The Friend", "Sigrid Hunez", 4f, 188))
+        mDataset.add(ListBModel("Recommended Authors", hmodelsOne))
+
+        hmodelsTwo.add(BModel(R.drawable.book4, "Here", "Taleb Al-Refai", 5f, 219))
+        hmodelsTwo.add(BModel(R.drawable.book5, "Black Leopard Red Wolf", "Marion James", 5f, 188))
+        hmodelsTwo.add(BModel(R.drawable.book6, "The Friend", "Sigrid Hunez", 4f, 188))
+        mDataset.add(ListBModel("Inspired by Your Reading History", hmodelsTwo))
+    }
+
+    private fun mockDatasetDiscreteScrollView(hmodels : ArrayList<BModel>) {
+        hmodels.add(BModel(R.drawable.book5_carousel, "Here", "Taleb Al-Refai", 5f, 219))
+        hmodels.add(BModel(R.drawable.book1_carousel, "Black Leopard Red Wolf", "Marion James", 5f, 188))
+        hmodels.add(BModel(R.drawable.book7_carousel, "The Friend", "Sigrid Hunez", 4f, 188))
+        hmodels.add(BModel(R.drawable.book8_carousel, "The Friend", "Sigrid Hunez", 4f, 188))
     }
 }

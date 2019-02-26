@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingEnd="10dp"
-            android:paddingStart="10dp"
+            android:paddingStart="17dp"
             tools:ignore="RtlSymmetry">
 
         <TextView
@@ -32,12 +32,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/view_all"
                 android:textAllCaps="false"
-                android:textSize="12sp"
-                android:textColor="@color/colorTextGrey"
+                android:textSize="10sp"
+                android:textColor="@color/colorTextBlack"
                 android:background="@android:color/transparent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:gravity="start|center_vertical"/>
+                android:gravity="start|center_vertical"
+                tools:ignore="SmallSp"/>
 
     </RelativeLayout>
 

@@ -28,7 +28,7 @@
             android:orientation="vertical"
             android:gravity="bottom">
 
-        <include layout="@layout/button_store_library_footer"/>
+        <include layout="@layout/change_activity_footer"/>
 
     </LinearLayout>
 

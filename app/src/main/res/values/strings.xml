@@ -14,9 +14,8 @@
     <string name="profile_email">kostas.mitroglou@gmail.com</string>
     <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
-    <string name="carousel_title_first">Recommended</string>
-    <string name="carousel_title_second">reading for you</string>
-    <string name="carousel_title_third">Based on your purchase history</string>
+    <string name="carousel_title_first">Recommended\nreading for you</string>
+    <string name="carousel_title_second">Based on your purchase history</string>
     <string name="based_on_your_most_read_books">Based on your most read books</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -40,7 +39,6 @@
     <string name="select_genre">Select genre</string>
     <string name="title">Title</string>
     <string name="author">Author</string>
-    <string name="view_all">View all</string>
     <string name="price">$9.99</string>
     <string name="number_rating">(188)</string>
     <string name="author_review">Author Review</string>
@@ -52,5 +50,7 @@
     <string name="back">Back</string>
     <string name="browse">Browse</string>
     <string name="recommended">Recommended</string>
+    <string name="view_all">View all</string>
+    <string name="view_all_carousel"><![CDATA[<  View all]]></string>
 </resources>
 

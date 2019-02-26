@@ -3,7 +3,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
         android:weightSum="3"
         android:baselineAligned="false">
 
@@ -20,8 +21,8 @@
 
             <Button
                     android:id="@+id/button_browse_footer"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/browse_icon"/>
@@ -43,8 +44,8 @@
 
             <Button
                     android:id="@+id/button_recommended_footer"
-                    android:layout_width="26dp"
-                    android:layout_height="22dp"
+                    android:layout_width="22dp"
+                    android:layout_height="20dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/recommended_icon"/>
@@ -66,8 +67,8 @@
 
             <Button
                     android:id="@+id/button_library_footer"
-                    android:layout_width="23dp"
-                    android:layout_height="24dp"
+                    android:layout_width="18dp"
+                    android:layout_height="19dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/library_icon"/>
