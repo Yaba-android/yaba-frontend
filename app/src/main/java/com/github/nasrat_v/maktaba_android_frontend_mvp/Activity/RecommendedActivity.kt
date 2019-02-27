@@ -27,6 +27,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.Discrete
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewBottomOffsetDecoration
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Horizontal.GModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Horizontal.GRecyclerViewAdapter
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
@@ -36,9 +38,12 @@ class RecommendedActivity : AppCompatActivity(),
     ITabLayoutSetupCallback,
     StoreContainerFragment.AdditionalClickCallback {
 
+    override fun setupTabLayout(viewPager: ViewPager) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     private lateinit var mDrawerLayout: DrawerLayout
     private var mLastClickTime: Long = 0
-    private var mDataset = arrayListOf<ListBModel>()
 
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,12 +54,13 @@ class RecommendedActivity : AppCompatActivity(),
         setListenerButtonCloseGenre()
         setListenerBrowseButtonFooter()
         setListenerLibraryButtonFooter()
+
         initDrawerLayout()
+
         initDiscreteScrollView()
-        initVerticalRecycler()
-        /*if (savedInstanceState == null) {
-            initFragmentManager()
-        }*/
+        initFirstVerticalRecycler()
+        initGenreHorizontalRecycler()
+        initSecondVerticalRecycler()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -67,14 +73,6 @@ class RecommendedActivity : AppCompatActivity(),
             mDrawerLayout.closeDrawer(Gravity.START)
         else
             super.onBackPressed()
-    }
-
-    override fun setupTabLayout(viewPager: ViewPager) {
-        val tabLayout = findViewById<TabLayout>(R.id.tabs)
-
-        tabLayout.setupWithViewPager(viewPager)
-        //setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
-        //setListenerTabLayout(tabLayout)
     }
 
     override fun genreNavigationEventButtonClicked() {
@@ -128,36 +126,6 @@ class RecommendedActivity : AppCompatActivity(),
         }
     }
 
-    /*private fun setListenerTabLayout(tabLayout: TabLayout) {
-        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                setTabTextToBold(tabLayout, tab.position)
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                setTabTextToNormal(tabLayout, tab.position)
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-            }
-        })
-    }
-
-    private fun setTabTextToBold(tabLayout: TabLayout, indexTab: Int) {
-        val linearLayout = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(indexTab) as LinearLayout
-        val tabTextView = linearLayout.getChildAt(1) as TextView
-
-        tabTextView.setTypeface(tabTextView.typeface, Typeface.BOLD)
-    }
-
-    private fun setTabTextToNormal(tabLayout: TabLayout, indexTab: Int) {
-        val linearLayout = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(indexTab) as LinearLayout
-        val tabTextView = linearLayout.getChildAt(1) as TextView
-
-        tabTextView.setTypeface(null, Typeface.NORMAL)
-    }*/
-
     private fun initDrawerLayout() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
 
@@ -173,17 +141,6 @@ class RecommendedActivity : AppCompatActivity(),
         mDrawerToggle.syncState()
         mDrawerLayout.setDrawerListener(mDrawerToggle)
     }
-
-    /*private fun initFragmentManager() {
-        val containerFragment = StoreContainerFragment()
-        val mFragmentManager = supportFragmentManager
-
-        containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis les fragments
-        containerFragment.setAdditionalClickCallback(this) // click additionnel uniquement pour le fragment browse
-        mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        val mFragmentTransaction = mFragmentManager.beginTransaction()
-        mFragmentTransaction.replace(R.id.fragment_container_store, containerFragment).commit()
-    }*/
 
     private fun initDiscreteScrollView() {
         val hmodels = arrayListOf<BModel>()
@@ -204,18 +161,17 @@ class RecommendedActivity : AppCompatActivity(),
                 .setPivotY(Pivot.Y.BOTTOM)
                 .build()
         )
-        /*discreteScrollView.addItemDecoration(
-            DiscreteScrollViewLeftOffsetDecoration(container.context, R.dimen.left_book_horizontal_recycler_view)
-        )*/
         if (hmodels.size > 0) {
-            discreteScrollView.scrollToPosition((hmodels.size / 2))
+            discreteScrollView.scrollToPosition(1)
         }
     }
 
-    private fun initVerticalRecycler() {
-        mockDatasetRecyclerView()
+    private fun initFirstVerticalRecycler() {
+        val mDataset = arrayListOf<ListBModel>()
 
-        val verticalRecyclerView = findViewById<RecyclerView>(R.id.book_vertical_recyclerview_recommended)
+        mockDatasetFirstRecyclerView(mDataset)
+
+        val verticalRecyclerView = findViewById<RecyclerView>(R.id.first_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
         val adapterBookVertical = ListBRecyclerViewAdapter(this, mDataset, this)
 
@@ -229,19 +185,45 @@ class RecommendedActivity : AppCompatActivity(),
         linearLayout.requestFocus()
     }
 
-    private fun mockDatasetRecyclerView() {
-        val hmodelsOne = arrayListOf<BModel>()
-        val hmodelsTwo = arrayListOf<BModel>()
+    @SuppressLint("SetTextI18n")
+    private fun initGenreHorizontalRecycler() {
+        val hmodels = arrayListOf<GModel>()
 
-        hmodelsOne.add(BModel(R.drawable.book1, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsOne.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsOne.add(BModel(R.drawable.book3, "The Friend", "Sigrid Hunez", 4f, 188))
-        mDataset.add(ListBModel("Recommended Authors", hmodelsOne))
+        mockDatasetGenreRecyclerView(hmodels)
 
-        hmodelsTwo.add(BModel(R.drawable.book4, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsTwo.add(BModel(R.drawable.book5, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsTwo.add(BModel(R.drawable.book6, "The Friend", "Sigrid Hunez", 4f, 188))
-        mDataset.add(ListBModel("Inspired by Your Reading History", hmodelsTwo))
+        val title = findViewById<TextView>(R.id.vertical_title)
+        val horizontalRecyclerView = findViewById<RecyclerView>(R.id.genre_horizontal_recyclerview_recommended)
+        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
+        val adapterGenreHorizontal = GRecyclerViewAdapter(this, hmodels)
+
+        title.text = "Genre"
+        horizontalRecyclerView.setHasFixedSize(true)
+        horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        horizontalRecyclerView.adapter = adapterGenreHorizontal
+        /*verticalRecyclerView.addItemDecoration(
+            ListBRecyclerViewBottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
+        )*/
+        horizontalRecyclerView.isFocusable = false
+        linearLayout.requestFocus()
+    }
+
+    private fun initSecondVerticalRecycler() {
+        val mDataset = arrayListOf<ListBModel>()
+
+        mockDatasetSecondRecyclerView(mDataset)
+
+        val verticalRecyclerView = findViewById<RecyclerView>(R.id.second_book_vertical_recyclerview_recommended)
+        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
+        val adapterBookVertical = ListBRecyclerViewAdapter(this, mDataset, this)
+
+        verticalRecyclerView.setHasFixedSize(true)
+        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.addItemDecoration(
+            ListBRecyclerViewBottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
+        )
+        verticalRecyclerView.isFocusable = false
+        linearLayout.requestFocus()
     }
 
     private fun mockDatasetDiscreteScrollView(hmodels : ArrayList<BModel>) {
@@ -249,5 +231,29 @@ class RecommendedActivity : AppCompatActivity(),
         hmodels.add(BModel(R.drawable.book1_carousel, "Black Leopard Red Wolf", "Marion James", 5f, 188))
         hmodels.add(BModel(R.drawable.book7_carousel, "The Friend", "Sigrid Hunez", 4f, 188))
         hmodels.add(BModel(R.drawable.book8_carousel, "The Friend", "Sigrid Hunez", 4f, 188))
+    }
+
+    private fun mockDatasetFirstRecyclerView(mDataset: ArrayList<ListBModel>) {
+        val hmodelsOne = arrayListOf<BModel>()
+
+        hmodelsOne.add(BModel(R.drawable.book1, "Here", "Taleb Al-Refai", 5f, 219))
+        hmodelsOne.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188))
+        hmodelsOne.add(BModel(R.drawable.book3, "The Friend", "Sigrid Hunez", 4f, 188))
+        mDataset.add(ListBModel("Recommended Authors", hmodelsOne))
+    }
+
+    private fun mockDatasetGenreRecyclerView(hmodels : ArrayList<GModel>) {
+        hmodels.add(GModel("Fiction"))
+        hmodels.add(GModel("Drama"))
+        hmodels.add(GModel("Horror"))
+    }
+
+    private fun mockDatasetSecondRecyclerView(mDataset: ArrayList<ListBModel>) {
+        val hmodelsTwo = arrayListOf<BModel>()
+
+        hmodelsTwo.add(BModel(R.drawable.book4, "Here", "Taleb Al-Refai", 5f, 219))
+        hmodelsTwo.add(BModel(R.drawable.book5, "Black Leopard Red Wolf", "Marion James", 5f, 188))
+        hmodelsTwo.add(BModel(R.drawable.book6, "The Friend", "Sigrid Hunez", 4f, 188))
+        mDataset.add(ListBModel("Inspired by Your Reading History", hmodelsTwo))
     }
 }

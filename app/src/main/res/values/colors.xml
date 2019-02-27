@@ -16,6 +16,7 @@
     <color name="colorCarouselGrey">#FAFAFA</color>
     <color name="colorFragmentGrey">#FDFDFD</color>
     <color name="colorButtonFooterGrey">#EAEAEA</color>
+    <color name="colorGenreRecyclerView">#FFF8F8Fa</color>
     <color name="colorTextBlueHolo">#5FDCE6</color>
     <color name="colorPurple">#33005F</color>
 

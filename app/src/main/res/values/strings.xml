@@ -50,7 +50,7 @@
     <string name="back">Back</string>
     <string name="browse">Browse</string>
     <string name="recommended">Recommended</string>
-    <string name="view_all">View all</string>
-    <string name="view_all_carousel"><![CDATA[<  View all]]></string>
+    <string name="view_all"><![CDATA[<  View all]]></string>
+    <string name="genre">Genre</string>
 </resources>
 

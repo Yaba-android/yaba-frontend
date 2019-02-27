@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_alignParentEnd="true"
-                android:text="@string/view_all_carousel"
+                android:text="@string/view_all"
                 android:textAllCaps="false"
                 android:textSize="12sp"
                 android:textColor="@color/colorTextGrey"

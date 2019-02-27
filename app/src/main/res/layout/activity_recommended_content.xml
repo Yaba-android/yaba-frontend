@@ -16,13 +16,47 @@
             android:background="@color/colorFragmentGrey"
             android:orientation="vertical">
 
-        <include layout="@layout/fragment_recommended_carousel"/>
+        <include layout="@layout/activity_recommended_carousel"/>
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/book_vertical_recyclerview_recommended"
+                android:id="@+id/first_book_vertical_recyclerview_recommended"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="vertical"
+                android:paddingEnd="4dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:ignore="RtlSymmetry"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="40dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingEnd="10dp"
+                    tools:ignore="RtlSymmetry">
+
+                <include layout="@layout/title_recyclerview"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/genre_horizontal_recyclerview_recommended"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal"/>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/second_book_vertical_recyclerview_recommended"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingEnd="4dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:ignore="RtlSymmetry"/>

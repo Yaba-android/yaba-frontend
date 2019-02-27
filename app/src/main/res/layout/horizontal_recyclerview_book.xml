@@ -27,8 +27,8 @@
             android:textColor="@color/colorTextBlack"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:paddingTop="17dp"
-            android:paddingBottom="8dp"/>
+            android:paddingTop="13dp"
+            android:paddingBottom="2dp"/>
 
     <TextView
             android:id="@+id/horizontal_author"
@@ -38,14 +38,14 @@
             android:text="@string/author"
             android:textColor="@color/colorTextGrey"
             android:textSize="12sp"
-            android:paddingBottom="6dp"/>
+            android:paddingBottom="10dp"/>
 
     <RatingBar
             android:id="@+id/horizontal_rating_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/horizontal_author"
-            android:paddingBottom="8dp"
+            android:paddingBottom="6dp"
             style="@style/RatingBar"/>
 
     <TextView
