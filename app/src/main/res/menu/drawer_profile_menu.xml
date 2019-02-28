@@ -16,7 +16,11 @@
 
         <item
                 android:id="@+id/nav_help_tips"
-                android:title="@string/help_tips"/>
+                android:title="@string/help"/>
+
+        <item
+                android:id="@+id/nav_wish_list"
+                android:title="@string/wish_list"/>
 
     </group>
 

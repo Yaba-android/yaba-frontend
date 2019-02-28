@@ -2,19 +2,25 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="67dp"
         android:layout_gravity="bottom"
         android:orientation="vertical"
         android:background="@color/colorNavFooterGrey">
 
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorSeparatorViewGrey"
+            android:orientation="vertical"/>
+
     <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/sign_out"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@color/colorTextBlack"
             android:textAllCaps="false"
-            android:gravity="end"
+            android:gravity="end|center"
             android:padding="15dp"
             android:background="@android:color/transparent"/>
 

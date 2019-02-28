@@ -16,6 +16,7 @@
     <color name="colorCarouselGrey">#FFF8F8FA</color>
     <color name="colorFragmentGrey">#FDFDFD</color>
     <color name="colorButtonFooterGrey">#EAEAEA</color>
+    <color name="colorSeparatorViewGrey">#FFDCDFE1</color>
     <color name="colorTextBlueHolo">#5FDCE6</color>
     <color name="colorButtonDontFindBlueHolo">#FF60E3D9</color>
     <color name="colorPurple">#33005F</color>
