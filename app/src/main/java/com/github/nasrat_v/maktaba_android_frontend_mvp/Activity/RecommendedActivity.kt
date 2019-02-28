@@ -18,6 +18,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.StoreContain
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import android.graphics.Typeface
 import android.os.SystemClock
+import android.support.v4.view.GravityCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
@@ -133,6 +134,11 @@ class RecommendedActivity : AppCompatActivity(),
             R.string.navigation_drawer_profile_open,
             R.string.navigation_drawer_profile_close
         )
+        mDrawerToggle.isDrawerIndicatorEnabled = false
+        mDrawerToggle.toolbarNavigationClickListener = View.OnClickListener {
+            mDrawerLayout.openDrawer(GravityCompat.START)
+        }
+        mDrawerToggle.setHomeAsUpIndicator(R.drawable.menu_drawer)
         mDrawerToggle.syncState()
         mDrawerLayout.setDrawerListener(mDrawerToggle)
     }
