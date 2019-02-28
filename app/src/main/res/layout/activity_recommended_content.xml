@@ -70,6 +70,48 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@color/colorCarouselGrey">
+
+            <TextView
+                    android:id="@+id/first_text_dont_find"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:paddingBottom="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/not_found_what_you_re_looking_for"
+                    android:textColor="@color/colorTextBlack"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/second_text_dont_find"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/first_text_dont_find"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:paddingBottom="30dp"
+                    android:text="@string/search_or_browse_categories_to_access_your_upcoming_story"
+                    android:textColor="@color/colorTextGrey"/>
+
+            <Button
+                    android:id="@+id/button_dont_find"
+                    android:layout_width="160dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/second_text_dont_find"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/colorButtonDontFindBlueHolo"
+                    android:text="@string/browse_categories"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"/>
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

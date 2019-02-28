@@ -52,5 +52,10 @@
     <string name="recommended">Recommended</string>
     <string name="view_all"><![CDATA[<  View all]]></string>
     <string name="genre">Genre</string>
+    <string name="not_found_what_you_re_looking_for">Not found what you\'re looking for ?</string>
+    <string name="search_or_browse_categories_to_access_your_upcoming_story">Search or browse categories to access your
+        upcoming story
+    </string>
+    <string name="browse_categories">Browse categories</string>
 </resources>
 

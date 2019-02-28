@@ -13,12 +13,11 @@
     <color name="colorNavGrey">#DBDBDB</color>
     <color name="colorNavFooterGrey">#FFFFFF</color>
     <color name="colorAppBarGrey">#F8F8F8</color>
-    <color name="colorCarouselGrey">#FAFAFA</color>
+    <color name="colorCarouselGrey">#FFF8F8FA</color>
     <color name="colorFragmentGrey">#FDFDFD</color>
     <color name="colorButtonFooterGrey">#EAEAEA</color>
-    <color name="colorGenreRecyclerView">#FFF8F8Fa</color>
     <color name="colorTextBlueHolo">#5FDCE6</color>
+    <color name="colorButtonDontFindBlueHolo">#FF60E3D9</color>
     <color name="colorPurple">#33005F</color>
-
 </resources>
 
