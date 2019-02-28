@@ -32,16 +32,7 @@
                 android:orientation="vertical"
                 android:paddingBottom="40dp">
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingEnd="10dp"
-                    tools:ignore="RtlSymmetry">
-
-                <include layout="@layout/title_recyclerview"/>
-
-            </LinearLayout>
+            <include android:id="@+id/title_layout_genre" layout="@layout/title_recyclerview"/>
 
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/genre_horizontal_recyclerview_recommended"
@@ -60,6 +51,24 @@
                 android:paddingEnd="4dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:ignore="RtlSymmetry"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="40dp">
+
+            <include android:id="@+id/title_layout_small" layout="@layout/title_recyclerview"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/small_book_vertical_recyclerview_recommended"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="4dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:ignore="RtlSymmetry"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

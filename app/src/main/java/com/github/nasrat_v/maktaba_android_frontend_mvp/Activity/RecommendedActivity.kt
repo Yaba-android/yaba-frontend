@@ -23,10 +23,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.TextView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewBottomOffsetDecoration
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Horizontal.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Horizontal.GRecyclerViewAdapter
 import com.yarolegovich.discretescrollview.DiscreteScrollView
@@ -61,11 +60,7 @@ class RecommendedActivity : AppCompatActivity(),
         initFirstVerticalRecycler()
         initGenreHorizontalRecycler()
         initSecondVerticalRecycler()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_store_menu, menu)
-        return true
+        initSmallVerticalRecycler()
     }
 
     override fun onBackPressed() {
@@ -191,7 +186,8 @@ class RecommendedActivity : AppCompatActivity(),
 
         mockDatasetGenreRecyclerView(hmodels)
 
-        val title = findViewById<TextView>(R.id.vertical_title)
+        val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_genre)
+        val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val horizontalRecyclerView = findViewById<RecyclerView>(R.id.genre_horizontal_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
         val adapterGenreHorizontal = GRecyclerViewAdapter(this, hmodels)
@@ -226,6 +222,29 @@ class RecommendedActivity : AppCompatActivity(),
         linearLayout.requestFocus()
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun initSmallVerticalRecycler() {
+        val mDataset = arrayListOf<SmallListBModel>()
+
+        mockDatasetSmallRecyclerView(mDataset)
+
+        val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_small)
+        val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
+        val verticalRecyclerView = findViewById<RecyclerView>(R.id.small_book_vertical_recyclerview_recommended)
+        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
+        val adapterBookVertical = SmallListBRecyclerViewAdapter(this, mDataset, this)
+
+        title.text = "Other Books for you"
+        verticalRecyclerView.setHasFixedSize(true)
+        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.addItemDecoration(
+            ListBRecyclerViewBottomOffsetDecoration(this, R.dimen.small_book_vertical_recycler_view)
+        )
+        verticalRecyclerView.isFocusable = false
+        linearLayout.requestFocus()
+    }
+
     private fun mockDatasetDiscreteScrollView(hmodels : ArrayList<BModel>) {
         hmodels.add(BModel(R.drawable.book5_carousel, "Here", "Taleb Al-Refai", 5f, 219))
         hmodels.add(BModel(R.drawable.book1_carousel, "Black Leopard Red Wolf", "Marion James", 5f, 188))
@@ -255,5 +274,21 @@ class RecommendedActivity : AppCompatActivity(),
         hmodelsTwo.add(BModel(R.drawable.book5, "Black Leopard Red Wolf", "Marion James", 5f, 188))
         hmodelsTwo.add(BModel(R.drawable.book6, "The Friend", "Sigrid Hunez", 4f, 188))
         mDataset.add(ListBModel("Inspired by Your Reading History", hmodelsTwo))
+    }
+
+    private fun mockDatasetSmallRecyclerView(mDataset: ArrayList<SmallListBModel>) {
+        val hmodelsOne = arrayListOf<BModel>()
+        val hmodelsTwo = arrayListOf<BModel>()
+
+        hmodelsOne.add(BModel(R.drawable.book1, "Here", "Taleb Al-Refai", 5f, 219))
+        hmodelsOne.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188))
+        hmodelsOne.add(BModel(R.drawable.book3, "The Friend", "Sigrid Hunez", 4f, 188))
+        hmodelsOne.add(BModel(R.drawable.book3, "The Friend", "Sigrid Hunez", 4f, 188))
+        hmodelsTwo.add(BModel(R.drawable.book4, "Here", "Taleb Al-Refai", 5f, 219))
+        hmodelsTwo.add(BModel(R.drawable.book5, "Black Leopard Red Wolf", "Marion James", 5f, 188))
+        hmodelsTwo.add(BModel(R.drawable.book6, "The Friend", "Sigrid Hunez", 4f, 188))
+        hmodelsTwo.add(BModel(R.drawable.book6, "The Friend", "Sigrid Hunez", 4f, 188))
+        mDataset.add(SmallListBModel(hmodelsOne))
+        mDataset.add(SmallListBModel(hmodelsTwo))
     }
 }
