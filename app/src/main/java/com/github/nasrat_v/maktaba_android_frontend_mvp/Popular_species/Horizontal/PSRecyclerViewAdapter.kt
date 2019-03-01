@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Horizontal
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class GRecyclerViewAdapter(private var context: Context, private var list: ArrayList<GModel>)
-    : RecyclerView.Adapter<GRecyclerViewAdapter.ViewHolder>() {
+class PSRecyclerViewAdapter(private var context: Context, private var list: ArrayList<PSModel>)
+    : RecyclerView.Adapter<PSRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(R.layout.horizontal_recyclerview_genre, container, false)

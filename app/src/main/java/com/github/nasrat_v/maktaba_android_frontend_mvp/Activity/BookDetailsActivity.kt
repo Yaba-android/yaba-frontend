@@ -17,9 +17,14 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsC
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SModel
 
 class BookDetailsActivity : AppCompatActivity(),
     ITabFragmentClickCallback, ITabLayoutSetupCallback {
+
+    override fun sectionEventButtonClicked(section: SModel) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private lateinit var selectedBook: BModel
     private lateinit var mDrawerLayout: DrawerLayout

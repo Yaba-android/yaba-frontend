@@ -8,4 +8,5 @@
     <dimen name="bottom_browse_book_vertical_recycler_view">10dp</dimen>
     <dimen name="left_book_horizontal_recycler_view">5dp</dimen>
     <dimen name="small_book_vertical_recycler_view">3dp</dimen>
+    <dimen name="bottom_section_vertical_recycler_view">35dp</dimen>
 </resources>

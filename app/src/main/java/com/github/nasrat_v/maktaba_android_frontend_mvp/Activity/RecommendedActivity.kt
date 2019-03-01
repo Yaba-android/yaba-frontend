@@ -4,11 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
-import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.widget.Button
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
@@ -16,7 +14,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentCl
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.StoreContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import android.graphics.Typeface
 import android.os.SystemClock
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -28,8 +25,11 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.*
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Horizontal.GModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Horizontal.GRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SRecyclerViewBottomOffsetDecoration
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
@@ -52,7 +52,7 @@ class RecommendedActivity : AppCompatActivity(),
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_recommended_structure)
 
-        //setListenerButtonCloseGenre()
+        setListenerButtonCloseGenre()
         setListenerButtonCloseProfile()
         setListenerBrowseButtonFooter()
         setListenerLibraryButtonFooter()
@@ -61,9 +61,10 @@ class RecommendedActivity : AppCompatActivity(),
 
         initDiscreteScrollView()
         initFirstVerticalRecycler()
-        initGenreHorizontalRecycler()
+        initPopularSpeciesHorizontalRecycler()
         initSecondVerticalRecycler()
         initSmallVerticalRecycler()
+        initSectionNavVerticalRecycler()
     }
 
     override fun onBackPressed() {
@@ -88,8 +89,13 @@ class RecommendedActivity : AppCompatActivity(),
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
+    override fun sectionEventButtonClicked(section: SModel) {
+        // Open section page
+    }
+
     private fun setListenerButtonCloseGenre() {
-        val buttonCloseGenre = findViewById<Button>(R.id.button_close_nav_genre)
+        val nav = findViewById<NavigationView>(R.id.nav_view_section)
+        val buttonCloseGenre = nav.findViewById<Button>(R.id.button_close_section)
 
         buttonCloseGenre.setOnClickListener {
             genreNavigationEventButtonClicked()
@@ -140,7 +146,7 @@ class RecommendedActivity : AppCompatActivity(),
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         mDrawerLayout = findViewById(R.id.drawer_main)
-        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END);
+        //mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END);
         val mDrawerToggle = ActionBarDrawerToggle(
             this, mDrawerLayout, toolbar,
             R.string.navigation_drawer_profile_open,
@@ -199,18 +205,22 @@ class RecommendedActivity : AppCompatActivity(),
     }
 
     @SuppressLint("SetTextI18n")
-    private fun initGenreHorizontalRecycler() {
-        val hmodels = arrayListOf<GModel>()
+    private fun initPopularSpeciesHorizontalRecycler() {
+        val hmodels = arrayListOf<PSModel>()
 
-        mockDatasetGenreRecyclerView(hmodels)
+        mockDatasetPopularSpeciesRecyclerView(hmodels)
 
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_genre)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val horizontalRecyclerView = findViewById<RecyclerView>(R.id.genre_horizontal_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val adapterGenreHorizontal = GRecyclerViewAdapter(this, hmodels)
+        val adapterGenreHorizontal =
+            PSRecyclerViewAdapter(
+                this,
+                hmodels
+            )
 
-        title.text = "Genre"
+        title.text = "Popular species"
         horizontalRecyclerView.setHasFixedSize(true)
         horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         horizontalRecyclerView.adapter = adapterGenreHorizontal
@@ -263,6 +273,25 @@ class RecommendedActivity : AppCompatActivity(),
         linearLayout.requestFocus()
     }
 
+    private fun initSectionNavVerticalRecycler() {
+        val hmodels = arrayListOf<SModel>()
+
+        mockDatasetSectionNavRecyclerView(hmodels)
+
+        val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_recyclerview_section)
+        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_section)
+        val adapterBookVertical = SRecyclerViewAdapter(this, hmodels, this)
+
+        verticalRecyclerView.setHasFixedSize(true)
+        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.addItemDecoration(
+            SRecyclerViewBottomOffsetDecoration(this, R.dimen.bottom_section_vertical_recycler_view)
+        )
+        //verticalRecyclerView.isFocusable = false
+        //linearLayout.requestFocus()
+    }
+
     private fun mockDatasetDiscreteScrollView(hmodels : ArrayList<BModel>) {
         hmodels.add(BModel(R.drawable.book5_carousel, "Here", "Taleb Al-Refai", 5f, 219))
         hmodels.add(BModel(R.drawable.book1_carousel, "Black Leopard Red Wolf", "Marion James", 5f, 188))
@@ -279,10 +308,10 @@ class RecommendedActivity : AppCompatActivity(),
         mDataset.add(ListBModel("Recommended Authors", hmodelsOne))
     }
 
-    private fun mockDatasetGenreRecyclerView(hmodels : ArrayList<GModel>) {
-        hmodels.add(GModel("Fiction"))
-        hmodels.add(GModel("Drama"))
-        hmodels.add(GModel("Horror"))
+    private fun mockDatasetPopularSpeciesRecyclerView(hmodels : ArrayList<PSModel>) {
+        hmodels.add(PSModel("Fiction"))
+        hmodels.add(PSModel("Drama"))
+        hmodels.add(PSModel("Horror"))
     }
 
     private fun mockDatasetSecondRecyclerView(mDataset: ArrayList<ListBModel>) {
@@ -308,5 +337,30 @@ class RecommendedActivity : AppCompatActivity(),
         hmodelsTwo.add(BModel(R.drawable.book6, "The Friend", "Sigrid Hunez", 4f, 188))
         mDataset.add(SmallListBModel(hmodelsOne))
         mDataset.add(SmallListBModel(hmodelsTwo))
+    }
+
+    private fun mockDatasetSectionNavRecyclerView(hmodels: ArrayList<SModel>) {
+        hmodels.add(SModel("Art", 53))
+        hmodels.add(SModel("Business", 74))
+        hmodels.add(SModel("Computing", 47))
+        hmodels.add(SModel("Education", 65))
+        hmodels.add(SModel("Health", 76))
+        hmodels.add(SModel("Home & Garden", 38))
+        hmodels.add(SModel("Literature", 45))
+        hmodels.add(SModel("Family", 163))
+        hmodels.add(SModel("Professionals", 36))
+        hmodels.add(SModel("Romantic", 53))
+        hmodels.add(SModel("Science-Fiction", 44))
+        hmodels.add(SModel("Personal Biography", 150))
+        hmodels.add(SModel("Children Books", 98))
+        hmodels.add(SModel("Crime & Excitement", 123))
+        hmodels.add(SModel("Food & Drink", 108))
+        hmodels.add(SModel("History", 52))
+        hmodels.add(SModel("Humor", 21))
+        hmodels.add(SModel("Non-Fiction", 248))
+        hmodels.add(SModel("Policy", 112))
+        hmodels.add(SModel("Debt", 98))
+        hmodels.add(SModel("Science & Mathematics", 24))
+        hmodels.add(SModel("Counseling", 48))
     }
 }
