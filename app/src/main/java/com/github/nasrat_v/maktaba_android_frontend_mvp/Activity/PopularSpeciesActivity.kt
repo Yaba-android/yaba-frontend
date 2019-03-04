@@ -3,6 +3,7 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -14,6 +15,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
@@ -29,6 +31,7 @@ class PopularSpeciesActivity : AppCompatActivity(),
     ITabFragmentClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
+    private var mLastClickTime: Long = 0
 
     override fun sectionEventButtonClicked(section: SModel) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -46,6 +49,10 @@ class PopularSpeciesActivity : AppCompatActivity(),
         setContentView(R.layout.activity_popular_species_structure)
 
         selectedPSpecies = intent.getParcelableExtra("SelectedPopularSpecies")
+        setListenerLibraryButtonFooter()
+        setListenerBrowseButtonFooter()
+        setListenerRecommendedButtonFooter()
+
         initDrawerLayout()
         initTitle()
         initVerticalRecycler()
@@ -85,6 +92,48 @@ class PopularSpeciesActivity : AppCompatActivity(),
         mDrawerToggle.isDrawerIndicatorEnabled = false
         mDrawerToggle.syncState()
         mDrawerLayout.setDrawerListener(mDrawerToggle)
+    }
+
+    private fun setListenerRecommendedButtonFooter() {
+        val intent = Intent(this, RecommendedActivity::class.java)
+        val buttonBrowse = findViewById<Button>(R.id.button_recommended_footer)
+
+        buttonBrowse.setOnClickListener {
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                finish()
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+        }
+    }
+
+    private fun setListenerBrowseButtonFooter() {
+        val intent = Intent(this, BrowseActivity::class.java)
+        val button = findViewById<Button>(R.id.button_browse_footer)
+
+        button.setOnClickListener {
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                finish()
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+        }
+    }
+
+    private fun setListenerLibraryButtonFooter() {
+        val intent = Intent(this, LibraryActivity::class.java)
+        val button = findViewById<Button>(R.id.button_library_footer)
+
+        button.setOnClickListener {
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                finish()
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+        }
     }
 
     private fun initTitle() {

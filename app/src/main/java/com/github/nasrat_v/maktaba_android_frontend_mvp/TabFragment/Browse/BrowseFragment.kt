@@ -11,7 +11,6 @@ import android.widget.Button
 import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.StoreContainerFragment
@@ -50,7 +49,7 @@ class BrowseFragment : Fragment() {
     }
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
-        val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_browse)
+        /*val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_browse)
         val adapterBookVertical = ListBrowseBRecyclerViewAdapter(container.context, mDataset, mTabFragmentClickCallback)
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_browse)
 
@@ -61,7 +60,7 @@ class BrowseFragment : Fragment() {
             BottomOffsetDecoration(container.context, R.dimen.bottom_browse_book_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
-        linearLayout.requestFocus()
+        linearLayout.requestFocus()*/
     }
 
     private fun mockDataset() {
