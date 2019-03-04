@@ -16,6 +16,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SModel
 
@@ -23,6 +24,10 @@ class BookDetailsActivity : AppCompatActivity(),
     ITabFragmentClickCallback, ITabLayoutSetupCallback {
 
     override fun sectionEventButtonClicked(section: SModel) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun popularSpeciesEventButtonClicked(pspecies: PSModel) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -43,7 +48,7 @@ class BookDetailsActivity : AppCompatActivity(),
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_book_details_menu, menu)
+        menuInflater.inflate(R.menu.toolbar_back_arrow_menu, menu)
         return true
     }
 

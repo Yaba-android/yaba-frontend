@@ -30,6 +30,10 @@
                 android:name=".Activity.BookDetailsActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
+        <activity
+                android:name=".Activity.PopularSpeciesActivity"
+                tools:ignore="InnerclassSeparator">
+        </activity>
     </application>
 
 </manifest>

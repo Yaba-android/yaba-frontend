@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/drawer_main"
+        android:id="@+id/drawer_recommended"
         android:fitsSystemWindows="true"
         tools:context=".Activity.RecommendedActivity">
 
@@ -48,11 +48,11 @@
             android:id="@+id/nav_view_section"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
+            android:layout_gravity="end"
             android:layout_marginEnd="-45dp"
             android:layout_marginRight="-45dp"
-            android:layout_gravity="end"
             android:layoutDirection="rtl"
+            android:fitsSystemWindows="true"
             android:background="@android:color/white"
             tools:ignore="RtlHardcoded">
 

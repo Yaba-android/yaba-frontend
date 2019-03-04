@@ -25,6 +25,14 @@
         <item name="colorControlActivated">@color/colorStarRated</item>
     </style>
 
+    <style name="RatingBarBig" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_rating_bar_big</item>
+        <item name="android:minHeight">12dip</item>
+        <item name="android:maxHeight">12dip</item>
+        <item name="colorControlNormal">@color/colorStarNotRated</item>
+        <item name="colorControlActivated">@color/colorStarRated</item>
+    </style>
+
     <style name="TabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/colorTextBlueHolo</item>
         <item name="tabIndicatorHeight">3dp</item>

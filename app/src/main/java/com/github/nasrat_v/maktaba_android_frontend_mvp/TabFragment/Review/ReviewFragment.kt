@@ -11,7 +11,7 @@ import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewBottomOffsetDecoration
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Review.Vertical.RModel
@@ -56,7 +56,7 @@ class ReviewFragment : Fragment() {
         bookVerticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         bookVerticalRecyclerView.adapter = adapterBookVertical
         bookVerticalRecyclerView.addItemDecoration(
-            ListBRecyclerViewBottomOffsetDecoration(container.context, R.dimen.bottom_book_vertical_recycler_view)
+            BottomOffsetDecoration(container.context, R.dimen.bottom_book_vertical_recycler_view)
         )
         bookVerticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()

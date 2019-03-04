@@ -7,7 +7,7 @@
         android:id="@+id/toolbar_application"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:fitsSystemWindows="true"
-        android:background="@color/colorAppBarGrey">
+        android:background="@android:color/white">
 
     <TextView
             android:id="@+id/toolbar_title"

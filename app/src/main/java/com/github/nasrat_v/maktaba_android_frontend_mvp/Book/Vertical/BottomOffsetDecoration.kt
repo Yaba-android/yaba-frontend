@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.annotation.DimenRes
 import android.view.View
 
-class ListBRecyclerViewBottomOffsetDecoration(private val mItemOffset: Int)
+class BottomOffsetDecoration(private val mItemOffset: Int)
     : RecyclerView.ItemDecoration() {
 
     constructor(context: Context, @DimenRes itemOffsetId: Int)

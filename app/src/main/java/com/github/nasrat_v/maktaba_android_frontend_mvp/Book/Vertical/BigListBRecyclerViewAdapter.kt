@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.LeftOffsetDecoration
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.SmallBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BigBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class SmallListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
-                                    private var mTabFragmentClickCallback: ITabFragmentClickCallback)
-    : RecyclerView.Adapter<SmallListBRecyclerViewAdapter.ViewHolder>() {
+class BigListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
+                                  private var mTabFragmentClickCallback: ITabFragmentClickCallback)
+    : RecyclerView.Adapter<BigListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
 
@@ -30,7 +30,7 @@ class SmallListBRecyclerViewAdapter(private var context: Context, private var li
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = listNoTitleListBModel[position]
-        val horizontalRecyclerViewAdapter = SmallBRecyclerViewAdapter(context, model.bookHorizontalModels)
+        val horizontalRecyclerViewAdapter = BigBRecyclerViewAdapter(context, model.bookHorizontalModels)
 
         horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mTabFragmentClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
@@ -38,7 +38,7 @@ class SmallListBRecyclerViewAdapter(private var context: Context, private var li
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
         holder.horizontalRecyclerView.addItemDecoration(
-            LeftOffsetDecoration(context, R.dimen.small_book_vertical_recycler_view)
+            LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
         )
     }
 

@@ -93,6 +93,14 @@ class RecommendedActivity : AppCompatActivity(),
         // Open section page
     }
 
+    override fun popularSpeciesEventButtonClicked(pspecies: PSModel) {
+        val intent = Intent(this, PopularSpeciesActivity::class.java)
+
+        intent.putExtra("SelectedPopularSpecies", pspecies)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
     private fun setListenerButtonCloseGenre() {
         val nav = findViewById<NavigationView>(R.id.nav_view_section)
         val buttonCloseGenre = nav.findViewById<Button>(R.id.button_close_section)
@@ -145,7 +153,7 @@ class RecommendedActivity : AppCompatActivity(),
 
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        mDrawerLayout = findViewById(R.id.drawer_main)
+        mDrawerLayout = findViewById(R.id.drawer_recommended)
         //mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END);
         val mDrawerToggle = ActionBarDrawerToggle(
             this, mDrawerLayout, toolbar,
@@ -198,7 +206,7 @@ class RecommendedActivity : AppCompatActivity(),
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(
-            ListBRecyclerViewBottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
+            BottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
@@ -214,18 +222,13 @@ class RecommendedActivity : AppCompatActivity(),
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val horizontalRecyclerView = findViewById<RecyclerView>(R.id.genre_horizontal_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val adapterGenreHorizontal =
-            PSRecyclerViewAdapter(
-                this,
-                hmodels
-            )
-
+        val adapterGenreHorizontal = PSRecyclerViewAdapter(this, hmodels, this)
         title.text = "Popular species"
         horizontalRecyclerView.setHasFixedSize(true)
         horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         horizontalRecyclerView.adapter = adapterGenreHorizontal
         /*verticalRecyclerView.addItemDecoration(
-            ListBRecyclerViewBottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
+            BottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
         )*/
         horizontalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
@@ -244,7 +247,7 @@ class RecommendedActivity : AppCompatActivity(),
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(
-            ListBRecyclerViewBottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
+            BottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
@@ -252,7 +255,7 @@ class RecommendedActivity : AppCompatActivity(),
 
     @SuppressLint("SetTextI18n")
     private fun initSmallVerticalRecycler() {
-        val mDataset = arrayListOf<SmallListBModel>()
+        val mDataset = arrayListOf<NoTitleListBModel>()
 
         mockDatasetSmallRecyclerView(mDataset)
 
@@ -267,7 +270,7 @@ class RecommendedActivity : AppCompatActivity(),
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(
-            ListBRecyclerViewBottomOffsetDecoration(this, R.dimen.small_book_vertical_recycler_view)
+            BottomOffsetDecoration(this, R.dimen.small_book_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
@@ -288,8 +291,8 @@ class RecommendedActivity : AppCompatActivity(),
         verticalRecyclerView.addItemDecoration(
             SRecyclerViewBottomOffsetDecoration(this, R.dimen.bottom_section_vertical_recycler_view)
         )
-        //verticalRecyclerView.isFocusable = false
-        //linearLayout.requestFocus()
+        verticalRecyclerView.isFocusable = false
+        linearLayout.requestFocus()
     }
 
     private fun mockDatasetDiscreteScrollView(hmodels : ArrayList<BModel>) {
@@ -323,20 +326,20 @@ class RecommendedActivity : AppCompatActivity(),
         mDataset.add(ListBModel("Inspired by Your Reading History", hmodelsTwo))
     }
 
-    private fun mockDatasetSmallRecyclerView(mDataset: ArrayList<SmallListBModel>) {
+    private fun mockDatasetSmallRecyclerView(mDataset: ArrayList<NoTitleListBModel>) {
         val hmodelsOne = arrayListOf<BModel>()
         val hmodelsTwo = arrayListOf<BModel>()
 
         hmodelsOne.add(BModel(R.drawable.book1, "Here", "Taleb Al-Refai", 5f, 219))
         hmodelsOne.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188))
         hmodelsOne.add(BModel(R.drawable.book3, "The Friend", "Sigrid Hunez", 4f, 188))
-        hmodelsOne.add(BModel(R.drawable.book3, "The Friend", "Sigrid Hunez", 4f, 188))
-        hmodelsTwo.add(BModel(R.drawable.book4, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsTwo.add(BModel(R.drawable.book5, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsTwo.add(BModel(R.drawable.book6, "The Friend", "Sigrid Hunez", 4f, 188))
-        hmodelsTwo.add(BModel(R.drawable.book6, "The Friend", "Sigrid Hunez", 4f, 188))
-        mDataset.add(SmallListBModel(hmodelsOne))
-        mDataset.add(SmallListBModel(hmodelsTwo))
+        hmodelsOne.add(BModel(R.drawable.book4, "The Friend", "Sigrid Hunez", 4f, 188))
+        hmodelsTwo.add(BModel(R.drawable.book5, "Here", "Taleb Al-Refai", 5f, 219))
+        hmodelsTwo.add(BModel(R.drawable.book6, "Black Leopard Red Wolf", "Marion James", 5f, 188))
+        hmodelsTwo.add(BModel(R.drawable.book7, "The Friend", "Sigrid Hunez", 4f, 188))
+        hmodelsTwo.add(BModel(R.drawable.book8, "The Friend", "Sigrid Hunez", 4f, 188))
+        mDataset.add(NoTitleListBModel(hmodelsOne))
+        mDataset.add(NoTitleListBModel(hmodelsTwo))
     }
 
     private fun mockDatasetSectionNavRecyclerView(hmodels: ArrayList<SModel>) {

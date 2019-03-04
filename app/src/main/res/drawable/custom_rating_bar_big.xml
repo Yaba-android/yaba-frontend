@@ -2,17 +2,17 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/background">
         <bitmap
-                android:src="@drawable/star_normal_with_empty_space"
+                android:src="@drawable/star_big_with_empty_space"
                 android:tint="@color/colorStarNotRated" />
     </item>
     <item android:id="@android:id/secondaryProgress">
         <bitmap
-                android:src="@drawable/star_normal_with_empty_space"
+                android:src="@drawable/star_big_with_empty_space"
                 android:tint="@color/colorStarRated" />
     </item>
     <item android:id="@android:id/progress">
         <bitmap
-                android:src="@drawable/star_normal_with_empty_space"
+                android:src="@drawable/star_big_with_empty_space"
                 android:tint="@color/colorStarRated" />
     </item>
 </layer-list>
