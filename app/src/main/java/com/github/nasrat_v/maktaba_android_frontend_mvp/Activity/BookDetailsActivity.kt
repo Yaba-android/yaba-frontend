@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
@@ -36,6 +37,9 @@ class BookDetailsActivity : AppCompatActivity(),
 
         selectedBook = intent.getParcelableExtra("SelectedBook")
         setBookDetailsAttributes()
+
+        setListenerButtonCloseProfile()
+
         initRootDrawerLayout()
         if (savedInstanceState == null) {
             initFragmentManager()
@@ -84,6 +88,16 @@ class BookDetailsActivity : AppCompatActivity(),
         tabLayout.setupWithViewPager(viewPager)
         customListener.setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
         customListener.setListenerTabLayout(tabLayout)
+    }
+
+    private fun setListenerButtonCloseProfile() {
+        val nav = findViewById<NavigationView>(R.id.nav_view_profile)
+        val header = nav.getHeaderView(0)
+        val buttonCloseProfile = header.findViewById<Button>(R.id.button_close_profile)
+
+        buttonCloseProfile.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setBookDetailsAttributes() {

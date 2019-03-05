@@ -36,15 +36,15 @@
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view_profile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/nav_view_profile"
             android:fitsSystemWindows="true"
-            android:layout_marginEnd="-65dp"
-            android:layout_marginRight="-65dp"
+            android:layout_marginEnd="-45dp"
+            android:layout_marginRight="-45dp"
             android:layout_gravity="start"
             android:layoutDirection="rtl"
-            android:background="@color/colorNavGrey"
+            android:background="@android:color/white"
             app:headerLayout="@layout/nav_profile_header"
             app:menu="@menu/drawer_profile_menu"
             tools:ignore="RtlHardcoded">

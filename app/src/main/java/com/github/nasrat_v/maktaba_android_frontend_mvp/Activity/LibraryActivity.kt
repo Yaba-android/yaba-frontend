@@ -3,6 +3,7 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
+import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
@@ -34,6 +35,7 @@ class LibraryActivity : AppCompatActivity(),
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_library)
 
+        setListenerButtonCloseProfile()
         setListenerBrowseButtonFooter()
         setListenerRecommendedButtonFooter()
         //setListenerButtonFolioReader()
@@ -73,6 +75,16 @@ class LibraryActivity : AppCompatActivity(),
         tabLayout.setupWithViewPager(viewPager)
         customListener.setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
         customListener.setListenerTabLayout(tabLayout)
+    }
+
+    private fun setListenerButtonCloseProfile() {
+        val nav = findViewById<NavigationView>(R.id.nav_view_profile)
+        val header = nav.getHeaderView(0)
+        val buttonCloseProfile = header.findViewById<Button>(R.id.button_close_profile)
+
+        buttonCloseProfile.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setListenerBrowseButtonFooter() {
