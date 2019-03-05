@@ -10,13 +10,13 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class BigBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BModel>)
     : RecyclerView.Adapter<BigBRecyclerViewAdapter.ViewHolder>() {
 
-    private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
+    private lateinit var mBookClickCallback: IBookClickCallback
     private var mLastClickTime: Long = 0
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
@@ -42,14 +42,14 @@ class BigBRecyclerViewAdapter(private var context: Context, private var list: Ar
             Toast.makeText(context, model.title, Toast.LENGTH_SHORT).show()
             if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
                 // envoyer le bon livre grace à position
-                mTabFragmentClickCallback.bookEventButtonClicked(list[position])
+                mBookClickCallback.bookEventButtonClicked(list[position])
             }
             mLastClickTime = SystemClock.elapsedRealtime();
         }
     }
 
-    fun setTabFragmentClickCallback(tabFragmentClickCallback: ITabFragmentClickCallback) {
-        mTabFragmentClickCallback = tabFragmentClickCallback
+    fun setTabFragmentClickCallback(bookClickCallback: IBookClickCallback) {
+        mBookClickCallback = bookClickCallback
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

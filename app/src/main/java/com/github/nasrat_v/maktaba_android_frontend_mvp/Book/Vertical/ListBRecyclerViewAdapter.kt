@@ -9,11 +9,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.LeftOffsetDecoration
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class ListBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<ListBModel>,
-                               private var mTabFragmentClickCallback: ITabFragmentClickCallback)
+                               private var mBookClickCallback: IBookClickCallback)
     : RecyclerView.Adapter<ListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
@@ -34,7 +34,7 @@ class ListBRecyclerViewAdapter(private var context: Context, private var list: A
         val title = model.title
         val horizontalRecyclerViewAdapter = BRecyclerViewAdapter(context, model.bookHorizontalModels)
 
-        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mTabFragmentClickCallback)
+        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
         holder.mTitle.text = title
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)

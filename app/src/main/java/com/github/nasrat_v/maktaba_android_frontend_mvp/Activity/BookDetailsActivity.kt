@@ -14,22 +14,16 @@ import android.view.*
 import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 
 class BookDetailsActivity : AppCompatActivity(),
-    ITabFragmentClickCallback, ITabLayoutSetupCallback {
-
-    override fun sectionEventButtonClicked(section: SModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun popularSpeciesEventButtonClicked(pspecies: PSModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    IBookClickCallback,
+    ITabLayoutSetupCallback {
 
     private lateinit var selectedBook: BModel
     private lateinit var mDrawerLayout: DrawerLayout
@@ -74,20 +68,21 @@ class BookDetailsActivity : AppCompatActivity(),
         )
     }
 
-    override fun setupTabLayout(viewPager: ViewPager) {
-        val tabLayout = findViewById<TabLayout>(R.id.tabs)
-
-        tabLayout.setupWithViewPager(viewPager)
-        setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
-        setListenerTabLayout(tabLayout)
-    }
-
     override fun bookEventButtonClicked(book: BModel) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
         intent.putExtra("SelectedBook", book)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    override fun setupTabLayout(viewPager: ViewPager) {
+        val tabLayout = findViewById<TabLayout>(R.id.tabs)
+        val customListener = TabLayoutCustomListener()
+
+        tabLayout.setupWithViewPager(viewPager)
+        customListener.setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
+        customListener.setListenerTabLayout(tabLayout)
     }
 
     private fun setBookDetailsAttributes() {
@@ -102,36 +97,6 @@ class BookDetailsActivity : AppCompatActivity(),
         author.text = selectedBook.author
         ratingBar.rating = selectedBook.rating
         numberRating.text = ("(" + selectedBook.numberRating + ")")
-    }
-
-    private fun setListenerTabLayout(tabLayout: TabLayout) {
-        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                setTabTextToBold(tabLayout, tab.position)
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                setTabTextToNormal(tabLayout, tab.position)
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-            }
-        })
-    }
-
-    private fun setTabTextToBold(tabLayout: TabLayout, indexTab: Int) {
-        val linearLayout = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(indexTab) as LinearLayout
-        val tabTextView = linearLayout.getChildAt(1) as TextView
-
-        tabTextView.setTypeface(tabTextView.typeface, Typeface.BOLD)
-    }
-
-    private fun setTabTextToNormal(tabLayout: TabLayout, indexTab: Int) {
-        val linearLayout = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(indexTab) as LinearLayout
-        val tabTextView = linearLayout.getChildAt(1) as TextView
-
-        tabTextView.setTypeface(null, Typeface.NORMAL)
     }
 
     private fun initRootDrawerLayout() {

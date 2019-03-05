@@ -9,26 +9,28 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.LibraryActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.RecommendedActivity
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Browse.BrowseFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.AllBooks.AllBooksFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Download.DownloadFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Groups.GroupsFragment
 
-class StoreContainerFragment : Fragment() {
+class LibraryContainerFragment : Fragment() {
 
-    private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
+    private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
-    private lateinit var mAdditionalClickCallback: AdditionalClickCallback
     private val mTabNamesList = arrayListOf<String>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        if (context is RecommendedActivity) {
+        if (context is LibraryActivity) {
             // callback qui va permettre de recuperer le tablayout depuis sstore et de lui setter le viewpager qui est dans fragment_container
             // ceci regle le probleme de la nav view  qui passe sour la toolbar
-            mTabLayoutSetupCallback = context as ITabLayoutSetupCallback
+            mTabLayoutSetupCallback = context
         } else {
             throw ClassCastException("$context must implement TabLayoutSetupCallback")
         }
@@ -36,8 +38,9 @@ class StoreContainerFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mTabNamesList.add("Recommended")
-        mTabNamesList.add("Browse")
+        mTabNamesList.add("Download")
+        mTabNamesList.add("Groups")
+        mTabNamesList.add("All Books")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -49,12 +52,8 @@ class StoreContainerFragment : Fragment() {
         return view
     }
 
-    fun setTabFragmentClickCallback(tabFragmentClickCallback: ITabFragmentClickCallback) {
-        mTabFragmentClickCallback = tabFragmentClickCallback
-    }
-
-    fun setAdditionalClickCallback(additionalClickCallback: AdditionalClickCallback) {
-        mAdditionalClickCallback = additionalClickCallback
+    fun setBookClickCallback(bookClickCallback: IBookClickCallback) {
+        mBookClickCallback = bookClickCallback
     }
 
     internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>)
@@ -63,18 +62,19 @@ class StoreContainerFragment : Fragment() {
         override fun getItem(position: Int): Fragment? {
             when (position) {
                 0 -> {
-                    val recommended =
-                        //RecommendedFragment()
-                        BrowseFragment() // just to compile
-                    recommended.setTabFragmentClickCallback(mTabFragmentClickCallback)
-                    return recommended
+                    val downloadFrag = DownloadFragment()
+                    downloadFrag.setBookClickCallback(mBookClickCallback)
+                    return downloadFrag
                 }
                 1 ->  {
-                    val browse =
-                        BrowseFragment()
-                    browse.setTabFragmentClickCallback(mTabFragmentClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
-                    browse.setAdditionalClickCallback(mAdditionalClickCallback)
-                    return browse
+                    val groupsFrag = GroupsFragment()
+                    groupsFrag.setBookClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
+                    return groupsFrag
+                }
+                2 ->  {
+                    val allBooksFrag = AllBooksFragment()
+                    allBooksFrag.setBookClickCallback(mBookClickCallback)
+                    return allBooksFrag
                 }
             }
             return null
@@ -91,9 +91,5 @@ class StoreContainerFragment : Fragment() {
         override fun getPageTitle(position: Int): CharSequence? {
             return tabNames[position]
         }
-    }
-
-    interface AdditionalClickCallback {
-        fun genreNavigationEventButtonClicked()
     }
 }

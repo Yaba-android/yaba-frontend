@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.SmallBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class SmallListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
-                                    private var mTabFragmentClickCallback: ITabFragmentClickCallback)
+                                    private var mBookClickCallback: IBookClickCallback)
     : RecyclerView.Adapter<SmallListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
@@ -32,7 +32,7 @@ class SmallListBRecyclerViewAdapter(private var context: Context, private var li
         val model = listNoTitleListBModel[position]
         val horizontalRecyclerViewAdapter = SmallBRecyclerViewAdapter(context, model.bookHorizontalModels)
 
-        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mTabFragmentClickCallback)
+        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

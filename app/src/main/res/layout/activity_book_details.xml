@@ -18,11 +18,11 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme.AppBarOverlay">
 
-            <include layout="@layout/toolbar_store"/>
+            <include layout="@layout/toolbar_application"/>
 
             <include layout="@layout/activity_book_details_header"/>
 
-            <include layout="@layout/tablayout_store_book_details"/>
+            <include layout="@layout/tablayout_library_book_details"/>
 
         </android.support.design.widget.AppBarLayout>
 

@@ -1,56 +1,40 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Browse
+package com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Download
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BottomOffsetDecoration
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.StoreContainerFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class BrowseFragment : Fragment() {
+class DownloadFragment : Fragment() {
 
-    private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
-    private lateinit var mAdditionalClickCallback: StoreContainerFragment.AdditionalClickCallback
+    private lateinit var mBookClickCallback: IBookClickCallback
     private var mDataset = arrayListOf<ListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
-        val rootView = inflater.inflate(R.layout.fragment_browse, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_download, container, false)
 
-        mockDataset()
-        initVerticalRecyclerView(rootView, container!!)
+        //mockDataset()
+        //initVerticalRecyclerView(rootView, container!!)
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val buttonOpenGenre = view.findViewById<Button>(R.id.button_open_nav_genre)
-
-        // l'event click est envoyé à l'activity parent grâce à l'interface
-        buttonOpenGenre.setOnClickListener {
-            mAdditionalClickCallback.genreNavigationEventButtonClicked()
-        }
+        // click event button peut etre gerer ici
     }
 
-    fun setTabFragmentClickCallback(tabFragmentClickCallback: ITabFragmentClickCallback) {
-        mTabFragmentClickCallback = tabFragmentClickCallback
-    }
-
-    fun setAdditionalClickCallback(additionalClickCallback: StoreContainerFragment.AdditionalClickCallback) {
-        mAdditionalClickCallback = additionalClickCallback
+    fun setBookClickCallback(bookClickCallback: IBookClickCallback) {
+        mBookClickCallback = bookClickCallback
     }
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         /*val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_browse)
-        val adapterBookVertical = ListBrowseBRecyclerViewAdapter(container.context, mDataset, mTabFragmentClickCallback)
+        val adapterBookVertical = ListBrowseBRecyclerViewAdapter(container.context, mDataset, mBookClickCallback)
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_browse)
 
         verticalRecyclerView.setHasFixedSize(true)

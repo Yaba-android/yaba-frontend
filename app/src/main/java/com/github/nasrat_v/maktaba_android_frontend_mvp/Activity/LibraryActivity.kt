@@ -3,15 +3,29 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
+import android.support.design.widget.TabLayout
+import android.support.v4.app.FragmentManager
+import android.support.v4.view.ViewPager
+import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import android.view.Gravity
 import android.view.WindowManager
 import android.widget.Button
-import com.folioreader.FolioReader
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 
-class LibraryActivity : AppCompatActivity() {
+class LibraryActivity : AppCompatActivity(),
+    IBookClickCallback,
+    ITabLayoutSetupCallback {
 
     private var mLastClickTime: Long = 0
+    private lateinit var mDrawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +34,43 @@ class LibraryActivity : AppCompatActivity() {
 
         setListenerBrowseButtonFooter()
         setListenerRecommendedButtonFooter()
-        setListenerButtonFolioReader()
+        //setListenerButtonFolioReader()
+        initRootDrawerLayout()
+        if (savedInstanceState == null) {
+            initFragmentManager()
+        }
+    }
+
+    override fun onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(Gravity.START))
+            mDrawerLayout.closeDrawer(Gravity.START)
+        else
+            super.onBackPressed()
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(
+            R.anim.slide_in_right,
+            R.anim.slide_out_left
+        )
+    }
+
+    override fun bookEventButtonClicked(book: BModel) {
+        val intent = Intent(this, BookDetailsActivity::class.java)
+
+        intent.putExtra("SelectedBook", book)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    override fun setupTabLayout(viewPager: ViewPager) {
+        val tabLayout = findViewById<TabLayout>(R.id.tabs)
+        val customListener = TabLayoutCustomListener()
+
+        tabLayout.setupWithViewPager(viewPager)
+        customListener.setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
+        customListener.setListenerTabLayout(tabLayout)
     }
 
     private fun setListenerBrowseButtonFooter() {
@@ -52,7 +102,7 @@ class LibraryActivity : AppCompatActivity() {
         }
     }
 
-    private fun setListenerButtonFolioReader() {
+    /*private fun setListenerButtonFolioReader() {
         val folioReader = FolioReader.get()
         val openEpubReader = findViewById<Button>(R.id.open_epub_reader)
 
@@ -62,5 +112,30 @@ class LibraryActivity : AppCompatActivity() {
             }
             mLastClickTime = SystemClock.elapsedRealtime();
         }
+    }*/
+
+    private fun initRootDrawerLayout() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
+
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        mDrawerLayout = findViewById(R.id.drawer_library)
+        val mDrawerToggle = ActionBarDrawerToggle(
+            this, mDrawerLayout, toolbar,
+            R.string.navigation_drawer_profile_open,
+            R.string.navigation_drawer_profile_close
+        )
+        mDrawerToggle.syncState()
+        mDrawerLayout.setDrawerListener(mDrawerToggle)
+    }
+
+    private fun initFragmentManager() {
+        val containerFragment = LibraryContainerFragment()
+        val mFragmentManager = supportFragmentManager
+
+        containerFragment.setBookClickCallback(this) // permet de gerer les click depuis le fragment
+        //mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        val mFragmentTransaction = mFragmentManager.beginTransaction()
+        mFragmentTransaction.replace(R.id.fragment_container_library, containerFragment).commit()
     }
 }

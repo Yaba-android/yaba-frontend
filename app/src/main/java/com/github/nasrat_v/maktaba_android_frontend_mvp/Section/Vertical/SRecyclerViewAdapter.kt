@@ -8,11 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class SRecyclerViewAdapter(private var context: Context, private var list: ArrayList<SModel>,
-                           private var mTabFragmentClickCallback: ITabFragmentClickCallback)
+                           private var mAdditionalClickCallback: IRecommendedAdditionalClickCallback)
     : RecyclerView.Adapter<SRecyclerViewAdapter.ViewHolder>() {
 
     private var mLastClickTime: Long = 0
@@ -36,7 +37,7 @@ class SRecyclerViewAdapter(private var context: Context, private var list: Array
             Toast.makeText(context, model.name, Toast.LENGTH_SHORT).show()
             if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
                 // envoyer le bon livre grace à position
-                mTabFragmentClickCallback.sectionEventButtonClicked(list[position])
+                mAdditionalClickCallback.sectionEventButtonClicked(list[position])
             }
             mLastClickTime = SystemClock.elapsedRealtime();
         }

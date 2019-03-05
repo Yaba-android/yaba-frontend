@@ -12,7 +12,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BottomOffsetDecoration
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Review.Vertical.RModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Review.Vertical.RRecyclerViewAdapter
@@ -21,7 +21,7 @@ class ReviewFragment : Fragment() {
 
     private var mDatasetReview = arrayListOf<RModel>()
     private var mDatasetBook = arrayListOf<ListBModel>()
-    private lateinit var mTabFragmentClickCallback: ITabFragmentClickCallback
+    private lateinit var mBookClickCallback: IBookClickCallback
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -34,8 +34,8 @@ class ReviewFragment : Fragment() {
         return rootView
     }
 
-    fun setTabFragmentClickCallback(tabFragmentClickCallback: ITabFragmentClickCallback) {
-        mTabFragmentClickCallback = tabFragmentClickCallback
+    fun setTabFragmentClickCallback(bookClickCallback: IBookClickCallback) {
+        mBookClickCallback = bookClickCallback
     }
 
     private fun initReviewVerticalRecyclerView(view: View, container: ViewGroup) {
@@ -49,7 +49,7 @@ class ReviewFragment : Fragment() {
 
     private fun initBookVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_review)
-        val adapterBookVertical = ListBRecyclerViewAdapter(container.context, mDatasetBook, mTabFragmentClickCallback)
+        val adapterBookVertical = ListBRecyclerViewAdapter(container.context, mDatasetBook, mBookClickCallback)
         val bookVerticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
 
         bookVerticalRecyclerView.setHasFixedSize(true)

@@ -5,9 +5,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/drawer_recommended"
+        android:id="@+id/drawer_library"
         android:fitsSystemWindows="true"
-        tools:context=".Activity.RecommendedActivity">
+        tools:context=".Activity.LibraryActivity">
 
     <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -18,9 +18,18 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme.AppBarOverlay">
 
-            <include layout="@layout/toolbar_store"/>
+            <include layout="@layout/toolbar_application"/>
+
+            <include layout="@layout/tablayout_library_book_details"/>
 
         </android.support.design.widget.AppBarLayout>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/fragment_container_library"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

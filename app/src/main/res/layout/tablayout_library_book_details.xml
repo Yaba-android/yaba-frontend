@@ -5,7 +5,7 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAppBarGrey"
+        android:background="@android:color/white"
         app:layout_scrollFlags="scroll"
         app:tabBackground="@drawable/tab_layout_color"
         style="@style/TabLayout"/>

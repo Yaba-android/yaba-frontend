@@ -7,12 +7,10 @@ import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
-import android.support.v4.view.ViewPager
 import android.widget.Button
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabFragmentClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.StoreContainerFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import android.os.SystemClock
 import android.support.design.widget.NavigationView
@@ -25,6 +23,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSRecyclerViewAdapter
@@ -35,13 +34,8 @@ import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 
 class RecommendedActivity : AppCompatActivity(),
-    ITabFragmentClickCallback,
-    ITabLayoutSetupCallback,
-    StoreContainerFragment.AdditionalClickCallback {
-
-    override fun setupTabLayout(viewPager: ViewPager) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    IBookClickCallback,
+    IRecommendedAdditionalClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
     private var mLastClickTime: Long = 0
@@ -74,13 +68,6 @@ class RecommendedActivity : AppCompatActivity(),
             super.onBackPressed()
     }
 
-    override fun genreNavigationEventButtonClicked() {
-        if (mDrawerLayout.isDrawerOpen(Gravity.END))
-            mDrawerLayout.closeDrawer(Gravity.END)
-        else
-            mDrawerLayout.openDrawer(Gravity.END)
-    }
-
     override fun bookEventButtonClicked(book: BModel) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
@@ -106,7 +93,10 @@ class RecommendedActivity : AppCompatActivity(),
         val buttonCloseGenre = nav.findViewById<Button>(R.id.button_close_section)
 
         buttonCloseGenre.setOnClickListener {
-            genreNavigationEventButtonClicked()
+            if (mDrawerLayout.isDrawerOpen(Gravity.END))
+                mDrawerLayout.closeDrawer(Gravity.END)
+            else
+                mDrawerLayout.openDrawer(Gravity.END)
         }
     }
 
