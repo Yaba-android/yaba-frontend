@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
+import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Gravity
+import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
@@ -125,6 +127,11 @@ class LibraryActivity : AppCompatActivity(),
             R.string.navigation_drawer_profile_open,
             R.string.navigation_drawer_profile_close
         )
+        mDrawerToggle.isDrawerIndicatorEnabled = false
+        mDrawerToggle.toolbarNavigationClickListener = View.OnClickListener {
+            mDrawerLayout.openDrawer(GravityCompat.START)
+        }
+        mDrawerToggle.setHomeAsUpIndicator(R.drawable.menu_drawer)
         mDrawerToggle.syncState()
         mDrawerLayout.setDrawerListener(mDrawerToggle)
     }

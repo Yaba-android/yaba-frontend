@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
+import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -110,6 +111,11 @@ class BookDetailsActivity : AppCompatActivity(),
             R.string.navigation_drawer_profile_open,
             R.string.navigation_drawer_profile_close
         )
+        mDrawerToggle.isDrawerIndicatorEnabled = false
+        mDrawerToggle.toolbarNavigationClickListener = View.OnClickListener {
+            mDrawerLayout.openDrawer(GravityCompat.START)
+        }
+        mDrawerToggle.setHomeAsUpIndicator(R.drawable.menu_drawer)
         mDrawerToggle.syncState()
         mDrawerLayout.setDrawerListener(mDrawerToggle)
     }
