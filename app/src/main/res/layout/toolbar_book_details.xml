@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar_book_details"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:fitsSystemWindows="true"
+        android:background="@android:color/white"
+        app:layout_scrollFlags="scroll">
+
+    <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/book_store"
+            android:textColor="@color/colorTextBlack"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+</android.support.v7.widget.Toolbar>

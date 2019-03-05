@@ -100,7 +100,7 @@ class BookDetailsActivity : AppCompatActivity(),
     }
 
     private fun initRootDrawerLayout() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_book_details)
 
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
