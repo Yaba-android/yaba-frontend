@@ -64,6 +64,19 @@
         <item>5f</item>
     </string-array>
 
+    <string-array name="prices_books">
+        <item>4.29f</item>
+        <item>5.99f</item>
+        <item>6.55f</item>
+        <item>7.99f</item>
+        <item>9.99</item>
+        <item>11.95</item>
+        <item>12.29</item>
+        <item>16.99</item>
+        <item>18.25</item>
+        <item>19.99</item>
+    </string-array>
+
     <string-array name="populars_species">
         <item>Fiction</item>
         <item>Drama</item>

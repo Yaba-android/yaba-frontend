@@ -38,6 +38,7 @@ class BRecyclerViewAdapter(private var context: Context, private var list: Array
         holder.mImage.setImageResource(model.image)
         holder.mRating.rating = model.rating
         holder.mNumberRating.text = ("(" + model.numberRating + ")")
+        holder.mPrice.text = ("$" + model.price)
         holder.itemView.setOnClickListener {
             Toast.makeText(context, model.title, Toast.LENGTH_SHORT).show()
             if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
@@ -58,5 +59,6 @@ class BRecyclerViewAdapter(private var context: Context, private var list: Array
         var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!
         var mRating = itemView.findViewById<RatingBar>(R.id.horizontal_rating_bar)!!
         var mNumberRating = itemView.findViewById<TextView>(R.id.horizontal_number_rating)!!
+        var mPrice = itemView.findViewById<TextView>(R.id.horizontal_price)!!
     }
 }

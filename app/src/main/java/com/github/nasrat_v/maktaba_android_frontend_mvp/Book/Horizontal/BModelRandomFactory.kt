@@ -32,8 +32,8 @@ class BModelRandomFactory(private var context: Context) {
 
     private fun getRandomInstanceDiscreteScrollView() : BModel {
         return (BModel(getRandomImageCarousel(), getRandomTitle(),
-            getRandomAuthor(), getRandomRating(),
-            getRandomNumberRating(), getRandomPrice()))
+                getRandomAuthor(), getRandomRating(),
+                getRandomNumberRating(), getRandomPrice()))
     }
 
     private fun getRandomImage() : Int {
@@ -75,8 +75,8 @@ class BModelRandomFactory(private var context: Context) {
     }
 
     private fun getRandomPrice() : Float {
-        val random = Random()
+        val priceArray = context.resources.getStringArray(R.array.prices_books)
 
-        return (4.00f + random.nextFloat() * (20.00f - 4.00f))
+        return priceArray[(0..(priceArray.size - 1)).random()].toFloat()
     }
 }
