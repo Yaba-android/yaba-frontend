@@ -16,6 +16,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
@@ -90,9 +91,18 @@ class LibraryActivity : AppCompatActivity(),
     private fun setListenerBrowseButtonFooter() {
         val intent = Intent(this, BrowseActivity::class.java)
         val buttonBrowse = findViewById<Button>(R.id.button_browse_footer)
+        val image = findViewById<ImageView>(R.id.image_browse_footer)
 
         buttonBrowse.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                finish()
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+        }
+        image.setOnClickListener {
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
                 finish()
@@ -104,10 +114,19 @@ class LibraryActivity : AppCompatActivity(),
     private fun setListenerRecommendedButtonFooter() {
         val intent = Intent(this, RecommendedActivity::class.java)
         val buttonRecommended = findViewById<Button>(R.id.button_recommended_footer)
+        val image = findViewById<ImageView>(R.id.image_recommended_footer)
 
 
         buttonRecommended.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                finish()
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+        }
+        image.setOnClickListener {
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
                 finish()

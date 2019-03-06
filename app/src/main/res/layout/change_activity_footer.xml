@@ -21,10 +21,18 @@
 
             <Button
                     android:id="@+id/button_browse_footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:background="?android:selectableItemBackground"/>
+
+            <ImageView
+                    android:id="@+id/image_browse_footer"
                     android:layout_width="19dp"
                     android:layout_height="19dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:clickable="true"
                     android:background="@drawable/browse_icon"/>
 
         </RelativeLayout>
@@ -44,10 +52,17 @@
 
             <Button
                     android:id="@+id/button_recommended_footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:selectableItemBackground"/>
+
+            <ImageView
+                    android:id="@+id/image_recommended_footer"
                     android:layout_width="22dp"
                     android:layout_height="20dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:clickable="true"
                     android:background="@drawable/recommended_icon"/>
 
         </RelativeLayout>
@@ -67,10 +82,17 @@
 
             <Button
                     android:id="@+id/button_library_footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:selectableItemBackground"/>
+
+            <ImageView
+                    android:id="@+id/image_library_footer"
                     android:layout_width="18dp"
                     android:layout_height="19dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:clickable="true"
                     android:background="@drawable/library_icon"/>
 
         </RelativeLayout>

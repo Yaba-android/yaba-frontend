@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
-import android.widget.Button
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
@@ -18,9 +17,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
-import android.widget.TextView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
+import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
@@ -32,6 +29,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SRecycl
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
+import kotlinx.android.synthetic.main.change_activity_footer.*
 
 class RecommendedActivity : AppCompatActivity(),
     IBookClickCallback,
@@ -113,9 +111,18 @@ class RecommendedActivity : AppCompatActivity(),
     private fun setListenerBrowseButtonFooter() {
         val intent = Intent(this, BrowseActivity::class.java)
         val button = findViewById<Button>(R.id.button_browse_footer)
+        val image = findViewById<ImageView>(R.id.image_browse_footer)
 
         button.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                finish()
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+        }
+        image.setOnClickListener {
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
                 finish()
@@ -127,11 +134,20 @@ class RecommendedActivity : AppCompatActivity(),
     private fun setListenerLibraryButtonFooter() {
         val intent = Intent(this, LibraryActivity::class.java)
         val button = findViewById<Button>(R.id.button_library_footer)
+        val image = findViewById<ImageView>(R.id.image_library_footer)
 
         button.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                finish()
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+        }
+        image.setOnClickListener {
+            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
                 finish()
             }
             mLastClickTime = SystemClock.elapsedRealtime();
