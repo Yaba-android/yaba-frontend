@@ -22,7 +22,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.NoTitleLis
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SModel
 
 @SuppressLint("Registered")
 class PopularSpeciesActivity : AppCompatActivity(),
@@ -137,8 +136,8 @@ class PopularSpeciesActivity : AppCompatActivity(),
 
         mockDatasetVerticalRecyclerView(mDataset)
 
-        val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_recyclerview_popular_species)
-        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_popular_species)
+        val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
+        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
         val adapterBookVertical = BigListBRecyclerViewAdapter(this, mDataset, this)
 
         verticalRecyclerView.setHasFixedSize(true)
@@ -186,5 +185,4 @@ class PopularSpeciesActivity : AppCompatActivity(),
         mDataset.add(NoTitleListBModel(hmodelsSeven))
         mDataset.add(NoTitleListBModel(hmodelsHeigth))
     }
-
 }

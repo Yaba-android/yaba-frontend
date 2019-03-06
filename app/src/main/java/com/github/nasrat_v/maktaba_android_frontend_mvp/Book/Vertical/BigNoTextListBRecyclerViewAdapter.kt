@@ -8,12 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BigBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BigNoTextBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class BigListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
-                                  private var mBookClickCallback: IBookClickCallback)
-    : RecyclerView.Adapter<BigListBRecyclerViewAdapter.ViewHolder>() {
+class BigNoTextListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
+                                        private var mBookClickCallback: IBookClickCallback)
+    : RecyclerView.Adapter<BigNoTextListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
 
@@ -30,7 +31,7 @@ class BigListBRecyclerViewAdapter(private var context: Context, private var list
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = listNoTitleListBModel[position]
-        val horizontalRecyclerViewAdapter = BigBRecyclerViewAdapter(context, model.bookHorizontalModels)
+        val horizontalRecyclerViewAdapter = BigNoTextBRecyclerViewAdapter(context, model.bookHorizontalModels)
 
         horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)

@@ -19,7 +19,7 @@ class SmallBRecyclerViewAdapter(private var context: Context, private var list: 
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
-            R.layout.horizontal_small_recyclerview_book, container, false
+            R.layout.horizontal_recyclerview_small_book, container, false
         )
         return ViewHolder(rootView)
     }

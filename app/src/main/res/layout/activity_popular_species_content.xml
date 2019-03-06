@@ -6,12 +6,13 @@
         android:layout_height="match_parent">
 
     <LinearLayout
-            android:id="@+id/root_linear_layout_popular_species"
+            android:id="@+id/root_linear_layout_double_book"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="80dp"
+            android:layout_marginTop="?attr/actionBarSize"
             android:orientation="vertical"
             android:background="@color/colorCarouselGrey"
+            android:paddingTop="20dp"
             android:paddingBottom="50dp">
 
         <include
@@ -21,11 +22,12 @@
                 layout="@layout/title_recyclerview"/>
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/vertical_recyclerview_popular_species"
+                android:id="@+id/vertical_double_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
                 android:layout_gravity="center"
-                android:paddingEnd="20dp"
+                android:paddingStart="5dp"
                 tools:ignore="RtlSymmetry"/>
 
     </LinearLayout>

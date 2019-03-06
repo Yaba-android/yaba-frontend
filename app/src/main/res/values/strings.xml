@@ -60,5 +60,6 @@
     <string name="wish_list">Wish list</string>
     <string name="sections">Sections</string>
     <string name="section_name">Section name</string>
+    <string name="sort">Sort</string>
 </resources>
 

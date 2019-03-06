@@ -13,15 +13,15 @@ import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class BigBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BModel>)
-    : RecyclerView.Adapter<BigBRecyclerViewAdapter.ViewHolder>() {
+class BigNoTextBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BModel>)
+    : RecyclerView.Adapter<BigNoTextBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private var mLastClickTime: Long = 0
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
-            R.layout.horizontal_recyclerview_big_book, container, false
+            R.layout.horizontal_recyclerview_big_no_text_book, container, false
         )
         return ViewHolder(rootView)
     }
@@ -33,11 +33,7 @@ class BigBRecyclerViewAdapter(private var context: Context, private var list: Ar
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
 
-        holder.mTitle.text = model.title
-        holder.mAuthor.text = model.author
         holder.mImage.setImageResource(model.image)
-        holder.mRating.rating = model.rating
-        holder.mNumberRating.text = ("(" + model.numberRating + ")")
         holder.itemView.setOnClickListener {
             Toast.makeText(context, model.title, Toast.LENGTH_SHORT).show()
             if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
@@ -53,10 +49,6 @@ class BigBRecyclerViewAdapter(private var context: Context, private var list: Ar
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var mTitle = itemView.findViewById<TextView>(R.id.horizontal_title)!!
-        var mAuthor = itemView.findViewById<TextView>(R.id.horizontal_author)!!
         var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!
-        var mRating = itemView.findViewById<RatingBar>(R.id.horizontal_rating_bar)!!
-        var mNumberRating = itemView.findViewById<TextView>(R.id.horizontal_number_rating)!!
     }
 }
