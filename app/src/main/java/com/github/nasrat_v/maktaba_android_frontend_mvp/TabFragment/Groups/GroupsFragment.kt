@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BigNoTextListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.NoTitleListBModel
@@ -41,7 +42,7 @@ class GroupsFragment : Fragment() {
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val mDataset = arrayListOf<NoTitleListBModel>()
 
-        mockDatasetVerticalRecyclerView(mDataset)
+        mockDatasetVerticalRecyclerView(container, mDataset)
 
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
         val adapterBookVertical = BigNoTextListBRecyclerViewAdapter(container.context, mDataset, mBookClickCallback)
@@ -57,8 +58,8 @@ class GroupsFragment : Fragment() {
         linearLayout.requestFocus()
     }
 
-    private fun mockDatasetVerticalRecyclerView(mDataset: ArrayList<NoTitleListBModel>) {
-        val hmodelsOne = arrayListOf<BModel>()
+    private fun mockDatasetVerticalRecyclerView(container: ViewGroup, mDataset: ArrayList<NoTitleListBModel>) {
+        /*val hmodelsOne = arrayListOf<BModel>()
         val hmodelsTwo = arrayListOf<BModel>()
         val hmodelsThree = arrayListOf<BModel>()
         val hmodelsFour = arrayListOf<BModel>()
@@ -90,6 +91,11 @@ class GroupsFragment : Fragment() {
         mDataset.add(NoTitleListBModel(hmodelsFive))
         mDataset.add(NoTitleListBModel(hmodelsSix))
         mDataset.add(NoTitleListBModel(hmodelsSeven))
-        mDataset.add(NoTitleListBModel(hmodelsHeigth))
+        mDataset.add(NoTitleListBModel(hmodelsHeigth))*/
+        val factory = BModelRandomFactory(container.context)
+
+        for (index in 0..7) {
+            mDataset.add(NoTitleListBModel(factory.getRandomsInstances(2)))
+        }
     }
 }

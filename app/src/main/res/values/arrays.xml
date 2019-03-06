@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="images_books">
+        <item>@drawable/book1</item>
+        <item>@drawable/book2</item>
+        <item>@drawable/book3</item>
+        <item>@drawable/book4</item>
+        <item>@drawable/book5</item>
+        <item>@drawable/book6</item>
+        <item>@drawable/book7</item>
+        <item>@drawable/book8</item>
+        <item>@drawable/book9</item>
+        <item>@drawable/book10</item>
+        <item>@drawable/book11</item>
+        <item>@drawable/book12</item>
+        <item>@drawable/book13</item>
+        <item>@drawable/book14</item>
+        <item>@drawable/book15</item>
+        <item>@drawable/book16</item>
+        <item>@drawable/book17</item>
+        <item>@drawable/book18</item>
+        <item>@drawable/book19</item>
+        <item>@drawable/book20</item>
+        <item>@drawable/book22</item>
+        <item>@drawable/book23</item>
+        <item>@drawable/book24</item>
+        <item>@drawable/book25</item>
+        <item>@drawable/book26</item>
+        <item>@drawable/book27</item>
+        <item>@drawable/book28</item>
+        <item>@drawable/book29</item>
+        <item>@drawable/book30</item>
+    </integer-array>
+
+    <integer-array name="images_books_carousel">
+        <item>@drawable/book1_carousel</item>
+        <item>@drawable/book2_carousel</item>
+        <item>@drawable/book3_carousel</item>
+        <item>@drawable/book4_carousel</item>
+        <item>@drawable/book5_carousel</item>
+        <item>@drawable/book6_carousel</item>
+        <item>@drawable/book7_carousel</item>
+        <item>@drawable/book8_carousel</item>
+    </integer-array>
+
+    <string-array name="titles_books">
+        <item>Here</item>
+        <item>Black Leopard Red Wolf</item>
+    </string-array>
+
+    <string-array name="authors_books">
+        <item>Taleb Al-Refai</item>
+        <item>Marion James</item>
+    </string-array>
+
+    <string-array name="ratings_books">
+        <item>2f</item>
+        <item>2.5f</item>
+        <item>3f</item>
+        <item>3.5f</item>
+        <item>4f</item>
+        <item>4.5f</item>
+        <item>5f</item>
+    </string-array>
+
+    <string-array name="populars_species">
+        <item>Fiction</item>
+        <item>Drama</item>
+        <item>Policy</item>
+        <item>Family</item>
+        <item>Children</item>
+    </string-array>
+
+    <string-array name="sections">
+        <item>Art</item>
+        <item>Business</item>
+        <item>Computing</item>
+        <item>Education</item>
+        <item>Health</item>
+        <item>Home &amp; Garden</item>
+        <item>Literature</item>
+        <item>Family</item>
+        <item>Professionals</item>
+        <item>Romantic</item>
+        <item>Science-Fiction</item>
+        <item>Personal Biography</item>
+        <item>Children Books</item>
+        <item>Crime &amp; Excitement</item>
+        <item>Food &amp; Drink</item>
+        <item>History</item>
+        <item>Humor</item>
+        <item>Non-Fiction</item>
+        <item>Policy</item>
+        <item>Debt</item>
+        <item>Science &amp; Mathematics</item>
+        <item>Counseling</item>
+    </string-array>
+
+</resources>

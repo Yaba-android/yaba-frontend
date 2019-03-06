@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BottomOffsetDecoration
@@ -24,8 +25,8 @@ class OverviewFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_overview, container, false)
 
-        mockDataset()
-        initVerticalRecyclerView(rootView, container!!)
+        mockDataset(container!!)
+        initVerticalRecyclerView(rootView, container)
         return rootView
     }
 
@@ -48,8 +49,8 @@ class OverviewFragment : Fragment() {
         linearLayout.requestFocus()
     }
 
-    private fun mockDataset() {
-        val hmodels = arrayListOf<BModel>()
+    private fun mockDataset(container: ViewGroup) {
+        /*val hmodels = arrayListOf<BModel>()
 
         hmodels.add(BModel(R.drawable.forest_small, "The Forest", "Lombok Indonesia", 4f, 102))
         hmodels.add(BModel(R.drawable.kohlarn_small, "Beach", "Koh Larn", 5f, 28))
@@ -57,6 +58,9 @@ class OverviewFragment : Fragment() {
         hmodels.add(BModel(R.drawable.kohlarn_small, "View Point", "Thailand", 3.5f, 188))
         hmodels.add(BModel(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler", 4f, 9))
         hmodels.add(BModel(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya", 3f, 42))
-        mDataset.add(ListBModel("More Books from this Author", hmodels))
+        mDataset.add(ListBModel("More Books from this Author", hmodels))*/
+        val factory = BModelRandomFactory(container.context)
+
+        mDataset.add(ListBModel("More Books from this Authors", factory.getRandomsInstances(3)))
     }
 }

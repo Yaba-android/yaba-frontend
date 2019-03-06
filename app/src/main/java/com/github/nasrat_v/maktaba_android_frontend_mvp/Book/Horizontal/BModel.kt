@@ -4,7 +4,8 @@ import android.os.Parcel
 import android.os.Parcelable
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class BModel(var image: Int, var title: String, var author: String, var rating: Float, var numberRating: Int)
+class BModel(var image: Int, var title: String, var author: String,
+             var rating: Float, var numberRating: Int, var price: Float)
     : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -12,7 +13,8 @@ class BModel(var image: Int, var title: String, var author: String, var rating: 
         parcel.readString(),
         parcel.readString(),
         parcel.readFloat(),
-        parcel.readInt()
+        parcel.readInt(),
+        parcel.readFloat()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -21,6 +23,7 @@ class BModel(var image: Int, var title: String, var author: String, var rating: 
         parcel.writeString(author)
         parcel.writeFloat(rating)
         parcel.writeInt(numberRating)
+        parcel.writeFloat(price)
     }
 
     override fun describeContents(): Int {

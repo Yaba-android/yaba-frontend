@@ -18,6 +18,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
@@ -176,10 +177,9 @@ class RecommendedActivity : AppCompatActivity(),
     }
 
     private fun initDiscreteScrollView() {
-        val hmodels = arrayListOf<BModel>()
+        //val hmodels = arrayListOf<BModel>()
 
-        mockDatasetDiscreteScrollView(hmodels)
-
+        val hmodels = mockDatasetDiscreteScrollView()
         val discreteScrollView = findViewById<DiscreteScrollView>(R.id.discrete_scroll_view)
         val discreteRecyclerViewAdapter = DiscreteScrollViewAdapter(this, hmodels)
 
@@ -301,75 +301,45 @@ class RecommendedActivity : AppCompatActivity(),
         linearLayout.requestFocus()
     }
 
-    private fun mockDatasetDiscreteScrollView(hmodels : ArrayList<BModel>) {
-        hmodels.add(BModel(R.drawable.book5_carousel, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodels.add(BModel(R.drawable.book1_carousel, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodels.add(BModel(R.drawable.book7_carousel, "The Friend", "Sigrid Hunez", 4f, 188))
-        hmodels.add(BModel(R.drawable.book8_carousel, "The Friend", "Sigrid Hunez", 4f, 188))
+    private fun mockDatasetDiscreteScrollView() : ArrayList<BModel> {
+        val factory = BModelRandomFactory(this)
+
+        return factory.getRandomsInstancesDiscreteScrollView(5)
     }
 
     private fun mockDatasetFirstRecyclerView(mDataset: ArrayList<ListBModel>) {
-        val hmodelsOne = arrayListOf<BModel>()
+        val factory = BModelRandomFactory(this)
 
-        hmodelsOne.add(BModel(R.drawable.book1, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsOne.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsOne.add(BModel(R.drawable.book3, "The Friend", "Sigrid Hunez", 4f, 188))
-        mDataset.add(ListBModel("Recommended Authors", hmodelsOne))
+        mDataset.add(ListBModel("Recommended Authors", factory.getRandomsInstances(4)))
     }
 
     private fun mockDatasetPopularSpeciesRecyclerView(hmodels : ArrayList<PSModel>) {
-        hmodels.add(PSModel("Fiction"))
-        hmodels.add(PSModel("Drama"))
-        hmodels.add(PSModel("Horror"))
+        val popularSpeciesArray = resources.getStringArray(R.array.populars_species)
+
+        for (index in 0..(popularSpeciesArray.size - 1)) {
+            hmodels.add(PSModel(popularSpeciesArray[index]))
+        }
     }
 
     private fun mockDatasetSecondRecyclerView(mDataset: ArrayList<ListBModel>) {
-        val hmodelsTwo = arrayListOf<BModel>()
+        val factory = BModelRandomFactory(this)
 
-        hmodelsTwo.add(BModel(R.drawable.book4, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsTwo.add(BModel(R.drawable.book5, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsTwo.add(BModel(R.drawable.book6, "The Friend", "Sigrid Hunez", 4f, 188))
-        mDataset.add(ListBModel("Inspired by Your Reading History", hmodelsTwo))
+        mDataset.add(ListBModel("Inspired by Your Reading History", factory.getRandomsInstances(4)))
     }
 
     private fun mockDatasetSmallRecyclerView(mDataset: ArrayList<NoTitleListBModel>) {
-        val hmodelsOne = arrayListOf<BModel>()
-        val hmodelsTwo = arrayListOf<BModel>()
+        val factory = BModelRandomFactory(this)
 
-        hmodelsOne.add(BModel(R.drawable.book1, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsOne.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsOne.add(BModel(R.drawable.book3, "The Friend", "Sigrid Hunez", 4f, 188))
-        hmodelsOne.add(BModel(R.drawable.book4, "The Friend", "Sigrid Hunez", 4f, 188))
-        hmodelsTwo.add(BModel(R.drawable.book5, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsTwo.add(BModel(R.drawable.book6, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsTwo.add(BModel(R.drawable.book7, "The Friend", "Sigrid Hunez", 4f, 188))
-        hmodelsTwo.add(BModel(R.drawable.book8, "The Friend", "Sigrid Hunez", 4f, 188))
-        mDataset.add(NoTitleListBModel(hmodelsOne))
-        mDataset.add(NoTitleListBModel(hmodelsTwo))
+        for (index in 0..1) {
+            mDataset.add(NoTitleListBModel(factory.getRandomsInstances(6)))
+        }
     }
 
     private fun mockDatasetSectionNavRecyclerView(hmodels: ArrayList<SModel>) {
-        hmodels.add(SModel("Art", 53))
-        hmodels.add(SModel("Business", 74))
-        hmodels.add(SModel("Computing", 47))
-        hmodels.add(SModel("Education", 65))
-        hmodels.add(SModel("Health", 76))
-        hmodels.add(SModel("Home & Garden", 38))
-        hmodels.add(SModel("Literature", 45))
-        hmodels.add(SModel("Family", 163))
-        hmodels.add(SModel("Professionals", 36))
-        hmodels.add(SModel("Romantic", 53))
-        hmodels.add(SModel("Science-Fiction", 44))
-        hmodels.add(SModel("Personal Biography", 150))
-        hmodels.add(SModel("Children Books", 98))
-        hmodels.add(SModel("Crime & Excitement", 123))
-        hmodels.add(SModel("Food & Drink", 108))
-        hmodels.add(SModel("History", 52))
-        hmodels.add(SModel("Humor", 21))
-        hmodels.add(SModel("Non-Fiction", 248))
-        hmodels.add(SModel("Policy", 112))
-        hmodels.add(SModel("Debt", 98))
-        hmodels.add(SModel("Science & Mathematics", 24))
-        hmodels.add(SModel("Counseling", 48))
+        val sectionArray = resources.getStringArray(R.array.sections)
+
+        for (index in 0..(sectionArray.size - 1)) {
+            hmodels.add(SModel(sectionArray[index], (9..500).random()))
+        }
     }
 }

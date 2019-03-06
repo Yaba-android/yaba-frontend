@@ -5,31 +5,28 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
         android:background="@android:color/white"
         app:layout_scrollFlags="scroll">
 
     <ImageView
             android:id="@+id/image_book"
-            android:layout_width="130dp"
-            android:layout_height="214dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/forest_medium"
-            android:layout_marginBottom="40dp"/>
+            android:layout_width="166dp"
+            android:layout_height="256dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/book2"/>
 
     <TextView
             android:id="@+id/title_book"
             android:layout_width="225dp"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/image_book"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="20dp"
-            android:gravity="right"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/image_book"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:text="@string/title"
-            android:paddingTop="20dp"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/colorTextBlack"
             tools:ignore="RtlHardcoded"/>
@@ -38,11 +35,10 @@
             android:id="@+id/author_book"
             android:layout_width="225dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_below="@+id/title_book"
-            android:layout_toStartOf="@id/image_book"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:gravity="right"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:text="@string/author"
             android:textSize="14sp"
             android:textColor="@color/colorTextGrey"
@@ -52,11 +48,10 @@
             android:id="@+id/rating_bar_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_below="@id/author_book"
-            android:layout_toStartOf="@id/image_book"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
             android:layoutDirection="rtl"
+            android:layout_centerHorizontal="true"
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize=".5"
@@ -68,55 +63,96 @@
             android:id="@+id/number_rating_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_below="@id/author_book"
             android:layout_toStartOf="@+id/rating_bar_book"
             android:text="@string/number_rating"
             android:textColor="@color/colorTextBlack"
-            android:textSize="10sp"
-            android:padding="1dp"
-            tools:ignore="SmallSp"/>
-
-    <TextView
-            android:id="@+id/price_book"
-            android:layout_width="225dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rating_bar_book"
-            android:layout_toStartOf="@id/image_book"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:gravity="right"
-            android:text="@string/price"
-            android:textSize="14sp"
-            android:textColor="@color/colorTextBlack"
-            tools:ignore="RtlHardcoded"/>
-
-    <Button
-            android:id="@+id/button_buy_book"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_toStartOf="@id/image_book"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_above="@+id/button_download_book"
-            android:text="@string/buy_now"
             android:textSize="12sp"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:background="@color/colorPurple"/>
+            android:paddingEnd="1dp"
+            tools:ignore="RtlSymmetry"/>
 
     <Button
-            android:id="@+id/button_download_book"
-            android:layout_width="match_parent"
+            android:id="@+id/button_add_wishlist_book"
+            android:layout_width="136dp"
             android:layout_height="40dp"
-            android:layout_toStartOf="@id/image_book"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_alignBottom="@+id/image_book"
-            android:text="@string/download_sample"
-            android:textSize="10sp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/rating_bar_book"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/add_to_wish_list"
+            android:textSize="14sp"
+            android:textColor="@color/colorTextGrey"
             android:textAllCaps="false"
-            android:textColor="@color/colorTextBlack"
-            android:background="@android:color/transparent"
-            tools:ignore="SmallSp"/>
+            android:background="?android:selectableItemBackground"
+            android:drawableEnd="@drawable/add_wish_list_heart"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/button_add_wishlist_book"
+            android:background="?android:selectableItemBackground"
+            android:weightSum="2"
+            android:baselineAligned="false">
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="UselessParent">
+
+                <Button
+                        android:id="@+id/button_try_sample_book"
+                        android:layout_width="136dp"
+                        android:layout_height="40dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="@string/try_the_sample"
+                        android:textSize="14sp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorTextGrey"
+                        android:background="?android:selectableItemBackground"
+                        android:drawableEnd="@drawable/try_sample_library"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="UselessParent">
+
+                <Button
+                        android:id="@+id/button_buy_book"
+                        android:layout_width="136dp"
+                        android:layout_height="40dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="@string/buy"
+                        android:textSize="14sp"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:background="@color/colorButtonDownloadBlue"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

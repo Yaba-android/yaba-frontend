@@ -20,6 +20,13 @@
 
             <include layout="@layout/toolbar_book_details"/>
 
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorSeparatorViewGrey"
+                    android:orientation="vertical"
+                    app:layout_scrollFlags="scroll"/>
+
             <include layout="@layout/activity_book_details_header"/>
 
             <include layout="@layout/tablayout_library_book_details"/>

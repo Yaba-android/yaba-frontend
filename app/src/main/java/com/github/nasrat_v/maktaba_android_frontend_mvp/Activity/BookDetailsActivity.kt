@@ -106,12 +106,14 @@ class BookDetailsActivity : AppCompatActivity(),
         val author = findViewById<TextView>(R.id.author_book)
         val ratingBar = findViewById<RatingBar>(R.id.rating_bar_book)
         val numberRating = findViewById<TextView>(R.id.number_rating_book)
+        val buyButton = findViewById<Button>(R.id.button_buy_book)
 
         image.setImageResource(selectedBook.image)
         title.text = selectedBook.title
         author.text = selectedBook.author
         ratingBar.rating = selectedBook.rating
         numberRating.text = ("(" + selectedBook.numberRating + ")")
+        buyButton.text = ("$" + selectedBook.price + " " + buyButton.text)
     }
 
     private fun initRootDrawerLayout() {
@@ -126,10 +128,6 @@ class BookDetailsActivity : AppCompatActivity(),
             R.string.navigation_drawer_profile_close
         )
         mDrawerToggle.isDrawerIndicatorEnabled = false
-        mDrawerToggle.toolbarNavigationClickListener = View.OnClickListener {
-            mDrawerLayout.openDrawer(GravityCompat.START)
-        }
-        mDrawerToggle.setHomeAsUpIndicator(R.drawable.menu_drawer)
         mDrawerToggle.syncState()
         mDrawerLayout.setDrawerListener(mDrawerToggle)
     }

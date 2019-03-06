@@ -61,5 +61,8 @@
     <string name="sections">Sections</string>
     <string name="section_name">Section name</string>
     <string name="sort">Sort</string>
+    <string name="add_to_wish_list">Add to Wish list</string>
+    <string name="try_the_sample">Try the sample</string>
+    <string name="buy">Buy</string>
 </resources>
 

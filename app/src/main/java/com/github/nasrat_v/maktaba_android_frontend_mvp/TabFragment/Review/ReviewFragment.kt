@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BottomOffsetDecoration
@@ -29,7 +30,7 @@ class ReviewFragment : Fragment() {
 
         mockDatasetReview()
         initReviewVerticalRecyclerView(rootView, container!!)
-        mockDatasetBook()
+        mockDatasetBook(container)
         initBookVerticalRecyclerView(rootView, container)
         return rootView
     }
@@ -73,15 +74,9 @@ class ReviewFragment : Fragment() {
         }
     }
 
-    private fun mockDatasetBook() {
-        val hmodels = arrayListOf<BModel>()
+    private fun mockDatasetBook(container: ViewGroup) {
+        val factory = BModelRandomFactory(container.context)
 
-        hmodels.add(BModel(R.drawable.forest_small, "The Forest", "Lombok Indonesia", 4f, 102))
-        hmodels.add(BModel(R.drawable.kohlarn_small, "Beach", "Koh Larn", 5f, 28))
-        hmodels.add(BModel(R.drawable.forest_small, "The Waterfall", "Water", 4.5f, 356))
-        hmodels.add(BModel(R.drawable.kohlarn_small, "View Point", "Thailand", 3.5f, 188))
-        hmodels.add(BModel(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler", 4f, 9))
-        hmodels.add(BModel(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya", 3f, 42))
-        mDatasetBook.add(ListBModel("More Books from this Author", hmodels))
+        mDatasetBook.add(ListBModel("More Books from this Authors", factory.getRandomsInstances(3)))
     }
 }

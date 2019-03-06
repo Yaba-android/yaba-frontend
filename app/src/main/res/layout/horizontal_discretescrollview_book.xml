@@ -7,7 +7,7 @@
 
     <ImageView
             android:id="@+id/horizontal_image"
-            android:src="@drawable/forest_small"
+            android:src="@drawable/book1"
             android:scaleType="centerCrop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

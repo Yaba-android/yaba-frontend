@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BigNoTextListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
@@ -43,7 +44,7 @@ class AllBooksFragment : Fragment() {
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val mDataset = arrayListOf<NoTitleListBModel>()
 
-        mockDatasetVerticalRecyclerView(mDataset)
+        mockDatasetVerticalRecyclerView(container, mDataset)
 
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
         val adapterBookVertical = BigNoTextListBRecyclerViewAdapter(container.context, mDataset, mBookClickCallback)
@@ -59,8 +60,8 @@ class AllBooksFragment : Fragment() {
         linearLayout.requestFocus()
     }
 
-    private fun mockDatasetVerticalRecyclerView(mDataset: ArrayList<NoTitleListBModel>) {
-        val hmodelsOne = arrayListOf<BModel>()
+        private fun mockDatasetVerticalRecyclerView(container: ViewGroup, mDataset: ArrayList<NoTitleListBModel>) {
+        /*val hmodelsOne = arrayListOf<BModel>()
         val hmodelsTwo = arrayListOf<BModel>()
         val hmodelsThree = arrayListOf<BModel>()
         val hmodelsFour = arrayListOf<BModel>()
@@ -69,14 +70,14 @@ class AllBooksFragment : Fragment() {
         val hmodelsSeven = arrayListOf<BModel>()
         val hmodelsHeigth = arrayListOf<BModel>()
 
-        hmodelsOne.add(BModel(R.drawable.book6, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsOne.add(BModel(R.drawable.book4, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsTwo.add(BModel(R.drawable.book2, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsTwo.add(BModel(R.drawable.book1, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsThree.add(BModel(R.drawable.book3, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsThree.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsFour.add(BModel(R.drawable.book8, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsFour.add(BModel(R.drawable.book7, "Black Leopard Red Wolf", "Marion James", 5f, 188))
+        hmodelsOne.add(BModel(R.drawable.book6, "Here", "Taleb Al-Refai", 5f, 219, 9.99f))
+        hmodelsOne.add(BModel(R.drawable.book4, "Black Leopard Red Wolf", "Marion James", 5f, 188, 9.99f))
+        hmodelsTwo.add(BModel(R.drawable.book2, "Here", "Taleb Al-Refai", 5f, 219, 9.99f))
+        hmodelsTwo.add(BModel(R.drawable.book1, "Black Leopard Red Wolf", "Marion James", 5f, 188, 9.99f))
+        hmodelsThree.add(BModel(R.drawable.book3, "Here", "Taleb Al-Refai", 5f, 219, 9.99f))
+        hmodelsThree.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188, 9.99f))
+        hmodelsFour.add(BModel(R.drawable.book8, "Here", "Taleb Al-Refai", 5f, 219, 9.99f))
+        hmodelsFour.add(BModel(R.drawable.book7, "Black Leopard Red Wolf", "Marion James", 5f, 188, 9.99f))
         hmodelsFive.add(BModel(R.drawable.book3, "Here", "Taleb Al-Refai", 5f, 219))
         hmodelsFive.add(BModel(R.drawable.book5, "Black Leopard Red Wolf", "Marion James", 5f, 188))
         hmodelsSix.add(BModel(R.drawable.book4, "Here", "Taleb Al-Refai", 5f, 219))
@@ -92,6 +93,11 @@ class AllBooksFragment : Fragment() {
         mDataset.add(NoTitleListBModel(hmodelsFive))
         mDataset.add(NoTitleListBModel(hmodelsSix))
         mDataset.add(NoTitleListBModel(hmodelsSeven))
-        mDataset.add(NoTitleListBModel(hmodelsHeigth))
+        mDataset.add(NoTitleListBModel(hmodelsHeigth))*/
+        val factory = BModelRandomFactory(container.context)
+
+        for (index in 0..7) {
+            mDataset.add(NoTitleListBModel(factory.getRandomsInstances(2)))
+        }
     }
 }

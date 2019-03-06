@@ -22,6 +22,7 @@
 
     <color name="colorTextBlueHolo">#5FDCE6</color>
     <color name="colorButtonDontFindBlueHolo">#FF60E3D9</color>
+    <color name="colorButtonDownloadBlue">#FF09315A</color>
     <color name="colorPurple">#33005F</color>
 </resources>
 
