@@ -7,5 +7,6 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         app:layout_scrollFlags="scroll"
-        app:tabBackground="@drawable/tab_layout_color"
+        app:tabBackground="@drawable/tab_layout_unselected_color"
+        app:tabIndicatorFullWidth="false"
         style="@style/TabLayout"/>

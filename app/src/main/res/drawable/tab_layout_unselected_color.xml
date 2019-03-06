@@ -5,7 +5,7 @@
             <!-- Bottom indicator color for the UNSELECTED tab state -->
             <item android:top="-5dp" android:left="-2000dp" android:right="-2000dp">
                 <shape android:shape="rectangle">
-                    <stroke android:color="@color/colorNavGrey" android:width="3dp"/>
+                    <stroke android:color="@android:color/white" android:width="4dp"/>
                 </shape>
             </item>
         </layer-list>

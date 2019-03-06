@@ -70,7 +70,7 @@ class LibraryActivity : AppCompatActivity(),
 
     override fun setupTabLayout(viewPager: ViewPager) {
         val tabLayout = findViewById<TabLayout>(R.id.tabs)
-        val customListener = TabLayoutCustomListener()
+        val customListener = TabLayoutCustomListener(this)
 
         tabLayout.setupWithViewPager(viewPager)
         customListener.setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)

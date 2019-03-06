@@ -35,10 +35,10 @@
 
     <style name="TabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/colorTextBlueHolo</item>
-        <item name="tabIndicatorHeight">3dp</item>
-        <item name="tabBackground">@color/colorAppBarGrey</item>
+        <item name="tabIndicatorHeight">4dp</item>
+        <item name="tabBackground">@android:color/white</item>
         <item name="tabTextAppearance">@android:style/TextAppearance.Widget.TabWidget</item>
-        <item name="tabTextColor">@color/colorTextBlack</item>
+        <item name="tabTextColor">@color/colorTextTabUnselectedGrey</item>
     </style>
 
 </resources>
