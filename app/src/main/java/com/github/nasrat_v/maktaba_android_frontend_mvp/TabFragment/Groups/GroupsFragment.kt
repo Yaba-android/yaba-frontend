@@ -59,39 +59,6 @@ class GroupsFragment : Fragment() {
     }
 
     private fun mockDatasetVerticalRecyclerView(container: ViewGroup, mDataset: ArrayList<NoTitleListBModel>) {
-        /*val hmodelsOne = arrayListOf<BModel>()
-        val hmodelsTwo = arrayListOf<BModel>()
-        val hmodelsThree = arrayListOf<BModel>()
-        val hmodelsFour = arrayListOf<BModel>()
-        val hmodelsFive = arrayListOf<BModel>()
-        val hmodelsSix = arrayListOf<BModel>()
-        val hmodelsSeven = arrayListOf<BModel>()
-        val hmodelsHeigth = arrayListOf<BModel>()
-
-        hmodelsOne.add(BModel(R.drawable.book4, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsOne.add(BModel(R.drawable.book1, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsTwo.add(BModel(R.drawable.book6, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsTwo.add(BModel(R.drawable.book7, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsThree.add(BModel(R.drawable.book6, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsThree.add(BModel(R.drawable.book1, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsFour.add(BModel(R.drawable.book3, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsFour.add(BModel(R.drawable.book8, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsFive.add(BModel(R.drawable.book5, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsFive.add(BModel(R.drawable.book3, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsSix.add(BModel(R.drawable.book6, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsSix.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsSeven.add(BModel(R.drawable.book1, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsSeven.add(BModel(R.drawable.book3, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        hmodelsHeigth.add(BModel(R.drawable.book2, "Here", "Taleb Al-Refai", 5f, 219))
-        hmodelsHeigth.add(BModel(R.drawable.book8, "Black Leopard Red Wolf", "Marion James", 5f, 188))
-        mDataset.add(NoTitleListBModel(hmodelsOne))
-        mDataset.add(NoTitleListBModel(hmodelsTwo))
-        mDataset.add(NoTitleListBModel(hmodelsThree))
-        mDataset.add(NoTitleListBModel(hmodelsFour))
-        mDataset.add(NoTitleListBModel(hmodelsFive))
-        mDataset.add(NoTitleListBModel(hmodelsSix))
-        mDataset.add(NoTitleListBModel(hmodelsSeven))
-        mDataset.add(NoTitleListBModel(hmodelsHeigth))*/
         val factory = BModelRandomFactory(container.context)
 
         for (index in 0..7) {
