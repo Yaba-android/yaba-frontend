@@ -32,7 +32,8 @@
                 android:orientation="vertical"
                 android:paddingBottom="40dp">
 
-            <include android:id="@+id/title_layout_genre" layout="@layout/title_recyclerview"/>
+            <include android:id="@+id/title_layout_genre"
+                     layout="@layout/title_viewall_recyclerview"/>
 
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/genre_horizontal_recyclerview_recommended"
@@ -58,7 +59,8 @@
                 android:orientation="vertical"
                 android:paddingBottom="40dp">
 
-            <include android:id="@+id/title_layout_small" layout="@layout/title_recyclerview"/>
+            <include android:id="@+id/title_layout_small"
+                     layout="@layout/title_viewall_recyclerview"/>
 
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/small_book_vertical_recyclerview_recommended"

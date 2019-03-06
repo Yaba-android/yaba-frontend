@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/title_recyclerview_height"
                 android:layout_marginEnd="10dp"
-                layout="@layout/title_recyclerview"/>
+                layout="@layout/title_sort_recyclerview"/>
 
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/vertical_double_recyclerview"
