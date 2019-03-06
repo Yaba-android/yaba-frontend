@@ -53,14 +53,6 @@ class LibraryActivity : AppCompatActivity(),
             super.onBackPressed()
     }
 
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(
-            R.anim.slide_in_right,
-            R.anim.slide_out_left
-        )
-    }
-
     override fun bookEventButtonClicked(book: BModel) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 

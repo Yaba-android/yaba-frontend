@@ -153,40 +153,6 @@ class PopularSpeciesActivity : AppCompatActivity(),
     }
 
     private fun mockDatasetVerticalRecyclerView(mDataset: ArrayList<NoTitleListBModel>) {
-        /*val hmodelsOne = arrayListOf<BModel>()
-        val hmodelsTwo = arrayListOf<BModel>()
-        val hmodelsThree = arrayListOf<BModel>()
-        val hmodelsFour = arrayListOf<BModel>()
-        val hmodelsFive = arrayListOf<BModel>()
-        val hmodelsSix = arrayListOf<BModel>()
-        val hmodelsSeven = arrayListOf<BModel>()
-        val hmodelsHeigth = arrayListOf<BModel>()
-
-        hmodelsOne.add(BModel(R.drawable.book1, "Here", "Taleb Al-Refai", 5f, 219, 10.99f))
-        hmodelsOne.add(BModel(R.drawable.book2, "Black Leopard Red Wolf", "Marion James", 5f, 188, 9.99f))
-        hmodelsTwo.add(BModel(R.drawable.book3, "Here", "Taleb Al-Refai", 5f, 219, 7.99f))
-        hmodelsTwo.add(BModel(R.drawable.book4, "Black Leopard Red Wolf", "Marion James", 5f, 188, 4.10f))
-        hmodelsThree.add(BModel(R.drawable.book5, "Here", "Taleb Al-Refai", 5f, 219, 8.00f))
-        hmodelsThree.add(BModel(R.drawable.book6, "Black Leopard Red Wolf", "Marion James", 5f, 188, 5.99f))
-        hmodelsFour.add(BModel(R.drawable.book7, "Here", "Taleb Al-Refai", 5f, 219, 9.90f))
-        hmodelsFour.add(BModel(R.drawable.book8, "Black Leopard Red Wolf", "Marion James", 5f, 188, 19.99f))
-        hmodelsFive.add(BModel(R.drawable.book3, "Here", "Taleb Al-Refai", 5f, 219, 13.99f))
-        hmodelsFive.add(BModel(R.drawable.book5, "Black Leopard Red Wolf", "Marion James", 5f, 188, 6.20f))
-        hmodelsSix.add(BModel(R.drawable.book4, "Here", "Taleb Al-Refai", 5f, 219, 8.99f))
-        hmodelsSix.add(BModel(R.drawable.book1, "Black Leopard Red Wolf", "Marion James", 5f, 188, 4.20f))
-        hmodelsSeven.add(BModel(R.drawable.book8, "Here", "Taleb Al-Refai", 5f, 219, 9.99f))
-        hmodelsSeven.add(BModel(R.drawable.book1, "Black Leopard Red Wolf", "Marion James", 5f, 188, 5.90f))
-        hmodelsHeigth.add(BModel(R.drawable.book3, "Here", "Taleb Al-Refai", 5f, 219, 9.99f))
-        hmodelsHeigth.add(BModel(R.drawable.book6, "Black Leopard Red Wolf", "Marion James", 5f, 188, 6.99f))
-        mDataset.add(NoTitleListBModel(hmodelsOne))
-        mDataset.add(NoTitleListBModel(hmodelsTwo))
-        mDataset.add(NoTitleListBModel(hmodelsThree))
-        mDataset.add(NoTitleListBModel(hmodelsFour))
-        mDataset.add(NoTitleListBModel(hmodelsFive))
-        mDataset.add(NoTitleListBModel(hmodelsSix))
-        mDataset.add(NoTitleListBModel(hmodelsSeven))
-        mDataset.add(NoTitleListBModel(hmodelsHeigth))*/
-
         val factory = BModelRandomFactory(this)
 
         for (index in 0..7) {
