@@ -9,25 +9,27 @@
         android:layoutDirection="rtl"
         android:background="@android:color/transparent">
 
-    <ImageView
-            android:id="@+id/horizontal_image"
-            android:src="@drawable/book1"
-            android:scaleType="centerCrop"
+    <LinearLayout
+            android:id="@+id/horizontal_image_layout"
             android:layout_width="134dp"
-            android:layout_height="204dp"
-            android:layout_marginTop="2dp"
-            android:adjustViewBounds="true"/>
+            android:layout_height="214dp">
+
+        <include
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                layout="@layout/horizontal_recyclerview_big_no_text_book"/>
+
+    </LinearLayout>
 
     <TextView
             android:id="@+id/horizontal_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/horizontal_image"
+            android:layout_below="@+id/horizontal_image_layout"
             android:text="@string/title"
             android:textColor="@color/colorTextBlack"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:paddingTop="9dp"
             android:paddingBottom="3dp"/>
 
     <TextView
