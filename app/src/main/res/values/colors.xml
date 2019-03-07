@@ -10,8 +10,7 @@
     <color name="colorTextBlack">#1F1F1F</color>
     <color name="colorReviewTextBlack">#0C0015</color>
 
-    <color name="colorTextGrey">#8B8B8B</color>
-    <color name="colorTextTabUnselectedGrey">#FF636F7B</color>
+    <color name="colorTextGrey">#FF636F7B</color>
     <color name="colorNavGrey">#DBDBDB</color>
     <color name="colorNavFooterGrey">#FFFFFF</color>
     <color name="colorAppBarGrey">#F8F8F8</color>
@@ -19,10 +18,10 @@
     <color name="colorFragmentGrey">#FDFDFD</color>
     <color name="colorButtonFooterGrey">#EAEAEA</color>
     <color name="colorSeparatorViewGrey">#FFDCDFE1</color>
+    <color name="colorReadMoreButtonGrey">#FFF2F2F2</color>
 
     <color name="colorTextBlueHolo">#5FDCE6</color>
     <color name="colorButtonDontFindBlueHolo">#FF60E3D9</color>
     <color name="colorButtonDownloadBlue">#FF09315A</color>
     <color name="colorPurple">#33005F</color>
 </resources>
-

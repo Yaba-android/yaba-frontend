@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAppBarGrey"
+        android:weightSum="2"
+        android:baselineAligned="false">
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:paddingEnd="15dp"
+            tools:ignore="RtlSymmetry">
+
+        <include
+                android:id="@+id/review_category_length"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                layout="@layout/fragment_overview_info_book_textview"/>
+
+        <include
+                android:id="@+id/review_category_file_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                layout="@layout/fragment_overview_info_book_textview"/>
+
+        <include
+                android:id="@+id/review_category_date_publication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/fragment_overview_info_book_textview"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:paddingEnd="15dp"
+            tools:ignore="RtlSymmetry">
+
+        <include
+                android:id="@+id/review_category_genre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                layout="@layout/fragment_overview_info_book_textview"/>
+
+        <include
+                android:id="@+id/review_category_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                layout="@layout/fragment_overview_info_book_textview"/>
+
+        <include
+                android:id="@+id/review_category_publisher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/fragment_overview_info_book_textview"/>
+
+    </LinearLayout>
+
+</LinearLayout>

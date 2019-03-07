@@ -19,132 +19,27 @@
                 android:id="@+id/desc_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text=" هذا هو وصف كتاب على الانترنت. هذا الوصف يجب أن هذا هو وصف كتاب على أن يكتمل"
+                android:layout_marginBottom="60dp"
+                android:textDirection="rtl"
+                android:text="@string/resume_book"
                 android:textColor="@color/colorTextBlack"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 tools:ignore="RtlHardcoded"
                 android:padding="10dp"/>
 
-        <RelativeLayout
+        <include
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"
+                layout="@layout/fragment_overview_info_book"/>
 
-            <TextView
-                    android:id="@+id/page_lenght_title_overview"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:gravity="right"
-                    android:text="@string/page_length"
-                    android:textColor="#8B8B8B"
-                    android:textSize="14sp"
-                    android:paddingBottom="2dp"
-                    tools:ignore="RtlHardcoded"/>
-
-            <TextView
-                    android:id="@+id/page_lenght_overview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="200"
-                    android:textColor="@color/colorTextBlack"
-                    android:textSize="14sp"
-                    android:paddingBottom="2dp"
-                    android:paddingEnd="70dp"
-                    android:layout_toStartOf="@id/page_lenght_title_overview"
-                    tools:ignore="RtlHardcoded,RtlSymmetry"/>
-
-            <TextView
-                    android:id="@+id/publisher_title_overview"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:gravity="right"
-                    android:text="@string/publisher"
-                    android:textColor="@color/colorTextGrey"
-                    android:textSize="14sp"
-                    android:paddingBottom="2dp"
-                    android:layout_below="@+id/page_lenght_title_overview"
-                    tools:ignore="RtlHardcoded"/>
-
-            <TextView
-                    android:id="@+id/publisher_overview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="Publishing House"
-                    android:textColor="@color/colorTextBlack"
-                    android:textSize="14sp"
-                    android:paddingBottom="2dp"
-                    android:paddingEnd="70dp"
-                    android:layout_toStartOf="@id/publisher_title_overview"
-                    android:layout_below="@+id/page_lenght_overview"
-                    tools:ignore="RtlHardcoded,RtlSymmetry"/>
-
-            <TextView
-                    android:id="@+id/isbn_title_overview"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:gravity="right"
-                    android:text="@string/isbn"
-                    android:textColor="@color/colorTextGrey"
-                    android:textSize="14sp"
-                    android:layout_below="@+id/publisher_title_overview"
-                    tools:ignore="RtlHardcoded"/>
-
-            <TextView
-                    android:id="@+id/isbn_overview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="48974589754-9"
-                    android:textColor="@color/colorTextBlack"
-                    android:textSize="14sp"
-                    android:paddingBottom="2dp"
-                    android:paddingEnd="70dp"
-                    android:layout_toStartOf="@id/isbn_title_overview"
-                    android:layout_below="@+id/publisher_overview"
-                    tools:ignore="RtlHardcoded,RtlSymmetry"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="10dp"
-                android:paddingBottom="30dp">
-
-            <TextView
-                    android:id="@+id/genre_fiction_overview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="   Fiction   "
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:background="@drawable/rounded_corner_genre_flag_purple"
-                    android:padding="10dp"
-                    android:layout_marginEnd="10dp"
-                    tools:ignore="RtlHardcoded"/>
-
-            <TextView
-                    android:id="@+id/genre_crime_thriller_mystery_overview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="   Crime, Thrillers &amp; Mystery   "
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:background="@drawable/rounded_corner_genre_flag_purple"
-                    android:padding="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@id/genre_fiction_overview"
-                    tools:ignore="RtlHardcoded"/>
-
-        </RelativeLayout>
+        <LinearLayout
+                android:layout_width="325dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/colorSeparatorViewGrey"
+                android:layout_marginBottom="60dp"
+                android:orientation="vertical"/>
 
         <include layout="@layout/fragment_review_overview_footer"/>
 
