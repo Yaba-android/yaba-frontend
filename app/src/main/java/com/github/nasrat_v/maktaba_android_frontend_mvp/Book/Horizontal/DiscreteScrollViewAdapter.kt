@@ -18,7 +18,7 @@ class DiscreteScrollViewAdapter(private var context: Context, private var list: 
     private var mLastClickTime: Long = 0
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.horizontal_discretescrollview_book, container, false)
+        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.horizontal_discretescrollview_no_text_book, container, false)
 
         return ViewHolder(rootView)
     }
