@@ -34,14 +34,27 @@
     </integer-array>
 
     <integer-array name="images_books_carousel">
-        <item>@drawable/book1_carousel</item>
-        <item>@drawable/book2_carousel</item>
-        <item>@drawable/book3_carousel</item>
-        <item>@drawable/book4_carousel</item>
-        <item>@drawable/book5_carousel</item>
-        <item>@drawable/book6_carousel</item>
-        <item>@drawable/book7_carousel</item>
-        <item>@drawable/book8_carousel</item>
+        <item>@drawable/book9</item>
+        <item>@drawable/book10</item>
+        <item>@drawable/book11</item>
+        <item>@drawable/book12</item>
+        <item>@drawable/book13</item>
+        <item>@drawable/book14</item>
+        <item>@drawable/book15</item>
+        <item>@drawable/book16</item>
+        <item>@drawable/book17</item>
+        <item>@drawable/book18</item>
+        <item>@drawable/book19</item>
+        <item>@drawable/book20</item>
+        <item>@drawable/book22</item>
+        <item>@drawable/book23</item>
+        <item>@drawable/book24</item>
+        <item>@drawable/book25</item>
+        <item>@drawable/book26</item>
+        <item>@drawable/book27</item>
+        <item>@drawable/book28</item>
+        <item>@drawable/book29</item>
+        <item>@drawable/book30</item>
     </integer-array>
 
     <string-array name="titles_books">

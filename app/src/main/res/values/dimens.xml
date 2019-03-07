@@ -12,4 +12,6 @@
     <dimen name="left_big_book_horizontal_recycler_view">5dp</dimen>
     <dimen name="title_recyclerview_height">40dp</dimen>
     <dimen name="bottom_all_books_vertical_recycler_view">20dp</dimen>
+    <dimen name="margin_bottom_between_recyclerview_recommended">20dp</dimen>
+    <dimen name="big_margin_bottom_between_recyclerview_recommended">50dp</dimen>
 </resources>

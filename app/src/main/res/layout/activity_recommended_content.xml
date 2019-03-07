@@ -22,6 +22,8 @@
                 android:id="@+id/first_book_vertical_recyclerview_recommended"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/margin_bottom_between_recyclerview_recommended"
                 android:paddingEnd="4dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:ignore="RtlSymmetry"/>
@@ -30,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="40dp">
+                android:paddingBottom="@dimen/big_margin_bottom_between_recyclerview_recommended">
 
             <include android:id="@+id/title_layout_genre"
                      layout="@layout/title_viewall_recyclerview"/>
@@ -49,6 +51,7 @@
                 android:id="@+id/second_book_vertical_recyclerview_recommended"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom_between_recyclerview_recommended"
                 android:paddingEnd="4dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:ignore="RtlSymmetry"/>
@@ -56,8 +59,8 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="40dp">
+                android:layout_marginBottom="@dimen/margin_bottom_between_recyclerview_recommended"
+                android:orientation="vertical">
 
             <include android:id="@+id/title_layout_small"
                      layout="@layout/title_viewall_recyclerview"/>

@@ -2,7 +2,7 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="128dp"
+        android:layout_width="134dp"
         android:layout_height="210dp"
         android:layout_margin="10dp"
         android:clipToPadding="false"
@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
     <RelativeLayout
-            android:layout_width="128dp"
+            android:layout_width="134dp"
             android:layout_height="204dp"
             android:clipToPadding="false"
             android:clipChildren="false"
@@ -36,9 +36,9 @@
 
                 <ImageView
                         android:id="@+id/horizontal_image"
-                        android:src="@drawable/book1"
+                        android:src="@drawable/book9"
                         android:scaleType="centerCrop"
-                        android:layout_width="128dp"
+                        android:layout_width="134dp"
                         android:layout_height="204dp"
                         android:layout_marginTop="2dp"
                         android:adjustViewBounds="true"
