@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Horizontal
 
 import android.content.Context
 import android.os.SystemClock
@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class PSRecyclerViewAdapter(private var context: Context, private var list: ArrayList<PSModel>,
-                            private var mAdditionalClickCallback: IRecommendedAdditionalClickCallback)
-    : RecyclerView.Adapter<PSRecyclerViewAdapter.ViewHolder>() {
+class GPSRecyclerViewAdapter(private var context: Context, private var list: ArrayList<GModel>,
+                             private var mAdditionalClickCallback: IRecommendedAdditionalClickCallback)
+    : RecyclerView.Adapter<GPSRecyclerViewAdapter.ViewHolder>() {
 
     private var mLastClickTime: Long = 0
 

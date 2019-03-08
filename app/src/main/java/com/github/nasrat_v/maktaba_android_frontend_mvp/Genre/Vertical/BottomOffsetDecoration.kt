@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Vertical
 
 import android.content.Context
 import android.graphics.Rect
@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.annotation.DimenRes
 import android.view.View
 
-class SRecyclerViewBottomOffsetDecoration(private val mItemOffset: Int)
+class BottomOffsetDecoration(private val mItemOffset: Int)
     : RecyclerView.ItemDecoration() {
 
     constructor(context: Context, @DimenRes itemOffsetId: Int)

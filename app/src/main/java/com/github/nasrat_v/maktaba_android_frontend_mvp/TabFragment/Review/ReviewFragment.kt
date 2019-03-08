@@ -23,6 +23,7 @@ class ReviewFragment : Fragment() {
     private var mDatasetReview = arrayListOf<RModel>()
     private var mDatasetBook = arrayListOf<ListBModel>()
     private lateinit var mBookClickCallback: IBookClickCallback
+    private lateinit var mSelectedBook: BModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,10 @@ class ReviewFragment : Fragment() {
 
     fun setTabFragmentClickCallback(bookClickCallback: IBookClickCallback) {
         mBookClickCallback = bookClickCallback
+    }
+
+    fun setSelectedBook(book: BModel) {
+        mSelectedBook = book
     }
 
     private fun initReviewVerticalRecyclerView(view: View, container: ViewGroup) {

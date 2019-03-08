@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAppBarGrey"
+        android:background="@android:color/white"
         android:weightSum="2"
         android:baselineAligned="false">
 
@@ -17,21 +17,21 @@
             tools:ignore="RtlSymmetry">
 
         <include
-                android:id="@+id/review_category_length"
+                android:id="@+id/overview_category_length"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 layout="@layout/fragment_overview_info_book_textview"/>
 
         <include
-                android:id="@+id/review_category_file_size"
+                android:id="@+id/overview_category_file_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 layout="@layout/fragment_overview_info_book_textview"/>
 
         <include
-                android:id="@+id/review_category_date_publication"
+                android:id="@+id/overview_category_date_publication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 layout="@layout/fragment_overview_info_book_textview"/>
@@ -47,21 +47,21 @@
             tools:ignore="RtlSymmetry">
 
         <include
-                android:id="@+id/review_category_genre"
+                android:id="@+id/overview_category_genre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 layout="@layout/fragment_overview_info_book_textview"/>
 
         <include
-                android:id="@+id/review_category_country"
+                android:id="@+id/overview_category_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 layout="@layout/fragment_overview_info_book_textview"/>
 
         <include
-                android:id="@+id/review_category_publisher"
+                android:id="@+id/overview_category_publisher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 layout="@layout/fragment_overview_info_book_textview"/>

@@ -40,6 +40,6 @@ class TabLayoutCustomListener(var context: Context) {
         val tabTextView = linearLayout.getChildAt(1) as TextView
 
         tabTextView.setTypeface(null, Typeface.NORMAL)
-        tabTextView.setTextColor(ContextCompat.getColor(context, R.color.colorTextTabUnselectedGrey))
+        tabTextView.setTextColor(ContextCompat.getColor(context, R.color.colorTextGrey))
     }
 }

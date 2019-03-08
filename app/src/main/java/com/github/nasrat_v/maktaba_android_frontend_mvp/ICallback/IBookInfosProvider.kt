@@ -2,6 +2,6 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback
 
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 
-interface IBookClickCallback {
-    fun bookEventButtonClicked(book: BModel)
+interface IBookInfosProvider {
+    fun getSelectedBook() : BModel
 }

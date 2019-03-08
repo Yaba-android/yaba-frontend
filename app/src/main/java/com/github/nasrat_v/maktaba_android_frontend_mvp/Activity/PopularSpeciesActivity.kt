@@ -19,10 +19,9 @@ import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BigListBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 @SuppressLint("Registered")
@@ -32,7 +31,7 @@ class PopularSpeciesActivity : AppCompatActivity(),
     private lateinit var mDrawerLayout: DrawerLayout
     private var mLastClickTime: Long = 0
 
-    private lateinit var selectedPSpecies: PSModel
+    private lateinit var selectedPSpecies: GModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,5 +1,6 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Overview
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -7,7 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
@@ -20,11 +21,13 @@ class OverviewFragment : Fragment() {
 
     private var mDataset = arrayListOf<ListBModel>()
     private lateinit var mBookClickCallback: IBookClickCallback
+    private lateinit var mSelectedBook: BModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_overview, container, false)
 
+        initBookDetailsAttributes(rootView)
         mockDataset(container!!)
         initVerticalRecyclerView(rootView, container)
         return rootView
@@ -32,6 +35,10 @@ class OverviewFragment : Fragment() {
 
     fun setTabFragmentClickCallback(bookClickCallback: IBookClickCallback) {
         mBookClickCallback = bookClickCallback
+    }
+
+    fun setSelectedBook(book: BModel) {
+        mSelectedBook = book
     }
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
@@ -49,16 +56,26 @@ class OverviewFragment : Fragment() {
         linearLayout.requestFocus()
     }
 
-    private fun mockDataset(container: ViewGroup) {
-        /*val hmodels = arrayListOf<BModel>()
+    @SuppressLint("SetTextI18n")
+    private fun initBookDetailsAttributes(view: View) { // faire passer le selected book au fragment
+        initBookDetailsInfoAttributes(view, R.id.overview_category_length, "Length", mSelectedBook.length.toString())
+        initBookDetailsInfoAttributes(view, R.id.overview_category_file_size, "File size", mSelectedBook.fileSize)
+        initBookDetailsInfoAttributes(view, R.id.overview_category_date_publication, "Date of publication", mSelectedBook.datePublication)
+        initBookDetailsInfoAttributes(view, R.id.overview_category_genre, "Genre", mSelectedBook.genre.name)
+        initBookDetailsInfoAttributes(view, R.id.overview_category_country, "Country", mSelectedBook.country)
+        initBookDetailsInfoAttributes(view, R.id.overview_category_publisher, "Publisher", mSelectedBook.publisher)
+    }
 
-        hmodels.add(BModel(R.drawable.forest_small, "The Forest", "Lombok Indonesia", 4f, 102))
-        hmodels.add(BModel(R.drawable.kohlarn_small, "Beach", "Koh Larn", 5f, 28))
-        hmodels.add(BModel(R.drawable.forest_small, "The Waterfall", "Water", 4.5f, 356))
-        hmodels.add(BModel(R.drawable.kohlarn_small, "View Point", "Thailand", 3.5f, 188))
-        hmodels.add(BModel(R.drawable.forest_small, "Monkey forest", "Indonesia Traveler", 4f, 9))
-        hmodels.add(BModel(R.drawable.kohlarn_small, "Sea and beach", "Next Pattaya", 3f, 42))
-        mDataset.add(ListBModel("More Books from this Author", hmodels))*/
+    private fun initBookDetailsInfoAttributes(view: View, idLayout: Int, title: String, content: String) {
+        val layout = view.findViewById<LinearLayout>(idLayout)
+        val titleCategory = layout.findViewById<TextView>(R.id.title_category)
+        val contentCategory = layout.findViewById<TextView>(R.id.content_category)
+
+        titleCategory.text = title
+        contentCategory.text = content
+    }
+
+    private fun mockDataset(container: ViewGroup) {
         val factory = BModelRandomFactory(container.context)
 
         mDataset.add(ListBModel("More Books from this Authors", factory.getRandomsInstances(3)))

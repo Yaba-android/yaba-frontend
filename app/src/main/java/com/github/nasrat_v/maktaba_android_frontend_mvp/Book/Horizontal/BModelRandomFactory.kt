@@ -1,6 +1,8 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal
 
 import android.content.Context
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.GModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.GModelRandomFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import java.util.*
 
@@ -27,13 +29,19 @@ class BModelRandomFactory(private var context: Context) {
     private fun getRandomInstance() : BModel {
         return (BModel(getRandomImage(), getRandomTitle(),
                 getRandomAuthor(), getRandomRating(),
-                getRandomNumberRating(), getRandomPrice()))
+                getRandomNumberRating(), getRandomPrice(),
+                getRandomLength(), getRandomGenre(),
+                getRandomFileSize(), getRandomCountry(),
+                getRandomDatePublication(), getRandomPublisher()))
     }
 
     private fun getRandomInstanceDiscreteScrollView() : BModel {
         return (BModel(getRandomImageCarousel(), getRandomTitle(),
                 getRandomAuthor(), getRandomRating(),
-                getRandomNumberRating(), getRandomPrice()))
+                getRandomNumberRating(), getRandomPrice(),
+                getRandomLength(), getRandomGenre(),
+                getRandomFileSize(), getRandomCountry(),
+                getRandomDatePublication(), getRandomPublisher()))
     }
 
     private fun getRandomImage() : Int {
@@ -71,12 +79,48 @@ class BModelRandomFactory(private var context: Context) {
     }
 
     private fun getRandomNumberRating() : Int {
-        return ((0..999).random())
+        return (0..999).random()
     }
 
     private fun getRandomPrice() : Float {
         val priceArray = context.resources.getStringArray(R.array.prices_books)
 
         return priceArray[(0..(priceArray.size - 1)).random()].toFloat()
+    }
+
+    private fun getRandomLength() : Int {
+        val lengthArray = context.resources.getIntArray(R.array.lengths_books)
+
+        return lengthArray[(0..(lengthArray.size - 1)).random()]
+    }
+
+    private fun getRandomGenre() : GModel {
+        val genreList = GModelRandomFactory(context).getAllGenres()
+
+        return genreList[(0..(genreList.size - 1)).random()]
+    }
+
+    private fun getRandomFileSize() : String {
+        val fileSizeArray = context.resources.getStringArray(R.array.filesizes_books)
+
+        return fileSizeArray[(0..(fileSizeArray.size - 1)).random()]
+    }
+
+    private fun getRandomCountry() : String {
+        val countryArray = context.resources.getStringArray(R.array.countries_books)
+
+        return countryArray[(0..(countryArray.size - 1)).random()]
+    }
+
+    private fun getRandomDatePublication() : String {
+        val datePublicationArray = context.resources.getStringArray(R.array.datepublications_books)
+
+        return datePublicationArray[(0..(datePublicationArray.size - 1)).random()]
+    }
+
+    private fun getRandomPublisher() : String {
+        val datePublicationArray = context.resources.getStringArray(R.array.publishers_books)
+
+        return datePublicationArray[(0..(datePublicationArray.size - 1)).random()]
     }
 }

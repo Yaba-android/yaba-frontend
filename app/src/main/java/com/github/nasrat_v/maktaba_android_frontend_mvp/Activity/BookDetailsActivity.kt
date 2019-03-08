@@ -1,13 +1,12 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
-import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -17,17 +16,17 @@ import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookInfosProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 
 class BookDetailsActivity : AppCompatActivity(),
     IBookClickCallback,
-    ITabLayoutSetupCallback {
+    ITabLayoutSetupCallback,
+    IBookInfosProvider {
 
-    private lateinit var selectedBook: BModel
+    private lateinit var mSelectedBook: BModel
     private lateinit var mDrawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +34,7 @@ class BookDetailsActivity : AppCompatActivity(),
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_book_details)
 
-        selectedBook = intent.getParcelableExtra("SelectedBook")
+        mSelectedBook = intent.getParcelableExtra("SelectedBook")
         setBookDetailsAttributes()
 
         setListenerButtonCloseProfile()
@@ -90,6 +89,10 @@ class BookDetailsActivity : AppCompatActivity(),
         customListener.setListenerTabLayout(tabLayout)
     }
 
+    override fun getSelectedBook(): BModel {
+        return mSelectedBook
+    }
+
     private fun setListenerButtonCloseProfile() {
         val nav = findViewById<NavigationView>(R.id.nav_view_profile)
         val header = nav.getHeaderView(0)
@@ -108,12 +111,12 @@ class BookDetailsActivity : AppCompatActivity(),
         val numberRating = findViewById<TextView>(R.id.number_rating_book)
         val buyButton = findViewById<Button>(R.id.button_buy_book)
 
-        image.setImageResource(selectedBook.image)
-        title.text = selectedBook.title
-        author.text = selectedBook.author
-        ratingBar.rating = selectedBook.rating
-        numberRating.text = ("(" + selectedBook.numberRating + ")")
-        buyButton.text = ("$" + selectedBook.price + " " + buyButton.text)
+        image.setImageResource(mSelectedBook.image)
+        title.text = mSelectedBook.title
+        author.text = mSelectedBook.author
+        ratingBar.rating = mSelectedBook.rating
+        numberRating.text = ("(" + mSelectedBook.numberRating + ")")
+        buyButton.text = ("$" + mSelectedBook.price + " " + buyButton.text)
     }
 
     private fun initRootDrawerLayout() {
@@ -136,8 +139,9 @@ class BookDetailsActivity : AppCompatActivity(),
         val containerFragment = BookDetailsContainerFragment()
         val mFragmentManager = supportFragmentManager
 
-        containerFragment.setNumberRatingTabNameReview(selectedBook.numberRating)
+        containerFragment.setNumberRatingTabNameReview(mSelectedBook.numberRating)
         containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis le fragment
+        containerFragment.setBookInfosProvider(this)
         mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         val mFragmentTransaction = mFragmentManager.beginTransaction()
         mFragmentTransaction.replace(R.id.fragment_container_book_details, containerFragment).commit()

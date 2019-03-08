@@ -90,15 +90,52 @@
         <item>19.99</item>
     </string-array>
 
-    <string-array name="populars_species">
-        <item>Fiction</item>
-        <item>Drama</item>
-        <item>Policy</item>
-        <item>Family</item>
-        <item>Children</item>
+    <integer-array name="lengths_books">
+        <item>585</item>
+        <item>336</item>
+        <item>1025</item>
+        <item>122</item>
+        <item>3567</item>
+        <item>967</item>
+    </integer-array>
+
+    <string-array name="filesizes_books">
+        <item>1.5MB</item>
+        <item>2MB</item>
+        <item>8MB</item>
+        <item>0.91MB</item>
+        <item>3.2MB</item>
     </string-array>
 
-    <string-array name="sections">
+    <string-array name="countries_books">
+        <item>Iraq</item>
+        <item>Palestine</item>
+        <item>Syria</item>
+        <item>Lebanon</item>
+        <item>Kuwait</item>
+    </string-array>
+
+    <string-array name="datepublications_books">
+        <item>March 2018</item>
+        <item>August 2002</item>
+        <item>July 1997</item>
+        <item>January 2019</item>
+        <item>September 1999</item>
+        <item>December 2006</item>
+    </string-array>
+
+    <string-array name="publishers_books">
+        <item>New House</item>
+        <item>The Publisher House</item>
+        <item>Arkham House</item>
+        <item>Arbor</item>
+        <item>Dundurn Group</item>
+        <item>Grafton</item>
+        <item>Liberty Fund</item>
+        <item>Sourcebooks</item>
+    </string-array>
+
+    <string-array name="genres">
         <item>Art</item>
         <item>Business</item>
         <item>Computing</item>
@@ -122,5 +159,55 @@
         <item>Science &amp; Mathematics</item>
         <item>Counseling</item>
     </string-array>
+
+    <string-array name="genres_numbers">
+        <item>12</item>
+        <item>675</item>
+        <item>44</item>
+        <item>89</item>
+        <item>987</item>
+        <item>332</item>
+        <item>978</item>
+        <item>21</item>
+        <item>14</item>
+        <item>67</item>
+        <item>126</item>
+        <item>541</item>
+        <item>23</item>
+        <item>87</item>
+        <item>9</item>
+        <item>278</item>
+        <item>781</item>
+        <item>119</item>
+        <item>96</item>
+        <item>54</item>
+        <item>223</item>
+        <item>76</item>
+    </string-array>
+
+    <integer-array name="genres_popular">
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
 
 </resources>

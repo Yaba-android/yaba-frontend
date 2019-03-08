@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import android.os.SystemClock
 import android.support.design.widget.NavigationView
@@ -21,16 +20,15 @@ import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.DiscreteScrollViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.GModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.GModelRandomFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Popular_species.Horizontal.PSRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Section.Vertical.SRecyclerViewBottomOffsetDecoration
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Horizontal.GPSRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Vertical.GSRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Genre.Vertical.BottomOffsetDecoration
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
-import kotlinx.android.synthetic.main.change_activity_footer.*
 
 class RecommendedActivity : AppCompatActivity(),
     IBookClickCallback,
@@ -75,11 +73,11 @@ class RecommendedActivity : AppCompatActivity(),
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
-    override fun sectionEventButtonClicked(section: SModel) {
+    override fun sectionEventButtonClicked(section: GModel) {
         // Open section page
     }
 
-    override fun popularSpeciesEventButtonClicked(pspecies: PSModel) {
+    override fun popularSpeciesEventButtonClicked(pspecies: GModel) {
         val intent = Intent(this, PopularSpeciesActivity::class.java)
 
         intent.putExtra("SelectedPopularSpecies", pspecies)
@@ -220,15 +218,14 @@ class RecommendedActivity : AppCompatActivity(),
 
     @SuppressLint("SetTextI18n")
     private fun initPopularSpeciesHorizontalRecycler() {
-        val hmodels = arrayListOf<PSModel>()
-
-        mockDatasetPopularSpeciesRecyclerView(hmodels)
-
+        val popularList = GModelRandomFactory(this).getPopularGenres()
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_genre)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val horizontalRecyclerView = findViewById<RecyclerView>(R.id.genre_horizontal_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val adapterGenreHorizontal = PSRecyclerViewAdapter(this, hmodels, this)
+        val adapterGenreHorizontal =
+            GPSRecyclerViewAdapter(this, popularList, this)
+
         title.text = "Popular species"
         horizontalRecyclerView.setHasFixedSize(true)
         horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -283,19 +280,17 @@ class RecommendedActivity : AppCompatActivity(),
     }
 
     private fun initSectionNavVerticalRecycler() {
-        val hmodels = arrayListOf<SModel>()
-
-        mockDatasetSectionNavRecyclerView(hmodels)
-
+        val genreList = GModelRandomFactory(this).getAllGenres()
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_recyclerview_section)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_section)
-        val adapterBookVertical = SRecyclerViewAdapter(this, hmodels, this)
+        val adapterBookVertical =
+            GSRecyclerViewAdapter(this, genreList, this)
 
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(
-            SRecyclerViewBottomOffsetDecoration(this, R.dimen.bottom_section_vertical_recycler_view)
+            BottomOffsetDecoration(this, R.dimen.bottom_section_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
@@ -313,14 +308,6 @@ class RecommendedActivity : AppCompatActivity(),
         mDataset.add(ListBModel("Recommended Authors", factory.getRandomsInstances(4)))
     }
 
-    private fun mockDatasetPopularSpeciesRecyclerView(hmodels : ArrayList<PSModel>) {
-        val popularSpeciesArray = resources.getStringArray(R.array.populars_species)
-
-        for (index in 0..(popularSpeciesArray.size - 1)) {
-            hmodels.add(PSModel(popularSpeciesArray[index]))
-        }
-    }
-
     private fun mockDatasetSecondRecyclerView(mDataset: ArrayList<ListBModel>) {
         val factory = BModelRandomFactory(this)
 
@@ -332,14 +319,6 @@ class RecommendedActivity : AppCompatActivity(),
 
         for (index in 0..1) {
             mDataset.add(NoTitleListBModel(factory.getRandomsInstances(6)))
-        }
-    }
-
-    private fun mockDatasetSectionNavRecyclerView(hmodels: ArrayList<SModel>) {
-        val sectionArray = resources.getStringArray(R.array.sections)
-
-        for (index in 0..(sectionArray.size - 1)) {
-            hmodels.add(SModel(sectionArray[index], (9..500).random()))
         }
     }
 }
