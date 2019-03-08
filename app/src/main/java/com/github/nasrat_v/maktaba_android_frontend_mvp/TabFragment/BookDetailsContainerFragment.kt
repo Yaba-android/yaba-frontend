@@ -11,7 +11,6 @@ import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.BookDetailsActivity
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookInfosProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback

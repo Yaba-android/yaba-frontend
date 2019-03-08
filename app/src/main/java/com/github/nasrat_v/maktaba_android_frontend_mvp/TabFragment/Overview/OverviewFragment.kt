@@ -9,11 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BottomOffsetDecoration
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
@@ -50,7 +50,10 @@ class OverviewFragment : Fragment() {
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(container.context, R.dimen.bottom_book_vertical_recycler_view)
+            BottomOffsetDecoration(
+                container.context,
+                R.dimen.bottom_book_vertical_recycler_view
+            )
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
@@ -76,7 +79,7 @@ class OverviewFragment : Fragment() {
     }
 
     private fun mockDataset(container: ViewGroup) {
-        val factory = BModelRandomFactory(container.context)
+        val factory = BModelRandomProvider(container.context)
 
         mDataset.add(ListBModel("More Books from this Authors", factory.getRandomsInstances(3)))
     }

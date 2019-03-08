@@ -19,16 +19,32 @@
 
     <style name="RatingBar" parent="Widget.AppCompat.RatingBar">
         <item name="android:progressDrawable">@drawable/custom_rating_bar</item>
-        <item name="android:minHeight">10dip</item>
         <item name="android:maxHeight">10dip</item>
+        <item name="android:minHeight">10dip</item>
         <item name="colorControlNormal">@color/colorStarNotRated</item>
         <item name="colorControlActivated">@color/colorStarRated</item>
     </style>
 
     <style name="RatingBarBig" parent="Widget.AppCompat.RatingBar">
         <item name="android:progressDrawable">@drawable/custom_rating_bar_big</item>
-        <item name="android:minHeight">12dip</item>
         <item name="android:maxHeight">12dip</item>
+        <item name="android:minHeight">12dip</item>
+        <item name="colorControlNormal">@color/colorStarNotRated</item>
+        <item name="colorControlActivated">@color/colorStarRated</item>
+    </style>
+
+    <style name="RatingBarBookDetails" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_rating_bar_book_details</item>
+        <item name="android:maxHeight">13dip</item>
+        <item name="android:minHeight">13dip</item>
+        <item name="colorControlNormal">@color/colorStarNotRated</item>
+        <item name="colorControlActivated">@color/colorStarRated</item>
+    </style>
+
+    <style name="RatingBarReview" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_rating_bar_review</item>
+        <item name="android:maxHeight">14dip</item>
+        <item name="android:minHeight">14dip</item>
         <item name="colorControlNormal">@color/colorStarNotRated</item>
         <item name="colorControlActivated">@color/colorStarRated</item>
     </style>

@@ -63,7 +63,7 @@
                 android:textSize="12sp"
                 android:textAllCaps="false"
                 android:textColor="@color/colorTextBlack"
-                android:background="@color/colorReadMoreButtonGrey"
+                android:background="@color/colorBookDetailsButtonGrey"
                 android:drawableStart="@drawable/plus"/>
 
     </RelativeLayout>

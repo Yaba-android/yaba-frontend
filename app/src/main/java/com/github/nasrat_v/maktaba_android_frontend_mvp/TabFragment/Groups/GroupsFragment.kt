@@ -7,15 +7,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.LinearLayout
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BigNoTextListBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.NoTitleListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.BigNoTextListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class GroupsFragment : Fragment() {
@@ -59,7 +56,7 @@ class GroupsFragment : Fragment() {
     }
 
     private fun mockDatasetVerticalRecyclerView(container: ViewGroup, mDataset: ArrayList<NoTitleListBModel>) {
-        val factory = BModelRandomFactory(container.context)
+        val factory = BModelRandomProvider(container.context)
 
         for (index in 0..7) {
             mDataset.add(NoTitleListBModel(factory.getRandomsInstances(2)))

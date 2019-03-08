@@ -8,7 +8,7 @@
     <color name="colorStarRated">#FFC400</color>
     <color name="colorStarNotRated">#C6C6C6</color>
     <color name="colorTextBlack">#1F1F1F</color>
-    <color name="colorReviewTextBlack">#0C0015</color>
+    <color name="colorReviewTextBlack">#FF020629</color>
 
     <color name="colorTextGrey">#FF636F7B</color>
     <color name="colorNavGrey">#DBDBDB</color>
@@ -18,7 +18,7 @@
     <color name="colorFragmentGrey">#FDFDFD</color>
     <color name="colorButtonFooterGrey">#EAEAEA</color>
     <color name="colorSeparatorViewGrey">#FFDCDFE1</color>
-    <color name="colorReadMoreButtonGrey">#FFF2F2F2</color>
+    <color name="colorBookDetailsButtonGrey">#FFF2F2F2</color>
 
     <color name="colorTextBlueHolo">#5FDCE6</color>
     <color name="colorButtonDontFindBlueHolo">#FF60E3D9</color>

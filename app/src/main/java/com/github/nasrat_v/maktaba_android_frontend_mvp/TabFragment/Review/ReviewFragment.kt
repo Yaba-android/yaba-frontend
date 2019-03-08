@@ -8,20 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Horizontal.BModelRandomFactory
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.ListBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Book.Vertical.BottomOffsetDecoration
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Review.Vertical.RModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Review.Vertical.RRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModelProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RRecyclerViewAdapter
 
 class ReviewFragment : Fragment() {
 
-    private var mDatasetReview = arrayListOf<RModel>()
-    private var mDatasetBook = arrayListOf<ListBModel>()
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mSelectedBook: BModel
 
@@ -29,9 +28,7 @@ class ReviewFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_review, container, false)
 
-        mockDatasetReview()
         initReviewVerticalRecyclerView(rootView, container!!)
-        mockDatasetBook(container)
         initBookVerticalRecyclerView(rootView, container)
         return rootView
     }
@@ -45,43 +42,43 @@ class ReviewFragment : Fragment() {
     }
 
     private fun initReviewVerticalRecyclerView(view: View, container: ViewGroup) {
-        val adapterReviewVertical = RRecyclerViewAdapter(container.context, mDatasetReview)
+        val mDataset = RModelProvider(container.context).getAllReviews()
+        val adapterReviewVertical = RRecyclerViewAdapter(container.context, mDataset)
         val reviewVerticalRecyclerView = view.findViewById<RecyclerView>(R.id.review_vertical_recyclerview)
 
         reviewVerticalRecyclerView.setHasFixedSize(true)
         reviewVerticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         reviewVerticalRecyclerView.adapter = adapterReviewVertical
+        reviewVerticalRecyclerView.addItemDecoration(
+            BottomOffsetDecoration(container.context, R.dimen.bottom_review_vertical_recycler_view)
+        )
     }
 
     private fun initBookVerticalRecyclerView(view: View, container: ViewGroup) {
+        val mDataset = arrayListOf<ListBModel>()
+
+        mockDatasetBook(container, mDataset)
+
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_review)
-        val adapterBookVertical = ListBRecyclerViewAdapter(container.context, mDatasetBook, mBookClickCallback)
+        val adapterBookVertical = ListBRecyclerViewAdapter(container.context, mDataset, mBookClickCallback)
         val bookVerticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
 
         bookVerticalRecyclerView.setHasFixedSize(true)
         bookVerticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         bookVerticalRecyclerView.adapter = adapterBookVertical
         bookVerticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(container.context, R.dimen.bottom_book_vertical_recycler_view)
+            BottomOffsetDecoration(
+                container.context,
+                R.dimen.bottom_book_vertical_recycler_view
+            )
         )
         bookVerticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
     }
 
-    private fun mockDatasetReview() {
-        for (i in 1..3) {
-            mDatasetReview.add(
-                com.github.nasrat_v.maktaba_android_frontend_mvp.Review.Vertical.RModel(
-                    "Vlad Poutin", "This book was really cool, " +
-                            "and I would definitely read more by this author"
-                )
-            )
-        }
-    }
+    private fun mockDatasetBook(container: ViewGroup, mDataset: ArrayList<ListBModel>) {
+        val factory = BModelRandomProvider(container.context)
 
-    private fun mockDatasetBook(container: ViewGroup) {
-        val factory = BModelRandomFactory(container.context)
-
-        mDatasetBook.add(ListBModel("More Books from this Authors", factory.getRandomsInstances(3)))
+        mDataset.add(ListBModel("More Books from this Authors", factory.getRandomsInstances(3)))
     }
 }

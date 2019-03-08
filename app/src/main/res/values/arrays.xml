@@ -68,8 +68,6 @@
     </string-array>
 
     <string-array name="ratings_books">
-        <item>2f</item>
-        <item>2.5f</item>
         <item>3f</item>
         <item>3.5f</item>
         <item>4f</item>
@@ -209,5 +207,31 @@
         <item>0</item>
         <item>0</item>
     </integer-array>
+
+    <integer-array name="images_reviews">
+        <item>@drawable/image_review2</item>
+        <item>@drawable/image_review1</item>
+    </integer-array>
+
+    <string-array name="authors_reviews">
+        <item>Jane Doe</item>
+        <item>Helen Marnie</item>
+    </string-array>
+
+    <string-array name="comments_reviews">
+        <item>Epic in every sense of that word: sweeping, mythic, over-the-top,
+            colossal and dizzyingly complex… Violent, darkly comic, exhilarating and exhausting -
+            a testament to James’ vaulting ambition and prodigious talent.
+        </item>
+        <item>If this first volume is any indication, James’ trilogy could become one of the most
+            talked-about and influential adventure epics since George R.R. Martin’s A Song of Ice
+            and Fire was transformed into Game of Thrones.
+        </item>
+    </string-array>
+
+    <string-array name="ratings_reviews">
+        <item>5f</item>
+        <item>4.5f</item>
+    </string-array>
 
 </resources>
