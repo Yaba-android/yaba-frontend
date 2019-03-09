@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.util.Log
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.LibraryActivity
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.RecommendedActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
@@ -23,6 +23,10 @@ class LibraryContainerFragment : Fragment() {
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
     private val mTabNamesList = arrayListOf<String>()
+    private var mFirstInitStateList = arrayListOf<Boolean>()
+    private val downloadFrag = DownloadFragment()
+    private val groupsFrag = GroupsFragment()
+    private val allBooksFrag = AllBooksFragment()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -38,9 +42,10 @@ class LibraryContainerFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mTabNamesList.add("Download")
-        mTabNamesList.add("Groups")
-        mTabNamesList.add("All Books")
+
+        initTabFragment()
+        initTabNameList()
+        initFirstInitStateList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,24 +61,49 @@ class LibraryContainerFragment : Fragment() {
         mBookClickCallback = bookClickCallback
     }
 
+    private fun initTabFragment() {
+        downloadFrag.setBookClickCallback(mBookClickCallback)
+        groupsFrag.setBookClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
+        allBooksFrag.setBookClickCallback(mBookClickCallback)
+    }
+
+    private fun initTabNameList() {
+        mTabNamesList.add("Download")
+        mTabNamesList.add("Groups")
+        mTabNamesList.add("All Books")
+    }
+
+    private fun initFirstInitStateList() {
+        for (index in 0..(mTabNamesList.size - 1)) {
+            mFirstInitStateList.add(true)
+        }
+    }
+
+    private fun setFirstInitStateList(firstInitState: Boolean, index: Int) {
+        mFirstInitStateList[index] = firstInitState
+    }
+
     internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>)
         : FragmentStatePagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment? {
             when (position) {
                 0 -> {
-                    val downloadFrag = DownloadFragment()
-                    downloadFrag.setBookClickCallback(mBookClickCallback)
+                    Log.i("onCreate", "download tabbed")
+                    downloadFrag.setFirstInitState(mFirstInitStateList[position])
+                    setFirstInitStateList(false, position)
                     return downloadFrag
                 }
                 1 ->  {
-                    val groupsFrag = GroupsFragment()
-                    groupsFrag.setBookClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
+                    Log.i("onCreate", "group tabbed")
+                    downloadFrag.setFirstInitState(mFirstInitStateList[position])
+                    setFirstInitStateList(false, position)
                     return groupsFrag
                 }
                 2 ->  {
-                    val allBooksFrag = AllBooksFragment()
-                    allBooksFrag.setBookClickCallback(mBookClickCallback)
+                    Log.i("onCreate", "allbook tabbed")
+                    downloadFrag.setFirstInitState(mFirstInitStateList[position])
+                    setFirstInitStateList(false, position)
                     return allBooksFrag
                 }
             }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,12 +19,17 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 class AllBooksFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
+    private val mDataset = arrayListOf<NoTitleListBModel>()
+    private var mFirstInit = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_allbooks, container, false)
 
+        if (mFirstInit)
+            mockDatasetVerticalRecyclerView(container!!, mDataset)
         initVerticalRecyclerView(rootView, container!!)
+        Log.i("onCreate", "allbooks")
         return rootView
     }
 
@@ -35,11 +41,11 @@ class AllBooksFragment : Fragment() {
         mBookClickCallback = bookClickCallback
     }
 
+    fun setFirstInitState(firstInit: Boolean) {
+        mFirstInit = firstInit
+    }
+
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
-        val mDataset = arrayListOf<NoTitleListBModel>()
-
-        mockDatasetVerticalRecyclerView(container, mDataset)
-
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
         val adapterBookVertical = BigNoTextListBRecyclerViewAdapter(container.context, mDataset, mBookClickCallback)
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
@@ -54,7 +60,7 @@ class AllBooksFragment : Fragment() {
         linearLayout.requestFocus()
     }
 
-        private fun mockDatasetVerticalRecyclerView(container: ViewGroup, mDataset: ArrayList<NoTitleListBModel>) {
+    private fun mockDatasetVerticalRecyclerView(container: ViewGroup, mDataset: ArrayList<NoTitleListBModel>) {
         val factory = BModelRandomProvider(container.context)
 
         for (index in 0..7) {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
+import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
@@ -41,6 +42,7 @@ class LibraryActivity : AppCompatActivity(),
         //setListenerButtonFolioReader()
         initRootDrawerLayout()
         if (savedInstanceState == null) {
+            Log.i("onCreate", "library init fragmentManager")
             initFragmentManager()
         }
     }
