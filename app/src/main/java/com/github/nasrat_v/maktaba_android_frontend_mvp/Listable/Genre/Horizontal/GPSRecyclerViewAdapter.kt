@@ -19,10 +19,10 @@ class GPSRecyclerViewAdapter(private var context: Context, private var list: Arr
     private var mLastClickTime: Long = 0
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView = LayoutInflater.from(container.context).inflate(R.layout.horizontal_recyclerview_store_popular_species, container, false)
-        return ViewHolder(
-            rootView
+        val rootView = LayoutInflater.from(container.context).inflate(
+            R.layout.horizontal_recyclerview_popular_genre, container, false
         )
+        return ViewHolder(rootView)
     }
 
     override fun getItemCount(): Int {

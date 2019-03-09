@@ -10,11 +10,17 @@
     <dimen name="bottom_browse_book_vertical_recycler_view">10dp</dimen>
     <dimen name="bottom_section_vertical_recycler_view">35dp</dimen>
     <dimen name="bottom_all_books_vertical_recycler_view">20dp</dimen>
-    <dimen name="margin_bottom_between_recyclerview_recommended">20dp</dimen>
-    <dimen name="big_margin_bottom_between_recyclerview_recommended">50dp</dimen>
-    <dimen name="small_book_vertical_recycler_view">3dp</dimen>
+    <dimen name="bottom_small_book_vertical_recycler_view">3dp</dimen>
+
     <dimen name="left_big_book_horizontal_recycler_view">-10dp</dimen>
     <dimen name="left_book_horizontal_recycler_view">5dp</dimen>
+    <dimen name="left_popular_genre_horizontal_recycler_view">-10dp</dimen>
+    <dimen name="right_popular_genre_horizontal_recycler_view">-5dp</dimen>
+
+    <dimen name="margin_bottom_between_recyclerview_recommended">10dp</dimen>
+    <dimen name="mid_margin_bottom_between_recyclerview_recommended">30dp</dimen>
+    <dimen name="big_margin_bottom_between_recyclerview_recommended">60dp</dimen>
+    <dimen name="end_padding_recycler_view_recommended">10dp</dimen>
 
     <dimen name="title_recyclerview_height">40dp</dimen>
     <dimen name="margin_start_end_vertical_review">18dp</dimen>
@@ -32,4 +38,5 @@
     <dimen name="size_shadow_book">4dp</dimen>
     <dimen name="size_shadow_big_book">6dp</dimen>
     <dimen name="size_shadow_book_details_image">8dp</dimen>
+    <dimen name="size_shadow_popular_genre">6dp</dimen>
 </resources>

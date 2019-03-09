@@ -26,6 +26,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAd
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Horizontal.GPSRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.GSRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.BottomOffsetDecoration
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
@@ -229,9 +231,12 @@ class RecommendedActivity : AppCompatActivity(),
         horizontalRecyclerView.setHasFixedSize(true)
         horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         horizontalRecyclerView.adapter = adapterGenreHorizontal
-        /*verticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
-        )*/
+        horizontalRecyclerView.addItemDecoration(
+            LeftOffsetDecoration(this, R.dimen.left_popular_genre_horizontal_recycler_view)
+        )
+        horizontalRecyclerView.addItemDecoration(
+            RightOffsetDecoration(this, R.dimen.right_popular_genre_horizontal_recycler_view)
+        )
         horizontalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
     }
@@ -277,7 +282,7 @@ class RecommendedActivity : AppCompatActivity(),
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(
                 this,
-                R.dimen.small_book_vertical_recycler_view
+                R.dimen.bottom_small_book_vertical_recycler_view
             )
         )
         verticalRecyclerView.isFocusable = false
