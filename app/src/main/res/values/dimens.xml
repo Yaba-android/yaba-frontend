@@ -41,4 +41,8 @@
     <dimen name="size_shadow_big_book">6dp</dimen>
     <dimen name="size_shadow_book_details_image">8dp</dimen>
     <dimen name="size_shadow_popular_genre">6dp</dimen>
+
+    <dimen name="button_view_all_sort_width">60dp</dimen>
+    <dimen name="button_view_all_sort_height">25dp</dimen>
+
 </resources>
