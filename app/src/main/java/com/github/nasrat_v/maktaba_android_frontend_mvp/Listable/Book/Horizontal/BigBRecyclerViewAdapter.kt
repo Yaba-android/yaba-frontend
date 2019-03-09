@@ -17,7 +17,6 @@ class BigBRecyclerViewAdapter(private var context: Context, private var list: Ar
     : RecyclerView.Adapter<BigBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
-    private var mLastClickTime: Long = 0
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
@@ -41,11 +40,7 @@ class BigBRecyclerViewAdapter(private var context: Context, private var list: Ar
         holder.mPrice.text = ("$" + model.price)
         holder.itemView.setOnClickListener {
             Toast.makeText(context, model.title, Toast.LENGTH_SHORT).show()
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
-                // envoyer le bon livre grace à position
-                mBookClickCallback.bookEventButtonClicked(list[position])
-            }
-            mLastClickTime = SystemClock.elapsedRealtime();
+            mBookClickCallback.bookEventButtonClicked(list[position])
         }
     }
 

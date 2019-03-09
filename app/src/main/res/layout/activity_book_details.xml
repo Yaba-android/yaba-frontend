@@ -60,4 +60,14 @@
 
     </android.support.design.widget.NavigationView>
 
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom">
+
+        <include layout="@layout/change_activity_footer"/>
+
+    </LinearLayout>
+
 </android.support.v4.widget.DrawerLayout>

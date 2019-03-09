@@ -3,6 +3,7 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
@@ -37,6 +38,9 @@ class BookDetailsActivity : AppCompatActivity(),
         setBookDetailsAttributes()
 
         setListenerButtonCloseProfile()
+        setListenerBrowseButtonFooter()
+        setListenerRecommendedButtonFooter()
+        setListenerLibraryButtonFooter()
 
         initRootDrawerLayout()
         if (savedInstanceState == null) {
@@ -65,10 +69,7 @@ class BookDetailsActivity : AppCompatActivity(),
 
     override fun finish() {
         super.finish()
-        overridePendingTransition(
-            R.anim.slide_in_right,
-            R.anim.slide_out_left
-        )
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     override fun bookEventButtonClicked(book: BModel) {
@@ -99,6 +100,38 @@ class BookDetailsActivity : AppCompatActivity(),
 
         buttonCloseProfile.setOnClickListener {
             onBackPressed()
+        }
+    }
+
+    private fun setListenerRecommendedButtonFooter() {
+        val buttonBrowse = findViewById<Button>(R.id.button_recommended_footer)
+
+        buttonBrowse.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun setListenerBrowseButtonFooter() {
+        val intent = Intent(this, BrowseActivity::class.java)
+        val button = findViewById<Button>(R.id.button_browse_footer)
+
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        button.setOnClickListener {
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+            finish()
+        }
+    }
+
+    private fun setListenerLibraryButtonFooter() {
+        val intent = Intent(this, LibraryActivity::class.java)
+        val button = findViewById<Button>(R.id.button_library_footer)
+
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        button.setOnClickListener {
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            finish()
         }
     }
 

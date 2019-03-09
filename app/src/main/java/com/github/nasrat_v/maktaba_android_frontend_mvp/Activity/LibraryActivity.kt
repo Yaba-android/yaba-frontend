@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
@@ -27,7 +28,6 @@ class LibraryActivity : AppCompatActivity(),
     IBookClickCallback,
     ITabLayoutSetupCallback {
 
-    private var mLastClickTime: Long = 0
     private lateinit var mDrawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,17 @@ class LibraryActivity : AppCompatActivity(),
         if (mDrawerLayout.isDrawerOpen(Gravity.START))
             mDrawerLayout.closeDrawer(Gravity.START)
         else
-            super.onBackPressed()
+            returnToHome()
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     override fun bookEventButtonClicked(book: BModel) {
@@ -69,6 +79,15 @@ class LibraryActivity : AppCompatActivity(),
         customListener.setListenerTabLayout(tabLayout)
     }
 
+    private fun returnToHome() {
+        val intent = Intent(this, RecommendedActivity::class.java)
+
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        intent.putExtra("BrowseOrLibraryCall", 1)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
     private fun setListenerButtonCloseProfile() {
         val nav = findViewById<NavigationView>(R.id.nav_view_profile)
         val header = nav.getHeaderView(0)
@@ -79,50 +98,22 @@ class LibraryActivity : AppCompatActivity(),
         }
     }
 
-    private fun setListenerBrowseButtonFooter() {
-        val intent = Intent(this, BrowseActivity::class.java)
-        val buttonBrowse = findViewById<Button>(R.id.button_browse_footer)
-        val image = findViewById<ImageView>(R.id.image_browse_footer)
+    private fun setListenerRecommendedButtonFooter() {
+        val button = findViewById<Button>(R.id.button_recommended_footer)
 
-        buttonBrowse.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-                finish()
-            }
-            mLastClickTime = SystemClock.elapsedRealtime();
-        }
-        image.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-                finish()
-            }
-            mLastClickTime = SystemClock.elapsedRealtime();
+        button.setOnClickListener {
+            returnToHome()
         }
     }
 
-    private fun setListenerRecommendedButtonFooter() {
-        val intent = Intent(this, RecommendedActivity::class.java)
-        val buttonRecommended = findViewById<Button>(R.id.button_recommended_footer)
-        val image = findViewById<ImageView>(R.id.image_recommended_footer)
+    private fun setListenerBrowseButtonFooter() {
+        val intent = Intent(this, BrowseActivity::class.java)
+        val buttonBrowse = findViewById<Button>(R.id.button_browse_footer)
 
-
-        buttonRecommended.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-                finish()
-            }
-            mLastClickTime = SystemClock.elapsedRealtime();
-        }
-        image.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 200) { // Prevent double click
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-                finish()
-            }
-            mLastClickTime = SystemClock.elapsedRealtime();
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        buttonBrowse.setOnClickListener {
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
     }
 

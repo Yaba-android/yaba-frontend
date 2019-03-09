@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
@@ -49,6 +50,13 @@ class PopularSpeciesActivity : AppCompatActivity(),
         initVerticalRecycler()
     }
 
+    override fun onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(Gravity.START))
+            mDrawerLayout.closeDrawer(Gravity.START)
+        else
+            super.onBackPressed()
+    }
+
     override fun bookEventButtonClicked(book: BModel) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
@@ -86,16 +94,10 @@ class PopularSpeciesActivity : AppCompatActivity(),
     }
 
     private fun setListenerRecommendedButtonFooter() {
-        val intent = Intent(this, RecommendedActivity::class.java)
         val buttonBrowse = findViewById<Button>(R.id.button_recommended_footer)
 
         buttonBrowse.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-                finish()
-            }
-            mLastClickTime = SystemClock.elapsedRealtime();
+            finish()
         }
     }
 
@@ -104,12 +106,10 @@ class PopularSpeciesActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_browse_footer)
 
         button.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-                finish()
-            }
-            mLastClickTime = SystemClock.elapsedRealtime();
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+            finish()
         }
     }
 
@@ -118,12 +118,10 @@ class PopularSpeciesActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-                finish()
-            }
-            mLastClickTime = SystemClock.elapsedRealtime();
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            finish()
         }
     }
 

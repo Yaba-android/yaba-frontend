@@ -67,10 +67,7 @@ class ReviewFragment : Fragment() {
         bookVerticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         bookVerticalRecyclerView.adapter = adapterBookVertical
         bookVerticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(
-                container.context,
-                R.dimen.bottom_book_vertical_recycler_view
-            )
+            BottomOffsetDecoration(container.context, R.dimen.bottom_book_vertical_recycler_view)
         )
         bookVerticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
