@@ -5,12 +5,14 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
 
+    <dimen name="bottom_small_book_vertical_recycler_view">3dp</dimen>
     <dimen name="bottom_book_vertical_recycler_view">15dp</dimen>
+    <dimen name="bottom_big_book_vertical_recycler_view">-15dp</dimen>
+
     <dimen name="bottom_review_vertical_recycler_view">15dp</dimen>
     <dimen name="bottom_browse_book_vertical_recycler_view">10dp</dimen>
     <dimen name="bottom_section_vertical_recycler_view">35dp</dimen>
     <dimen name="bottom_all_books_vertical_recycler_view">20dp</dimen>
-    <dimen name="bottom_small_book_vertical_recycler_view">3dp</dimen>
 
     <dimen name="left_big_book_horizontal_recycler_view">-10dp</dimen>
     <dimen name="left_book_horizontal_recycler_view">5dp</dimen>

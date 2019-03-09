@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BigBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class BigListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
@@ -36,9 +37,9 @@ class BigListBRecyclerViewAdapter(private var context: Context, private var list
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
-        /*holder.horizontalRecyclerView.addItemDecoration(
+        holder.horizontalRecyclerView.addItemDecoration(
             LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
-        )*/
+        )
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

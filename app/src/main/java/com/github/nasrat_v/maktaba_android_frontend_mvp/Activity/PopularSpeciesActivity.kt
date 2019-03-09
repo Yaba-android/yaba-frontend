@@ -21,6 +21,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.BigListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
@@ -144,9 +145,9 @@ class PopularSpeciesActivity : AppCompatActivity(),
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
-        /*verticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
-        )*/
+        verticalRecyclerView.addItemDecoration(
+            BottomOffsetDecoration(this, R.dimen.bottom_big_book_vertical_recycler_view)
+        )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
     }

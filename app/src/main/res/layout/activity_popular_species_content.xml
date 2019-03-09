@@ -12,7 +12,7 @@
             android:layout_marginTop="?attr/actionBarSize"
             android:orientation="vertical"
             android:background="@color/colorCarouselGrey"
-            android:paddingTop="20dp"
+            android:paddingTop="30dp"
             android:paddingBottom="50dp">
 
         <include
@@ -27,7 +27,6 @@
                 android:layout_height="wrap_content"
                 android:layoutDirection="rtl"
                 android:layout_gravity="center"
-                android:paddingStart="5dp"
                 tools:ignore="RtlSymmetry"/>
 
     </LinearLayout>

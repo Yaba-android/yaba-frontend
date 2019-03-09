@@ -23,9 +23,9 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Horizontal.GPSRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.GSRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.yarolegovich.discretescrollview.DiscreteScrollView
@@ -254,10 +254,7 @@ class RecommendedActivity : AppCompatActivity(),
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(
-                this,
-                R.dimen.bottom_book_vertical_recycler_view
-            )
+            BottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
@@ -280,10 +277,7 @@ class RecommendedActivity : AppCompatActivity(),
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(
-                this,
-                R.dimen.bottom_small_book_vertical_recycler_view
-            )
+            BottomOffsetDecoration(this, R.dimen.bottom_small_book_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
@@ -293,21 +287,13 @@ class RecommendedActivity : AppCompatActivity(),
         val genreList = GModelProvider(this).getAllGenres()
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_recyclerview_section)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_section)
-        val adapterBookVertical =
-            GSRecyclerViewAdapter(
-                this,
-                genreList,
-                this
-            )
+        val adapterBookVertical = GSRecyclerViewAdapter(this, genreList, this)
 
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(
-                this,
-                R.dimen.bottom_section_vertical_recycler_view
-            )
+            BottomOffsetDecoration(this, R.dimen.bottom_section_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
