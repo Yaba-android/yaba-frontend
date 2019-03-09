@@ -2,8 +2,8 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="134dp"
-        android:layout_height="320dp"
+        android:layout_width="wrap_content"
+        android:layout_height="360dp"
         android:layout_margin="10dp"
         android:textDirection="rtl"
         android:layoutDirection="rtl"
@@ -11,64 +11,72 @@
 
     <LinearLayout
             android:id="@+id/horizontal_image_layout"
-            android:layout_width="134dp"
-            android:layout_height="214dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <include
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                layout="@layout/horizontal_recyclerview_big_no_text_book"/>
+                layout="@layout/horizontal_recyclerview_big_book_image"/>
 
     </LinearLayout>
 
-    <TextView
-            android:id="@+id/horizontal_title"
+    <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/horizontal_image_layout"
-            android:text="@string/title"
-            android:textColor="@color/colorTextBlack"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:paddingBottom="3dp"/>
+            android:layout_marginStart="@dimen/size_shadow_big_book"
+            android:layout_marginEnd="@dimen/size_shadow_big_book"
+            android:layout_below="@id/horizontal_image_layout">
 
-    <TextView
-            android:id="@+id/horizontal_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/horizontal_title"
-            android:text="@string/author"
-            android:textColor="@color/colorTextGrey"
-            android:textSize="12sp"
-            android:paddingBottom="6dp"/>
+        <TextView
+                android:id="@+id/horizontal_title"
+                android:layout_width="@dimen/width_image_big_book"
+                android:layout_height="wrap_content"
+                android:text="@string/title"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:paddingBottom="3dp"/>
 
-    <RatingBar
-            android:id="@+id/horizontal_rating_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/horizontal_author"
-            android:paddingBottom="6dp"
-            style="@style/RatingBarBig"/>
+        <TextView
+                android:id="@+id/horizontal_author"
+                android:layout_width="@dimen/width_image_big_book"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/horizontal_title"
+                android:text="@string/author"
+                android:textColor="@color/colorTextGrey"
+                android:textSize="12sp"
+                android:paddingBottom="6dp"/>
 
-    <TextView
-            android:id="@+id/horizontal_number_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/horizontal_author"
-            android:layout_toEndOf="@+id/horizontal_rating_bar"
-            android:text="@string/number_rating"
-            android:textColor="@color/colorTextBlack"
-            android:textSize="10sp"
-            android:paddingStart="2dp"
-            tools:ignore="RtlSymmetry,SmallSp"/>
+        <RatingBar
+                android:id="@+id/horizontal_rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/horizontal_author"
+                android:paddingBottom="6dp"
+                style="@style/RatingBarBig"/>
 
-    <TextView
-            android:id="@+id/horizontal_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/horizontal_rating_bar"
-            android:text="@string/price"
-            android:textColor="@color/colorTextBlack"
-            android:textSize="12sp"/>
+        <TextView
+                android:id="@+id/horizontal_number_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/horizontal_author"
+                android:layout_toEndOf="@+id/horizontal_rating_bar"
+                android:text="@string/number_rating"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="10sp"
+                android:paddingStart="2dp"
+                tools:ignore="RtlSymmetry,SmallSp"/>
+
+        <TextView
+                android:id="@+id/horizontal_price"
+                android:layout_width="@dimen/width_image_big_book"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/horizontal_rating_bar"
+                android:text="@string/price"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="12sp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

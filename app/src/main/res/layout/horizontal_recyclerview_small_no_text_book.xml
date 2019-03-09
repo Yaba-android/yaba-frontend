@@ -1,54 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="68dp"
-        android:layout_height="114dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:clipToPadding="false"
-        android:clipChildren="false"
-        android:orientation="vertical">
+        android:layoutDirection="rtl"
+        android:background="@android:color/transparent">
 
-    <RelativeLayout
-            android:layout_width="68dp"
-            android:layout_height="104dp"
-            android:clipToPadding="false"
-            android:clipChildren="false"
-            android:layout_centerHorizontal="true">
-
-        <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:elevation="5dp"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="0.0px"
-                android:clipToPadding="false"
-                android:clipChildren="false"
-                card_view:cardElevation="7dp"
-                card_view:cardPreventCornerOverlap="false">
-
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@color/colorCarouselGrey">
-
-                <ImageView
-                        android:id="@+id/horizontal_small_image"
-                        android:src="@drawable/book1"
-                        android:scaleType="centerCrop"
-                        android:layout_width="68dp"
-                        android:layout_height="104dp"
-                        android:layout_marginTop="2dp"
-                        android:adjustViewBounds="true"
-                        android:gravity="center_horizontal"
-                        android:layout_centerVertical="true"/>
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
-
-    </RelativeLayout>
+    <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/horizontal_recyclerview_small_book_image"/>
 
 </RelativeLayout>

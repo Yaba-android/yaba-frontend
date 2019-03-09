@@ -40,12 +40,12 @@ class ListBRecyclerViewAdapter(private var context: Context, private var list: A
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
-        holder.horizontalRecyclerView.addItemDecoration(
+        /*holder.horizontalRecyclerView.addItemDecoration(
             LeftOffsetDecoration(
                 context,
                 R.dimen.left_book_horizontal_recycler_view
             )
-        )
+        )*/
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

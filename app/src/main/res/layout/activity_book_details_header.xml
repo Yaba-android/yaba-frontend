@@ -10,19 +10,19 @@
         android:background="@android:color/white"
         app:layout_scrollFlags="scroll">
 
-    <ImageView
-            android:id="@+id/image_book"
-            android:layout_width="166dp"
-            android:layout_height="256dp"
+    <include
+            android:id="@+id/image_book_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/book2"/>
+            layout="@layout/activity_book_details_header_image"/>
 
     <TextView
             android:id="@+id/title_book"
             android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_below="@+id/image_book"
+            android:layout_below="@+id/image_book_layout"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="@string/title"

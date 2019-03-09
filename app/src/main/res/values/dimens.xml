@@ -4,16 +4,32 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+
     <dimen name="bottom_book_vertical_recycler_view">15dp</dimen>
     <dimen name="bottom_review_vertical_recycler_view">15dp</dimen>
     <dimen name="bottom_browse_book_vertical_recycler_view">10dp</dimen>
-    <dimen name="left_book_horizontal_recycler_view">5dp</dimen>
-    <dimen name="small_book_vertical_recycler_view">3dp</dimen>
     <dimen name="bottom_section_vertical_recycler_view">35dp</dimen>
-    <dimen name="left_big_book_horizontal_recycler_view">5dp</dimen>
-    <dimen name="title_recyclerview_height">40dp</dimen>
     <dimen name="bottom_all_books_vertical_recycler_view">20dp</dimen>
     <dimen name="margin_bottom_between_recyclerview_recommended">20dp</dimen>
     <dimen name="big_margin_bottom_between_recyclerview_recommended">50dp</dimen>
+    <dimen name="small_book_vertical_recycler_view">3dp</dimen>
+    <dimen name="left_big_book_horizontal_recycler_view">-10dp</dimen>
+    <dimen name="left_book_horizontal_recycler_view">5dp</dimen>
+
+    <dimen name="title_recyclerview_height">40dp</dimen>
     <dimen name="margin_start_end_vertical_review">18dp</dimen>
+
+    <dimen name="width_image_small_book">68dp</dimen>
+    <dimen name="height_image_small_book">104dp</dimen>
+    <dimen name="width_image_book">107dp</dimen>
+    <dimen name="height_image_book">176dp</dimen>
+    <dimen name="width_image_big_book">134dp</dimen>
+    <dimen name="height_image_big_book">204dp</dimen>
+    <dimen name="width_image_book_details">166dp</dimen>
+    <dimen name="height_image_book_details">256dp</dimen>
+
+    <dimen name="size_shadow_small_book">2dp</dimen>
+    <dimen name="size_shadow_book">4dp</dimen>
+    <dimen name="size_shadow_big_book">6dp</dimen>
+    <dimen name="size_shadow_book_details_image">8dp</dimen>
 </resources>
