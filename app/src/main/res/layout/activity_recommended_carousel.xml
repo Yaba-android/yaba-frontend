@@ -13,7 +13,7 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingEnd="37dp"
+            android:paddingEnd="35dp"
             android:orientation="vertical"
             tools:ignore="RtlSymmetry">
 
@@ -58,19 +58,19 @@
             android:layout_height="wrap_content"
             android:paddingTop="33dp"
             android:paddingBottom="31dp"
-            android:paddingEnd="35dp"
+            android:paddingEnd="26dp"
             tools:ignore="RtlSymmetry">
 
         <Button
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/button_view_all_sort_width"
+                android:layout_height="@dimen/button_view_all_sort_height"
                 android:layout_alignParentEnd="true"
                 android:text="@string/view_all"
                 android:textAllCaps="false"
                 android:textSize="12sp"
                 android:textColor="@color/colorTextGrey"
-                android:background="@android:color/transparent"
-                tools:ignore="SmallSp"/>
+                android:background="?android:selectableItemBackground"
+                android:drawableStart="@drawable/view_all_arrow"/>
 
     </RelativeLayout>
 
