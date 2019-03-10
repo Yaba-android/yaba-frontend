@@ -39,7 +39,7 @@ class GroupListBRecyclerViewAdapter(private var context: Context, private var li
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
         holder.horizontalRecyclerView.addItemDecoration(
-            LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
+            LeftOffsetDecoration(context, R.dimen.left_group_book_horizontal_recycler_view)
         )
     }
 

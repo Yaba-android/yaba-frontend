@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.GroupListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class GroupsFragment : Fragment() {
@@ -51,9 +52,9 @@ class GroupsFragment : Fragment() {
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
-        /*verticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(container.context, R.dimen.bottom_browse_book_vertical_recycler_view)
-        )*/
+        verticalRecyclerView.addItemDecoration(
+            BottomOffsetDecoration(container.context, R.dimen.bottom_groups_vertical_recycler_view)
+        )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
     }

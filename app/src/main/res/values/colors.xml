@@ -8,6 +8,7 @@
     <color name="colorStarRated">#FFC400</color>
     <color name="colorStarNotRated">#C6C6C6</color>
     <color name="colorTextBlack">#1F1F1F</color>
+    <color name="colorTextBlackGroup">#FF081C33</color>
     <color name="colorReviewTextBlack">#FF020629</color>
 
     <color name="colorTextGrey">#FF636F7B</color>

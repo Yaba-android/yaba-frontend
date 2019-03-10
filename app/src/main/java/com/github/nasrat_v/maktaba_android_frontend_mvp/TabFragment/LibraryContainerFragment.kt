@@ -37,6 +37,7 @@ class LibraryContainerFragment : Fragment(),
     private val mGroupsFrag = GroupsFragment()
     private val mAllBooksFrag = AllBooksFragment()
     private val nbBookPerRow = 2
+    private val nbGroupPerRow = 1
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -117,7 +118,7 @@ class LibraryContainerFragment : Fragment(),
     private fun mockDatasetAllBooks(container: ViewGroup, dataset: ArrayList<NoTitleListBModel>) {
         val factory = BModelRandomProvider(container.context)
 
-        for (index in 0..7) {
+        for (index in 0..25) {
             dataset.add(
                 NoTitleListBModel(
                     factory.getRandomsInstances(nbBookPerRow)
@@ -127,7 +128,7 @@ class LibraryContainerFragment : Fragment(),
     }
 
     private fun mockDatasetGroups(allbooksDataset: ArrayList<NoTitleListBModel>, dataset: ArrayList<GroupListBModel>) {
-        dataset.addAll(LibraryListBModelProvider().getGroupListFromList(allbooksDataset))
+        dataset.addAll(LibraryListBModelProvider().getGroupListFromList(nbGroupPerRow, allbooksDataset))
     }
 
     private fun mockDatasetDownload(allbooksDataset: ArrayList<NoTitleListBModel>, dataset: ArrayList<DownloadListBModel>) {

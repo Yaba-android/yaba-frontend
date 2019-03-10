@@ -53,7 +53,7 @@ class DownloadFragment : Fragment() {
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
         verticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(container.context, R.dimen.bottom_all_books_vertical_recycler_view)
+            BottomOffsetDecoration(container.context, R.dimen.bottom_download_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()

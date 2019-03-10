@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layoutDirection="rtl">
+
+    <include
+            android:id="@+id/horizontal_second_image_layout_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/horizontal_first_image_layout_group"
+            android:layout_alignBottom="@+id/horizontal_first_image_layout_group"
+            android:layout_marginBottom="32dp"
+            android:layout_marginStart="19dp"
+            layout="@layout/horizontal_recyclerview_group_book_image"/>
+
+    <include
+            android:id="@+id/horizontal_third_image_layout_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/horizontal_first_image_layout_group"
+            android:layout_alignBottom="@+id/horizontal_first_image_layout_group"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="22dp"
+            layout="@layout/horizontal_recyclerview_group_book_image"/>
+
+    <include
+            android:id="@+id/horizontal_first_image_layout_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            layout="@layout/horizontal_recyclerview_group_book_image"/>
+
+    <TextView
+            android:id="@+id/text_genre_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/horizontal_first_image_layout_group"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/genre_0"
+            android:textSize="16sp"
+            android:textColor="@color/colorTextBlackGroup"/>
+
+</RelativeLayout>
