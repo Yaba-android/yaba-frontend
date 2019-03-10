@@ -6,15 +6,20 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.BigNoTextBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.AllBooksBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class BigNoTextListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
-                                        private var mBookClickCallback: IBookClickCallback)
-    : RecyclerView.Adapter<BigNoTextListBRecyclerViewAdapter.ViewHolder>() {
+class AllBooksListBRecyclerViewAdapter(private var context: Context,
+                                       private var listAllBooks: ArrayList<NoTitleListBModel>,
+                                       private var listDownloadedBooks: ArrayList<DownloadListBModel>,
+                                       private var mBookClickCallback: IBookClickCallback,
+                                       private var mDownloadBookClickCallback: IDownloadBookClickCallback)
+    : RecyclerView.Adapter<AllBooksListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
 
@@ -28,18 +33,21 @@ class BigNoTextListBRecyclerViewAdapter(private var context: Context, private va
     }
 
     override fun getItemCount(): Int {
-        return listNoTitleListBModel.size
+        return listAllBooks.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model = listNoTitleListBModel[position]
+        val model = listAllBooks[position]
+
         val horizontalRecyclerViewAdapter =
-            BigNoTextBRecyclerViewAdapter(
+            AllBooksBRecyclerViewAdapter(
                 context,
+                listDownloadedBooks,
                 model.bookModels
             )
 
         horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
+        horizontalRecyclerViewAdapter.setDownloadBookClickCallback(mDownloadBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

@@ -11,8 +11,11 @@ import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.LibraryActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.DownloadBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
@@ -23,7 +26,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.AllBooks.All
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Download.DownloadFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Groups.GroupsFragment
 
-class LibraryContainerFragment : Fragment() {
+class LibraryContainerFragment : Fragment(),
+    IDownloadBookClickCallback {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
@@ -32,6 +36,7 @@ class LibraryContainerFragment : Fragment() {
     private val mDownloadFrag = DownloadFragment()
     private val mGroupsFrag = GroupsFragment()
     private val mAllBooksFrag = AllBooksFragment()
+    private val nbBookPerRow = 2
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -62,6 +67,25 @@ class LibraryContainerFragment : Fragment() {
         return view
     }
 
+    override fun downloadBookEventButtonClicked(book: BModel) {
+        val downloadBook = DownloadBModel(book)
+
+        if (!addBookToRowWithSpace(mLibraryDataset.downloadBooks.last(), downloadBook)) {
+            val newList = arrayListOf<DownloadBModel>()
+
+            newList.add(downloadBook)
+            mLibraryDataset.downloadBooks.add(DownloadListBModel(newList))
+        }
+    }
+
+    private fun addBookToRowWithSpace(rowBooks: DownloadListBModel, newBook: DownloadBModel) : Boolean {
+        if (rowBooks.bookModels.size < nbBookPerRow) {
+            rowBooks.bookModels.add(newBook)
+            return true
+        }
+        return false
+    }
+
     fun setBookClickCallback(bookClickCallback: IBookClickCallback) {
         mBookClickCallback = bookClickCallback
     }
@@ -70,6 +94,7 @@ class LibraryContainerFragment : Fragment() {
         mDownloadFrag.setBookClickCallback(mBookClickCallback)
         mGroupsFrag.setBookClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
         mAllBooksFrag.setBookClickCallback(mBookClickCallback)
+        mAllBooksFrag.setDownloadBookClickCallback(this)
     }
 
     private fun initTabNameList() {
@@ -95,7 +120,7 @@ class LibraryContainerFragment : Fragment() {
         for (index in 0..7) {
             dataset.add(
                 NoTitleListBModel(
-                    factory.getRandomsInstances(2)
+                    factory.getRandomsInstances(nbBookPerRow)
                 )
             )
         }
@@ -106,7 +131,7 @@ class LibraryContainerFragment : Fragment() {
     }
 
     private fun mockDatasetDownload(allbooksDataset: ArrayList<NoTitleListBModel>, dataset: ArrayList<DownloadListBModel>) {
-        dataset.addAll(LibraryListBModelRandomProvider().getRandomDownloadedListBookFromList(3, 2, allbooksDataset))
+        dataset.addAll(LibraryListBModelRandomProvider().getRandomDownloadedListBookFromList(3, nbBookPerRow, allbooksDataset))
     }
 
     internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>)
@@ -124,6 +149,7 @@ class LibraryContainerFragment : Fragment() {
                 }
                 2 ->  {
                     mAllBooksFrag.setDatasetVerticalRecyclerView(mLibraryDataset.allBooks)
+                    mAllBooksFrag.setDownloadedBooks(mLibraryDataset.downloadBooks)
                     return mAllBooksFrag
                 }
             }

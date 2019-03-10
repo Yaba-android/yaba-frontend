@@ -20,9 +20,7 @@
             android:background="@drawable/download_book_library"
             android:layout_alignEnd="@+id/horizontal_image_layout_library"
             android:layout_alignBottom="@+id/horizontal_image_layout_library"
-            android:layout_marginBottom=
-                    "@dimen/size_shadow_big_book_plus_padding_bottom_button_download"
-            android:layout_marginEnd=
-                    "@dimen/size_shadow_big_book_plus_padding_end_button_download"/>
+            android:layout_marginBottom="@dimen/size_shadow_big_book_plus_padding_bottom_button_download"
+            android:layout_marginEnd="@dimen/size_shadow_big_book_plus_padding_end_button_download"/>
 
 </RelativeLayout>

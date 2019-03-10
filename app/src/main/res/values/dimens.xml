@@ -42,7 +42,12 @@
     <dimen name="size_shadow_book_details_image">8dp</dimen>
     <dimen name="size_shadow_popular_genre">6dp</dimen>
 
+    <dimen name="size_shadow_big_book_plus_padding_end_button_download">14dp</dimen>
+    <dimen name="size_shadow_big_book_plus_padding_bottom_button_download">16dp</dimen>
+
     <dimen name="button_view_all_sort_width">60dp</dimen>
     <dimen name="button_view_all_sort_height">25dp</dimen>
+    <dimen name="button_download_library_width">25dp</dimen>
+    <dimen name="button_download_library_height">25dp</dimen>
 
 </resources>
