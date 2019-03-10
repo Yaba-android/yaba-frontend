@@ -13,16 +13,4 @@
             android:layout_height="wrap_content"
             layout="@layout/horizontal_recyclerview_big_book_image"/>
 
-    <Button
-            android:id="@+id/button_download_book_library"
-            android:layout_width="@dimen/button_download_library_width"
-            android:layout_height="@dimen/button_download_library_height"
-            android:background="@drawable/download_book_library"
-            android:layout_alignEnd="@+id/horizontal_image_layout_library"
-            android:layout_alignBottom="@+id/horizontal_image_layout_library"
-            android:layout_marginBottom=
-                    "@dimen/size_shadow_big_book_plus_padding_bottom_button_download"
-            android:layout_marginEnd=
-                    "@dimen/size_shadow_big_book_plus_padding_end_button_download"/>
-
 </RelativeLayout>
