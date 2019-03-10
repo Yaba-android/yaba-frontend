@@ -30,7 +30,7 @@ class LibraryActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_library)
 
         setListenerButtonCloseProfile()
@@ -39,7 +39,6 @@ class LibraryActivity : AppCompatActivity(),
         //setListenerButtonFolioReader()
         initRootDrawerLayout()
         if (savedInstanceState == null) {
-            Log.i("onCreate", "library init fragmentManager")
             initFragmentManager()
         }
     }
