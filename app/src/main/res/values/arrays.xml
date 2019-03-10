@@ -22,6 +22,7 @@
         <item>@drawable/book18</item>
         <item>@drawable/book19</item>
         <item>@drawable/book20</item>
+        <item>@drawable/book21</item>
         <item>@drawable/book22</item>
         <item>@drawable/book23</item>
         <item>@drawable/book24</item>
@@ -31,6 +32,26 @@
         <item>@drawable/book28</item>
         <item>@drawable/book29</item>
         <item>@drawable/book30</item>
+        <item>@drawable/book31</item>
+        <item>@drawable/book32</item>
+        <item>@drawable/book33</item>
+        <item>@drawable/book34</item>
+        <item>@drawable/book35</item>
+        <item>@drawable/book36</item>
+        <item>@drawable/book37</item>
+        <item>@drawable/book38</item>
+        <item>@drawable/book39</item>
+        <item>@drawable/book40</item>
+        <item>@drawable/book41</item>
+        <item>@drawable/book42</item>
+        <item>@drawable/book43</item>
+        <item>@drawable/book44</item>
+        <item>@drawable/book45</item>
+        <item>@drawable/book46</item>
+        <item>@drawable/book47</item>
+        <item>@drawable/book48</item>
+        <item>@drawable/book49</item>
+        <item>@drawable/book50</item>
     </integer-array>
 
     <integer-array name="images_books_carousel">
@@ -46,6 +67,7 @@
         <item>@drawable/book18</item>
         <item>@drawable/book19</item>
         <item>@drawable/book20</item>
+        <item>@drawable/book21</item>
         <item>@drawable/book22</item>
         <item>@drawable/book23</item>
         <item>@drawable/book24</item>
