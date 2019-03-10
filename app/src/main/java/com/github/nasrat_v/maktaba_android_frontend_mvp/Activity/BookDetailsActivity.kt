@@ -3,7 +3,6 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
@@ -13,7 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.*
 import android.widget.*
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookInfosProvider

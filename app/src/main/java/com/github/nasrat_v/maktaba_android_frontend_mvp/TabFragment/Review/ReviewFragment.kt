@@ -8,14 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RRecyclerViewAdapter
 
@@ -60,7 +59,12 @@ class ReviewFragment : Fragment() {
         mockDatasetBook(container, mDataset)
 
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_review)
-        val adapterBookVertical = ListBRecyclerViewAdapter(container.context, mDataset, mBookClickCallback)
+        val adapterBookVertical =
+            ListBRecyclerViewAdapter(
+                container.context,
+                mDataset,
+                mBookClickCallback
+            )
         val bookVerticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
 
         bookVerticalRecyclerView.setHasFixedSize(true)
@@ -76,6 +80,11 @@ class ReviewFragment : Fragment() {
     private fun mockDatasetBook(container: ViewGroup, mDataset: ArrayList<ListBModel>) {
         val factory = BModelRandomProvider(container.context)
 
-        mDataset.add(ListBModel("More Books from this Authors", factory.getRandomsInstances(3)))
+        mDataset.add(
+            ListBModel(
+                "More Books from this Authors",
+                factory.getRandomsInstances(3)
+            )
+        )
     }
 }

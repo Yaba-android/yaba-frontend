@@ -1,10 +1,8 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 
 import android.content.Context
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModelProvider
-import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import java.util.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
+import kotlin.collections.ArrayList
 
 class BModelRandomProvider(private var context: Context) {
 
@@ -12,7 +10,7 @@ class BModelRandomProvider(private var context: Context) {
         val randomFactory = BModelRandomFactory(context)
         val listModel = arrayListOf<BModel>()
 
-        for (index in 0..nb) {
+        for (index in 0..(nb - 1)) {
             listModel.add(randomFactory.getRandomInstance())
         }
         return listModel
@@ -22,11 +20,9 @@ class BModelRandomProvider(private var context: Context) {
         val randomFactory = BModelRandomFactory(context)
         val listModel = arrayListOf<BModel>()
 
-        for (index in 0..nb) {
+        for (index in 0..(nb - 1)) {
             listModel.add(randomFactory.getRandomInstanceDiscreteScrollView())
         }
         return listModel
     }
-
-
 }

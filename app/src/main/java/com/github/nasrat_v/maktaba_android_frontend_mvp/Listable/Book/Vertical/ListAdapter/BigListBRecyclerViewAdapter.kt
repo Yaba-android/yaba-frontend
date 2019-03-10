@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
@@ -6,8 +6,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BigBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.BigBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
@@ -21,7 +22,9 @@ class BigListBRecyclerViewAdapter(private var context: Context, private var list
         val rootView = LayoutInflater.from(container.context).inflate(
             R.layout.vertical_generic_recyclerview_book, container, false
         )
-        return ViewHolder(rootView)
+        return ViewHolder(
+            rootView
+        )
     }
 
     override fun getItemCount(): Int {
@@ -30,7 +33,11 @@ class BigListBRecyclerViewAdapter(private var context: Context, private var list
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = listNoTitleListBModel[position]
-        val horizontalRecyclerViewAdapter = BigBRecyclerViewAdapter(context, model.bookHorizontalModels)
+        val horizontalRecyclerViewAdapter =
+            BigBRecyclerViewAdapter(
+                context,
+                model.bookModels
+            )
 
         horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)

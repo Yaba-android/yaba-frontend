@@ -9,10 +9,15 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
-import android.util.Log
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.LibraryActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.LibraryListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.AllBooks.AllBooksFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Download.DownloadFragment
@@ -22,11 +27,11 @@ class LibraryContainerFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
+    private lateinit var mLibraryDataset: LibraryListBModel
     private val mTabNamesList = arrayListOf<String>()
-    private var mFirstInitStateList = arrayListOf<Boolean>()
-    private val downloadFrag = DownloadFragment()
-    private val groupsFrag = GroupsFragment()
-    private val allBooksFrag = AllBooksFragment()
+    private val mDownloadFrag = DownloadFragment()
+    private val mGroupsFrag = GroupsFragment()
+    private val mAllBooksFrag = AllBooksFragment()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -45,13 +50,13 @@ class LibraryContainerFragment : Fragment() {
 
         initTabFragment()
         initTabNameList()
-        initFirstInitStateList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_container, container, false)
         val viewPager = view.findViewById(R.id.viewpager_container_fragment) as ViewPager
 
+        initDataset(container!!)
         viewPager.adapter = ItemsPagerAdapter(childFragmentManager, mTabNamesList)
         mTabLayoutSetupCallback.setupTabLayout(viewPager)
         return view
@@ -62,9 +67,9 @@ class LibraryContainerFragment : Fragment() {
     }
 
     private fun initTabFragment() {
-        downloadFrag.setBookClickCallback(mBookClickCallback)
-        groupsFrag.setBookClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
-        allBooksFrag.setBookClickCallback(mBookClickCallback)
+        mDownloadFrag.setBookClickCallback(mBookClickCallback)
+        mGroupsFrag.setBookClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
+        mAllBooksFrag.setBookClickCallback(mBookClickCallback)
     }
 
     private fun initTabNameList() {
@@ -73,14 +78,35 @@ class LibraryContainerFragment : Fragment() {
         mTabNamesList.add("All Books")
     }
 
-    private fun initFirstInitStateList() {
-        for (index in 0..(mTabNamesList.size - 1)) {
-            mFirstInitStateList.add(true)
+    private fun initDataset(container: ViewGroup) {
+        val allbooks = arrayListOf<NoTitleListBModel>()
+        val downloads = arrayListOf<DownloadListBModel>()
+        val groups = arrayListOf<GroupListBModel>()
+
+        mockDatasetAllBooks(container, allbooks)
+        mockDatasetGroups(allbooks, groups)
+        mockDatasetDownload(allbooks, downloads)
+        mLibraryDataset = LibraryListBModel(downloads, groups, allbooks)
+    }
+
+    private fun mockDatasetAllBooks(container: ViewGroup, dataset: ArrayList<NoTitleListBModel>) {
+        val factory = BModelRandomProvider(container.context)
+
+        for (index in 0..7) {
+            dataset.add(
+                NoTitleListBModel(
+                    factory.getRandomsInstances(2)
+                )
+            )
         }
     }
 
-    private fun setFirstInitStateList(firstInitState: Boolean, index: Int) {
-        mFirstInitStateList[index] = firstInitState
+    private fun mockDatasetGroups(allbooksDataset: ArrayList<NoTitleListBModel>, dataset: ArrayList<GroupListBModel>) {
+        dataset.addAll(LibraryListBModelProvider().getGroupListFromList(allbooksDataset))
+    }
+
+    private fun mockDatasetDownload(allbooksDataset: ArrayList<NoTitleListBModel>, dataset: ArrayList<DownloadListBModel>) {
+        dataset.addAll(LibraryListBModelRandomProvider().getRandomDownloadedListBookFromList(3, 2, allbooksDataset))
     }
 
     internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>)
@@ -89,19 +115,16 @@ class LibraryContainerFragment : Fragment() {
         override fun getItem(position: Int): Fragment? {
             when (position) {
                 0 -> {
-                    downloadFrag.setFirstInitState(mFirstInitStateList[position])
-                    setFirstInitStateList(false, position)
-                    return downloadFrag
+                    mDownloadFrag.setDatasetVerticalRecyclerView(mLibraryDataset.downloadBooks)
+                    return mDownloadFrag
                 }
                 1 ->  {
-                    downloadFrag.setFirstInitState(mFirstInitStateList[position])
-                    setFirstInitStateList(false, position)
-                    return groupsFrag
+                    mGroupsFrag.setDatasetVerticalRecyclerView(mLibraryDataset.groupBooks)
+                    return mGroupsFrag
                 }
                 2 ->  {
-                    downloadFrag.setFirstInitState(mFirstInitStateList[position])
-                    setFirstInitStateList(false, position)
-                    return allBooksFrag
+                    mAllBooksFrag.setDatasetVerticalRecyclerView(mLibraryDataset.allBooks)
+                    return mAllBooksFrag
                 }
             }
             return null

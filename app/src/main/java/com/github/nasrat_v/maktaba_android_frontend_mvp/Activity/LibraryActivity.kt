@@ -2,10 +2,8 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.SystemClock
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
-import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
@@ -17,8 +15,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
-import android.widget.ImageView
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R

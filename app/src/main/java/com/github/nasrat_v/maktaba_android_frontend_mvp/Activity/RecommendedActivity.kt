@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import android.support.design.widget.NavigationView
@@ -17,11 +17,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.DiscreteScrollViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.DiscreteScrollViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.SmallListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Horizontal.GPSRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.GSRecyclerViewAdapter
@@ -176,7 +179,11 @@ class RecommendedActivity : AppCompatActivity(),
 
         val hmodels = mockDatasetDiscreteScrollView()
         val discreteScrollView = findViewById<DiscreteScrollView>(R.id.discrete_scroll_view)
-        val discreteRecyclerViewAdapter = DiscreteScrollViewAdapter(this, hmodels)
+        val discreteRecyclerViewAdapter =
+            DiscreteScrollViewAdapter(
+                this,
+                hmodels
+            )
 
         discreteRecyclerViewAdapter.setTabFragmentClickCallback(this)
         discreteScrollView.setHasFixedSize(true)
@@ -201,7 +208,12 @@ class RecommendedActivity : AppCompatActivity(),
 
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.first_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val adapterBookVertical = ListBRecyclerViewAdapter(this, mDataset, this)
+        val adapterBookVertical =
+            ListBRecyclerViewAdapter(
+                this,
+                mDataset,
+                this
+            )
 
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -243,7 +255,12 @@ class RecommendedActivity : AppCompatActivity(),
 
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.second_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val adapterBookVertical = ListBRecyclerViewAdapter(this, mDataset, this)
+        val adapterBookVertical =
+            ListBRecyclerViewAdapter(
+                this,
+                mDataset,
+                this
+            )
 
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -265,7 +282,12 @@ class RecommendedActivity : AppCompatActivity(),
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.small_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val adapterBookVertical = SmallListBRecyclerViewAdapter(this, mDataset, this)
+        val adapterBookVertical =
+            SmallListBRecyclerViewAdapter(
+                this,
+                mDataset,
+                this
+            )
 
         title.text = "Other Books for you"
         verticalRecyclerView.setHasFixedSize(true)
@@ -303,20 +325,34 @@ class RecommendedActivity : AppCompatActivity(),
     private fun mockDatasetFirstRecyclerView(mDataset: ArrayList<ListBModel>) {
         val factory = BModelRandomProvider(this)
 
-        mDataset.add(ListBModel("Recommended Authors", factory.getRandomsInstances(4)))
+        mDataset.add(
+            ListBModel(
+                "Recommended Authors",
+                factory.getRandomsInstances(4)
+            )
+        )
     }
 
     private fun mockDatasetSecondRecyclerView(mDataset: ArrayList<ListBModel>) {
         val factory = BModelRandomProvider(this)
 
-        mDataset.add(ListBModel("Inspired by Your Reading History", factory.getRandomsInstances(4)))
+        mDataset.add(
+            ListBModel(
+                "Inspired by Your Reading History",
+                factory.getRandomsInstances(4)
+            )
+        )
     }
 
     private fun mockDatasetSmallRecyclerView(mDataset: ArrayList<NoTitleListBModel>) {
         val factory = BModelRandomProvider(this)
 
         for (index in 0..1) {
-            mDataset.add(NoTitleListBModel(factory.getRandomsInstances(6)))
+            mDataset.add(
+                NoTitleListBModel(
+                    factory.getRandomsInstances(6)
+                )
+            )
         }
     }
 }

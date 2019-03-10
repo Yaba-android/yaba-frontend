@@ -1,29 +1,33 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 
 import android.content.Context
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import java.util.*
 
 class BModelRandomFactory(private var context: Context) {
 
     fun getRandomInstance() : BModel {
-        return (BModel(getRandomImage(), getRandomTitle(),
-                getRandomAuthor(), getRandomRating(),
-                getRandomNumberRating(), getRandomPrice(),
-                getRandomLength(), getRandomGenre(),
-                getRandomFileSize(), getRandomCountry(),
-                getRandomDatePublication(), getRandomPublisher()))
+        return (BModel(
+            getRandomImage(), getRandomTitle(),
+            getRandomAuthor(), getRandomRating(),
+            getRandomNumberRating(), getRandomPrice(),
+            getRandomLength(), getRandomGenre(),
+            getRandomFileSize(), getRandomCountry(),
+            getRandomDatePublication(), getRandomPublisher()
+        ))
     }
 
     fun getRandomInstanceDiscreteScrollView() : BModel {
-        return (BModel(getRandomImageCarousel(), getRandomTitle(),
-                getRandomAuthor(), getRandomRating(),
-                getRandomNumberRating(), getRandomPrice(),
-                getRandomLength(), getRandomGenre(),
-                getRandomFileSize(), getRandomCountry(),
-                getRandomDatePublication(), getRandomPublisher()))
+        return (BModel(
+            getRandomImageCarousel(), getRandomTitle(),
+            getRandomAuthor(), getRandomRating(),
+            getRandomNumberRating(), getRandomPrice(),
+            getRandomLength(), getRandomGenre(),
+            getRandomFileSize(), getRandomCountry(),
+            getRandomDatePublication(), getRandomPublisher()
+        ))
     }
 
     private fun getRandomImage() : Int {

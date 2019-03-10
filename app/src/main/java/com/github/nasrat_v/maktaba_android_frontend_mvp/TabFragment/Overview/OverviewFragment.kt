@@ -9,10 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
@@ -43,7 +43,12 @@ class OverviewFragment : Fragment() {
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_overview)
-        val adapterBookVertical = ListBRecyclerViewAdapter(container.context, mDataset, mBookClickCallback)
+        val adapterBookVertical =
+            ListBRecyclerViewAdapter(
+                container.context,
+                mDataset,
+                mBookClickCallback
+            )
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
 
         verticalRecyclerView.setHasFixedSize(true)
@@ -78,6 +83,11 @@ class OverviewFragment : Fragment() {
     private fun mockDataset(container: ViewGroup) {
         val factory = BModelRandomProvider(container.context)
 
-        mDataset.add(ListBModel("More Books from this Authors", factory.getRandomsInstances(3)))
+        mDataset.add(
+            ListBModel(
+                "More Books from this Authors",
+                factory.getRandomsInstances(3)
+            )
+        )
     }
 }

@@ -1,7 +1,6 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter
 
 import android.content.Context
-import android.os.SystemClock
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class BigNoTextBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BModel>)
@@ -20,7 +20,9 @@ class BigNoTextBRecyclerViewAdapter(private var context: Context, private var li
         val rootView = LayoutInflater.from(container.context).inflate(
             R.layout.horizontal_recyclerview_big_no_text_book, container, false
         )
-        return ViewHolder(rootView)
+        return ViewHolder(
+            rootView
+        )
     }
 
     override fun getItemCount(): Int {

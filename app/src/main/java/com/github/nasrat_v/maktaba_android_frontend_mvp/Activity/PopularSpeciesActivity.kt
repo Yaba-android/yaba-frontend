@@ -3,7 +3,6 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.SystemClock
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -17,10 +16,10 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.BigListBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.NoTitleListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.BigListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
@@ -138,7 +137,12 @@ class PopularSpeciesActivity : AppCompatActivity(),
 
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
-        val adapterBookVertical = BigListBRecyclerViewAdapter(this, mDataset, this)
+        val adapterBookVertical =
+            BigListBRecyclerViewAdapter(
+                this,
+                mDataset,
+                this
+            )
 
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -154,7 +158,11 @@ class PopularSpeciesActivity : AppCompatActivity(),
         val factory = BModelRandomProvider(this)
 
         for (index in 0..7) {
-            mDataset.add(NoTitleListBModel(factory.getRandomsInstances(2)))
+            mDataset.add(
+                NoTitleListBModel(
+                    factory.getRandomsInstances(2)
+                )
+            )
         }
     }
 }

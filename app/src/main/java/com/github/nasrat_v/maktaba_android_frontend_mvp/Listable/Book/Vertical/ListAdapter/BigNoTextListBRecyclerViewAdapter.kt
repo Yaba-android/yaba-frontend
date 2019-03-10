@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
@@ -6,14 +6,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.SmallBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.BigNoTextBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class SmallListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
-                                    private var mBookClickCallback: IBookClickCallback)
-    : RecyclerView.Adapter<SmallListBRecyclerViewAdapter.ViewHolder>() {
+class BigNoTextListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
+                                        private var mBookClickCallback: IBookClickCallback)
+    : RecyclerView.Adapter<BigNoTextListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
 
@@ -21,7 +22,9 @@ class SmallListBRecyclerViewAdapter(private var context: Context, private var li
         val rootView = LayoutInflater.from(container.context).inflate(
             R.layout.vertical_generic_recyclerview_book, container, false
         )
-        return ViewHolder(rootView)
+        return ViewHolder(
+            rootView
+        )
     }
 
     override fun getItemCount(): Int {
@@ -30,19 +33,20 @@ class SmallListBRecyclerViewAdapter(private var context: Context, private var li
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = listNoTitleListBModel[position]
-        val horizontalRecyclerViewAdapter = SmallBRecyclerViewAdapter(context, model.bookHorizontalModels)
+        val horizontalRecyclerViewAdapter =
+            BigNoTextBRecyclerViewAdapter(
+                context,
+                model.bookModels
+            )
 
         horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
-        /*holder.horizontalRecyclerView.addItemDecoration(
-            LeftOffsetDecoration(
-                context,
-                R.dimen.small_book_vertical_recycler_view
-            )
-        )*/
+        holder.horizontalRecyclerView.addItemDecoration(
+            LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
+        )
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
