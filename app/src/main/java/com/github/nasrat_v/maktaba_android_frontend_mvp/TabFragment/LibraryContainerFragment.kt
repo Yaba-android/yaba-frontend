@@ -89,19 +89,16 @@ class LibraryContainerFragment : Fragment() {
         override fun getItem(position: Int): Fragment? {
             when (position) {
                 0 -> {
-                    Log.i("onCreate", "download tabbed")
                     downloadFrag.setFirstInitState(mFirstInitStateList[position])
                     setFirstInitStateList(false, position)
                     return downloadFrag
                 }
                 1 ->  {
-                    Log.i("onCreate", "group tabbed")
                     downloadFrag.setFirstInitState(mFirstInitStateList[position])
                     setFirstInitStateList(false, position)
                     return groupsFrag
                 }
                 2 ->  {
-                    Log.i("onCreate", "allbook tabbed")
                     downloadFrag.setFirstInitState(mFirstInitStateList[position])
                     setFirstInitStateList(false, position)
                     return allBooksFrag

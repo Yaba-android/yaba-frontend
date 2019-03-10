@@ -14,6 +14,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.B
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class DownloadFragment : Fragment() {
@@ -29,7 +30,6 @@ class DownloadFragment : Fragment() {
         if (mFirstInit)
             mockDatasetVerticalRecyclerView(container!!, mDataset)
         initVerticalRecyclerView(rootView, container!!)
-        Log.i("onCreate", "download")
         return rootView
     }
 
@@ -53,9 +53,9 @@ class DownloadFragment : Fragment() {
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
-        /*verticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(container.context, R.dimen.bottom_browse_book_vertical_recycler_view)
-        )*/
+        verticalRecyclerView.addItemDecoration(
+            BottomOffsetDecoration(container.context, R.dimen.bottom_all_books_vertical_recycler_view)
+        )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
     }

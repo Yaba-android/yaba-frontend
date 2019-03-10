@@ -29,7 +29,6 @@ class AllBooksFragment : Fragment() {
         if (mFirstInit)
             mockDatasetVerticalRecyclerView(container!!, mDataset)
         initVerticalRecyclerView(rootView, container!!)
-        Log.i("onCreate", "allbooks")
         return rootView
     }
 

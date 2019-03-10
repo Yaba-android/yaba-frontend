@@ -29,7 +29,6 @@ class GroupsFragment : Fragment() {
         if (mFirstInit)
             mockDatasetVerticalRecyclerView(container!!, mDataset)
         initVerticalRecyclerView(rootView, container!!)
-        Log.i("onCreate", "groups")
         return rootView
     }
 
