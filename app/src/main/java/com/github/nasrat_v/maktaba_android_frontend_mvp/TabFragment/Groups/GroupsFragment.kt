@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.GroupListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
@@ -17,6 +18,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 class GroupsFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
+    private lateinit var mGroupClickCallback: IGroupClickCallback
     private var mDataset = arrayListOf<GroupListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,6 +37,10 @@ class GroupsFragment : Fragment() {
         mBookClickCallback = bookClickCallback
     }
 
+    fun setGroupClickCallback(groupClickCallback: IGroupClickCallback) {
+        mGroupClickCallback = groupClickCallback
+    }
+
     fun setDatasetVerticalRecyclerView(dataset: ArrayList<GroupListBModel>) {
         mDataset = dataset
     }
@@ -45,7 +51,8 @@ class GroupsFragment : Fragment() {
             GroupListBRecyclerViewAdapter(
                 container.context,
                 mDataset,
-                mBookClickCallback
+                mBookClickCallback,
+                mGroupClickCallback
             )
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
 

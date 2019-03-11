@@ -17,13 +17,16 @@ import android.view.WindowManager
 import android.widget.Button
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.GroupBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 
 class LibraryActivity : AppCompatActivity(),
     IBookClickCallback,
+    IGroupClickCallback,
     ITabLayoutSetupCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
@@ -57,7 +60,12 @@ class LibraryActivity : AppCompatActivity(),
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        val anim = intent!!.getIntExtra("LeftOrRightInAnimation", 1)
+
+        if (anim == 0) // left
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        else if (anim == 1) // right
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     override fun bookEventButtonClicked(book: BModel) {
@@ -66,6 +74,14 @@ class LibraryActivity : AppCompatActivity(),
         intent.putExtra("SelectedBook", book)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    override fun groupEventButtonClicked(group: GroupBModel) {
+        val intent = Intent(this, GroupActivity::class.java)
+
+        intent.putExtra("SelectedGroup", group)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     override fun setupTabLayout(viewPager: ViewPager) {
@@ -81,7 +97,7 @@ class LibraryActivity : AppCompatActivity(),
         val intent = Intent(this, RecommendedActivity::class.java)
 
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        intent.putExtra("BrowseOrLibraryCall", 1)
+        intent.putExtra("LeftOrRightInAnimation", 0)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
@@ -152,6 +168,7 @@ class LibraryActivity : AppCompatActivity(),
         val mFragmentManager = supportFragmentManager
 
         containerFragment.setBookClickCallback(this) // permet de gerer les click depuis le fragment
+        containerFragment.setGroupClickCallback(this)
         //mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         val mFragmentTransaction = mFragmentManager.beginTransaction()
         mFragmentTransaction.replace(R.id.fragment_container_library, containerFragment).commit()

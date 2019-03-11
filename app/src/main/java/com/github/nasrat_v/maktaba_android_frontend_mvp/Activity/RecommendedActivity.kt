@@ -74,12 +74,12 @@ class RecommendedActivity : AppCompatActivity(),
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        val anim = intent!!.getIntExtra("BrowseOrLibraryCall", -1)
+        val anim = intent!!.getIntExtra("LeftOrRightInAnimation", -1)
 
-        if (anim == 0) // browse
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        else if (anim == 1)// library
+        if (anim == 0) // left
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        else if (anim == 1) // right
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     override fun bookEventButtonClicked(book: BModel) {

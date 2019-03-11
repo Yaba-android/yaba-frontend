@@ -32,8 +32,8 @@ class GroupActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_group)
 
-        //mSelectedGroup = intent.getParcelableExtra("SelectedGroup")
-        //setGroupDetailsAttributes()
+        mSelectedGroup = intent.getParcelableExtra("SelectedGroup")
+        setGroupDetailsAttributes()
 
         setListenerBrowseButtonFooter()
         setListenerLibraryButtonFooter()
@@ -76,10 +76,20 @@ class GroupActivity : AppCompatActivity() {
         }
     }
 
-    private fun setListenerRecommendedButtonFooter() {
-        val buttonBrowse = findViewById<Button>(R.id.button_recommended_footer)
+    private fun returnToHome() {
+        val intent = Intent(this, RecommendedActivity::class.java)
 
-        buttonBrowse.setOnClickListener {
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        intent.putExtra("LeftOrRightInAnimation", 0)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    private fun setListenerRecommendedButtonFooter() {
+        val button = findViewById<Button>(R.id.button_recommended_footer)
+
+        button.setOnClickListener {
+            returnToHome()
             finish()
         }
     }
@@ -89,9 +99,10 @@ class GroupActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button_library_footer)
 
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        intent.putExtra("LeftOrRightInAnimation", 0)
         button.setOnClickListener {
             startActivity(intent)
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
     }
 
@@ -102,16 +113,17 @@ class GroupActivity : AppCompatActivity() {
     }
 
     private fun initRootDrawerLayout() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_book_details)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
 
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        mDrawerLayout = findViewById(R.id.drawer_book_details)
+        mDrawerLayout = findViewById(R.id.drawer_group)
         val mDrawerToggle = ActionBarDrawerToggle(
             this, mDrawerLayout, toolbar,
             R.string.navigation_drawer_profile_open,
             R.string.navigation_drawer_profile_close
         )
+
         mDrawerToggle.isDrawerIndicatorEnabled = false
         mDrawerToggle.syncState()
         mDrawerLayout.setDrawerListener(mDrawerToggle)

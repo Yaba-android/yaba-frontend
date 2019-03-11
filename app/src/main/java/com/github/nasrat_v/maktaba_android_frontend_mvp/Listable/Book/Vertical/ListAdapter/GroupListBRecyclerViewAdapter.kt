@@ -7,13 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.GroupBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class GroupListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<GroupListBModel>,
-                                    private var mBookClickCallback: IBookClickCallback)
+class GroupListBRecyclerViewAdapter(private var context: Context,
+                                    private var listNoTitleListBModel: ArrayList<GroupListBModel>,
+                                    private var mBookClickCallback: IBookClickCallback,
+                                    private var mGroupClickCallback: IGroupClickCallback)
     : RecyclerView.Adapter<GroupListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
@@ -33,7 +36,8 @@ class GroupListBRecyclerViewAdapter(private var context: Context, private var li
         val model = listNoTitleListBModel[position]
         val horizontalRecyclerViewAdapter = GroupBRecyclerViewAdapter(context, model.groupModels)
 
-        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
+        horizontalRecyclerViewAdapter.setBookClickCallback(mBookClickCallback)
+        horizontalRecyclerViewAdapter.setGroupClickCallback(mGroupClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

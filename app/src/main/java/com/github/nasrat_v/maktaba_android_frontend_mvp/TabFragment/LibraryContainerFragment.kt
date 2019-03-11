@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.LibraryActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
@@ -30,6 +31,7 @@ class LibraryContainerFragment : Fragment(),
     IDownloadBookClickCallback {
 
     private lateinit var mBookClickCallback: IBookClickCallback
+    private lateinit var mGroupClickCallback: IGroupClickCallback
     private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
     private lateinit var mLibraryDataset: LibraryListBModel
     private val mTabNamesList = arrayListOf<String>()
@@ -91,9 +93,14 @@ class LibraryContainerFragment : Fragment(),
         mBookClickCallback = bookClickCallback
     }
 
+    fun setGroupClickCallback(groupClickCallback: IGroupClickCallback) {
+        mGroupClickCallback = groupClickCallback
+    }
+
     private fun initTabFragment() {
         mDownloadFrag.setBookClickCallback(mBookClickCallback)
         mGroupsFrag.setBookClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
+        mGroupsFrag.setGroupClickCallback(mGroupClickCallback)
         mAllBooksFrag.setBookClickCallback(mBookClickCallback)
         mAllBooksFrag.setDownloadBookClickCallback(this)
     }
@@ -118,7 +125,7 @@ class LibraryContainerFragment : Fragment(),
     private fun mockDatasetAllBooks(container: ViewGroup, dataset: ArrayList<NoTitleListBModel>) {
         val factory = BModelRandomProvider(container.context)
 
-        for (index in 0..25) {
+        for (index in 0..15) {
             dataset.add(
                 NoTitleListBModel(
                     factory.getRandomsInstances(nbBookPerRow)

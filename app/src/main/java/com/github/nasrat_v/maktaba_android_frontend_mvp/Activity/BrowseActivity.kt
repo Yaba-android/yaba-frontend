@@ -35,14 +35,19 @@ class BrowseActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        val anim = intent!!.getIntExtra("LeftOrRightInAnimation", 0)
+
+        if (anim == 0) // left
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        else if (anim == 1) // right
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     private fun returnToHome() {
         val intent = Intent(this, RecommendedActivity::class.java)
 
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        intent.putExtra("BrowseOrLibraryCall", 0)
+        intent.putExtra("LeftOrRightInAnimation", 1)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }

@@ -10,6 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.GroupBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
@@ -18,6 +19,7 @@ class GroupBRecyclerViewAdapter(private var context: Context, private var list: 
     : RecyclerView.Adapter<GroupBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
+    private lateinit var mGroupClickCallback: IGroupClickCallback
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
@@ -33,20 +35,26 @@ class GroupBRecyclerViewAdapter(private var context: Context, private var list: 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val books = list[position].bookModels
+        val group = list[position]
+        val books = group.bookModels
         val firstBook = books.first()
-        val genre = list[position].genre
+        val genre = group.genre
 
         setSecondAndThirdImage(holder, books)
         holder.mFirstImage.setImageResource(firstBook.image)
         holder.mGenreName.text = (genre.name + " (" + books.size + ")")
         holder.itemView.setOnClickListener {
             Toast.makeText(context, genre.name, Toast.LENGTH_SHORT).show()
+            mGroupClickCallback.groupEventButtonClicked(group)
         }
     }
 
-    fun setTabFragmentClickCallback(bookClickCallback: IBookClickCallback) {
+    fun setBookClickCallback(bookClickCallback: IBookClickCallback) {
         mBookClickCallback = bookClickCallback
+    }
+
+    fun setGroupClickCallback(groupClickCallback: IGroupClickCallback) {
+        mGroupClickCallback = groupClickCallback
     }
 
     private fun setSecondAndThirdImage(holder: ViewHolder, books: ArrayList<BModel>) {
