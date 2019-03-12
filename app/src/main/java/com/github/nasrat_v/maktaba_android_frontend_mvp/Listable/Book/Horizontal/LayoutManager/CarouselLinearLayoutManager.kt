@@ -17,7 +17,7 @@ class CarouselLinearLayoutManager(context: Context, direction: Int, reverseLayou
 
     override fun scrollHorizontallyBy(dx: Int, recycler: RecyclerView.Recycler?, state: RecyclerView.State?): Int {
         val scrolled = super.scrollHorizontallyBy(dx, recycler, state)
-        val scalePoint = (width / 2f)
+        val scalePoint = (width / 3.25f)
         val d0 = 0f
         val d1 = (mShrinkDistance * scalePoint)
         val s0 = 1f
