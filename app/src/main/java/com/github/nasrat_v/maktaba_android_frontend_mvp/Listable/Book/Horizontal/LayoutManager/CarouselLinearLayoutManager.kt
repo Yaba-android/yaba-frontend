@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView
 class CarouselLinearLayoutManager(context: Context, direction: Int, reverseLayout: Boolean) :
     LinearLayoutManager(context, direction, reverseLayout) {
 
-    private val mShrinkAmount = 0.30f
-    private val mShrinkDistance = 1f
+    private val mShrinkAmount = 0.32f
+    private val mShrinkDistance = 2f
 
     override fun onLayoutChildren(recycler: RecyclerView.Recycler?, state: RecyclerView.State?) {
         super.onLayoutChildren(recycler, state)
@@ -17,7 +17,7 @@ class CarouselLinearLayoutManager(context: Context, direction: Int, reverseLayou
 
     override fun scrollHorizontallyBy(dx: Int, recycler: RecyclerView.Recycler?, state: RecyclerView.State?): Int {
         val scrolled = super.scrollHorizontallyBy(dx, recycler, state)
-        val scalePoint = (width / 3.25f)
+        val scalePoint = (width / 5f)
         val d0 = 0f
         val d1 = (mShrinkDistance * scalePoint)
         val s0 = 1f

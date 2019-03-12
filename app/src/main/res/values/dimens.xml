@@ -16,8 +16,8 @@
     <dimen name="bottom_download_vertical_recycler_view">20dp</dimen>
     <dimen name="bottom_groups_vertical_recycler_view">20dp</dimen>
 
-    <dimen name="left_carousel_recycler_view">-10dp</dimen>
-    <dimen name="right_carousel_recycler_view">-10dp</dimen>
+    <dimen name="left_carousel_recycler_view">0dp</dimen>
+    <dimen name="right_carousel_recycler_view">-30dp</dimen>
     <dimen name="left_big_book_horizontal_recycler_view">-10dp</dimen>
     <dimen name="left_group_book_horizontal_recycler_view">-20dp</dimen>
     <dimen name="left_book_horizontal_recycler_view">5dp</dimen>
