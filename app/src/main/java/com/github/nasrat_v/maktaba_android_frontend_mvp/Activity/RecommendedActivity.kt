@@ -17,10 +17,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.DiscreteScrollViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.CarouselBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.LayoutManager.CarouselLinearLayoutManager
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.SmallListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
@@ -30,9 +31,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Horizonta
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.GSRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
-import com.yarolegovich.discretescrollview.DiscreteScrollView
-import com.yarolegovich.discretescrollview.transform.Pivot
-import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 
 class RecommendedActivity : AppCompatActivity(),
     IBookClickCallback,
@@ -63,7 +61,7 @@ class RecommendedActivity : AppCompatActivity(),
 
         initDrawerLayout()
 
-        initDiscreteScrollView()
+        initCarouselRecycler()
         initFirstVerticalRecycler()
         initPopularSpeciesHorizontalRecycler()
         initSecondVerticalRecycler()
@@ -74,8 +72,7 @@ class RecommendedActivity : AppCompatActivity(),
     override fun onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(Gravity.START))
             mDrawerLayout.closeDrawer(Gravity.START)
-        else
-        {
+        else {
             killAllActivities()
             super.onBackPressed()
             moveTaskToBack(false)
@@ -184,31 +181,35 @@ class RecommendedActivity : AppCompatActivity(),
         mDrawerLayout.setDrawerListener(mDrawerToggle)
     }
 
-    private fun initDiscreteScrollView() {
-        //val hmodels = arrayListOf<BModel>()
-
+    private fun initCarouselRecycler() {
         val hmodels = mockDatasetDiscreteScrollView()
-        val discreteScrollView = findViewById<DiscreteScrollView>(R.id.discrete_scroll_view)
-        val discreteRecyclerViewAdapter =
-            DiscreteScrollViewAdapter(
+        val carouselRecyclerView = findViewById<RecyclerView>(R.id.carousel_recyclerview_recommended)
+        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
+        val linearManager = CarouselLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val adapterBookVertical =
+            CarouselBRecyclerViewAdapter(
                 this,
                 hmodels
             )
+        /*val firstPos = if ((hmodels.size / 2) > 0)
+            (hmodels.size / 2)
+        else
+            0*/
 
-        discreteRecyclerViewAdapter.setTabFragmentClickCallback(this)
-        discreteScrollView.setHasFixedSize(true)
-        discreteScrollView.adapter = discreteRecyclerViewAdapter
-        discreteScrollView.setItemTransformer(
-            ScaleTransformer.Builder()
-                .setMaxScale(1f)
-                .setMinScale(0.68f)
-                .setPivotX(Pivot.X.CENTER)
-                .setPivotY(Pivot.Y.BOTTOM)
-                .build()
+        //linearManager.initFirstScrollPosition(firstPos)
+        adapterBookVertical.setTabFragmentClickCallback(this)
+        carouselRecyclerView.setHasFixedSize(true)
+        carouselRecyclerView.layoutManager = linearManager
+
+        carouselRecyclerView.adapter = adapterBookVertical
+        carouselRecyclerView.addItemDecoration(
+            LeftOffsetDecoration(this, R.dimen.left_carousel_recycler_view)
         )
-        if (hmodels.size > 0) {
-            discreteScrollView.scrollToPosition(1)
-        }
+        carouselRecyclerView.addItemDecoration(
+            RightOffsetDecoration(this, R.dimen.right_carousel_recycler_view)
+        )
+        carouselRecyclerView.isFocusable = false
+        linearLayout.requestFocus()
     }
 
     private fun initFirstVerticalRecycler() {
@@ -324,10 +325,10 @@ class RecommendedActivity : AppCompatActivity(),
         linearLayout.requestFocus()
     }
 
-    private fun mockDatasetDiscreteScrollView() : ArrayList<BModel> {
+    private fun mockDatasetDiscreteScrollView(): ArrayList<BModel> {
         val factory = BModelRandomProvider(this)
 
-        return factory.getRandomsInstancesDiscreteScrollView(5)
+        return factory.getRandomsInstancesDiscreteScrollView(15)
     }
 
     private fun mockDatasetFirstRecyclerView(mDataset: ArrayList<ListBModel>) {

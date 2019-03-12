@@ -45,11 +45,14 @@
             android:layout_marginTop="35dp"
             android:orientation="vertical">
 
-        <com.yarolegovich.discretescrollview.DiscreteScrollView
-                android:id="@+id/discrete_scroll_view"
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/carousel_recyclerview_recommended"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dsv_orientation="horizontal"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/margin_bottom_between_recyclerview_recommended"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:ignore="RtlSymmetry"/>
 
     </RelativeLayout>
 
