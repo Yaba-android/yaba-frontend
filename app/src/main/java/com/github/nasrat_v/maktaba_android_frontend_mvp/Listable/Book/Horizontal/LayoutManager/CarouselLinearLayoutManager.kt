@@ -31,7 +31,6 @@ class CarouselLinearLayoutManager(context: Context, direction: Int, reverseLayou
 
             child.scaleX = scale
             child.scaleY = scale
-            //child.pivotY = (getDecoratedBottom(child) * 1f)
         }
         return scrolled
     }

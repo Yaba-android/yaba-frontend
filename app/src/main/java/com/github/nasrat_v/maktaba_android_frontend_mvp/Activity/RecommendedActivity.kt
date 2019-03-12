@@ -21,7 +21,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModelPro
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.CarouselBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.LayoutManager.CarouselLinearLayoutManager
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.LayoutManager.StartSnapHelper
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.SmallListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
@@ -31,6 +30,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Horizonta
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.GSRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
 class RecommendedActivity : AppCompatActivity(),
     IBookClickCallback,
@@ -193,9 +193,9 @@ class RecommendedActivity : AppCompatActivity(),
             )
 
         adapterBookVertical.setTabFragmentClickCallback(this)
+        GravitySnapHelper(Gravity.START).attachToRecyclerView(carouselRecyclerView)
         carouselRecyclerView.setHasFixedSize(true)
         carouselRecyclerView.layoutManager = linearManager
-
         carouselRecyclerView.adapter = adapterBookVertical
         carouselRecyclerView.addItemDecoration(
             LeftOffsetDecoration(this, R.dimen.left_carousel_recycler_view)
@@ -240,6 +240,7 @@ class RecommendedActivity : AppCompatActivity(),
         val adapterGenreHorizontal = GPSRecyclerViewAdapter(this, popularList, this)
 
         title.text = TITLE_POPULAR_SPECIES_RECYCLER_VIEW
+        GravitySnapHelper(Gravity.END).attachToRecyclerView(horizontalRecyclerView)
         horizontalRecyclerView.setHasFixedSize(true)
         horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         horizontalRecyclerView.adapter = adapterGenreHorizontal
