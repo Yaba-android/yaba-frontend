@@ -17,6 +17,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 class DownloadFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
+    private lateinit var mAdapterBookVertical: DownloadListBRecyclerViewAdapter
+
     private var mDataset = arrayListOf<DownloadListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,9 +41,13 @@ class DownloadFragment : Fragment() {
         mDataset = dataset
     }
 
+    fun notifyDataSetChangedDownloadList() {
+        mAdapterBookVertical.notifyDataSetChangedDownloadList()
+    }
+
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
-        val adapterBookVertical =
+        mAdapterBookVertical =
             DownloadListBRecyclerViewAdapter(
                 container.context,
                 mDataset,
@@ -51,7 +57,7 @@ class DownloadFragment : Fragment() {
 
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.adapter = mAdapterBookVertical
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(container.context, R.dimen.bottom_download_vertical_recycler_view)
         )

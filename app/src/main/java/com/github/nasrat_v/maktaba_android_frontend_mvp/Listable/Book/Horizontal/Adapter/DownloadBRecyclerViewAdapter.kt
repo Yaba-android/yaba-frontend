@@ -11,8 +11,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCall
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.DownloadBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class DownloadBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<DownloadBModel>)
-    : RecyclerView.Adapter<DownloadBRecyclerViewAdapter.ViewHolder>() {
+class DownloadBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<DownloadBModel>) :
+    RecyclerView.Adapter<DownloadBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
 
@@ -44,7 +44,7 @@ class DownloadBRecyclerViewAdapter(private var context: Context, private var lis
         mBookClickCallback = bookClickCallback
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!
     }
 }

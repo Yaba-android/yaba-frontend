@@ -8,6 +8,8 @@
         android:fitsSystemWindows="true"
         tools:context=".Activity.GroupActivity">
 
+    <include layout="@layout/activity_group_content"/>
+
     <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

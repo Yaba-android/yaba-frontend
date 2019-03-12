@@ -40,6 +40,16 @@ class RecommendedActivity : AppCompatActivity(),
 
     private lateinit var mDrawerLayout: DrawerLayout
 
+    companion object {
+        const val SELECTED_BOOK = "SelectedBook"
+        const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
+        const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
+        const val TITLE_FIRST_RECYCLER_VIEW = "Recommended Authors"
+        const val TITLE_SECOND_RECYCLER_VIEW = "Inspired by Your Reading History"
+        const val TITLE_SMALL_RECYCLER_VIEW = "Other Books for you"
+        const val TITLE_POPULAR_SPECIES_RECYCLER_VIEW = "Popular species"
+    }
+
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +84,7 @@ class RecommendedActivity : AppCompatActivity(),
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        val anim = intent!!.getIntExtra("LeftOrRightInAnimation", -1)
+        val anim = intent!!.getIntExtra(LEFT_OR_RIGHT_IN_ANIMATION, -1)
 
         if (anim == 0) // left
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
@@ -85,7 +95,7 @@ class RecommendedActivity : AppCompatActivity(),
     override fun bookEventButtonClicked(book: BModel) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
-        intent.putExtra("SelectedBook", book)
+        intent.putExtra(SELECTED_BOOK, book)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
@@ -97,7 +107,7 @@ class RecommendedActivity : AppCompatActivity(),
     override fun popularSpeciesEventButtonClicked(pspecies: GModel) {
         val intent = Intent(this, PopularSpeciesActivity::class.java)
 
-        intent.putExtra("SelectedPopularSpecies", pspecies)
+        intent.putExtra(SELECTED_POPULAR_SPECIES, pspecies)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
@@ -225,7 +235,6 @@ class RecommendedActivity : AppCompatActivity(),
         linearLayout.requestFocus()
     }
 
-    @SuppressLint("SetTextI18n")
     private fun initPopularSpeciesHorizontalRecycler() {
         val popularList = GModelProvider(this).getPopularGenres()
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_genre)
@@ -234,7 +243,7 @@ class RecommendedActivity : AppCompatActivity(),
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
         val adapterGenreHorizontal = GPSRecyclerViewAdapter(this, popularList, this)
 
-        title.text = "Popular species"
+        title.text = TITLE_POPULAR_SPECIES_RECYCLER_VIEW
         horizontalRecyclerView.setHasFixedSize(true)
         horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         horizontalRecyclerView.adapter = adapterGenreHorizontal
@@ -272,7 +281,6 @@ class RecommendedActivity : AppCompatActivity(),
         linearLayout.requestFocus()
     }
 
-    @SuppressLint("SetTextI18n")
     private fun initSmallVerticalRecycler() {
         val mDataset = arrayListOf<NoTitleListBModel>()
 
@@ -289,7 +297,7 @@ class RecommendedActivity : AppCompatActivity(),
                 this
             )
 
-        title.text = "Other Books for you"
+        title.text = TITLE_SMALL_RECYCLER_VIEW
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical
@@ -327,7 +335,7 @@ class RecommendedActivity : AppCompatActivity(),
 
         mDataset.add(
             ListBModel(
-                "Recommended Authors",
+                TITLE_FIRST_RECYCLER_VIEW,
                 factory.getRandomsInstances(4)
             )
         )
@@ -338,7 +346,7 @@ class RecommendedActivity : AppCompatActivity(),
 
         mDataset.add(
             ListBModel(
-                "Inspired by Your Reading History",
+                TITLE_SECOND_RECYCLER_VIEW,
                 factory.getRandomsInstances(4)
             )
         )

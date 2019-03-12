@@ -6,18 +6,22 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.AllBooksBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.GroupBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class GroupListBRecyclerViewAdapter(private var context: Context,
-                                    private var listNoTitleListBModel: ArrayList<GroupListBModel>,
-                                    private var mBookClickCallback: IBookClickCallback,
-                                    private var mGroupClickCallback: IGroupClickCallback)
-    : RecyclerView.Adapter<GroupListBRecyclerViewAdapter.ViewHolder>() {
+class GroupListBRecyclerViewAdapter(
+    private var context: Context,
+    private var listAllBooks: ArrayList<NoTitleListBModel>,
+    private var listDownloadedBooks: ArrayList<DownloadListBModel>,
+    private var mBookClickCallback: IBookClickCallback,
+    private var mDownloadBookClickCallback: IDownloadBookClickCallback
+) : RecyclerView.Adapter<GroupListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
 
@@ -25,25 +29,34 @@ class GroupListBRecyclerViewAdapter(private var context: Context,
         val rootView = LayoutInflater.from(container.context).inflate(
             R.layout.vertical_generic_recyclerview_book, container, false
         )
-        return ViewHolder(rootView)
+        return ViewHolder(
+            rootView
+        )
     }
 
     override fun getItemCount(): Int {
-        return listNoTitleListBModel.size
+        return listAllBooks.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model = listNoTitleListBModel[position]
-        val horizontalRecyclerViewAdapter = GroupBRecyclerViewAdapter(context, model.groupModels)
+        val model = listAllBooks[position]
 
-        horizontalRecyclerViewAdapter.setBookClickCallback(mBookClickCallback)
-        horizontalRecyclerViewAdapter.setGroupClickCallback(mGroupClickCallback)
+        val horizontalRecyclerViewAdapter =
+            GroupBRecyclerViewAdapter(
+                context,
+                listDownloadedBooks,
+                model.bookModels
+            )
+
+        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
+        horizontalRecyclerViewAdapter.setDownloadBookClickCallback(mDownloadBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
-        holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        holder.horizontalRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
         holder.horizontalRecyclerView.addItemDecoration(
-            LeftOffsetDecoration(context, R.dimen.left_group_book_horizontal_recycler_view)
+            LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
         )
     }
 

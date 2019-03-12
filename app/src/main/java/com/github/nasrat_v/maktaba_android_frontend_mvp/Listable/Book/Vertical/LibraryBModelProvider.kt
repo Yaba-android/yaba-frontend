@@ -6,7 +6,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 
-class LibraryListBModelProvider {
+class LibraryBModelProvider {
 
     fun getGroupListFromList(nb: Int, allBooks: ArrayList<NoTitleListBModel>)
             : ArrayList<GroupListBModel> {
@@ -24,15 +24,17 @@ class LibraryListBModelProvider {
         return booksSelected
     }
 
-    private fun getNbColumns(nbRows: Int, nbGenres: Int) : Int {
+    private fun getNbColumns(nbRows: Int, nbGenres: Int): Int {
         if ((nbGenres % 2) == 0) {
             return (nbGenres / nbRows)
         }
         return ((nbGenres / nbRows) + 1)
     }
 
-    private fun getGroupFromList(nb: Int, allBooks: ArrayList<NoTitleListBModel>,
-                                 genresSelected: ArrayList<GModel>) : ArrayList<GroupBModel> {
+    private fun getGroupFromList(
+        nb: Int, allBooks: ArrayList<NoTitleListBModel>,
+        genresSelected: ArrayList<GModel>
+    ): ArrayList<GroupBModel> {
 
         val booksSelected = arrayListOf<GroupBModel>()
 
@@ -42,9 +44,11 @@ class LibraryListBModelProvider {
         return booksSelected
     }
 
-    private fun findBookFromGenre(nb: Int, genresSelected: ArrayList<GModel>,
-                                  allBooks: ArrayList<NoTitleListBModel>,
-                                  booksSelected: ArrayList<GroupBModel>) {
+    private fun findBookFromGenre(
+        nb: Int, genresSelected: ArrayList<GModel>,
+        allBooks: ArrayList<NoTitleListBModel>,
+        booksSelected: ArrayList<GroupBModel>
+    ) {
 
         allBooks.forEach {
             if (genresSelected.size == 0)
@@ -55,13 +59,15 @@ class LibraryListBModelProvider {
     }
 
 
-    private fun addSelectedBook(nb: Int, genre: GModel, list: ArrayList<BModel>,
-                                booksSelected: ArrayList<GroupBModel>) {
+    private fun addSelectedBook(
+        nb: Int, genre: GModel, list: ArrayList<BModel>,
+        booksSelected: ArrayList<GroupBModel>
+    ) {
 
-        val filteredList = ArrayList<BModel>(list.filter { it.genre.name == genre.name })
+        val filteredList = ArrayList<BModel>(list.filter { it.genre == genre })
 
         if (filteredList.size > 0) {
-            if (!booksSelected.isEmpty() && (booksSelected.last().genre.name == genre.name))
+            if (!booksSelected.isEmpty() && (booksSelected.last().genre == genre))
                 booksSelected.last().bookModels.addAll(filteredList)
             else
                 booksSelected.add(GroupBModel(genre, filteredList))
@@ -79,7 +85,7 @@ class LibraryListBModelProvider {
 
     private fun addSelectedGenre(list: ArrayList<BModel>, genresSelected: ArrayList<GModel>) {
         list.forEach { bmodel ->
-            if (genresSelected.find { it.name == bmodel.genre.name } == null)
+            if (genresSelected.find { it == bmodel.genre } == null)
                 genresSelected.add(bmodel.genre)
         }
     }

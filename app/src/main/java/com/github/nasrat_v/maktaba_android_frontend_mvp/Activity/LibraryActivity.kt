@@ -1,5 +1,6 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -10,16 +11,24 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.DownloadBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.GroupBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.LibraryBModelProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.LibraryBModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
@@ -27,9 +36,24 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCus
 class LibraryActivity : AppCompatActivity(),
     IBookClickCallback,
     IGroupClickCallback,
+    IDownloadBookClickCallback,
     ITabLayoutSetupCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mLibraryDataset: LibraryBModel
+    private val mContainerFragment = LibraryContainerFragment()
+
+    companion object {
+        const val DOWNLOAD_NB_BOOK_PER_ROW = 2
+        const val ALLBOOKS_NB_BOOK_PER_ROW = 2
+        const val GROUPS_NB_GROUP_PER_ROW = 1
+        const val REQUEST_BOOKS_ADD_DOWNLOAD_LIST = 0
+        const val SELECTED_BOOK = "SelectedBook"
+        const val SELECTED_GROUP = "SelectedGroup"
+        const val DOWNLOADED_BOOKS = "DownloadedBooks"
+        const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
+        const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +64,8 @@ class LibraryActivity : AppCompatActivity(),
         setListenerBrowseButtonFooter()
         setListenerRecommendedButtonFooter()
         //setListenerButtonFolioReader()
+
+        initDataset()
         initRootDrawerLayout()
         if (savedInstanceState == null) {
             initFragmentManager()
@@ -60,7 +86,7 @@ class LibraryActivity : AppCompatActivity(),
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        val anim = intent!!.getIntExtra("LeftOrRightInAnimation", 1)
+        val anim = intent!!.getIntExtra(LEFT_OR_RIGHT_IN_ANIMATION, 1)
 
         if (anim == 0) // left
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
@@ -68,10 +94,20 @@ class LibraryActivity : AppCompatActivity(),
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if ((requestCode == REQUEST_BOOKS_ADD_DOWNLOAD_LIST) && resultCode == Activity.RESULT_OK) {
+            val booksToAddToDownload =
+                data!!.getParcelableArrayListExtra<BModel>(BOOKS_ADD_DOWNLOAD_LIST)
+
+            addDownloadedBooks(booksToAddToDownload)
+            mContainerFragment.notifyDataSetChangedDownloadList()
+        }
+    }
+
     override fun bookEventButtonClicked(book: BModel) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
-        intent.putExtra("SelectedBook", book)
+        intent.putExtra(SELECTED_BOOK, book)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
@@ -79,9 +115,14 @@ class LibraryActivity : AppCompatActivity(),
     override fun groupEventButtonClicked(group: GroupBModel) {
         val intent = Intent(this, GroupActivity::class.java)
 
-        intent.putExtra("SelectedGroup", group)
-        startActivity(intent)
+        intent.putExtra(SELECTED_GROUP, group)
+        intent.putExtra(DOWNLOADED_BOOKS, mLibraryDataset.downloadBooks)
+        startActivityForResult(intent, REQUEST_BOOKS_ADD_DOWNLOAD_LIST)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    override fun downloadBookEventButtonClicked(book: BModel) {
+        addDownloadedBook(book)
     }
 
     override fun setupTabLayout(viewPager: ViewPager) {
@@ -91,15 +132,6 @@ class LibraryActivity : AppCompatActivity(),
         tabLayout.setupWithViewPager(viewPager)
         customListener.setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
         customListener.setListenerTabLayout(tabLayout)
-    }
-
-    private fun returnToHome() {
-        val intent = Intent(this, RecommendedActivity::class.java)
-
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        intent.putExtra("LeftOrRightInAnimation", 0)
-        startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     private fun setListenerButtonCloseProfile() {
@@ -143,6 +175,42 @@ class LibraryActivity : AppCompatActivity(),
         }
     }*/
 
+    private fun addDownloadedBooks(books: ArrayList<BModel>) {
+        books.forEach {
+            addDownloadedBook(it)
+        }
+    }
+
+    private fun addDownloadedBook(book: BModel) {
+        val downloadBook = DownloadBModel(book)
+
+        if (!addBookToRowWithSpace(mLibraryDataset.downloadBooks.last(), downloadBook)) {
+            val newList = arrayListOf<DownloadBModel>()
+
+            newList.add(downloadBook)
+            mLibraryDataset.downloadBooks.add(DownloadListBModel(newList))
+        }
+    }
+
+    private fun addBookToRowWithSpace(rowBooks: DownloadListBModel, newBook: DownloadBModel)
+            : Boolean {
+
+        if (rowBooks.bookModels.size < DOWNLOAD_NB_BOOK_PER_ROW) {
+            rowBooks.bookModels.add(newBook)
+            return true
+        }
+        return false
+    }
+
+    private fun returnToHome() {
+        val intent = Intent(this, RecommendedActivity::class.java)
+
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        intent.putExtra(LEFT_OR_RIGHT_IN_ANIMATION, 0)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
     private fun initRootDrawerLayout() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
 
@@ -164,13 +232,66 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     private fun initFragmentManager() {
-        val containerFragment = LibraryContainerFragment()
         val mFragmentManager = supportFragmentManager
 
-        containerFragment.setBookClickCallback(this) // permet de gerer les click depuis le fragment
-        containerFragment.setGroupClickCallback(this)
+        mContainerFragment.setBookClickCallback(this) // permet de gerer les click depuis le fragment
+        mContainerFragment.setGroupClickCallback(this)
+        mContainerFragment.setDownloadBookClickCallback(this)
+        mContainerFragment.setLibraryDataset(mLibraryDataset)
         //mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         val mFragmentTransaction = mFragmentManager.beginTransaction()
-        mFragmentTransaction.replace(R.id.fragment_container_library, containerFragment).commit()
+        mFragmentTransaction.replace(R.id.fragment_container_library, mContainerFragment).commit()
+    }
+
+    private fun initDataset() {
+        val allbooks = arrayListOf<NoTitleListBModel>()
+        val downloads = arrayListOf<DownloadListBModel>()
+        val groups = arrayListOf<GroupListBModel>()
+
+        mockDatasetAllBooks(allbooks)
+        mockDatasetGroups(allbooks, groups)
+        mockDatasetDownload(allbooks, downloads)
+        mLibraryDataset = LibraryBModel(
+            downloads,
+            groups,
+            allbooks
+        )
+    }
+
+    private fun mockDatasetAllBooks(dataset: ArrayList<NoTitleListBModel>) {
+        val factory = BModelRandomProvider(this)
+
+        for (index in 0..15) {
+            dataset.add(
+                NoTitleListBModel(
+                    factory.getRandomsInstances(ALLBOOKS_NB_BOOK_PER_ROW)
+                )
+            )
+        }
+    }
+
+    private fun mockDatasetGroups(
+        allbooksDataset: ArrayList<NoTitleListBModel>,
+        dataset: ArrayList<GroupListBModel>
+    ) {
+        dataset.addAll(
+            LibraryBModelProvider().getGroupListFromList(
+                GROUPS_NB_GROUP_PER_ROW,
+                allbooksDataset
+            )
+        )
+    }
+
+    private fun mockDatasetDownload(
+        allbooksDataset: ArrayList<NoTitleListBModel>,
+        dataset: ArrayList<DownloadListBModel>
+    ) {
+        dataset.addAll(
+            LibraryBModelRandomProvider().getRandomDownloadedListBookFromList(
+                3,
+                DOWNLOAD_NB_BOOK_PER_ROW,
+                allbooksDataset
+            )
+        )
     }
 }

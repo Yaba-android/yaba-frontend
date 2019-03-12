@@ -11,21 +11,21 @@ import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.DownloadBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class AllBooksBRecyclerViewAdapter(private var context: Context,
-                                   private var downloadedBooks: ArrayList<DownloadListBModel>,
-                                   private var list: ArrayList<BModel>)
-    : RecyclerView.Adapter<AllBooksBRecyclerViewAdapter.ViewHolder>() {
+class AllBooksBRecyclerViewAdapter(
+    private var context: Context,
+    private var downloadedBooks: ArrayList<DownloadListBModel>,
+    private var list: ArrayList<BModel>
+) : RecyclerView.Adapter<AllBooksBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mDownloadBookClickCallback: IDownloadBookClickCallback
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
-            R.layout.horizontal_recyclerview_big_allbooks_book, container, false
+            R.layout.horizontal_recyclerview_big_library_book, container, false
         )
         return ViewHolder(
             rootView
@@ -61,7 +61,7 @@ class AllBooksBRecyclerViewAdapter(private var context: Context,
         mDownloadBookClickCallback = downloadBookClickCallback
     }
 
-    private fun isBookAlreadyDownloaded(book: BModel) : Boolean {
+    private fun isBookAlreadyDownloaded(book: BModel): Boolean {
         downloadedBooks.forEach {
             if (it.bookModels.find { dlBook -> dlBook.book == book } != null)
                 return true
@@ -69,7 +69,7 @@ class AllBooksBRecyclerViewAdapter(private var context: Context,
         return false
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!
         var mButtonDownload = itemView.findViewById<Button>(R.id.button_download_book_library)!!
     }

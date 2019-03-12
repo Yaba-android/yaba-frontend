@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/root_linear_layout_double_book"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/colorCarouselGrey"
+            android:layout_marginTop="20dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="50dp">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_recyclerview_height"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="17dp"
+                tools:ignore="RtlSymmetry">
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sort"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorTextBlack"
+                    android:background="@android:color/transparent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="start|center_vertical"
+                    android:drawableStart="@drawable/sort"/>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/vertical_double_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:layout_gravity="center"
+                tools:ignore="RtlSymmetry"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

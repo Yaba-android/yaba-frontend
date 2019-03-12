@@ -13,15 +13,15 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCall
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class BRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BModel>)
-    : RecyclerView.Adapter<BRecyclerViewAdapter.ViewHolder>() {
+class BRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BModel>) :
+    RecyclerView.Adapter<BRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
-                R.layout.horizontal_recyclerview_book, container, false
-            )
+            R.layout.horizontal_recyclerview_book, container, false
+        )
         return ViewHolder(
             rootView
         )
@@ -51,7 +51,7 @@ class BRecyclerViewAdapter(private var context: Context, private var list: Array
         mBookClickCallback = bookClickCallback
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mTitle = itemView.findViewById<TextView>(R.id.horizontal_title)!!
         var mAuthor = itemView.findViewById<TextView>(R.id.horizontal_author)!!
         var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!

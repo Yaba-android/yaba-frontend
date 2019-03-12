@@ -15,6 +15,10 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity() {
 
+    companion object {
+        const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -35,7 +39,7 @@ class BrowseActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        val anim = intent!!.getIntExtra("LeftOrRightInAnimation", 0)
+        val anim = intent!!.getIntExtra(LEFT_OR_RIGHT_IN_ANIMATION, 0)
 
         if (anim == 0) // left
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
@@ -47,7 +51,7 @@ class BrowseActivity : AppCompatActivity() {
         val intent = Intent(this, RecommendedActivity::class.java)
 
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        intent.putExtra("LeftOrRightInAnimation", 1)
+        intent.putExtra(LEFT_OR_RIGHT_IN_ANIMATION, 1)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }

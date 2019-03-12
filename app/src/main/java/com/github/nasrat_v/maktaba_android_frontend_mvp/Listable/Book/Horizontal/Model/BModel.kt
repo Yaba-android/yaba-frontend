@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class BModel(var image: Int, var title: String, var author: String,
+data class BModel(var image: Int, var title: String, var author: String,
              var rating: Float, var numberRating: Int, var price: Float,
              var length: Int, var genre: GModel, var fileSize: String,
              var country: String, var datePublication: String, var publisher: String)
@@ -19,7 +19,7 @@ class BModel(var image: Int, var title: String, var author: String,
         parcel.readInt(),
         parcel.readFloat(),
         parcel.readInt(),
-        parcel.readParcelable(GModel::class.java.classLoader),
+        parcel.readParcelable<GModel>(GModel::class.java.classLoader),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -54,6 +54,4 @@ class BModel(var image: Int, var title: String, var author: String,
             return arrayOfNulls(size)
         }
     }
-
-
 }

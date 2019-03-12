@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class GModel(var name: String, var nb: Int, var popular: Int) : Parcelable {
+data class GModel(var name: String, var nb: Int, var popular: Int) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),

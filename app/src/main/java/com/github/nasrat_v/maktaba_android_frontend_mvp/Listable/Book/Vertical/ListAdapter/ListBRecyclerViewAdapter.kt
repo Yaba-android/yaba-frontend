@@ -12,15 +12,16 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCall
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class ListBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<ListBModel>,
-                               private var mBookClickCallback: IBookClickCallback)
-    : RecyclerView.Adapter<ListBRecyclerViewAdapter.ViewHolder>() {
+class ListBRecyclerViewAdapter(
+    private var context: Context, private var list: ArrayList<ListBModel>,
+    private var mBookClickCallback: IBookClickCallback
+) : RecyclerView.Adapter<ListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
-                R.layout.vertical_recyclerview_book, container, false
+            R.layout.vertical_recyclerview_book, container, false
         )
         return ViewHolder(
             rootView
@@ -44,7 +45,8 @@ class ListBRecyclerViewAdapter(private var context: Context, private var list: A
         holder.mTitle.text = title
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
-        holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        holder.horizontalRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
         /*holder.horizontalRecyclerView.addItemDecoration(
             LeftOffsetDecoration(

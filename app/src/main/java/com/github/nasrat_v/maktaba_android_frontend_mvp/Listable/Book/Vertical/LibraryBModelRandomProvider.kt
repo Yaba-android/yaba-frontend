@@ -5,7 +5,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 
-class LibraryListBModelRandomProvider {
+class LibraryBModelRandomProvider {
 
     fun getRandomDownloadedListBookFromList(nbY: Int, nbX: Int, allBooks: ArrayList<NoTitleListBModel>)
             : ArrayList<DownloadListBModel> {
@@ -40,7 +40,7 @@ class LibraryListBModelRandomProvider {
         return booksSelected
     }
 
-    private fun getAllRandomIndex(nbAllIndex: Int, sizeList: Int) : ArrayList<Int> {
+    private fun getAllRandomIndex(nbAllIndex: Int, sizeList: Int): ArrayList<Int> {
         val indexSelected = arrayListOf<Int>()
         var randomIndex = initRandomIndex(sizeList)
 
@@ -52,7 +52,7 @@ class LibraryListBModelRandomProvider {
         return indexSelected
     }
 
-    private fun randomizeIndex(indexSelected: ArrayList<Int>, sizeList: Int) : Int {
+    private fun randomizeIndex(indexSelected: ArrayList<Int>, sizeList: Int): Int {
         var randomIndex = initRandomIndex(sizeList)
 
         indexSelected.forEach {
@@ -64,7 +64,7 @@ class LibraryListBModelRandomProvider {
         return -1 // error
     }
 
-    private fun allBooksInSimpleList(allBooks: ArrayList<NoTitleListBModel>) : ArrayList<BModel> {
+    private fun allBooksInSimpleList(allBooks: ArrayList<NoTitleListBModel>): ArrayList<BModel> {
         val simpleList = arrayListOf<BModel>()
 
         allBooks.forEach {
@@ -75,7 +75,7 @@ class LibraryListBModelRandomProvider {
         return simpleList
     }
 
-    private fun initRandomIndex(size: Int) : Int {
+    private fun initRandomIndex(size: Int): Int {
         return (0..(size - 1)).random()
     }
 }

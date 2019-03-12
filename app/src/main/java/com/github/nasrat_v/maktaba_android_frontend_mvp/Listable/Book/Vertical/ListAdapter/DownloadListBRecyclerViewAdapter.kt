@@ -12,10 +12,12 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class DownloadListBRecyclerViewAdapter(private var context: Context, private var downloadListBModel: ArrayList<DownloadListBModel>,
-                                       private var mBookClickCallback: IBookClickCallback)
-    : RecyclerView.Adapter<DownloadListBRecyclerViewAdapter.ViewHolder>() {
+class DownloadListBRecyclerViewAdapter(
+    private var context: Context, private var downloadListBModel: ArrayList<DownloadListBModel>,
+    private var mBookClickCallback: IBookClickCallback
+) : RecyclerView.Adapter<DownloadListBRecyclerViewAdapter.ViewHolder>() {
 
+    private lateinit var mHorizontalRecyclerViewAdapter: DownloadBRecyclerViewAdapter
     private var viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
@@ -33,20 +35,26 @@ class DownloadListBRecyclerViewAdapter(private var context: Context, private var
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = downloadListBModel[position]
-        val horizontalRecyclerViewAdapter =
+        mHorizontalRecyclerViewAdapter =
             DownloadBRecyclerViewAdapter(
                 context,
                 model.bookModels
             )
 
-        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
+        mHorizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
-        holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
+        holder.horizontalRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        holder.horizontalRecyclerView.adapter = mHorizontalRecyclerViewAdapter
         holder.horizontalRecyclerView.addItemDecoration(
             LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
         )
+    }
+
+    fun notifyDataSetChangedDownloadList() {
+        this.notifyDataSetChanged()
+        mHorizontalRecyclerViewAdapter.notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

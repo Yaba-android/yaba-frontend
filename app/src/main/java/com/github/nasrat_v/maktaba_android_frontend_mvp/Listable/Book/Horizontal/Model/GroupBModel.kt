@@ -5,10 +5,11 @@ import android.os.Parcelable
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class GroupBModel(var genre: GModel, var bookModels: ArrayList<BModel>) : Parcelable {
+data class GroupBModel(var genre: GModel, var bookModels: ArrayList<BModel>)
+    : Parcelable {
 
     constructor(parcel: Parcel) : this(
-        parcel.readParcelable(GModel::class.java.classLoader),
+        parcel.readParcelable<GModel>(GModel::class.java.classLoader),
         arrayListOf<BModel>().apply {
             parcel.readList(this, BModel::class.java.classLoader)
         }

@@ -30,16 +30,19 @@ class PopularSpeciesActivity : AppCompatActivity(),
     IBookClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
-    private var mLastClickTime: Long = 0
-
     private lateinit var selectedPSpecies: GModel
+
+    companion object {
+        const val SELECTED_BOOK = "SelectedBook"
+        const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_popular_species_structure)
 
-        selectedPSpecies = intent.getParcelableExtra("SelectedPopularSpecies")
+        selectedPSpecies = intent.getParcelableExtra(SELECTED_POPULAR_SPECIES)
         setListenerLibraryButtonFooter()
         setListenerBrowseButtonFooter()
         setListenerRecommendedButtonFooter()
@@ -59,7 +62,7 @@ class PopularSpeciesActivity : AppCompatActivity(),
     override fun bookEventButtonClicked(book: BModel) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
-        intent.putExtra("SelectedBook", book)
+        intent.putExtra(SELECTED_BOOK, book)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }

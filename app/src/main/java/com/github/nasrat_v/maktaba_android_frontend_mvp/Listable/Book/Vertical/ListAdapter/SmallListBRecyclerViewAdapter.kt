@@ -11,9 +11,10 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCall
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class SmallListBRecyclerViewAdapter(private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
-                                    private var mBookClickCallback: IBookClickCallback)
-    : RecyclerView.Adapter<SmallListBRecyclerViewAdapter.ViewHolder>() {
+class SmallListBRecyclerViewAdapter(
+    private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
+    private var mBookClickCallback: IBookClickCallback
+) : RecyclerView.Adapter<SmallListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
 
@@ -41,7 +42,8 @@ class SmallListBRecyclerViewAdapter(private var context: Context, private var li
         horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
-        holder.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        holder.horizontalRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
         /*holder.horizontalRecyclerView.addItemDecoration(
             LeftOffsetDecoration(

@@ -11,13 +11,14 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCall
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class DiscreteScrollViewAdapter(private var context: Context, private var list: ArrayList<BModel>)
-    : RecyclerView.Adapter<DiscreteScrollViewAdapter.ViewHolder>() {
+class DiscreteScrollViewAdapter(private var context: Context, private var list: ArrayList<BModel>) :
+    RecyclerView.Adapter<DiscreteScrollViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView =  LayoutInflater.from(container.context).inflate(R.layout.horizontal_discretescrollview_no_text_book, container, false)
+        val rootView = LayoutInflater.from(container.context)
+            .inflate(R.layout.horizontal_discretescrollview_no_text_book, container, false)
 
         return ViewHolder(
             rootView
@@ -43,7 +44,7 @@ class DiscreteScrollViewAdapter(private var context: Context, private var list: 
         mBookClickCallback = bookClickCallback
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!
     }
 }
