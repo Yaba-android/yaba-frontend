@@ -49,9 +49,10 @@ class LibraryActivity : AppCompatActivity(),
     private val mContainerFragment = LibraryContainerFragment()
 
     companion object {
-        const val NB_ALL_BOOKS = 10
         const val DOWNLOAD_NB_BOOK_PER_ROW = 2
         const val ALLBOOKS_NB_BOOK_PER_ROW = 2
+        const val DOWNLOAD_NB_BOOK_COLUMNS = 3
+        const val ALLBOOKS_NB_BOOK_COLUMNS = 10
         const val GROUPS_NB_GROUP_PER_ROW = 1
         const val REQUEST_BOOKS_ADD_DOWNLOAD_LIST = 0
         const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"

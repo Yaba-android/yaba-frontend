@@ -1,6 +1,7 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter
 
 import android.content.Context
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -65,23 +66,22 @@ class GroupsBRecyclerViewAdapter(private var context: Context, private var list:
             }
             books.size > 1 -> {
                 holder.mSecondImage.setImageResource(books[1].image)
-                holder.mThirdLayout.visibility = View.INVISIBLE
+                holder.mSecondCardView.visibility = View.INVISIBLE
             }
             else -> {
-                holder.mSecondLayout.visibility = View.INVISIBLE
-                holder.mThirdLayout.visibility = View.INVISIBLE
+                holder.mSecondCardView.visibility = View.INVISIBLE
+                holder.mThirdCardView.visibility = View.INVISIBLE
             }
         }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val mFirstLayout = itemView.findViewById<RelativeLayout>(R.id.horizontal_first_image_layout_group)!!
-        val mSecondLayout = itemView.findViewById<RelativeLayout>(R.id.horizontal_second_image_layout_group)!!
-        val mThirdLayout = itemView.findViewById<RelativeLayout>(R.id.horizontal_third_image_layout_group)!!
-
-        var mFirstImage = mFirstLayout.findViewById<ImageView>(R.id.horizontal_image)!!
-        var mSecondImage = mSecondLayout.findViewById<ImageView>(R.id.horizontal_image)!!
-        var mThirdImage = mThirdLayout.findViewById<ImageView>(R.id.horizontal_image)!!
+        var mFirstCardView = itemView.findViewById<CardView>(R.id.cardview_first_group)!!
+        var mSecondCardView = itemView.findViewById<CardView>(R.id.cardview_second_group)!!
+        var mThirdCardView = itemView.findViewById<CardView>(R.id.cardview_third_group)!!
+        var mFirstImage = itemView.findViewById<ImageView>(R.id.horizontal_first_image)!!
+        var mSecondImage = itemView.findViewById<ImageView>(R.id.horizontal_second_image)!!
+        var mThirdImage = itemView.findViewById<ImageView>(R.id.horizontal_third_image)!!
         var mGenreName = itemView.findViewById<TextView>(R.id.text_genre_group)!!
     }
 }

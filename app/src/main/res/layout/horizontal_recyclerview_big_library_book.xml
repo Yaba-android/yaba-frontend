@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layoutDirection="rtl"
-        android:background="@android:color/transparent">
+        android:layout_margin="10dp">
 
-    <include
-            android:id="@+id/horizontal_image_layout_library"
+    <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            layout="@layout/horizontal_recyclerview_big_book_image"/>
+            app:cardElevation="@dimen/size_shadow_big_book"
+            app:cardUseCompatPadding="true">
 
-    <Button
-            android:id="@+id/button_download_book_library"
-            android:layout_width="@dimen/button_download_library_width"
-            android:layout_height="@dimen/button_download_library_height"
-            android:background="@drawable/download_book_library"
-            android:layout_alignEnd="@+id/horizontal_image_layout_library"
-            android:layout_alignBottom="@+id/horizontal_image_layout_library"
-            android:layout_marginBottom="@dimen/size_shadow_big_book_plus_padding_bottom_button_download"
-            android:layout_marginEnd="@dimen/size_shadow_big_book_plus_padding_end_button_download"/>
+        <ImageView
+                android:id="@+id/horizontal_image"
+                android:layout_width="@dimen/width_image_big_book"
+                android:layout_height="@dimen/height_image_big_book"
+                android:src="@drawable/book4"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"/>
+
+        <Button
+                android:id="@+id/button_download_book_library"
+                android:layout_width="@dimen/button_download_library_width"
+                android:layout_height="@dimen/button_download_library_height"
+                android:layout_gravity="start|bottom"
+                android:background="@drawable/download_book_library"
+                android:layout_marginBottom="@dimen/padding_bottom_button_download"
+                android:layout_marginStart="@dimen/padding_start_button_download"/>
+
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

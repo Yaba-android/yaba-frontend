@@ -29,7 +29,7 @@ class LibraryBModelAsyncFetchData(context: Context) : AsyncTaskLoader<LibraryBMo
     private fun mockDatasetAllBooks(dataset: ArrayList<NoTitleListBModel>) {
         val factory = BModelRandomProvider(context)
 
-        for (index in 0..(LibraryActivity.NB_ALL_BOOKS - 1)) {
+        for (index in 0..(LibraryActivity.ALLBOOKS_NB_BOOK_COLUMNS - 1)) {
             dataset.add(
                 NoTitleListBModel(
                     factory.getRandomsInstances(LibraryActivity.ALLBOOKS_NB_BOOK_PER_ROW)
@@ -56,7 +56,7 @@ class LibraryBModelAsyncFetchData(context: Context) : AsyncTaskLoader<LibraryBMo
     ) {
         dataset.addAll(
             LibraryBModelRandomProvider().getRandomDownloadedListBookFromList(
-                3,
+                LibraryActivity.DOWNLOAD_NB_BOOK_COLUMNS,
                 LibraryActivity.DOWNLOAD_NB_BOOK_PER_ROW,
                 allbooksDataset
             )

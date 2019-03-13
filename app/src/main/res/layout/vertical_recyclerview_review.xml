@@ -1,70 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="@dimen/margin_start_end_vertical_review"
         android:layout_marginEnd="@dimen/margin_start_end_vertical_review"
-        tools:ignore="RtlSymmetry">
+        android:layout_marginTop="10dp">
 
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <ImageView
+            android:id="@+id/profile_picture_review"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/image_review2"/>
 
-        <ImageView
-                android:id="@+id/profile_picture_review"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/image_review2"/>
+    <TextView
+            android:id="@+id/author_review"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="28dp"
+            android:layout_toStartOf="@+id/profile_picture_review"
+            android:textDirection="rtl"
+            android:text="@string/author_review"
+            android:textSize="14sp"
+            android:textColor="@color/colorReviewTextBlack"
+            android:paddingBottom="5dp"
+            tools:ignore="RtlHardcoded"/>
 
-        <TextView
-                android:id="@+id/author_review"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="28dp"
-                android:layout_toStartOf="@+id/profile_picture_review"
-                android:textDirection="rtl"
-                android:text="@string/author_review"
-                android:textSize="14sp"
-                android:textColor="@color/colorReviewTextBlack"
-                android:paddingBottom="5dp"
-                tools:ignore="RtlHardcoded"/>
+    <RatingBar
+            android:id="@+id/rating_bar_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:layout_alignTop="@+id/author_review"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize=".5"
+            android:rating="4"
+            android:paddingBottom="5dp"
+            style="@style/RatingBarReview"/>
 
-        <RatingBar
-                android:id="@+id/rating_bar_review"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layoutDirection="rtl"
-                android:layout_alignTop="@+id/author_review"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:stepSize=".5"
-                android:rating="4"
-                android:paddingBottom="5dp"
-                style="@style/RatingBarReview"/>
+    <TextView
+            android:id="@+id/comment_review"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/author_review"
+            android:layout_toStartOf="@id/profile_picture_review"
+            android:layout_alignStart="@+id/author_review"
+            android:layout_alignEnd="@+id/author_review"
+            android:layout_marginTop="14dp"
+            android:textDirection="rtl"
+            android:text="@string/comment_review"
+            android:textSize="12sp"
+            android:textColor="@color/colorTextGrey"
+            tools:ignore="RtlHardcoded"/>
 
-        <TextView
-                android:id="@+id/comment_review"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/author_review"
-                android:layout_toStartOf="@id/profile_picture_review"
-                android:layout_alignStart="@+id/author_review"
-                android:layout_alignEnd="@+id/author_review"
-                android:layout_marginTop="14dp"
-                android:textDirection="rtl"
-                android:text="@string/comment_review"
-                android:textSize="12sp"
-                android:textColor="@color/colorTextGrey"
-                tools:ignore="RtlHardcoded"/>
-
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

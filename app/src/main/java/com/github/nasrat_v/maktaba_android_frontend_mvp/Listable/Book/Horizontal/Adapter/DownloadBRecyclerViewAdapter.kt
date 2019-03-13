@@ -18,7 +18,7 @@ class DownloadBRecyclerViewAdapter(private var context: Context, private var lis
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
-            R.layout.horizontal_recyclerview_big_no_text_book, container, false
+            R.layout.horizontal_recyclerview_big_book_image, container, false
         )
         return ViewHolder(
             rootView

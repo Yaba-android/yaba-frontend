@@ -6,33 +6,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
-    <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            app:cardElevation="@dimen/size_shadow_browse_book"
-            app:cardUseCompatPadding="true">
 
-        <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-            <ImageView
-                    android:id="@+id/vertical_image"
-                    android:layout_width="@dimen/width_image_browse_book"
-                    android:layout_height="@dimen/height_image_browse_book"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/book22"
-                    android:scaleType="centerCrop"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/shadow"
-                    android:contentDescription="@string/browse"/>
-
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

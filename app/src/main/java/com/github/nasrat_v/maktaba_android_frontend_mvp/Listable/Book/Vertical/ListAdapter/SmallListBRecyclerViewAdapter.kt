@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.SmallBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
@@ -51,7 +52,7 @@ class SmallListBRecyclerViewAdapter(
         /*holder.horizontalRecyclerView.addItemDecoration(
             LeftOffsetDecoration(
                 context,
-                R.dimen.small_book_vertical_recycler_view
+                R.dimen.left_small_book_vertical_recycler_view
             )
         )*/
     }
