@@ -83,7 +83,7 @@ class BrowseActivity : AppCompatActivity(),
     override fun bookEraseEventButtonClicked(book: BModel) {
         if (mListResultBrowse.find { it == book } != null) {
             mListResultBrowse.remove(book)
-            mAdapterBookVertical.notifyDataSetChanged()
+            notifyDataSetChanged()
         }
     }
 
@@ -168,7 +168,7 @@ class BrowseActivity : AppCompatActivity(),
                 isSearchMatching(it, str)
             }
         )
-        mAdapterBookVertical.notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 
     private fun isSearchMatching(book: BModel, str: String): Boolean {
@@ -190,6 +190,27 @@ class BrowseActivity : AppCompatActivity(),
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
+    private fun notifyDataSetChanged() {
+        setVisibilityText()
+        mAdapterBookVertical.notifyDataSetChanged()
+    }
+
+    private fun setVisibilityText() {
+        val titleEmpty = findViewById<TextView>(R.id.title_browse_empty)
+        val contentEmpty = findViewById<TextView>(R.id.content_browse_empty)
+        val titleResults = findViewById<TextView>(R.id.title_browse_results)
+
+        if (mListResultBrowse.isEmpty()) {
+            titleEmpty.visibility = View.VISIBLE
+            contentEmpty.visibility = View.VISIBLE
+            titleResults.visibility = View.GONE
+        } else {
+            titleEmpty.visibility = View.GONE
+            contentEmpty.visibility = View.GONE
+            titleResults.visibility = View.VISIBLE
+        }
+    }
+
     private fun initEditText() {
         val buttonConfirm = findViewById<Button>(R.id.button_confirm_browse)
         val buttonCancel = findViewById<Button>(R.id.button_cancel_browse)
@@ -209,7 +230,8 @@ class BrowseActivity : AppCompatActivity(),
         buttonCancel.setOnClickListener {
             mEditText.text.clear()
             mListResultBrowse.clear()
-            mAdapterBookVertical.notifyDataSetChanged()
+            notifyDataSetChanged()
         }
+        setVisibilityText()
     }
 }

@@ -15,6 +15,39 @@
             android:paddingTop="60dp"
             android:paddingBottom="60dp">
 
+        <TextView
+                android:id="@+id/title_browse_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:text="@string/find_the_books_you_love"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextBlackGroup"
+                android:gravity="center"/>
+
+        <TextView
+                android:id="@+id/content_browse_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/search_by_title_author_or_word"
+                android:textSize="12sp"
+                android:textColor="@color/colorTextGrey"
+                android:gravity="center"/>
+
+        <TextView
+                android:id="@+id/title_browse_results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/results"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextBlackGroup"
+                android:textStyle="bold"
+                android:gravity="end"/>
+
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/vertical_browse_recyclerview"
                 android:layout_width="match_parent"
