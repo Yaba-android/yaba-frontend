@@ -18,6 +18,11 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Adapter.BrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
+import android.app.Activity
+import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
@@ -170,12 +175,23 @@ class BrowseActivity : AppCompatActivity(),
         mAdapterBookVertical.notifyDataSetChanged()
     }
 
+    private fun hideKeyboard() {
+        val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        var view = currentFocus
+
+        if (view == null) {
+            view = View(this)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
     private fun initEditText() {
         val buttonConfirm = findViewById<Button>(R.id.button_confirm_browse)
         val buttonCancel = findViewById<Button>(R.id.button_cancel_browse)
         mEditText = findViewById(R.id.edit_text_browse)
 
         buttonConfirm.setOnClickListener {
+            hideKeyboard()
             browseSearch()
         }
         buttonCancel.setOnClickListener {
