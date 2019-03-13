@@ -11,11 +11,14 @@ import android.widget.RatingBar
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class RRecyclerViewAdapter(private var context: Context, private var list: ArrayList<RModel>)
-    : RecyclerView.Adapter<RRecyclerViewAdapter.ViewHolder>() {
+class RRecyclerViewAdapter(private var context: Context, private var list: ArrayList<RModel>) :
+    RecyclerView.Adapter<RRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView = LayoutInflater.from(container.context).inflate(R.layout.vertical_recyclerview_review, container, false)
+        val rootView =
+            LayoutInflater.from(container.context).inflate(
+                R.layout.vertical_recyclerview_review, container, false
+            )
         return ViewHolder(
             rootView
         )

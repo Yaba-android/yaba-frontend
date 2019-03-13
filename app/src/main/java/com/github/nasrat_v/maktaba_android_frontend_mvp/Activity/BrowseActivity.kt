@@ -3,29 +3,50 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.SystemClock
+import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.view.Gravity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.ImageView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import android.widget.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDeleteBrowseBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Adapter.BrowseBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 
 @SuppressLint("Registered")
-class BrowseActivity : AppCompatActivity() {
+class BrowseActivity : AppCompatActivity(),
+    IBookClickCallback,
+    IDeleteBrowseBookClickCallback {
+
+    private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mAdapterBookVertical: BrowseBRecyclerViewAdapter
+    private lateinit var mEditText: EditText
+    private var mListResultBrowse = arrayListOf<BModel>()
+    private var mListAllBooksDatabase = arrayListOf<BModel>()
 
     companion object {
+        const val NB_ALL_BOOKS_DATABASE = 20
         const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        setContentView(R.layout.activity_browse)
+        setContentView(R.layout.activity_browse_structure)
 
         setListenerLibraryButtonFooter()
         setListenerRecommendedButtonFooter()
+
+        initListAllBooksDatabase()
+        initEditText()
+        initVerticalRecycler()
+        initRootDrawerLayout()
     }
 
     override fun onBackPressed() {
@@ -45,6 +66,21 @@ class BrowseActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         else if (anim == 1) // right
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    override fun bookEventButtonClicked(book: BModel) {
+        val intent = Intent(this, BookDetailsActivity::class.java)
+
+        intent.putExtra(RecommendedActivity.SELECTED_BOOK, book)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    override fun bookEraseEventButtonClicked(book: BModel) {
+        if (mListResultBrowse.find { it == book } != null) {
+            mListResultBrowse.remove(book)
+            mAdapterBookVertical.notifyDataSetChanged()
+        }
     }
 
     private fun returnToHome() {
@@ -72,6 +108,80 @@ class BrowseActivity : AppCompatActivity() {
         button.setOnClickListener {
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        }
+    }
+
+    private fun initRootDrawerLayout() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_browse)
+
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        mDrawerLayout = findViewById(R.id.drawer_browse)
+        val mDrawerToggle = ActionBarDrawerToggle(
+            this, mDrawerLayout, toolbar,
+            R.string.navigation_drawer_profile_open,
+            R.string.navigation_drawer_profile_close
+        )
+        mDrawerToggle.isDrawerIndicatorEnabled = false
+        mDrawerToggle.syncState()
+        mDrawerLayout.setDrawerListener(mDrawerToggle)
+    }
+
+    private fun initListAllBooksDatabase() {
+        mListAllBooksDatabase.addAll(BModelRandomProvider(this).getRandomsInstances(NB_ALL_BOOKS_DATABASE))
+    }
+
+    private fun initVerticalRecycler() {
+
+        val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_browse_recyclerview)
+        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_browse_book)
+        mAdapterBookVertical =
+            BrowseBRecyclerViewAdapter(
+                this,
+                mListResultBrowse,
+                this,
+                this
+            )
+
+        verticalRecyclerView.setHasFixedSize(true)
+        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.adapter = mAdapterBookVertical
+        verticalRecyclerView.addItemDecoration(
+            BottomOffsetDecoration(this, R.dimen.bottom_browse_book_vertical_recycler_view)
+        )
+        verticalRecyclerView.isFocusable = false
+        linearLayout.requestFocus()
+    }
+
+    private fun browseSearch() {
+        val str = mEditText.text.toString().toLowerCase()
+
+        mListResultBrowse.clear()
+        mListResultBrowse.addAll(
+            mListAllBooksDatabase.filter {
+                it.title.toLowerCase() == str ||
+                        it.author.toLowerCase() == str ||
+                        it.country.toLowerCase() == str ||
+                        it.genre.name.toLowerCase() == str ||
+                        it.datePublication.toLowerCase() == str ||
+                        it.publisher.toLowerCase() == str
+            }
+        )
+        mAdapterBookVertical.notifyDataSetChanged()
+    }
+
+    private fun initEditText() {
+        val buttonConfirm = findViewById<Button>(R.id.button_confirm_browse)
+        val buttonCancel = findViewById<Button>(R.id.button_cancel_browse)
+        mEditText = findViewById(R.id.edit_text_browse)
+
+        buttonConfirm.setOnClickListener {
+            browseSearch()
+        }
+        buttonCancel.setOnClickListener {
+            mEditText.text.clear()
+            mListResultBrowse.clear()
+            mAdapterBookVertical.notifyDataSetChanged()
         }
     }
 }

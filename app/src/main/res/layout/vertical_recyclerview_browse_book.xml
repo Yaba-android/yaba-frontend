@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/margin_start_end_vertical_review"
+        android:layout_marginEnd="@dimen/margin_start_end_vertical_review">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent">
+
+        <include
+                android:id="@+id/vertical_image_browse_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                layout="@layout/vertical_recyclerview_browse_book_image"/>
+
+        <TextView
+                android:id="@+id/title_vertical_browse_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/vertical_image_browse_layout"
+                android:layout_alignTop="@+id/vertical_image_browse_layout"
+                android:layout_marginTop="@dimen/size_shadow_browse_book"
+                android:layout_marginEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/title"
+                android:textSize="12sp"
+                android:textDirection="rtl"
+                android:textColor="@color/colorReviewTextBlack"/>
+
+        <TextView
+                android:id="@+id/author_vertical_browse_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/vertical_image_browse_layout"
+                android:layout_below="@+id/title_vertical_browse_book"
+                android:layout_marginEnd="10dp"
+                android:paddingBottom="8dp"
+                android:text="@string/author"
+                android:textSize="12sp"
+                android:textDirection="rtl"
+                android:textColor="@color/colorTextGrey"/>
+
+        <RatingBar
+                android:id="@+id/rating_bar_vertical_browse_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/vertical_image_browse_layout"
+                android:layout_below="@id/author_vertical_browse_book"
+                android:layout_marginEnd="10dp"
+                android:layoutDirection="rtl"
+                android:paddingBottom="8dp"
+                style="@style/RatingBar"/>
+
+        <TextView
+                android:id="@+id/number_rating_vertical_browse_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/author_vertical_browse_book"
+                android:layout_toStartOf="@+id/rating_bar_vertical_browse_book"
+                android:text="@string/number_rating"
+                android:textColor="@color/colorReviewTextBlack"
+                android:textSize="10sp"
+                android:paddingEnd="2dp"
+                tools:ignore="RtlSymmetry,SmallSp"/>
+
+        <TextView
+                android:id="@+id/price_vertical_browse_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rating_bar_vertical_browse_book"
+                android:layout_toStartOf="@+id/vertical_image_browse_layout"
+                android:layout_marginEnd="10dp"
+                android:text="@string/price"
+                android:textColor="@color/colorReviewTextBlack"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/button_erase_browse_book"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/vertical_image_browse_layout"
+                android:layout_marginTop="@dimen/size_shadow_browse_book"
+                android:background="?android:selectableItemBackground"/>
+
+        <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/vertical_image_browse_layout"
+                android:layout_margin="10dp"
+                android:background="@drawable/erase_browse_book"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

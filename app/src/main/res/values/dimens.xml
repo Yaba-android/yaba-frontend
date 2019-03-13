@@ -5,6 +5,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
 
+
     <dimen name="bottom_small_book_vertical_recycler_view">3dp</dimen>
     <dimen name="bottom_book_vertical_recycler_view">15dp</dimen>
     <dimen name="bottom_big_book_vertical_recycler_view">-15dp</dimen>
@@ -34,6 +35,8 @@
 
     <dimen name="width_image_small_book">68dp</dimen>
     <dimen name="height_image_small_book">104dp</dimen>
+    <dimen name="width_image_browse_book">94dp</dimen>
+    <dimen name="height_image_browse_book">132dp</dimen>
     <dimen name="width_image_book">107dp</dimen>
     <dimen name="height_image_book">176dp</dimen>
     <dimen name="width_image_group_book">126dp</dimen>
@@ -46,10 +49,11 @@
     <dimen name="height_image_book_details">256dp</dimen>
 
     <dimen name="size_shadow_small_book">2dp</dimen>
+    <dimen name="size_shadow_browse_book">3dp</dimen>
     <dimen name="size_shadow_book">4dp</dimen>
     <dimen name="size_shadow_big_book">6dp</dimen>
+    <dimen name="size_shadow_popular_genre">7dp</dimen>
     <dimen name="size_shadow_book_details_image">8dp</dimen>
-    <dimen name="size_shadow_popular_genre">6dp</dimen>
 
     <dimen name="size_shadow_big_book_plus_padding_end_button_download">14dp</dimen>
     <dimen name="size_shadow_big_book_plus_padding_bottom_button_download">16dp</dimen>
@@ -58,5 +62,7 @@
     <dimen name="button_view_all_sort_height">25dp</dimen>
     <dimen name="button_download_library_width">25dp</dimen>
     <dimen name="button_download_library_height">25dp</dimen>
+    <dimen name="button_browse_width">50dp</dimen>
+    <dimen name="button_browse_height">30dp</dimen>
 
 </resources>
