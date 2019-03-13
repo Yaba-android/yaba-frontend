@@ -28,17 +28,12 @@ class BookDetailsActivity : AppCompatActivity(),
     private lateinit var mSelectedBook: BModel
     private lateinit var mDrawerLayout: DrawerLayout
 
-    companion object {
-        const val SELECTED_BOOK = "SelectedBook"
-        const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_book_details)
 
-        mSelectedBook = intent.getParcelableExtra(SELECTED_BOOK)
+        mSelectedBook = intent.getParcelableExtra(RecommendedActivity.SELECTED_BOOK)
         setBookDetailsAttributes()
 
         setListenerButtonCloseProfile()
@@ -79,7 +74,7 @@ class BookDetailsActivity : AppCompatActivity(),
     override fun bookEventButtonClicked(book: BModel) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
-        intent.putExtra(SELECTED_BOOK, book)
+        intent.putExtra(RecommendedActivity.SELECTED_BOOK, book)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }

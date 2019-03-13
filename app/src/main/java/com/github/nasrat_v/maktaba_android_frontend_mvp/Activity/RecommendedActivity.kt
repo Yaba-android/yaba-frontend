@@ -10,9 +10,12 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import android.support.design.widget.NavigationView
+import android.support.v4.app.LoaderManager
+import android.support.v4.content.Loader
 import android.support.v4.view.GravityCompat
 import android.support.v7.widget.*
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.*
 import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
@@ -21,10 +24,12 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModelPro
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.CarouselBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.LayoutManager.CarouselLinearLayoutManager
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.LibraryBModelAsyncFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.SmallListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Horizontal.GPSRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.GSRecyclerViewAdapter
@@ -32,13 +37,16 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecor
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
-class RecommendedActivity : AppCompatActivity(),
+class RecommendedActivity() : AppCompatActivity(),
+    LoaderManager.LoaderCallbacks<LibraryBModel>,
     IBookClickCallback,
     IRecommendedAdditionalClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mLibraryDataset: LibraryBModel
 
     companion object {
+        const val LIBRARY_DATASET = "LibraryDataset"
         const val SELECTED_BOOK = "SelectedBook"
         const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
         const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
@@ -51,6 +59,7 @@ class RecommendedActivity : AppCompatActivity(),
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportLoaderManager.initLoader(0, null, this).forceLoad()
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_recommended_structure)
 
@@ -59,14 +68,20 @@ class RecommendedActivity : AppCompatActivity(),
         setListenerBrowseButtonFooter()
         setListenerLibraryButtonFooter()
 
+        initAllViews()
         initDrawerLayout()
+    }
 
-        initCarouselRecycler()
-        initFirstVerticalRecycler()
-        initPopularSpeciesHorizontalRecycler()
-        initSecondVerticalRecycler()
-        initSmallVerticalRecycler()
-        initSectionNavVerticalRecycler()
+    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<LibraryBModel> {
+        return LibraryBModelAsyncFetchData(this)
+    }
+
+    override fun onLoadFinished(p0: Loader<LibraryBModel>, data: LibraryBModel?) {
+        mLibraryDataset = data!!
+        Log.i("Dataset", "Library dataset successfully loaded")
+    }
+
+    override fun onLoaderReset(p0: Loader<LibraryBModel>) {
     }
 
     override fun onBackPressed() {
@@ -107,6 +122,15 @@ class RecommendedActivity : AppCompatActivity(),
         intent.putExtra(SELECTED_POPULAR_SPECIES, pspecies)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    private fun initAllViews() {
+        initCarouselRecycler()
+        initFirstVerticalRecycler()
+        initPopularSpeciesHorizontalRecycler()
+        initSecondVerticalRecycler()
+        initSmallVerticalRecycler()
+        initSectionNavVerticalRecycler()
     }
 
     private fun killAllActivities() {
@@ -155,6 +179,7 @@ class RecommendedActivity : AppCompatActivity(),
 
         button.setOnClickListener {
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            intent.putExtra(LIBRARY_DATASET, mLibraryDataset)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
@@ -208,16 +233,16 @@ class RecommendedActivity : AppCompatActivity(),
     }
 
     private fun initFirstVerticalRecycler() {
-        val mDataset = arrayListOf<ListBModel>()
+        val dataset = arrayListOf<ListBModel>()
 
-        mockDatasetFirstRecyclerView(mDataset)
+        mockDatasetFirstRecyclerView(dataset)
 
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.first_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
         val adapterBookVertical =
             ListBRecyclerViewAdapter(
                 this,
-                mDataset,
+                dataset,
                 this
             )
 
@@ -255,16 +280,16 @@ class RecommendedActivity : AppCompatActivity(),
     }
 
     private fun initSecondVerticalRecycler() {
-        val mDataset = arrayListOf<ListBModel>()
+        val dataset = arrayListOf<ListBModel>()
 
-        mockDatasetSecondRecyclerView(mDataset)
+        mockDatasetSecondRecyclerView(dataset)
 
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.second_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
         val adapterBookVertical =
             ListBRecyclerViewAdapter(
                 this,
-                mDataset,
+                dataset,
                 this
             )
 
@@ -279,9 +304,9 @@ class RecommendedActivity : AppCompatActivity(),
     }
 
     private fun initSmallVerticalRecycler() {
-        val mDataset = arrayListOf<NoTitleListBModel>()
+        val dataset = arrayListOf<NoTitleListBModel>()
 
-        mockDatasetSmallRecyclerView(mDataset)
+        mockDatasetSmallRecyclerView(dataset)
 
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_small)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
@@ -290,7 +315,7 @@ class RecommendedActivity : AppCompatActivity(),
         val adapterBookVertical =
             SmallListBRecyclerViewAdapter(
                 this,
-                mDataset,
+                dataset,
                 this
             )
 
@@ -327,10 +352,10 @@ class RecommendedActivity : AppCompatActivity(),
         return factory.getRandomsInstancesDiscreteScrollView(15)
     }
 
-    private fun mockDatasetFirstRecyclerView(mDataset: ArrayList<ListBModel>) {
+    private fun mockDatasetFirstRecyclerView(dataset: ArrayList<ListBModel>) {
         val factory = BModelRandomProvider(this)
 
-        mDataset.add(
+        dataset.add(
             ListBModel(
                 TITLE_FIRST_RECYCLER_VIEW,
                 factory.getRandomsInstances(8)
@@ -338,10 +363,10 @@ class RecommendedActivity : AppCompatActivity(),
         )
     }
 
-    private fun mockDatasetSecondRecyclerView(mDataset: ArrayList<ListBModel>) {
+    private fun mockDatasetSecondRecyclerView(dataset: ArrayList<ListBModel>) {
         val factory = BModelRandomProvider(this)
 
-        mDataset.add(
+        dataset.add(
             ListBModel(
                 TITLE_SECOND_RECYCLER_VIEW,
                 factory.getRandomsInstances(8)
@@ -349,11 +374,11 @@ class RecommendedActivity : AppCompatActivity(),
         )
     }
 
-    private fun mockDatasetSmallRecyclerView(mDataset: ArrayList<NoTitleListBModel>) {
+    private fun mockDatasetSmallRecyclerView(dataset: ArrayList<NoTitleListBModel>) {
         val factory = BModelRandomProvider(this)
 
         for (index in 0..1) {
-            mDataset.add(
+            dataset.add(
                 NoTitleListBModel(
                     factory.getRandomsInstances(10)
                 )

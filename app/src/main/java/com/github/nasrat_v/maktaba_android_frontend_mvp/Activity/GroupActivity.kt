@@ -31,9 +31,6 @@ class GroupActivity : AppCompatActivity(),
     companion object {
         const val GROUP_NB_BOOK_PER_ROW = 2
         const val SELECTED_GROUP = "SelectedGroup"
-        const val DOWNLOADED_BOOKS = "DownloadedBooks"
-        const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
-        const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
     }
 
     private lateinit var mSelectedGroup: GroupBModel
@@ -47,7 +44,7 @@ class GroupActivity : AppCompatActivity(),
         setContentView(R.layout.activity_group_structure)
 
         mSelectedGroup = intent.getParcelableExtra(SELECTED_GROUP)
-        mDownloadedBooks = intent.getParcelableArrayListExtra(DOWNLOADED_BOOKS)
+        mDownloadedBooks = intent.getParcelableArrayListExtra(LibraryActivity.DOWNLOADED_BOOKS)
         setGroupDetailsAttributes()
 
         setListenerBrowseButtonFooter()
@@ -92,7 +89,7 @@ class GroupActivity : AppCompatActivity(),
         if (!mBooksToAddToDownload.isEmpty()) {
             val intent = Intent()
 
-            intent.putExtra(BOOKS_ADD_DOWNLOAD_LIST, mBooksToAddToDownload)
+            intent.putExtra(LibraryActivity.BOOKS_ADD_DOWNLOAD_LIST, mBooksToAddToDownload)
             setResult(Activity.RESULT_OK, intent)
         }
         finish()
@@ -115,7 +112,7 @@ class GroupActivity : AppCompatActivity(),
         val intent = Intent(this, RecommendedActivity::class.java)
 
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        intent.putExtra(LEFT_OR_RIGHT_IN_ANIMATION, 0)
+        intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
@@ -134,7 +131,7 @@ class GroupActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        intent.putExtra(LEFT_OR_RIGHT_IN_ANIMATION, 0)
+        intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
         button.setOnClickListener {
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)

@@ -19,10 +19,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Adapter.BrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import android.app.Activity
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
@@ -37,7 +35,6 @@ class BrowseActivity : AppCompatActivity(),
 
     companion object {
         const val NB_ALL_BOOKS_DATABASE = 20
-        const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +62,7 @@ class BrowseActivity : AppCompatActivity(),
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        val anim = intent!!.getIntExtra(LEFT_OR_RIGHT_IN_ANIMATION, 0)
+        val anim = intent!!.getIntExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
 
         if (anim == 0) // left
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
@@ -92,7 +89,7 @@ class BrowseActivity : AppCompatActivity(),
         val intent = Intent(this, RecommendedActivity::class.java)
 
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        intent.putExtra(LEFT_OR_RIGHT_IN_ANIMATION, 1)
+        intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 1)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
@@ -164,15 +161,19 @@ class BrowseActivity : AppCompatActivity(),
         mListResultBrowse.clear()
         mListResultBrowse.addAll(
             mListAllBooksDatabase.filter {
-                it.title.toLowerCase() == str ||
-                        it.author.toLowerCase() == str ||
-                        it.country.toLowerCase() == str ||
-                        it.genre.name.toLowerCase() == str ||
-                        it.datePublication.toLowerCase() == str ||
-                        it.publisher.toLowerCase() == str
+                isSearchMatching(it, str)
             }
         )
         mAdapterBookVertical.notifyDataSetChanged()
+    }
+
+    private fun isSearchMatching(book: BModel, str: String): Boolean {
+        return (book.title.toLowerCase() == str ||
+                book.author.toLowerCase() == str ||
+                book.country.toLowerCase() == str ||
+                book.genre.name.toLowerCase() == str ||
+                book.datePublication.toLowerCase() == str ||
+                book.publisher.toLowerCase() == str)
     }
 
     private fun hideKeyboard() {
