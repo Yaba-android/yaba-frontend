@@ -22,6 +22,8 @@ import android.app.Activity
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
@@ -31,6 +33,7 @@ class BrowseActivity : AppCompatActivity(),
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mAdapterBookVertical: BrowseBRecyclerViewAdapter
     private lateinit var mEditText: EditText
+    private lateinit var mSecondVerticalRecyclerView: RecyclerView
     private var mListResultBrowse = arrayListOf<BModel>()
     private var mListAllBooksDatabase = arrayListOf<BModel>()
 
@@ -48,8 +51,9 @@ class BrowseActivity : AppCompatActivity(),
         setListenerRecommendedButtonFooter()
 
         initListAllBooksDatabase()
-        initEditText()
         initVerticalRecycler()
+        initSecondVerticalRecycler()
+        initEditText()
         initRootDrawerLayout()
     }
 
@@ -138,7 +142,6 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     private fun initVerticalRecycler() {
-
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_browse_recyclerview)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_browse_book)
         mAdapterBookVertical =
@@ -157,6 +160,38 @@ class BrowseActivity : AppCompatActivity(),
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
+    }
+
+    private fun initSecondVerticalRecycler() {
+        val dataset = arrayListOf<ListBModel>()
+
+        mockDatasetSecondRecyclerView(dataset)
+
+        mSecondVerticalRecyclerView = findViewById(R.id.vertical_browse_second_recyclerview)
+        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_browse_book)
+        val adapterBookVertical =
+            ListBRecyclerViewAdapter(
+                this,
+                dataset,
+                this
+            )
+
+        mSecondVerticalRecyclerView.setHasFixedSize(true)
+        mSecondVerticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        mSecondVerticalRecyclerView.adapter = adapterBookVertical
+        mSecondVerticalRecyclerView.isFocusable = false
+        linearLayout.requestFocus()
+    }
+
+    private fun mockDatasetSecondRecyclerView(dataset: ArrayList<ListBModel>) {
+        val factory = BModelRandomProvider(this)
+
+        dataset.add(
+            ListBModel(
+                RecommendedActivity.TITLE_FIRST_RECYCLER_VIEW,
+                factory.getRandomsInstances(6)
+            )
+        )
     }
 
     private fun browseSearch() {
@@ -204,10 +239,12 @@ class BrowseActivity : AppCompatActivity(),
             titleEmpty.visibility = View.VISIBLE
             contentEmpty.visibility = View.VISIBLE
             titleResults.visibility = View.GONE
+            mSecondVerticalRecyclerView.visibility = View.GONE
         } else {
             titleEmpty.visibility = View.GONE
             contentEmpty.visibility = View.GONE
             titleResults.visibility = View.VISIBLE
+            mSecondVerticalRecyclerView.visibility = View.VISIBLE
         }
     }
 

@@ -360,7 +360,7 @@ class RecommendedActivity() : AppCompatActivity(),
         dataset.add(
             ListBModel(
                 TITLE_FIRST_RECYCLER_VIEW,
-                factory.getRandomsInstances(8)
+                factory.getRandomsInstances(6)
             )
         )
     }
@@ -371,7 +371,7 @@ class RecommendedActivity() : AppCompatActivity(),
         dataset.add(
             ListBModel(
                 TITLE_SECOND_RECYCLER_VIEW,
-                factory.getRandomsInstances(8)
+                factory.getRandomsInstances(6)
             )
         )
     }
@@ -382,7 +382,7 @@ class RecommendedActivity() : AppCompatActivity(),
         for (index in 0..1) {
             dataset.add(
                 NoTitleListBModel(
-                    factory.getRandomsInstances(10)
+                    factory.getRandomsInstances(8)
                 )
             )
         }
