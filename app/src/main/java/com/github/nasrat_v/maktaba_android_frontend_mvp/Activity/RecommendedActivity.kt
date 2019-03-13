@@ -46,6 +46,7 @@ class RecommendedActivity() : AppCompatActivity(),
     private lateinit var mLibraryDataset: LibraryBModel
 
     companion object {
+        const val ACTIVITY_NAME = "Recommended"
         const val LIBRARY_DATASET = "LibraryDataset"
         const val SELECTED_BOOK = "SelectedBook"
         const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
@@ -78,7 +79,6 @@ class RecommendedActivity() : AppCompatActivity(),
 
     override fun onLoadFinished(p0: Loader<LibraryBModel>, data: LibraryBModel?) {
         mLibraryDataset = data!!
-        Log.i("Dataset", "Library dataset successfully loaded")
     }
 
     override fun onLoaderReset(p0: Loader<LibraryBModel>) {
@@ -167,6 +167,7 @@ class RecommendedActivity() : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_browse_footer)
 
         button.setOnClickListener {
+            Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
@@ -178,6 +179,7 @@ class RecommendedActivity() : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
+            Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             intent.putExtra(LIBRARY_DATASET, mLibraryDataset)
             startActivity(intent)
@@ -265,7 +267,7 @@ class RecommendedActivity() : AppCompatActivity(),
         val adapterGenreHorizontal = GPSRecyclerViewAdapter(this, popularList, this)
 
         title.text = TITLE_POPULAR_SPECIES_RECYCLER_VIEW
-        GravitySnapHelper(Gravity.END).attachToRecyclerView(horizontalRecyclerView)
+        //GravitySnapHelper(Gravity.END).attachToRecyclerView(horizontalRecyclerView)
         horizontalRecyclerView.setHasFixedSize(true)
         horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         horizontalRecyclerView.adapter = adapterGenreHorizontal

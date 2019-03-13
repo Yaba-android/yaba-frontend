@@ -16,6 +16,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.BigListBRecyclerViewAdapter
@@ -94,6 +95,7 @@ class PopularSpeciesActivity : AppCompatActivity(),
         val buttonBrowse = findViewById<Button>(R.id.button_recommended_footer)
 
         buttonBrowse.setOnClickListener {
+            Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             finish()
         }
     }
@@ -103,6 +105,7 @@ class PopularSpeciesActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_browse_footer)
 
         button.setOnClickListener {
+            Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
@@ -115,6 +118,7 @@ class PopularSpeciesActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
+            Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)

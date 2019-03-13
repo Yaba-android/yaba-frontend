@@ -22,7 +22,7 @@
     <dimen name="left_big_book_horizontal_recycler_view">-10dp</dimen>
     <dimen name="left_group_book_horizontal_recycler_view">-20dp</dimen>
     <dimen name="left_book_horizontal_recycler_view">5dp</dimen>
-    <dimen name="left_popular_genre_horizontal_recycler_view">-10dp</dimen>
+    <dimen name="left_popular_genre_horizontal_recycler_view">-5dp</dimen>
     <dimen name="right_popular_genre_horizontal_recycler_view">-5dp</dimen>
 
     <dimen name="margin_bottom_between_recyclerview_recommended">10dp</dimen>

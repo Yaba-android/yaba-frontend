@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
@@ -44,6 +45,7 @@ class LibraryActivity : AppCompatActivity(),
         const val ALLBOOKS_NB_BOOK_COLUMNS = 10
         const val GROUPS_NB_GROUP_PER_ROW = 1
         const val REQUEST_BOOKS_ADD_DOWNLOAD_LIST = 0
+        const val ACTIVITY_NAME = "Library"
         const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
         const val DOWNLOADED_BOOKS = "DownloadedBooks"
     }
@@ -134,6 +136,7 @@ class LibraryActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_recommended_footer)
 
         button.setOnClickListener {
+            Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             returnToHome()
         }
     }
@@ -142,8 +145,9 @@ class LibraryActivity : AppCompatActivity(),
         val intent = Intent(this, BrowseActivity::class.java)
         val buttonBrowse = findViewById<Button>(R.id.button_browse_footer)
 
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         buttonBrowse.setOnClickListener {
+            Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }

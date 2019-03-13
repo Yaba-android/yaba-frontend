@@ -106,6 +106,7 @@ class BookDetailsActivity : AppCompatActivity(),
         val buttonBrowse = findViewById<Button>(R.id.button_recommended_footer)
 
         buttonBrowse.setOnClickListener {
+            Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             finish()
         }
     }
@@ -114,8 +115,9 @@ class BookDetailsActivity : AppCompatActivity(),
         val intent = Intent(this, BrowseActivity::class.java)
         val button = findViewById<Button>(R.id.button_browse_footer)
 
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         button.setOnClickListener {
+            Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             finish()
@@ -126,8 +128,9 @@ class BookDetailsActivity : AppCompatActivity(),
         val intent = Intent(this, LibraryActivity::class.java)
         val button = findViewById<Button>(R.id.button_library_footer)
 
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         button.setOnClickListener {
+            Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()

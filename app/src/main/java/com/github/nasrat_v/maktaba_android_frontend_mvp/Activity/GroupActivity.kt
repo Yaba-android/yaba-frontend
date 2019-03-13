@@ -96,18 +96,6 @@ class GroupActivity : AppCompatActivity(),
         mBooksToAddToDownload.clear()
     }
 
-    private fun setListenerBrowseButtonFooter() {
-        val intent = Intent(this, BrowseActivity::class.java)
-        val button = findViewById<Button>(R.id.button_browse_footer)
-
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        button.setOnClickListener {
-            startActivity(intent)
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-            finishSendResult()
-        }
-    }
-
     private fun returnToHome() {
         val intent = Intent(this, RecommendedActivity::class.java)
 
@@ -121,18 +109,34 @@ class GroupActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_recommended_footer)
 
         button.setOnClickListener {
+            Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             returnToHome()
             finishSendResult()
         }
     }
 
+    private fun setListenerBrowseButtonFooter() {
+        val intent = Intent(this, BrowseActivity::class.java)
+        val button = findViewById<Button>(R.id.button_browse_footer)
+
+        button.setOnClickListener {
+            Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+            finishSendResult()
+        }
+    }
+
+
     private fun setListenerLibraryButtonFooter() {
         val intent = Intent(this, LibraryActivity::class.java)
         val button = findViewById<Button>(R.id.button_library_footer)
 
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
         button.setOnClickListener {
+            Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             finishSendResult()

@@ -19,6 +19,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Adapter.BrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import android.app.Activity
+import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 
@@ -35,6 +36,7 @@ class BrowseActivity : AppCompatActivity(),
 
     companion object {
         const val NB_ALL_BOOKS_DATABASE = 20
+        const val ACTIVITY_NAME = "Browse"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,6 +100,7 @@ class BrowseActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_recommended_footer)
 
         button.setOnClickListener {
+            Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             returnToHome()
         }
     }
@@ -106,8 +109,9 @@ class BrowseActivity : AppCompatActivity(),
         val intent = Intent(this, LibraryActivity::class.java)
         val button = findViewById<Button>(R.id.button_library_footer)
 
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         button.setOnClickListener {
+            Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
@@ -191,6 +195,13 @@ class BrowseActivity : AppCompatActivity(),
         val buttonCancel = findViewById<Button>(R.id.button_cancel_browse)
         mEditText = findViewById(R.id.edit_text_browse)
 
+        mEditText.setOnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                hideKeyboard()
+                browseSearch()
+            }
+            true
+        }
         buttonConfirm.setOnClickListener {
             hideKeyboard()
             browseSearch()
