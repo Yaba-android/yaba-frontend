@@ -15,7 +15,7 @@ class BModelProvider(private var context: Context) {
         for (index in 0..(NB_ALL_BOOKS_DATABASE - 1)) {
             allBooksDb.add(BModelFactory(context)
                 .getInstance(
-                    NB_ALL_BOOKS_DATABASE
+                    index
                 )
             )
         }

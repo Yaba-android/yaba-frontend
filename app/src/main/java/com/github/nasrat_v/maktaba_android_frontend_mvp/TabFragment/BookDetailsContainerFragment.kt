@@ -93,8 +93,8 @@ class BookDetailsContainerFragment : Fragment() {
                     mReview.setSelectedBook(mBookInfosProvider.getSelectedBook())
                     return mReview
                 }
-                1 -> {
-                    mReview.setAllBooksFromDatabase(mAllBooksFromDatabase)
+                1 -> {mAllBooksFromDatabase
+                    mOverview.setAllBooksFromDatabase(mAllBooksFromDatabase)
                     mOverview.setSelectedBook(mBookInfosProvider.getSelectedBook())
                     return mOverview
                 }
