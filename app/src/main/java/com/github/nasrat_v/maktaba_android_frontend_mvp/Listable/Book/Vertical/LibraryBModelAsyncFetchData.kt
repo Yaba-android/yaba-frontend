@@ -4,22 +4,27 @@ import android.content.Context
 import android.support.v4.content.AsyncTaskLoader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.LibraryActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 
-class LibraryBModelAsyncFetchData(context: Context) : AsyncTaskLoader<LibraryBModel>(context) {
+class LibraryBModelAsyncFetchData(
+    context: Context,
+    private var allBooksFromDatabase: ArrayList<BModel>
+) :
+    AsyncTaskLoader<LibraryBModel>(context) {
 
     override fun loadInBackground(): LibraryBModel? {
-        val allbooks = arrayListOf<NoTitleListBModel>()
-        val downloads = arrayListOf<DownloadListBModel>()
-        val groups = arrayListOf<GroupListBModel>()
+        val allbooksLibrary = arrayListOf<NoTitleListBModel>()
+        val downloadsLibrary = arrayListOf<DownloadListBModel>()
+        val groupsLibrary = arrayListOf<GroupListBModel>()
 
-        mockDatasetAllBooks(allbooks)
-        mockDatasetGroups(allbooks, groups)
-        mockDatasetDownload(allbooks, downloads)
-        return LibraryBModel(downloads, groups, allbooks)
+        mockDatasetAllBooks(allbooksLibrary)
+        mockDatasetGroups(allbooksLibrary, groupsLibrary)
+        mockDatasetDownload(allbooksLibrary, downloadsLibrary)
+        return LibraryBModel(downloadsLibrary, groupsLibrary, allbooksLibrary)
     }
 
     fun deliverResult(data: LibraryBModel) {
@@ -32,33 +37,36 @@ class LibraryBModelAsyncFetchData(context: Context) : AsyncTaskLoader<LibraryBMo
         for (index in 0..(LibraryActivity.ALLBOOKS_NB_BOOK_COLUMNS - 1)) {
             dataset.add(
                 NoTitleListBModel(
-                    factory.getRandomsInstances(LibraryActivity.ALLBOOKS_NB_BOOK_PER_ROW)
+                    factory.getRandomsInstancesFromList(
+                        LibraryActivity.ALLBOOKS_NB_BOOK_PER_ROW,
+                        allBooksFromDatabase
+                    )
                 )
             )
         }
     }
 
     private fun mockDatasetGroups(
-        allbooksDataset: ArrayList<NoTitleListBModel>,
+        allbooksLibrary: ArrayList<NoTitleListBModel>,
         dataset: ArrayList<GroupListBModel>
     ) {
         dataset.addAll(
             LibraryBModelProvider().getGroupListFromList(
                 LibraryActivity.GROUPS_NB_GROUP_PER_ROW,
-                allbooksDataset
+                allbooksLibrary
             )
         )
     }
 
     private fun mockDatasetDownload(
-        allbooksDataset: ArrayList<NoTitleListBModel>,
+        allbooksLibrary: ArrayList<NoTitleListBModel>,
         dataset: ArrayList<DownloadListBModel>
     ) {
         dataset.addAll(
             LibraryBModelRandomProvider().getRandomDownloadedListBookFromList(
                 LibraryActivity.DOWNLOAD_NB_BOOK_COLUMNS,
                 LibraryActivity.DOWNLOAD_NB_BOOK_PER_ROW,
-                allbooksDataset
+                allbooksLibrary
             )
         )
     }

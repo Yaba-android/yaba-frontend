@@ -54,39 +54,110 @@
         <item>@drawable/book50</item>
     </integer-array>
 
-    <integer-array name="images_books_carousel">
-        <item>@drawable/book9</item>
-        <item>@drawable/book10</item>
-        <item>@drawable/book11</item>
-        <item>@drawable/book12</item>
-        <item>@drawable/book13</item>
-        <item>@drawable/book14</item>
-        <item>@drawable/book15</item>
-        <item>@drawable/book16</item>
-        <item>@drawable/book17</item>
-        <item>@drawable/book18</item>
-        <item>@drawable/book19</item>
-        <item>@drawable/book20</item>
-        <item>@drawable/book21</item>
-        <item>@drawable/book22</item>
-        <item>@drawable/book23</item>
-        <item>@drawable/book24</item>
-        <item>@drawable/book25</item>
-        <item>@drawable/book26</item>
-        <item>@drawable/book27</item>
-        <item>@drawable/book28</item>
-        <item>@drawable/book29</item>
-        <item>@drawable/book30</item>
-    </integer-array>
-
     <string-array name="titles_books">
         <item>Here</item>
         <item>Black Leopard Red Wolf</item>
+        <item>Everything I Never Told You</item>
+        <item>Cloudy with a Chance of Meatballs</item>
+        <item>The Perks of Being a Wallflower</item>
+        <item>Fogborn</item>
+        <item>The Wolfhound and the Poor Basket</item>
+        <item>The Exile the Glass Screamed</item>
+        <item>The Bus of Well</item>
+        <item>Curse and a Women</item>
+        <item>The Trail Plague</item>
+        <item>The Sealed Canarys</item>
+        <item>Avenger of the Stranger</item>
+        <item>Bookkeeper of Gray Hero</item>
+        <item>The Trail and the Jars</item>
+        <item>The Fog After the Patch</item>
+        <item>The Wept Atlantis</item>
+        <item>Armageddon Galvanic Adventure</item>
+        <item>The Southern Adventure Rabbit</item>
+        <item>The Girl At</item>
+        <item>The Cold Fears</item>
+        <item>Shakespeare, the Desert Childhood</item>
+        <item>Southern Womens</item>
+        <item>Atomic Nautilus</item>
+        <item>Compendium and the Dead Pirate</item>
+        <item>Ten Hollywoods</item>
+        <item>Detective of Floor</item>
+        <item>A Player Rode</item>
+        <item>Law Secret Pet</item>
+        <item>North Edge</item>
+        <item>Engineerborn</item>
+        <item>Metronome Dreaming</item>
+        <item>Unfaithful Moonlight</item>
+        <item>The Paladin Was Not Four</item>
+        <item>The Eternity</item>
+        <item>The Emperor of Da Vinci</item>
+        <item>King of Nine Ruler</item>
+        <item>The AbbeyCard</item>
+        <item>Cloven Hoof of Seventh Fire</item>
+        <item>The IdolGun</item>
+        <item>Tower and a Carnival</item>
+        <item>Gentleman</item>
+        <item>The Alien Apocalypse</item>
+        <item>Homeless</item>
+        <item>Seal Bloodline</item>
+        <item>The SleepMinute</item>
+        <item>Worm of the Thunder</item>
+        <item>Joan of Arc, the Gear Plan</item>
+        <item>Neighbor Haunt</item>
+        <item>The Girl Duke</item>
     </string-array>
 
     <string-array name="authors_books">
         <item>Taleb Al-Refai</item>
         <item>Marion James</item>
+        <item>Celeste Ng</item>
+        <item>Mindy Kaling</item>
+        <item>Tom Wolfe</item>
+        <item>Chelsea Handler</item>
+        <item>Lauren Weisberger</item>
+        <item>Mark Haddon</item>
+        <item>Dale Carnegie</item>
+        <item>Judi Barett</item>
+        <item>Gabriel Garcia Marquez</item>
+        <item>Katy Evans</item>
+        <item>Colleen Hoover</item>
+        <item>M. Pierce</item>
+        <item>Sylvain Reynard</item>
+        <item>Cristina Lauren</item>
+        <item>Emma Chase</item>
+        <item>Jodi Ellen Malpas</item>
+        <item>S.C. Stephens</item>
+        <item>Veronica Roth</item>
+        <item>Anthony Bryan</item>
+        <item>N.M. Silber</item>
+        <item>J.A. Redmerski</item>
+        <item>Gail McHugh</item>
+        <item>Jay Crownover</item>
+        <item>Stephenie Meyer</item>
+        <item>Aleatha Romig</item>
+        <item>Kristen Proby</item>
+        <item>Jason Luke</item>
+        <item>Madeline Sheehan</item>
+        <item>Pepper Winters</item>
+        <item>Katja Millay</item>
+        <item>Penelope Douglas</item>
+        <item>Harper Sloan</item>
+        <item>R.K. Lilley</item>
+        <item>Joanna Wylde</item>
+        <item>Joy Ross Davis</item>
+        <item>Sophie Moss</item>
+        <item>Tricia Daniels</item>
+        <item>Auburn McCanta</item>
+        <item>Tara Sivec</item>
+        <item>Nicole Garcia</item>
+        <item>Jessica Wood</item>
+        <item>T.K. Leigh</item>
+        <item>Jessie B. Tyson</item>
+        <item>Ker Dukey</item>
+        <item>David Berger</item>
+        <item>Michelle A. Valentine</item>
+        <item>A.D. Trosper</item>
+        <item>Nicole Edwards</item>
     </string-array>
 
     <string-array name="ratings_books">
@@ -95,9 +166,94 @@
         <item>4f</item>
         <item>4.5f</item>
         <item>5f</item>
+        <item>3f</item>
+        <item>3.5f</item>
+        <item>4f</item>
+        <item>4.5f</item>
+        <item>5f</item>
+        <item>3f</item>
+        <item>3.5f</item>
+        <item>4f</item>
+        <item>4.5f</item>
+        <item>5f</item>
+        <item>3f</item>
+        <item>3.5f</item>
+        <item>4f</item>
+        <item>4.5f</item>
+        <item>5f</item>
+        <item>3f</item>
+        <item>3.5f</item>
+        <item>4f</item>
+        <item>4.5f</item>
+        <item>5f</item>
+        <item>3f</item>
+        <item>3.5f</item>
+        <item>4f</item>
+        <item>4.5f</item>
+        <item>5f</item>
+        <item>3f</item>
+        <item>3.5f</item>
+        <item>4f</item>
+        <item>4.5f</item>
+        <item>5f</item>
+        <item>3f</item>
+        <item>3.5f</item>
+        <item>4f</item>
+        <item>4.5f</item>
+        <item>5f</item>
+        <item>3f</item>
+        <item>3.5f</item>
+        <item>4f</item>
+        <item>4.5f</item>
+        <item>5f</item>
+        <item>3f</item>
+        <item>3.5f</item>
+        <item>4f</item>
+        <item>4.5f</item>
+        <item>5f</item>
     </string-array>
 
     <string-array name="prices_books">
+        <item>4.29f</item>
+        <item>5.99f</item>
+        <item>6.55f</item>
+        <item>7.99f</item>
+        <item>9.99</item>
+        <item>11.95</item>
+        <item>12.29</item>
+        <item>16.99</item>
+        <item>18.25</item>
+        <item>19.99</item>
+        <item>4.29f</item>
+        <item>5.99f</item>
+        <item>6.55f</item>
+        <item>7.99f</item>
+        <item>9.99</item>
+        <item>11.95</item>
+        <item>12.29</item>
+        <item>16.99</item>
+        <item>18.25</item>
+        <item>19.99</item>
+        <item>4.29f</item>
+        <item>5.99f</item>
+        <item>6.55f</item>
+        <item>7.99f</item>
+        <item>9.99</item>
+        <item>11.95</item>
+        <item>12.29</item>
+        <item>16.99</item>
+        <item>18.25</item>
+        <item>19.99</item>
+        <item>4.29f</item>
+        <item>5.99f</item>
+        <item>6.55f</item>
+        <item>7.99f</item>
+        <item>9.99</item>
+        <item>11.95</item>
+        <item>12.29</item>
+        <item>16.99</item>
+        <item>18.25</item>
+        <item>19.99</item>
         <item>4.29f</item>
         <item>5.99f</item>
         <item>6.55f</item>
@@ -117,6 +273,50 @@
         <item>122</item>
         <item>3567</item>
         <item>967</item>
+        <item>120</item>
+        <item>899</item>
+        <item>2056</item>
+        <item>344</item>
+        <item>585</item>
+        <item>336</item>
+        <item>1025</item>
+        <item>122</item>
+        <item>3567</item>
+        <item>967</item>
+        <item>120</item>
+        <item>899</item>
+        <item>2056</item>
+        <item>344</item>
+        <item>585</item>
+        <item>336</item>
+        <item>1025</item>
+        <item>122</item>
+        <item>3567</item>
+        <item>967</item>
+        <item>120</item>
+        <item>899</item>
+        <item>2056</item>
+        <item>344</item>
+        <item>585</item>
+        <item>336</item>
+        <item>1025</item>
+        <item>122</item>
+        <item>3567</item>
+        <item>967</item>
+        <item>120</item>
+        <item>899</item>
+        <item>2056</item>
+        <item>344</item>
+        <item>585</item>
+        <item>336</item>
+        <item>1025</item>
+        <item>122</item>
+        <item>3567</item>
+        <item>967</item>
+        <item>120</item>
+        <item>899</item>
+        <item>2056</item>
+        <item>344</item>
     </integer-array>
 
     <string-array name="filesizes_books">
@@ -125,14 +325,134 @@
         <item>8MB</item>
         <item>0.91MB</item>
         <item>3.2MB</item>
+        <item>1.8MB</item>
+        <item>2.5MB</item>
+        <item>6MB</item>
+        <item>0.74MB</item>
+        <item>0.65MB</item>
+        <item>1.5MB</item>
+        <item>2MB</item>
+        <item>8MB</item>
+        <item>0.91MB</item>
+        <item>3.2MB</item>
+        <item>1.8MB</item>
+        <item>2.5MB</item>
+        <item>6MB</item>
+        <item>0.74MB</item>
+        <item>0.65MB</item>
+        <item>1.5MB</item>
+        <item>2MB</item>
+        <item>8MB</item>
+        <item>0.91MB</item>
+        <item>3.2MB</item>
+        <item>1.8MB</item>
+        <item>2.5MB</item>
+        <item>6MB</item>
+        <item>0.74MB</item>
+        <item>0.65MB</item>
+        <item>1.5MB</item>
+        <item>2MB</item>
+        <item>8MB</item>
+        <item>0.91MB</item>
+        <item>3.2MB</item>
+        <item>1.8MB</item>
+        <item>2.5MB</item>
+        <item>6MB</item>
+        <item>0.74MB</item>
+        <item>0.65MB</item>
+        <item>1.5MB</item>
+        <item>2MB</item>
+        <item>8MB</item>
+        <item>0.91MB</item>
+        <item>3.2MB</item>
+        <item>1.8MB</item>
+        <item>2.5MB</item>
+        <item>6MB</item>
+        <item>0.74MB</item>
+        <item>0.65MB</item>
     </string-array>
 
     <string-array name="countries_books">
         <item>Iraq</item>
+        <item>Lebanon</item>
+        <item>France</item>
+        <item>Morocco</item>
+        <item>Italy</item>
         <item>Palestine</item>
         <item>Syria</item>
-        <item>Lebanon</item>
+        <item>United States</item>
         <item>Kuwait</item>
+        <item>Irland</item>
+        <item>Iran</item>
+        <item>Egypt</item>
+        <item>Yemen</item>
+        <item>Oman</item>
+        <item>Jordany</item>
+        <item>Turkey</item>
+        <item>Spain</item>
+        <item>Qatar</item>
+        <item>Algeria</item>
+        <item>Portugal</item>
+        <item>Iraq</item>
+        <item>Lebanon</item>
+        <item>France</item>
+        <item>Morocco</item>
+        <item>Italy</item>
+        <item>Palestine</item>
+        <item>Syria</item>
+        <item>United States</item>
+        <item>Kuwait</item>
+        <item>Irland</item>
+        <item>Iran</item>
+        <item>Egypt</item>
+        <item>Yemen</item>
+        <item>Oman</item>
+        <item>Jordany</item>
+        <item>Turkey</item>
+        <item>Spain</item>
+        <item>Qatar</item>
+        <item>Algeria</item>
+        <item>Portugal</item>
+        <item>Iraq</item>
+        <item>Lebanon</item>
+        <item>France</item>
+        <item>Morocco</item>
+        <item>Italy</item>
+        <item>Palestine</item>
+        <item>Syria</item>
+        <item>United States</item>
+        <item>Kuwait</item>
+        <item>Irland</item>
+        <item>Iran</item>
+        <item>Egypt</item>
+        <item>Yemen</item>
+        <item>Oman</item>
+        <item>Jordany</item>
+        <item>Turkey</item>
+        <item>Spain</item>
+        <item>Qatar</item>
+        <item>Algeria</item>
+        <item>Portugal</item>
+        <item>Iraq</item>
+        <item>Lebanon</item>
+        <item>France</item>
+        <item>Morocco</item>
+        <item>Italy</item>
+        <item>Palestine</item>
+        <item>Syria</item>
+        <item>United States</item>
+        <item>Kuwait</item>
+        <item>Irland</item>
+        <item>Iran</item>
+        <item>Egypt</item>
+        <item>Yemen</item>
+        <item>Oman</item>
+        <item>Jordany</item>
+        <item>Turkey</item>
+        <item>Spain</item>
+        <item>Qatar</item>
+        <item>Algeria</item>
+        <item>Portugal</item>
     </string-array>
 
     <string-array name="datepublications_books">

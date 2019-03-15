@@ -6,23 +6,32 @@ import kotlin.collections.ArrayList
 
 class BModelRandomProvider(private var context: Context) {
 
-    fun getRandomsInstances(nb: Int) : ArrayList<BModel> {
+    fun getRandomsInstances(nb: Int): ArrayList<BModel> {
         val randomFactory = BModelRandomFactory(context)
         val listModel = arrayListOf<BModel>()
+        var book: BModel
 
         for (index in 0..(nb - 1)) {
-            listModel.add(randomFactory.getRandomInstance())
+            book = randomFactory.getRandomInstance()
+            while (listModel.find { it == book } != null) {
+                book = randomFactory.getRandomInstance()
+            }
+            listModel.add(book)
         }
         return listModel
     }
 
-    fun getRandomsInstancesDiscreteScrollView(nb: Int) : ArrayList<BModel> {
-        val randomFactory = BModelRandomFactory(context)
-        val listModel = arrayListOf<BModel>()
+    fun getRandomsInstancesFromList(nb: Int, books: ArrayList<BModel>): ArrayList<BModel> {
+        val selectedBooks = arrayListOf<BModel>()
+        val tmpList = arrayListOf<BModel>()
+        var randomIndex: Int
 
+        tmpList.addAll(books)
         for (index in 0..(nb - 1)) {
-            listModel.add(randomFactory.getRandomInstanceDiscreteScrollView())
+            randomIndex = (0..(tmpList.size - 1)).random()
+            selectedBooks.add(tmpList[randomIndex])
+            tmpList.removeAt(randomIndex)
         }
-        return listModel
+        return selectedBooks
     }
 }

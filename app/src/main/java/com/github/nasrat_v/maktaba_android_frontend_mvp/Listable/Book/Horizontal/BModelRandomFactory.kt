@@ -19,27 +19,8 @@ class BModelRandomFactory(private var context: Context) {
         ))
     }
 
-    fun getRandomInstanceDiscreteScrollView() : BModel {
-        return (BModel(
-            getRandomImageCarousel(), getRandomTitle(),
-            getRandomAuthor(), getRandomRating(),
-            getRandomNumberRating(), getRandomPrice(),
-            getRandomLength(), getRandomGenre(),
-            getRandomFileSize(), getRandomCountry(),
-            getRandomDatePublication(), getRandomPublisher()
-        ))
-    }
-
     private fun getRandomImage() : Int {
         val imgArray = context.resources.obtainTypedArray(R.array.images_books)
-        val img = imgArray.getResourceId((0..(imgArray.length() - 1)).random(), -1)
-
-        imgArray.recycle()
-        return img
-    }
-
-    private fun getRandomImageCarousel() : Int {
-        val imgArray = context.resources.obtainTypedArray(R.array.images_books_carousel)
         val img = imgArray.getResourceId((0..(imgArray.length() - 1)).random(), -1)
 
         imgArray.recycle()

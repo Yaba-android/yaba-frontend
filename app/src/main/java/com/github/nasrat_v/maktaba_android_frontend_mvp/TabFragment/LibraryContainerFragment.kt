@@ -48,7 +48,7 @@ class LibraryContainerFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         initTabFragment()
-        initTabNameList()
+        initTabNamesList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -88,7 +88,7 @@ class LibraryContainerFragment : Fragment() {
         mAllBooksFrag.setDownloadBookClickCallback(mDownloadBookClickCallback)
     }
 
-    private fun initTabNameList() {
+    private fun initTabNamesList() {
         mTabNamesList.add("Download")
         mTabNamesList.add("Groups")
         mTabNamesList.add("All Books")

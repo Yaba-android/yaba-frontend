@@ -22,6 +22,11 @@ class ReviewFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mSelectedBook: BModel
+    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
+
+    companion object {
+        const val NB_BOOKS_PER_ROW = 6
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -40,13 +45,18 @@ class ReviewFragment : Fragment() {
         mSelectedBook = book
     }
 
+    fun setAllBooksFromDatabase(allBooksDb: ArrayList<BModel>) {
+        mAllBooksFromDatabase = allBooksDb
+    }
+
     private fun initReviewVerticalRecyclerView(view: View, container: ViewGroup) {
         val mDataset = RModelProvider(container.context).getAllReviews()
         val adapterReviewVertical = RRecyclerViewAdapter(container.context, mDataset)
         val reviewVerticalRecyclerView = view.findViewById<RecyclerView>(R.id.review_vertical_recyclerview)
 
         reviewVerticalRecyclerView.setHasFixedSize(true)
-        reviewVerticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
+        reviewVerticalRecyclerView.layoutManager =
+            LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         reviewVerticalRecyclerView.adapter = adapterReviewVertical
         reviewVerticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(container.context, R.dimen.bottom_review_vertical_recycler_view)
@@ -65,10 +75,12 @@ class ReviewFragment : Fragment() {
                 mDataset,
                 mBookClickCallback
             )
-        val bookVerticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
+        val bookVerticalRecyclerView =
+            view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
 
         bookVerticalRecyclerView.setHasFixedSize(true)
-        bookVerticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
+        bookVerticalRecyclerView.layoutManager =
+            LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         bookVerticalRecyclerView.adapter = adapterBookVertical
         bookVerticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(container.context, R.dimen.bottom_book_vertical_recycler_view)
@@ -83,7 +95,10 @@ class ReviewFragment : Fragment() {
         mDataset.add(
             ListBModel(
                 "More Books from this Authors",
-                factory.getRandomsInstances(3)
+                factory.getRandomsInstancesFromList(
+                    NB_BOOKS_PER_ROW,
+                    mAllBooksFromDatabase
+                )
             )
         )
     }

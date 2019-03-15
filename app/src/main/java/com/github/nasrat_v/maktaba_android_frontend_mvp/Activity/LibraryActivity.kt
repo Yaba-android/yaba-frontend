@@ -56,7 +56,6 @@ class LibraryActivity : AppCompatActivity(),
         setContentView(R.layout.activity_library)
 
         mLibraryDataset = intent.getParcelableExtra(RecommendedActivity.LIBRARY_DATASET)
-
         setListenerButtonCloseProfile()
         setListenerBrowseButtonFooter()
         setListenerRecommendedButtonFooter()
@@ -148,6 +147,7 @@ class LibraryActivity : AppCompatActivity(),
         buttonBrowse.setOnClickListener {
             Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            intent.putExtra(RecommendedActivity.LIBRARY_DATASET, mLibraryDataset)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }

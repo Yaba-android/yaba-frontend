@@ -17,6 +17,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsC
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookInfosProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 
@@ -26,6 +27,7 @@ class BookDetailsActivity : AppCompatActivity(),
     IBookInfosProvider {
 
     private lateinit var mSelectedBook: BModel
+    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
     private lateinit var mDrawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +36,7 @@ class BookDetailsActivity : AppCompatActivity(),
         setContentView(R.layout.activity_book_details)
 
         mSelectedBook = intent.getParcelableExtra(RecommendedActivity.SELECTED_BOOK)
+        fetchAllBooksFromDatabase()
         setBookDetailsAttributes()
 
         setListenerButtonCloseProfile()
@@ -90,6 +93,10 @@ class BookDetailsActivity : AppCompatActivity(),
 
     override fun getSelectedBook(): BModel {
         return mSelectedBook
+    }
+
+    private fun fetchAllBooksFromDatabase() {
+        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
     private fun setListenerButtonCloseProfile() {
@@ -176,6 +183,7 @@ class BookDetailsActivity : AppCompatActivity(),
         containerFragment.setNumberRatingTabNameReview(mSelectedBook.numberRating)
         containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis le fragment
         containerFragment.setBookInfosProvider(this)
+        containerFragment.setAllBooksFromDatabase(mAllBooksFromDatabase)
         mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         val mFragmentTransaction = mFragmentManager.beginTransaction()
         mFragmentTransaction.replace(R.id.fragment_container_book_details, containerFragment).commit()

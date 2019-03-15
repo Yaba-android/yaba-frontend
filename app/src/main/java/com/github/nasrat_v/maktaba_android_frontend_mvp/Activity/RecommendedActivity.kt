@@ -23,6 +23,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.CarouselBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.LayoutManager.CarouselLinearLayoutManager
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.LibraryBModelAsyncFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
@@ -43,11 +44,20 @@ class RecommendedActivity() : AppCompatActivity(),
     IRecommendedAdditionalClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
     private lateinit var mLibraryDataset: LibraryBModel
 
     companion object {
+        const val NB_BOOKS_CAROUSEL = 15
+        const val NB_BOOKS_FIRST_RECYCLERVIEW = 6
+        const val NB_BOOKS_SECOND_RECYCLERVIEW = 6
+        const val NB_BOOKS_SMALL_RECYCLERVIEW = 8
+        const val FIRST_RECYCLERVIEW_NB_COLUMNS = 1
+        const val SECOND_RECYCLERVIEW_NB_COLUMNS = 1
+        const val SMALL_RECYCLERVIEW_NB_COLUMNS = 2
         const val ACTIVITY_NAME = "Recommended"
         const val LIBRARY_DATASET = "LibraryDataset"
+        const val ALL_BOOKS_FROM_DATABASE = "AllBooksFromDatabase"
         const val SELECTED_BOOK = "SelectedBook"
         const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
         const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
@@ -59,9 +69,11 @@ class RecommendedActivity() : AppCompatActivity(),
 
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        supportLoaderManager.initLoader(0, null, this).forceLoad()
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        super.onCreate(savedInstanceState)
+
+        fetchAllBooksFromDatabase()
+        supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
         setContentView(R.layout.activity_recommended_structure)
 
         setListenerButtonCloseGenre()
@@ -74,7 +86,7 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<LibraryBModel> {
-        return LibraryBModelAsyncFetchData(this)
+        return LibraryBModelAsyncFetchData(this, mAllBooksFromDatabase)
     }
 
     override fun onLoadFinished(p0: Loader<LibraryBModel>, data: LibraryBModel?) {
@@ -122,6 +134,10 @@ class RecommendedActivity() : AppCompatActivity(),
         intent.putExtra(SELECTED_POPULAR_SPECIES, pspecies)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    private fun fetchAllBooksFromDatabase() {
+        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
     private fun initAllViews() {
@@ -209,7 +225,7 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun initCarouselRecycler() {
-        val hmodels = mockDatasetDiscreteScrollView()
+        val hmodels = mockDatasetCarousel()
         val carouselRecyclerView = findViewById<RecyclerView>(R.id.carousel_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
         val linearManager = CarouselLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -348,41 +364,54 @@ class RecommendedActivity() : AppCompatActivity(),
         linearLayout.requestFocus()
     }
 
-    private fun mockDatasetDiscreteScrollView(): ArrayList<BModel> {
+    private fun mockDatasetCarousel(): ArrayList<BModel> {
         val factory = BModelRandomProvider(this)
 
-        return factory.getRandomsInstancesDiscreteScrollView(15)
+        return factory.getRandomsInstances(NB_BOOKS_CAROUSEL)
     }
 
     private fun mockDatasetFirstRecyclerView(dataset: ArrayList<ListBModel>) {
         val factory = BModelRandomProvider(this)
 
-        dataset.add(
-            ListBModel(
-                TITLE_FIRST_RECYCLER_VIEW,
-                factory.getRandomsInstances(6)
+        for (index in 0..(FIRST_RECYCLERVIEW_NB_COLUMNS - 1)) {
+            dataset.add(
+                ListBModel(
+                    TITLE_FIRST_RECYCLER_VIEW,
+                    factory.getRandomsInstancesFromList(
+                        NB_BOOKS_FIRST_RECYCLERVIEW,
+                        mAllBooksFromDatabase
+                    )
+                )
             )
-        )
+        }
     }
 
     private fun mockDatasetSecondRecyclerView(dataset: ArrayList<ListBModel>) {
         val factory = BModelRandomProvider(this)
 
-        dataset.add(
-            ListBModel(
-                TITLE_SECOND_RECYCLER_VIEW,
-                factory.getRandomsInstances(6)
+        for (index in 0..(SECOND_RECYCLERVIEW_NB_COLUMNS - 1)) {
+            dataset.add(
+                ListBModel(
+                    TITLE_SECOND_RECYCLER_VIEW,
+                    factory.getRandomsInstancesFromList(
+                        NB_BOOKS_SECOND_RECYCLERVIEW,
+                        mAllBooksFromDatabase
+                    )
+                )
             )
-        )
+        }
     }
 
     private fun mockDatasetSmallRecyclerView(dataset: ArrayList<NoTitleListBModel>) {
         val factory = BModelRandomProvider(this)
 
-        for (index in 0..1) {
+        for (index in 0..(SMALL_RECYCLERVIEW_NB_COLUMNS - 1)) {
             dataset.add(
                 NoTitleListBModel(
-                    factory.getRandomsInstances(8)
+                    factory.getRandomsInstancesFromList(
+                        NB_BOOKS_SMALL_RECYCLERVIEW,
+                        mAllBooksFromDatabase
+                    )
                 )
             )
         }

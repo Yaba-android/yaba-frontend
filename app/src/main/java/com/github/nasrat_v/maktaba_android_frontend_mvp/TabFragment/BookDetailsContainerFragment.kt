@@ -14,6 +14,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.BookDetailsActi
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookInfosProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Overview.OverviewFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Review.ReviewFragment
 
@@ -22,8 +23,11 @@ class BookDetailsContainerFragment : Fragment() {
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
     private lateinit var mBookInfosProvider: IBookInfosProvider
+    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
     private var mNumberRating = 0
     private val mTabNamesList = arrayListOf<String>()
+    private val mReview = ReviewFragment()
+    val mOverview = OverviewFragment()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,8 +43,9 @@ class BookDetailsContainerFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mTabNamesList.add("Reviews ($mNumberRating)")
-        mTabNamesList.add("Overview")
+
+        initTabFragment()
+        iniTabNamesList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -64,22 +69,34 @@ class BookDetailsContainerFragment : Fragment() {
         mBookInfosProvider = bookInfosProvider
     }
 
-    internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>)
-        : FragmentStatePagerAdapter(fm) {
+    fun setAllBooksFromDatabase(allBooksDb: ArrayList<BModel>) {
+        mAllBooksFromDatabase = allBooksDb
+    }
+
+    private fun initTabFragment() {
+        mReview.setTabFragmentClickCallback(mBookClickCallback)
+        mOverview.setTabFragmentClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
+    }
+
+    private fun iniTabNamesList() {
+        mTabNamesList.add("Reviews ($mNumberRating)")
+        mTabNamesList.add("Overview")
+    }
+
+    internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>) :
+        FragmentStatePagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment? {
             when (position) {
                 0 -> {
-                    val review = ReviewFragment()
-                    review.setTabFragmentClickCallback(mBookClickCallback)
-                    review.setSelectedBook(mBookInfosProvider.getSelectedBook())
-                    return review
+                    mReview.setAllBooksFromDatabase(mAllBooksFromDatabase)
+                    mReview.setSelectedBook(mBookInfosProvider.getSelectedBook())
+                    return mReview
                 }
-                1 ->  {
-                    val overview = OverviewFragment()
-                    overview.setTabFragmentClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
-                    overview.setSelectedBook(mBookInfosProvider.getSelectedBook())
-                    return overview
+                1 -> {
+                    mReview.setAllBooksFromDatabase(mAllBooksFromDatabase)
+                    mOverview.setSelectedBook(mBookInfosProvider.getSelectedBook())
+                    return mOverview
                 }
             }
             return null

@@ -22,6 +22,11 @@ class OverviewFragment : Fragment() {
     private var mDataset = arrayListOf<ListBModel>()
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mSelectedBook: BModel
+    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
+
+    companion object {
+        const val NB_BOOKS_PER_ROW = 6
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -41,6 +46,10 @@ class OverviewFragment : Fragment() {
         mSelectedBook = book
     }
 
+    fun setAllBooksFromDatabase(allBooksDb: ArrayList<BModel>) {
+        mAllBooksFromDatabase = allBooksDb
+    }
+
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_overview)
         val adapterBookVertical =
@@ -49,7 +58,8 @@ class OverviewFragment : Fragment() {
                 mDataset,
                 mBookClickCallback
             )
-        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
+        val verticalRecyclerView =
+            view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
 
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
@@ -65,7 +75,12 @@ class OverviewFragment : Fragment() {
     private fun initBookDetailsAttributes(view: View) { // faire passer le selected book au fragment
         initBookDetailsInfoAttributes(view, R.id.overview_category_length, "Length", mSelectedBook.length.toString())
         initBookDetailsInfoAttributes(view, R.id.overview_category_file_size, "File size", mSelectedBook.fileSize)
-        initBookDetailsInfoAttributes(view, R.id.overview_category_date_publication, "Date of publication", mSelectedBook.datePublication)
+        initBookDetailsInfoAttributes(
+            view,
+            R.id.overview_category_date_publication,
+            "Date of publication",
+            mSelectedBook.datePublication
+        )
         initBookDetailsInfoAttributes(view, R.id.overview_category_genre, "Genre", mSelectedBook.genre.name)
         initBookDetailsInfoAttributes(view, R.id.overview_category_country, "Country", mSelectedBook.country)
         initBookDetailsInfoAttributes(view, R.id.overview_category_publisher, "Publisher", mSelectedBook.publisher)
@@ -86,7 +101,10 @@ class OverviewFragment : Fragment() {
         mDataset.add(
             ListBModel(
                 "More Books from this Authors",
-                factory.getRandomsInstances(3)
+                factory.getRandomsInstancesFromList(
+                    NB_BOOKS_PER_ROW,
+                    mAllBooksFromDatabase
+                )
             )
         )
     }

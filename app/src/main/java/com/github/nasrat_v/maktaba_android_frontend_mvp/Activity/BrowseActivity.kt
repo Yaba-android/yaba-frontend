@@ -22,8 +22,10 @@ import android.app.Activity
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
@@ -34,11 +36,13 @@ class BrowseActivity : AppCompatActivity(),
     private lateinit var mAdapterBookVertical: BrowseBRecyclerViewAdapter
     private lateinit var mEditText: EditText
     private lateinit var mSecondVerticalRecyclerView: RecyclerView
+    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
     private var mListResultBrowse = arrayListOf<BModel>()
     private var mListAllBooksDatabase = arrayListOf<BModel>()
 
     companion object {
         const val NB_ALL_BOOKS_DATABASE = 20
+        const val NB_BOOKS_PER_ROW = 6
         const val ACTIVITY_NAME = "Browse"
     }
 
@@ -47,6 +51,7 @@ class BrowseActivity : AppCompatActivity(),
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_browse_structure)
 
+        fetchAllBooksFromDatabase()
         setListenerLibraryButtonFooter()
         setListenerRecommendedButtonFooter()
 
@@ -89,6 +94,10 @@ class BrowseActivity : AppCompatActivity(),
             mListResultBrowse.remove(book)
             notifyDataSetChanged()
         }
+    }
+
+    private fun fetchAllBooksFromDatabase() {
+        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
     private fun returnToHome() {
@@ -189,7 +198,10 @@ class BrowseActivity : AppCompatActivity(),
         dataset.add(
             ListBModel(
                 RecommendedActivity.TITLE_FIRST_RECYCLER_VIEW,
-                factory.getRandomsInstances(6)
+                factory.getRandomsInstancesFromList(
+                    NB_BOOKS_PER_ROW,
+                    mAllBooksFromDatabase
+                )
             )
         )
     }

@@ -5,7 +5,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class GModelProvider(var context: Context) {
 
-    fun getAllGenres() : ArrayList<GModel> {
+    fun getAllGenres(): ArrayList<GModel> {
         val hmodels = arrayListOf<GModel>()
         val genreArray = context.resources.getStringArray(R.array.genres)
         val genreNumberArray = context.resources.getIntArray(R.array.genres_numbers)
@@ -23,7 +23,7 @@ class GModelProvider(var context: Context) {
         return (hmodels)
     }
 
-    fun getPopularGenres() : ArrayList<GModel> {
+    fun getPopularGenres(): ArrayList<GModel> {
         val hmodels = getAllGenres()
         val popularList = arrayListOf<GModel>()
 
@@ -33,5 +33,16 @@ class GModelProvider(var context: Context) {
             }
         }
         return (popularList)
+    }
+
+    fun getNbGenre(genreName: String): Int {
+        val hmodels = getAllGenres()
+        val genre = hmodels.find {
+            it.name == genreName
+        }
+
+        if (genre != null)
+            return (genre.nb)
+        return -1 // error
     }
 }

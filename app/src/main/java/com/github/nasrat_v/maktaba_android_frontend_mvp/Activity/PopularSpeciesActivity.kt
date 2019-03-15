@@ -22,6 +22,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.BigListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
@@ -31,14 +32,21 @@ class PopularSpeciesActivity : AppCompatActivity(),
     IBookClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
-    private lateinit var selectedPSpecies: GModel
+    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
+    private lateinit var mSelectedPSpecies: GModel
+
+    companion object {
+        const val NB_BOOKS_PER_ROW = 2
+        const val NB_BOOKS_COLUMNS = 8
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_popular_species_structure)
 
-        selectedPSpecies = intent.getParcelableExtra(RecommendedActivity.SELECTED_POPULAR_SPECIES)
+        mSelectedPSpecies = intent.getParcelableExtra(RecommendedActivity.SELECTED_POPULAR_SPECIES)
+        fetchAllBooksFromDatabase()
         setListenerLibraryButtonFooter()
         setListenerBrowseButtonFooter()
         setListenerRecommendedButtonFooter()
@@ -73,6 +81,10 @@ class PopularSpeciesActivity : AppCompatActivity(),
             finish()
         }
         return true
+    }
+
+    private fun fetchAllBooksFromDatabase() {
+        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
     private fun initDrawerLayout() {
@@ -129,7 +141,7 @@ class PopularSpeciesActivity : AppCompatActivity(),
     private fun initTitle() {
         val title = findViewById<TextView>(R.id.vertical_title)
 
-        title.text = selectedPSpecies.name
+        title.text = mSelectedPSpecies.name
     }
 
     private fun initVerticalRecycler() {
@@ -159,10 +171,13 @@ class PopularSpeciesActivity : AppCompatActivity(),
     private fun mockDatasetVerticalRecyclerView(mDataset: ArrayList<NoTitleListBModel>) {
         val factory = BModelRandomProvider(this)
 
-        for (index in 0..7) {
+        for (index in 0..(NB_BOOKS_COLUMNS - 1)) {
             mDataset.add(
                 NoTitleListBModel(
-                    factory.getRandomsInstances(2)
+                    factory.getRandomsInstancesFromList(
+                        NB_BOOKS_PER_ROW,
+                        mAllBooksFromDatabase
+                    )
                 )
             )
         }
