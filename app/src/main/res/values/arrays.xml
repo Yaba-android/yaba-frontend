@@ -614,7 +614,7 @@
         <item>Crime &amp; Excitement</item>
     </string-array>
 
-    <string-array name="numbers_ratings_books">
+    <integer-array name="numbers_ratings_books">
         <item>12</item>
         <item>675</item>
         <item>44</item>
@@ -665,7 +665,7 @@
         <item>89</item>
         <item>987</item>
         <item>332</item>
-    </string-array>
+    </integer-array>
 
     <string-array name="genres">
         <item>Art</item>
@@ -692,7 +692,7 @@
         <item>Counseling</item>
     </string-array>
 
-    <string-array name="genres_numbers">
+    <integer-array name="genres_numbers">
         <item>12</item>
         <item>675</item>
         <item>44</item>
@@ -715,7 +715,7 @@
         <item>54</item>
         <item>223</item>
         <item>76</item>
-    </string-array>
+    </integer-array>
 
     <integer-array name="genres_popular">
         <item>1</item>
