@@ -80,5 +80,7 @@
     <string name="find_the_books_you_love">Find the books you love</string>
     <string name="search_by_title_author_or_word">Search by title, author or word</string>
     <string name="results">Results</string>
+    <string name="art">Art</string>
+    <string name="business">Business</string>
 </resources>
 

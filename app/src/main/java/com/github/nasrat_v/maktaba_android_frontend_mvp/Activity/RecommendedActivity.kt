@@ -157,7 +157,7 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun setListenerButtonCloseGenre() {
-        val nav = findViewById<NavigationView>(R.id.nav_view_section)
+        /*val nav = findViewById<NavigationView>(R.id.nav_view_section)
         val buttonCloseGenre = nav.findViewById<Button>(R.id.button_close_section)
 
         buttonCloseGenre.setOnClickListener {
@@ -165,7 +165,7 @@ class RecommendedActivity() : AppCompatActivity(),
                 mDrawerLayout.closeDrawer(Gravity.END)
             else
                 mDrawerLayout.openDrawer(Gravity.END)
-        }
+        }*/
     }
 
     private fun setListenerButtonCloseProfile() {
@@ -349,9 +349,9 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun initSectionNavVerticalRecycler() {
-        val genreList = GModelProvider(this).getAllGenres()
+        /*val genreList = GModelProvider(this).getAllGenres()
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_recyclerview_section)
-        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_section)
+        //val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_section)
         val adapterBookVertical = GSRecyclerViewAdapter(this, genreList, this)
 
         verticalRecyclerView.setHasFixedSize(true)
@@ -360,8 +360,8 @@ class RecommendedActivity() : AppCompatActivity(),
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_section_vertical_recycler_view)
         )
-        verticalRecyclerView.isFocusable = false
-        linearLayout.requestFocus()
+        verticalRecyclerView.isFocusable = false*/
+        //linearLayout.requestFocus()
     }
 
     private fun mockDatasetCarousel(): ArrayList<BModel> {

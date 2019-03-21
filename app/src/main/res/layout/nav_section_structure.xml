@@ -12,28 +12,91 @@
             android:layout_height="match_parent"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:textDirection="rtl"
             android:orientation="vertical">
 
-        <include layout="@layout/nav_section_header"/>
-
-        <LinearLayout
+        <!--<android.support.v7.widget.RecyclerView
+                android:id="@+id/vertical_recyclerview_section"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layoutDirection="rtl"
+                android:paddingStart="32dp"
                 android:orientation="vertical"
-                android:layout_marginTop="33dp"
-                android:textDirection="rtl">
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:ignore="RtlSymmetry"/>-->
 
-            <android.support.v7.widget.RecyclerView
-                    android:id="@+id/vertical_recyclerview_section"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layoutDirection="rtl"
-                    android:paddingStart="32dp"
-                    android:orientation="vertical"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    tools:ignore="RtlSymmetry"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
 
-        </LinearLayout>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salut la famille"
+                android:textSize="40sp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="toto"
+                android:textSize="40sp"/>
+
 
     </LinearLayout>
 
