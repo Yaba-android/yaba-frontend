@@ -203,23 +203,31 @@ class RecommendedActivity() : AppCompatActivity(),
         }
     }
 
+    private fun setListenerOpenNavSection() {
+        val button = findViewById<Button>(R.id.button_nav_section)
+
+        button.setOnClickListener {
+            
+        }
+    }
+
     private fun initDrawerLayout() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
 
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         mDrawerLayout = findViewById(R.id.drawer_recommended)
-        //mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END);
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END);
         val mDrawerToggle = ActionBarDrawerToggle(
             this, mDrawerLayout, toolbar,
             R.string.navigation_drawer_profile_open,
             R.string.navigation_drawer_profile_close
         )
-        mDrawerToggle.isDrawerIndicatorEnabled = false
-        mDrawerToggle.toolbarNavigationClickListener = View.OnClickListener {
+        //mDrawerToggle.isDrawerIndicatorEnabled = false
+        /*mDrawerToggle.toolbarNavigationClickListener = View.OnClickListener {
             mDrawerLayout.openDrawer(GravityCompat.START)
         }
-        mDrawerToggle.setHomeAsUpIndicator(R.drawable.menu_drawer)
+        mDrawerToggle.setHomeAsUpIndicator(R.drawable.menu_drawer)*/
         mDrawerToggle.syncState()
         mDrawerLayout.setDrawerListener(mDrawerToggle)
     }

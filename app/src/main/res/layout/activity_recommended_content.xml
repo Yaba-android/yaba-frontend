@@ -16,6 +16,12 @@
             android:background="@color/colorFragmentGrey"
             android:orientation="vertical">
 
+        <Button
+                android:id="@+id/button_nav_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="open nav section"/>
+
         <include layout="@layout/activity_recommended_carousel"/>
 
         <android.support.v7.widget.RecyclerView
