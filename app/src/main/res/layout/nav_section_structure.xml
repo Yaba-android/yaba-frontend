@@ -2,6 +2,516 @@
 <android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorNavGrey"
+            tools:ignore="RtlSymmetry">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp">
+
+            <TextView
+                    android:id="@+id/author_title_genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/select_genre"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    android:paddingTop="20dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="20dp"/>
+
+            <Button
+                    android:id="@+id/button_close_nav_genre"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text="⬅"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="30sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp">
+
+            <TextView
+                    android:id="@+id/genre_biography_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Biography   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_art_photography_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Art &amp; Photography   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_biography_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_business_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Business   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/genre_biography_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_computing_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Computing   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_business_flag"
+                    android:layout_below="@+id/genre_biography_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_children_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Children's   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_computing_flag"
+                    android:layout_below="@+id/genre_biography_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_crime_thriller_mystery_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Crime, Thrillers &amp; Mystery   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/genre_business_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_education_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Education   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_crime_thriller_mystery_flag"
+                    android:layout_below="@+id/genre_business_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_fiction_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Fiction   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/genre_crime_thriller_mystery_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_food_drink_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Food &amp; Drink   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_fiction_flag"
+                    android:layout_below="@+id/genre_crime_thriller_mystery_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_graphic_novels_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Graphic Novels   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/genre_fiction_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_health_lifestyle_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Health &amp; Lifestyle   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_graphic_novels_flag"
+                    android:layout_below="@+id/genre_fiction_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_history_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   History   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/genre_graphic_novels_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_home_garden_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Home &amp; Garden   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_history_flag"
+                    android:layout_below="@+id/genre_graphic_novels_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_horror_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Horror   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_home_garden_flag"
+                    android:layout_below="@+id/genre_graphic_novels_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_humour_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Humour   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/genre_history_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_languages_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Languages   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_humour_flag"
+                    android:layout_below="@+id/genre_history_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_mind_body_spirit_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Mind, Body &amp; Spirit   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/genre_humour_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_music_screen_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Music &amp; Screen   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_mind_body_spirit_flag"
+                    android:layout_below="@+id/genre_humour_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_reference_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Reference   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/genre_mind_body_spirit_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_religion_spirituality_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Religion &amp; Spirituality   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_reference_flag"
+                    android:layout_below="@+id/genre_mind_body_spirit_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_poetry_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Poetry   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/genre_reference_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/genre_politics_social_sciences_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Politics &amp; Social Sciences   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/genre_poetry_flag"
+                    android:layout_below="@+id/genre_reference_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/poetry_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Poetry   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/genre_poetry_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/politics_social_sciences_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Politics &amp; Social Sciences   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/poetry_flag"
+                    android:layout_below="@+id/genre_politics_social_sciences_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="   Poetry   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/poetry_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/social_sciences_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   Politics &amp; Social Sciences   "
+                    android:textColor="@color/colorPurple"
+                    android:textSize="12sp"
+                    android:background="@drawable/rounded_corner_genre_flag_white"
+                    android:padding="10dp"
+                    android:layout_margin="3dp"
+                    android:layout_toStartOf="@id/poetry_flag"
+                    android:layout_below="@+id/politics_social_sciences_flag"
+                    android:clickable="true"
+                    tools:ignore="RtlHardcoded"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <Button
+                    android:id="@+id/button_sort_nav_genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⇅  Sort"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorTextBlack"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:layout_gravity="end"
+                    android:background="@android:color/transparent"
+                    android:padding="15dp"/>
+
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorNavFooterGrey">
+
+                <Button
+                        android:id="@+id/button_popularity_nav_genre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Popularity"
+                        android:textColor="@android:color/darker_gray"
+                        android:textAllCaps="false"
+                        android:textSize="14sp"
+                        android:padding="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@android:color/transparent"
+                        tools:ignore="RtlSymmetry"/>
+
+                <Button
+                        android:id="@+id/button_title_nav_genre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Title (A-Z)"
+                        android:textColor="#1F1F1F"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:padding="15dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@android:color/transparent"/>
+
+                <Button
+                        android:id="@+id/button_review_score_nav_genre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Review Score"
+                        android:textColor="@android:color/darker_gray"
+                        android:textAllCaps="false"
+                        android:textSize="14sp"
+                        android:padding="15dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
+
+<!--<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,7 +523,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:textDirection="rtl"
-            android:orientation="vertical">
+            android:orientation="vertical">-->
 
         <!--<android.support.v7.widget.RecyclerView
                 android:id="@+id/vertical_recyclerview_section"
@@ -25,7 +535,7 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:ignore="RtlSymmetry"/>-->
 
-        <TextView
+        <!--<TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="salut la famille"
@@ -100,4 +610,4 @@
 
     </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</android.support.v4.widget.NestedScrollView>-->
