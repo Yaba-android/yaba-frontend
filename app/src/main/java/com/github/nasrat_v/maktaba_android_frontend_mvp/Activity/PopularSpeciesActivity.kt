@@ -56,6 +56,11 @@ class PopularSpeciesActivity : AppCompatActivity(),
         initVerticalRecycler()
     }
 
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
     override fun onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(Gravity.START))
             mDrawerLayout.closeDrawer(Gravity.START)
