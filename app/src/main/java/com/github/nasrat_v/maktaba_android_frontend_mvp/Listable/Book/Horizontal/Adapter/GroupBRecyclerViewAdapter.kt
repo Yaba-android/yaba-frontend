@@ -57,6 +57,6 @@ class GroupBRecyclerViewAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!
-        var mImageDownload = itemView.findViewById<Button>(R.id.download_book_library_image)!!
+        var mImageDownload = itemView.findViewById<ImageView>(R.id.download_book_library_image)!!
     }
 }
