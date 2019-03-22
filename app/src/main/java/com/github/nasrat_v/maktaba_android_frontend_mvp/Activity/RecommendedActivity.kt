@@ -15,7 +15,6 @@ import android.support.v4.content.Loader
 import android.support.v4.view.GravityCompat
 import android.support.v7.widget.*
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.*
 import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
@@ -33,11 +32,9 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Horizontal.GPSRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.GSRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
-import com.mcxiaoke.koi.ext.find
 
 class RecommendedActivity() : AppCompatActivity(),
     LoaderManager.LoaderCallbacks<LibraryBModel>,
@@ -127,7 +124,7 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     override fun popularSpeciesEventButtonClicked(pspecies: GModel) {
-        val intent = Intent(this, PopularSpeciesActivity::class.java)
+        val intent = Intent(this, SectionActivity::class.java)
 
         intent.putExtra(SELECTED_POPULAR_SPECIES, pspecies)
         startActivity(intent)
@@ -206,9 +203,9 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun startSectionActivity() {
-        val intent = Intent(this, SectionActivity::class.java)
+        val intent = Intent(this, SectionsActivity::class.java)
 
-        Toast.makeText(this, SectionActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, SectionsActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)

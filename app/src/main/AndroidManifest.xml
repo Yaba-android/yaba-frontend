@@ -31,7 +31,7 @@
                 tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-                android:name=".Activity.PopularSpeciesActivity"
+                android:name=".Activity.SectionActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
         <activity
@@ -39,7 +39,7 @@
                 tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-                android:name=".Activity.SectionActivity"
+                android:name=".Activity.SectionsActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
     </application>

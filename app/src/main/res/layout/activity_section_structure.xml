@@ -6,9 +6,9 @@
         android:layout_height="match_parent"
         android:id="@+id/drawer_popular_species"
         android:fitsSystemWindows="true"
-        tools:context=".Activity.PopularSpeciesActivity">
+        tools:context=".Activity.SectionActivity">
 
-    <include layout="@layout/activity_popular_sections_content"/>
+    <include layout="@layout/activity_section_content"/>
 
     <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"

@@ -63,10 +63,9 @@ class LibraryBModelProvider {
         nb: Int, genre: GModel, list: ArrayList<BModel>,
         booksSelected: ArrayList<GroupBModel>
     ) {
+        val filteredList = ArrayList(list.filter { it.genre == genre })
 
-        val filteredList = ArrayList<BModel>(list.filter { it.genre == genre })
-
-        if (filteredList.size > 0) {
+        if (filteredList.isNotEmpty()) {
             if (!booksSelected.isEmpty() && (booksSelected.last().genre == genre))
                 booksSelected.last().bookModels.addAll(filteredList)
             else

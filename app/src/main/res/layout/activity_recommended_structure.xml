@@ -56,7 +56,7 @@
             android:background="@android:color/white"
             tools:ignore="RtlHardcoded">
 
-        <include layout="@layout/activity_section"/>
+        <include layout="@layout/activity_sections"/>
 
     </android.support.design.widget.NavigationView>
 

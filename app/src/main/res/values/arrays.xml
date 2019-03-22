@@ -584,16 +584,17 @@
         <item>Debt</item>
         <item>Science &amp; Mathematics</item>
         <item>Counseling</item>
-        <item>Art</item>
+        <item>Business</item>
         <item>Business</item>
         <item>Computing</item>
         <item>Education</item>
-        <item>Health</item>
+        <item>Education</item>
         <item>Home &amp; Garden</item>
         <item>Literature</item>
         <item>Family</item>
         <item>Professionals</item>
         <item>Romantic</item>
+        <item>Science-Fiction</item>
         <item>Science-Fiction</item>
         <item>Personal Biography</item>
         <item>Children Books</item>
@@ -602,14 +603,13 @@
         <item>History</item>
         <item>Humor</item>
         <item>Non-Fiction</item>
-        <item>Policy</item>
         <item>Debt</item>
         <item>Science &amp; Mathematics</item>
-        <item>Counseling</item>
+        <item>Professionals</item>
         <item>Professionals</item>
         <item>Romantic</item>
-        <item>Science-Fiction</item>
-        <item>Personal Biography</item>
+        <item>Romantic</item>
+        <item>Romantic</item>
         <item>Children Books</item>
         <item>Crime &amp; Excitement</item>
     </string-array>
@@ -693,28 +693,28 @@
     </string-array>
 
     <integer-array name="genres_numbers">
-        <item>12</item>
-        <item>675</item>
-        <item>44</item>
-        <item>89</item>
-        <item>987</item>
-        <item>332</item>
-        <item>978</item>
-        <item>21</item>
-        <item>14</item>
-        <item>67</item>
-        <item>126</item>
-        <item>541</item>
-        <item>23</item>
-        <item>87</item>
-        <item>9</item>
-        <item>278</item>
-        <item>781</item>
-        <item>119</item>
-        <item>96</item>
-        <item>54</item>
-        <item>223</item>
-        <item>76</item>
+        <item>1</item>
+        <item>3</item>
+        <item>2</item>
+        <item>3</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>1</item>
     </integer-array>
 
     <integer-array name="genres_popular">
