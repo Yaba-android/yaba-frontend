@@ -2,4 +2,4 @@
 
 * tester sur nexus pour si bug affichage
 
-* mettre tous les textes en arabe
+* mettre tous les textes en arabe + changer police
