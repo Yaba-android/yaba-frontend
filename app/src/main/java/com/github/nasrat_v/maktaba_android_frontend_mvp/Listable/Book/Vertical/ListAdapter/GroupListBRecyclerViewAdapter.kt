@@ -61,7 +61,6 @@ class GroupListBRecyclerViewAdapter(
     }
 
     fun notifyDataSetChangedDownloadList() {
-        this.notifyDataSetChanged()
         mHorizontalRecyclerViewAdapter.notifyDataSetChanged()
     }
 

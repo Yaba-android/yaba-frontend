@@ -53,7 +53,6 @@ class DownloadListBRecyclerViewAdapter(
     }
 
     fun notifyDataSetChangedDownloadList() {
-        this.notifyDataSetChanged()
         mHorizontalRecyclerViewAdapter.notifyDataSetChanged()
     }
 

@@ -23,6 +23,8 @@ class AllBooksListBRecyclerViewAdapter(
 ) : RecyclerView.Adapter<AllBooksListBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mHorizontalRecyclerViewAdapter: AllBooksBRecyclerViewAdapter
+    private lateinit var mHorizontalRecyclerView: RecyclerView
+    private lateinit var mLeftOffestDecoration: RecyclerView.ItemDecoration
     private var viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
@@ -41,6 +43,7 @@ class AllBooksListBRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = listAllBooks[position]
 
+        mLeftOffestDecoration = LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
         mHorizontalRecyclerViewAdapter =
             AllBooksBRecyclerViewAdapter(
                 context,
@@ -54,14 +57,14 @@ class AllBooksListBRecyclerViewAdapter(
         holder.horizontalRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = mHorizontalRecyclerViewAdapter
-        holder.horizontalRecyclerView.addItemDecoration(
-            LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
-        )
+        holder.horizontalRecyclerView.addItemDecoration(mLeftOffestDecoration)
+        mHorizontalRecyclerView = holder.horizontalRecyclerView
     }
 
     fun notifyDataSetChangedDownloadList() {
-        this.notifyDataSetChanged()
+        mHorizontalRecyclerView.removeItemDecoration(mLeftOffestDecoration)
         mHorizontalRecyclerViewAdapter.notifyDataSetChanged()
+        this.notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
