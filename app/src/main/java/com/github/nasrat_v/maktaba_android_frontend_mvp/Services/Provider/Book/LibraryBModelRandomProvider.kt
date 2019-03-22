@@ -32,19 +32,18 @@ class LibraryBModelRandomProvider {
         for (index in 0..(nbX - 1)) {
             booksSelected.add(
                 DownloadBModel(
-                    list[indexSelected[index]]
+                    list[indexSelected.first()]
                 )
             )
-            indexSelected.removeAt(index)
+            indexSelected.remove(indexSelected.first())
         }
         return booksSelected
     }
 
     private fun getAllRandomIndex(nbAllIndex: Int, sizeList: Int): ArrayList<Int> {
         val indexSelected = arrayListOf<Int>()
-        var randomIndex = initRandomIndex(sizeList)
+        var randomIndex: Int
 
-        indexSelected.add(randomIndex)
         for (index in 0..(nbAllIndex - 1)) {
             randomIndex = randomizeIndex(indexSelected, sizeList)
             indexSelected.add(randomIndex)
@@ -55,13 +54,9 @@ class LibraryBModelRandomProvider {
     private fun randomizeIndex(indexSelected: ArrayList<Int>, sizeList: Int): Int {
         var randomIndex = initRandomIndex(sizeList)
 
-        indexSelected.forEach {
-            while (it == randomIndex) {
-                randomIndex = initRandomIndex(sizeList)
-            }
-            return randomIndex
-        }
-        return -1 // error
+        while (indexSelected.find { it == randomIndex } != null)
+            randomIndex = initRandomIndex(sizeList)
+        return randomIndex
     }
 
     private fun allBooksInSimpleList(allBooks: ArrayList<NoTitleListBModel>): ArrayList<BModel> {

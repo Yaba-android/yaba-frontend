@@ -16,6 +16,7 @@ class LibraryBModelAsyncFetchData(
     AsyncTaskLoader<LibraryBModel>(context) {
 
     override fun loadInBackground(): LibraryBModel? {
+        //android.os.Debug.waitForDebugger()
         val allbooksLibrary = arrayListOf<NoTitleListBModel>()
         val downloadsLibrary = arrayListOf<DownloadListBModel>()
         val groupsLibrary = arrayListOf<GroupListBModel>()
@@ -31,17 +32,18 @@ class LibraryBModelAsyncFetchData(
     }
 
     private fun mockDatasetAllBooks(dataset: ArrayList<NoTitleListBModel>) {
-        val factory = BModelRandomProvider(context)
-
-        for (index in 0..(LibraryActivity.ALLBOOKS_NB_BOOK_COLUMNS - 1)) {
-            dataset.add(
-                NoTitleListBModel(
-                    factory.getRandomsInstancesFromList(
-                        LibraryActivity.ALLBOOKS_NB_BOOK_PER_ROW,
-                        allBooksFromDatabase
-                    )
-                )
+        dataset.addAll(
+            BModelRandomProvider(context).getRandomsInstancesFromListToNoTitleListBModel(
+                LibraryActivity.ALLBOOKS_NB_BOOK_COLUMNS,
+                LibraryActivity.ALLBOOKS_NB_BOOK_PER_ROW,
+                allBooksFromDatabase
             )
+        )
+    }
+
+    private fun removeIndexFromTmpList(selectedIndex: ArrayList<Int>, tmpList: ArrayList<BModel>) {
+        selectedIndex.forEach {
+            tmpList.removeAt(it)
         }
     }
 

@@ -17,16 +17,14 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCall
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Review.RModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
+import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Overview.OverviewFragment
 
 class ReviewFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mSelectedBook: BModel
     private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
-
-    companion object {
-        const val NB_BOOKS_PER_ROW = 6
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -91,16 +89,12 @@ class ReviewFragment : Fragment() {
     }
 
     private fun mockDatasetBook(container: ViewGroup, mDataset: ArrayList<ListBModel>) {
-        val factory =
-            BModelRandomProvider(container.context)
-
-        mDataset.add(
-            ListBModel(
-                "More Books from this Authors",
-                factory.getRandomsInstancesFromList(
-                    NB_BOOKS_PER_ROW,
-                    mAllBooksFromDatabase
-                )
+        mDataset.addAll(
+            BModelRandomProvider(container.context).getRandomsInstancesFromListToListBModel(
+                BookDetailsContainerFragment.RECYCLER_VIEW_TITLE,
+                BookDetailsContainerFragment.RECYCLER_VIEW_NB_COLUMNS,
+                BookDetailsContainerFragment.RECYCLER_VIEW_NB_BOOKS_PER_ROW,
+                mAllBooksFromDatabase
             )
         )
     }

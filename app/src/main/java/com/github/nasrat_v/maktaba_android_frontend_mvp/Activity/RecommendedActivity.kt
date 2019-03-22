@@ -366,49 +366,34 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun mockDatasetFirstRecyclerView(dataset: ArrayList<ListBModel>) {
-        val factory = BModelRandomProvider(this)
-
-        for (index in 0..(FIRST_RECYCLERVIEW_NB_COLUMNS - 1)) {
-            dataset.add(
-                ListBModel(
-                    TITLE_FIRST_RECYCLER_VIEW,
-                    factory.getRandomsInstancesFromList(
-                        NB_BOOKS_FIRST_RECYCLERVIEW,
-                        mAllBooksFromDatabase
-                    )
-                )
+        dataset.addAll(
+            BModelRandomProvider(this).getRandomsInstancesFromListToListBModel(
+                TITLE_FIRST_RECYCLER_VIEW,
+                FIRST_RECYCLERVIEW_NB_COLUMNS,
+                NB_BOOKS_FIRST_RECYCLERVIEW,
+                mAllBooksFromDatabase
             )
-        }
+        )
     }
 
     private fun mockDatasetSecondRecyclerView(dataset: ArrayList<ListBModel>) {
-        val factory = BModelRandomProvider(this)
-
-        for (index in 0..(SECOND_RECYCLERVIEW_NB_COLUMNS - 1)) {
-            dataset.add(
-                ListBModel(
-                    TITLE_SECOND_RECYCLER_VIEW,
-                    factory.getRandomsInstancesFromList(
-                        NB_BOOKS_SECOND_RECYCLERVIEW,
-                        mAllBooksFromDatabase
-                    )
-                )
+        dataset.addAll(
+            BModelRandomProvider(this).getRandomsInstancesFromListToListBModel(
+                TITLE_SECOND_RECYCLER_VIEW,
+                SECOND_RECYCLERVIEW_NB_COLUMNS,
+                NB_BOOKS_SECOND_RECYCLERVIEW,
+                mAllBooksFromDatabase
             )
-        }
+        )
     }
 
     private fun mockDatasetSmallRecyclerView(dataset: ArrayList<NoTitleListBModel>) {
-        val factory = BModelRandomProvider(this)
-
-        for (index in 0..(SMALL_RECYCLERVIEW_NB_COLUMNS - 1)) {
-            dataset.add(
-                NoTitleListBModel(
-                    factory.getRandomsInstancesFromList(
-                        NB_BOOKS_SMALL_RECYCLERVIEW,
-                        mAllBooksFromDatabase
-                    )
-                )
+        dataset.addAll(
+            BModelRandomProvider(this).getRandomsInstancesFromListToNoTitleListBModel(
+                SMALL_RECYCLERVIEW_NB_COLUMNS,
+                NB_BOOKS_SMALL_RECYCLERVIEW,
+                mAllBooksFromDatabase
             )
-        }
+        )
     }
 }
