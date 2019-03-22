@@ -57,7 +57,7 @@ class LibraryActivity : AppCompatActivity(),
         const val ACTIVITY_NAME = "Library"
         const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
         const val DOWNLOADED_BOOKS = "DownloadedBooks"
-        const val PATH_TO_EBOOK_EPUB = "/storage/emulated/0/Download/pg58892-images.epub"
+        const val PATH_TO_EBOOK_EPUB = R.raw.jekyll_and_hyde
         const val ACTION_BUTTON_TEXT_DOWNLOAD = "Download Book"
         const val ACTION_BUTTON_TEXT_OPEN = "Open Book"
     }
