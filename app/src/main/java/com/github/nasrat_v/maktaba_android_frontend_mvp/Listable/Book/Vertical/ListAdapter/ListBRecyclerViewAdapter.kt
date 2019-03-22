@@ -16,7 +16,7 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
 class ListBRecyclerViewAdapter(
     private var context: Context, private var list: ArrayList<ListBModel>,
-    private var mBookClickCallback: IBookClickCallback
+    private var bookClickCallback: IBookClickCallback
 ) : RecyclerView.Adapter<ListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
@@ -43,7 +43,7 @@ class ListBRecyclerViewAdapter(
                 model.bookModels
             )
 
-        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
+        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(bookClickCallback)
         holder.mTitle.text = title
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)

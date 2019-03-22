@@ -16,8 +16,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 class GroupsListBRecyclerViewAdapter(
     private var context: Context,
     private var listNoTitleListBModel: ArrayList<GroupListBModel>,
-    private var mBookClickCallback: IBookClickCallback,
-    private var mGroupClickCallback: IGroupClickCallback
+    private var bookClickCallback: IBookClickCallback,
+    private var groupClickCallback: IGroupClickCallback
 ) : RecyclerView.Adapter<GroupsListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
@@ -37,8 +37,8 @@ class GroupsListBRecyclerViewAdapter(
         val model = listNoTitleListBModel[position]
         val horizontalRecyclerViewAdapter = GroupsBRecyclerViewAdapter(context, model.groupModels)
 
-        horizontalRecyclerViewAdapter.setBookClickCallback(mBookClickCallback)
-        horizontalRecyclerViewAdapter.setGroupClickCallback(mGroupClickCallback)
+        horizontalRecyclerViewAdapter.setBookClickCallback(bookClickCallback)
+        horizontalRecyclerViewAdapter.setGroupClickCallback(groupClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager =

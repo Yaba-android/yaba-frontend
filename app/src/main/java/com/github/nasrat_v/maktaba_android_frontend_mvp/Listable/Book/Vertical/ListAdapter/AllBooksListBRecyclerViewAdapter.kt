@@ -18,19 +18,20 @@ class AllBooksListBRecyclerViewAdapter(
     private var context: Context,
     private var listAllBooks: ArrayList<NoTitleListBModel>,
     private var listDownloadedBooks: ArrayList<DownloadListBModel>,
-    private var mBookClickCallback: IBookClickCallback,
-    private var mDownloadBookClickCallback: IDownloadBookClickCallback
+    private var bookClickCallback: IBookClickCallback,
+    private var downloadBookClickCallback: IDownloadBookClickCallback
 ) : RecyclerView.Adapter<AllBooksListBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mHorizontalRecyclerViewAdapter: AllBooksBRecyclerViewAdapter
-    private lateinit var mHorizontalRecyclerView: RecyclerView
-    private lateinit var mLeftOffestDecoration: RecyclerView.ItemDecoration
     private var viewPool = RecyclerView.RecycledViewPool()
+    private var mDecorationFlag = true
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
             R.layout.vertical_generic_recyclerview_book, container, false
         )
+        mDecorationFlag = true
+        
         return ViewHolder(
             rootView
         )
@@ -43,26 +44,28 @@ class AllBooksListBRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = listAllBooks[position]
 
-        mLeftOffestDecoration = LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
         mHorizontalRecyclerViewAdapter =
             AllBooksBRecyclerViewAdapter(
                 context,
                 listDownloadedBooks,
                 model.bookModels
             )
-        mHorizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
-        mHorizontalRecyclerViewAdapter.setDownloadBookClickCallback(mDownloadBookClickCallback)
+        mHorizontalRecyclerViewAdapter.setTabFragmentClickCallback(bookClickCallback)
+        mHorizontalRecyclerViewAdapter.setDownloadBookClickCallback(downloadBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = mHorizontalRecyclerViewAdapter
-        holder.horizontalRecyclerView.addItemDecoration(mLeftOffestDecoration)
-        mHorizontalRecyclerView = holder.horizontalRecyclerView
+        if (mDecorationFlag) {
+            holder.horizontalRecyclerView.addItemDecoration(
+                LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
+            )
+        }
+        mDecorationFlag = false
     }
 
     fun notifyDataSetChangedDownloadList() {
-        mHorizontalRecyclerView.removeItemDecoration(mLeftOffestDecoration)
         mHorizontalRecyclerViewAdapter.notifyDataSetChanged()
         this.notifyDataSetChanged()
     }

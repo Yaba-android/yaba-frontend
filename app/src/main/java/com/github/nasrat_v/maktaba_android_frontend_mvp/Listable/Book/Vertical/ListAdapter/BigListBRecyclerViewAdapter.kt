@@ -14,7 +14,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class BigListBRecyclerViewAdapter(
     private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
-    private var mBookClickCallback: IBookClickCallback
+    private var bookClickCallback: IBookClickCallback
 ) : RecyclerView.Adapter<BigListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
@@ -40,7 +40,7 @@ class BigListBRecyclerViewAdapter(
                 model.bookModels
             )
 
-        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
+        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(bookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager =

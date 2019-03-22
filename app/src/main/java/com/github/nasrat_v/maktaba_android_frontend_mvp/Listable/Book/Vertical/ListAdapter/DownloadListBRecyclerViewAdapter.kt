@@ -14,7 +14,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class DownloadListBRecyclerViewAdapter(
     private var context: Context, private var downloadListBModel: ArrayList<DownloadListBModel>,
-    private var mBookClickCallback: IBookClickCallback
+    private var bookClickCallback: IBookClickCallback
 ) : RecyclerView.Adapter<DownloadListBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mHorizontalRecyclerViewAdapter: DownloadBRecyclerViewAdapter
@@ -41,7 +41,7 @@ class DownloadListBRecyclerViewAdapter(
                 model.bookModels
             )
 
-        mHorizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
+        mHorizontalRecyclerViewAdapter.setTabFragmentClickCallback(bookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager =

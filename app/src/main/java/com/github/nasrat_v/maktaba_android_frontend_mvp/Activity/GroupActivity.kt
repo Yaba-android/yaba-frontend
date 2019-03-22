@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.*
 import android.widget.*
+import com.folioreader.FolioReader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
@@ -37,6 +38,7 @@ class GroupActivity : AppCompatActivity(),
     private lateinit var mDownloadedBooks: ArrayList<DownloadListBModel>
     private lateinit var mAdapterBookVertical: GroupListBRecyclerViewAdapter
     private lateinit var mDrawerLayout: DrawerLayout
+    private val mFolioReader = FolioReader.get()
     private var mBooksToAddToDownload = arrayListOf<BModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,35 +81,17 @@ class GroupActivity : AppCompatActivity(),
     }
 
     override fun bookEventButtonClicked(book: BModel) {
+        if (isBookAlreadyDownloaded(book)) {
+            Toast.makeText(this, ("Opening " + book.title + " ..."), Toast.LENGTH_SHORT).show()
+            openFolioReader()
+        } else {
+            Toast.makeText(this, ("Downloading " + book.title + " ..."), Toast.LENGTH_SHORT).show()
+            requestDownloadBook(book)
+        }
     }
 
     override fun downloadBookEventButtonClicked(book: BModel) {
-        if (mBooksToAddToDownload.find { it == book } == null) {
-            mBooksToAddToDownload.add(book)
-            addDownloadedBook(book)
-            mAdapterBookVertical.notifyDataSetChangedDownloadList()
-        }
-    }
-
-    private fun addDownloadedBook(book: BModel) {
-        val downloadBook = DownloadBModel(book)
-
-        if (!addBookToRowWithSpace(mDownloadedBooks.last(), downloadBook)) {
-            val newList = arrayListOf<DownloadBModel>()
-
-            newList.add(downloadBook)
-            mDownloadedBooks.add(DownloadListBModel(newList))
-        }
-    }
-
-    private fun addBookToRowWithSpace(rowBooks: DownloadListBModel, newBook: DownloadBModel)
-            : Boolean {
-
-        if (rowBooks.bookModels.size < GROUP_NB_BOOK_PER_ROW) {
-            rowBooks.bookModels.add(newBook)
-            return true
-        }
-        return false
+        requestDownloadBook(book)
     }
 
     private fun finishSendResult() {
@@ -167,6 +151,45 @@ class GroupActivity : AppCompatActivity(),
         }
     }
 
+    private fun requestDownloadBook(book: BModel) {
+        addDownloadedBook(book)
+        mBooksToAddToDownload.add(book)
+        mAdapterBookVertical.notifyDataSetChangedDownloadList()
+    }
+
+    private fun isBookAlreadyDownloaded(book: BModel): Boolean {
+        mDownloadedBooks.forEach { list ->
+            if (list.bookModels.find { it.book == book } != null)
+                return true
+        }
+        return false
+    }
+
+    private fun openFolioReader() {
+        mFolioReader.openBook(LibraryActivity.PATH_TO_EBOOK_EPUB)
+    }
+
+    private fun addDownloadedBook(book: BModel) {
+        val downloadBook = DownloadBModel(book)
+
+        if (!addBookToRowWithSpace(mDownloadedBooks.last(), downloadBook)) {
+            val newList = arrayListOf<DownloadBModel>()
+
+            newList.add(downloadBook)
+            mDownloadedBooks.add(DownloadListBModel(newList))
+        }
+    }
+
+    private fun addBookToRowWithSpace(rowBooks: DownloadListBModel, newBook: DownloadBModel)
+            : Boolean {
+
+        if (rowBooks.bookModels.size < GROUP_NB_BOOK_PER_ROW) {
+            rowBooks.bookModels.add(newBook)
+            return true
+        }
+        return false
+    }
+
     private fun setGroupDetailsAttributes() {
         val title = findViewById<TextView>(R.id.toolbar_title)
 
@@ -208,7 +231,7 @@ class GroupActivity : AppCompatActivity(),
         return listNoTitleList
     }
 
-    private fun getNbBooksAdded(list: ArrayList<NoTitleListBModel>) : Int {
+    private fun getNbBooksAdded(list: ArrayList<NoTitleListBModel>): Int {
         var nb = 0
 
         list.forEach {
@@ -241,8 +264,9 @@ class GroupActivity : AppCompatActivity(),
     private fun initVerticalRecyclerView() {
         // on format en deux listes (vertical & horizontal) pour recylerviews
         val mDataset = getGroupBooksFormatedForAdapter()
-
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
+        val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
+
         mAdapterBookVertical =
             GroupListBRecyclerViewAdapter(
                 this,
@@ -251,8 +275,6 @@ class GroupActivity : AppCompatActivity(),
                 this,
                 this
             )
-        val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
-
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVertical

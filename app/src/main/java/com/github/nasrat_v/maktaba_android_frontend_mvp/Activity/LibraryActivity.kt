@@ -58,6 +58,7 @@ class LibraryActivity : AppCompatActivity(),
         const val ACTIVITY_NAME = "Library"
         const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
         const val DOWNLOADED_BOOKS = "DownloadedBooks"
+        const val PATH_TO_EBOOK_EPUB = "/storage/emulated/0/Download/pg58892-images.epub"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,18 +109,6 @@ class LibraryActivity : AppCompatActivity(),
             Toast.makeText(this, ("Downloading " + book.title + " ..."), Toast.LENGTH_SHORT).show()
             addDownloadedBook(book)
         }
-    }
-
-    private fun isBookAlreadyDownloaded(book: BModel): Boolean {
-        mLibraryDataset.downloadBooks.forEach { list ->
-            if (list.bookModels.find { it.book == book } != null)
-                return true
-        }
-        return false
-    }
-
-    private fun openFolioReader() {
-        mFolioReader.openBook("/storage/emulated/0/Download/pg58892-images.epub")
     }
 
     override fun groupEventButtonClicked(group: GroupBModel) {
@@ -174,6 +163,18 @@ class LibraryActivity : AppCompatActivity(),
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
+    }
+
+    private fun isBookAlreadyDownloaded(book: BModel): Boolean {
+        mLibraryDataset.downloadBooks.forEach { list ->
+            if (list.bookModels.find { it.book == book } != null)
+                return true
+        }
+        return false
+    }
+
+    private fun openFolioReader() {
+        mFolioReader.openBook(PATH_TO_EBOOK_EPUB)
     }
 
     private fun addDownloadedBooks(books: ArrayList<BModel>) {

@@ -18,8 +18,8 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
 class ListEraseBRecyclerViewAdapter(
     private var context: Context, private var list: ArrayList<ListBModel>,
-    private var mBookClickCallback: IBookClickCallback,
-    private var mDeleteBrowseBookClickCallback: IDeleteBrowseBookClickCallback
+    private var bookClickCallback: IBookClickCallback,
+    private var deleteBrowseBookClickCallback: IDeleteBrowseBookClickCallback
 ) : RecyclerView.Adapter<ListEraseBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
@@ -46,7 +46,7 @@ class ListEraseBRecyclerViewAdapter(
                 model.bookModels
             )
 
-        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
+        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(bookClickCallback)
         holder.mTitle.text = title
         holder.mHorizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.mHorizontalRecyclerView.setHasFixedSize(true)
@@ -55,7 +55,7 @@ class ListEraseBRecyclerViewAdapter(
         holder.mHorizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
         GravitySnapHelper(Gravity.END).attachToRecyclerView(holder.mHorizontalRecyclerView)
         holder.mEraseButton.setOnClickListener {
-            mDeleteBrowseBookClickCallback.recyclerViewEraseEventButtonClicked()
+            deleteBrowseBookClickCallback.recyclerViewEraseEventButtonClicked()
         }
     }
 
