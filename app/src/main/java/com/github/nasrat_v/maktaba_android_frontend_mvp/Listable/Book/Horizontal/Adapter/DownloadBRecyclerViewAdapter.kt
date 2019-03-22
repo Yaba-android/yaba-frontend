@@ -34,8 +34,6 @@ class DownloadBRecyclerViewAdapter(private var context: Context, private var lis
 
         holder.mImage.setImageResource(model.book.image)
         holder.itemView.setOnClickListener {
-            Toast.makeText(context, model.book.title, Toast.LENGTH_SHORT).show()
-            // envoyer le bon livre grace à position
             mBookClickCallback.bookEventButtonClicked(list[position].book)
         }
     }

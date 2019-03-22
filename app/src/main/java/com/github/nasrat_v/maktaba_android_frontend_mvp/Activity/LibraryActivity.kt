@@ -3,6 +3,7 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.view.GravityCompat
@@ -15,6 +16,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
+import com.folioreader.FolioReader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
@@ -28,6 +30,13 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 
+/*
+    for epub files see:
+
+    gutenberg.org/ebooks/
+
+ */
+
 class LibraryActivity : AppCompatActivity(),
     IBookClickCallback,
     IGroupClickCallback,
@@ -36,6 +45,7 @@ class LibraryActivity : AppCompatActivity(),
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mLibraryDataset: LibraryBModel
+    private val mFolioReader = FolioReader.get()
     private val mContainerFragment = LibraryContainerFragment()
 
     companion object {
@@ -92,11 +102,25 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     override fun bookEventButtonClicked(book: BModel) {
-        val intent = Intent(this, BookDetailsActivity::class.java)
+        if (isBookAlreadyDownloaded(book)) {
+            Toast.makeText(this, ("Opening " + book.title + " ..."), Toast.LENGTH_SHORT).show()
+            openFolioReader()
+        } else {
+            Toast.makeText(this, ("Downloading " + book.title + " ..."), Toast.LENGTH_SHORT).show()
+            addDownloadedBook(book)
+        }
+    }
 
-        intent.putExtra(RecommendedActivity.SELECTED_BOOK, book)
-        startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    private fun isBookAlreadyDownloaded(book: BModel): Boolean {
+        mLibraryDataset.downloadBooks.forEach { list ->
+            if (list.bookModels.find { it.book == book } != null)
+                return true
+        }
+        return false
+    }
+
+    private fun openFolioReader() {
+        mFolioReader.openBook("/storage/emulated/0/Download/pg58892-images.epub")
     }
 
     override fun groupEventButtonClicked(group: GroupBModel) {

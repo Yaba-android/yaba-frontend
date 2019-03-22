@@ -44,8 +44,6 @@ class GroupBRecyclerViewAdapter(
             holder.mButtonDownload.visibility = View.INVISIBLE
         holder.mImage.setImageResource(model.image)
         holder.itemView.setOnClickListener {
-            Toast.makeText(context, model.title, Toast.LENGTH_SHORT).show()
-            // envoyer le bon livre grace à position
             mBookClickCallback.bookEventButtonClicked(list[position])
         }
         holder.mButtonDownload.setOnClickListener {
