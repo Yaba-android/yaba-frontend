@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <integer-array name="db_size">
+        <item>50</item>
+    </integer-array>
+
     <integer-array name="images_books">
         <item>@drawable/book1</item>
         <item>@drawable/book2</item>

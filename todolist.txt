@@ -1,5 +1,3 @@
-* browse activity => mettre en place recyclerview en rapport au genre du livre recherché
-
 * mettre en place le reader epub lors click book library
 
 * tester sur nexus pour si bug affichage
