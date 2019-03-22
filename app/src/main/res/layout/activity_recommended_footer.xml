@@ -40,7 +40,7 @@
             android:gravity="end|center"
             android:background="@color/colorButtonDontFindBlueHolo"
             android:drawableStart="@drawable/left_arrow"
-            android:text="@string/browse_section"
+            android:text="@string/browse_sections"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="12sp"

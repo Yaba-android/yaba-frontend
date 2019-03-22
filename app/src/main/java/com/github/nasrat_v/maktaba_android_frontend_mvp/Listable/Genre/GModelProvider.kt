@@ -78,18 +78,17 @@ class GModelProvider(var context: Context) {
         nbPerRow: Int,
         filteredList: ArrayList<BModel>,
         noTitleList: ArrayList<NoTitleListBModel>
-    ): Boolean {
+    ) {
         val books = arrayListOf<BModel>()
 
         for (index in 0..(nbPerRow - 1)) {
             if (filteredList.isEmpty()) {
                 noTitleList.add(NoTitleListBModel(books))
-                return true
+                return
             }
             books.add(filteredList.first())
             filteredList.remove(filteredList.first())
         }
         noTitleList.add(NoTitleListBModel(books))
-        return true
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.Gravity
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
@@ -21,7 +22,7 @@ class SectionsActivity : AppCompatActivity(),
     ISectionAdditionalClickCallback {
 
     companion object {
-        const val ACTIVITY_NAME = "Section"
+        const val ACTIVITY_NAME = "Sections"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +39,10 @@ class SectionsActivity : AppCompatActivity(),
     override fun finish() {
         super.finish()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    override fun onBackPressed() {
+       returnToHome()
     }
 
     override fun onNewIntent(intent: Intent?) {

@@ -12,7 +12,7 @@
 
     <dimen name="bottom_review_vertical_recycler_view">15dp</dimen>
     <dimen name="bottom_browse_book_vertical_recycler_view">10dp</dimen>
-    <dimen name="bottom_section_vertical_recycler_view">35dp</dimen>
+    <dimen name="bottom_section_vertical_recycler_view">20dp</dimen>
     <dimen name="bottom_all_books_vertical_recycler_view">20dp</dimen>
     <dimen name="bottom_download_vertical_recycler_view">20dp</dimen>
     <dimen name="bottom_groups_vertical_recycler_view">20dp</dimen>
