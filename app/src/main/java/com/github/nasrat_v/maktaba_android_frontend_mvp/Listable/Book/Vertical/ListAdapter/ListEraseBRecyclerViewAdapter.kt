@@ -57,12 +57,6 @@ class ListEraseBRecyclerViewAdapter(
         holder.mEraseButton.setOnClickListener {
             mDeleteBrowseBookClickCallback.recyclerViewEraseEventButtonClicked()
         }
-        /*holder.horizontalRecyclerView.addItemDecoration(
-            LeftOffsetDecoration(
-                context,
-                R.dimen.left_book_horizontal_recycler_view
-            )
-        )*/
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -91,7 +91,7 @@ class BrowseActivity : AppCompatActivity(),
     override fun bookEraseEventButtonClicked(book: BModel) {
         if (mListResultBrowse.find { it == book } != null) {
             mListResultBrowse.remove(book)
-            notifyDataSetChanged()
+            mAdapterBookVertical.notifyDataSetChanged()
         }
     }
 
