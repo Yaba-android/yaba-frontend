@@ -9,13 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModelProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Review.RModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RRecyclerViewAdapter
 
 class ReviewFragment : Fragment() {
@@ -50,7 +50,8 @@ class ReviewFragment : Fragment() {
     }
 
     private fun initReviewVerticalRecyclerView(view: View, container: ViewGroup) {
-        val mDataset = RModelProvider(container.context).getAllReviews()
+        val mDataset = RModelProvider(container.context)
+            .getAllReviews()
         val adapterReviewVertical = RRecyclerViewAdapter(container.context, mDataset)
         val reviewVerticalRecyclerView = view.findViewById<RecyclerView>(R.id.review_vertical_recyclerview)
 
@@ -90,7 +91,8 @@ class ReviewFragment : Fragment() {
     }
 
     private fun mockDatasetBook(container: ViewGroup, mDataset: ArrayList<ListBModel>) {
-        val factory = BModelRandomProvider(container.context)
+        val factory =
+            BModelRandomProvider(container.context)
 
         mDataset.add(
             ListBModel(

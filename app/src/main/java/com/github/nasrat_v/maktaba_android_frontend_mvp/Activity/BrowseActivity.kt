@@ -14,7 +14,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDeleteBrowseBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Adapter.BrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
@@ -22,10 +22,9 @@ import android.app.Activity
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
@@ -147,7 +146,10 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     private fun initListAllBooksDatabase() {
-        mListAllBooksDatabase.addAll(BModelRandomProvider(this).getRandomsInstances(NB_ALL_BOOKS_DATABASE))
+        mListAllBooksDatabase.addAll(
+            BModelRandomProvider(
+                this
+            ).getRandomsInstances(NB_ALL_BOOKS_DATABASE))
     }
 
     private fun initVerticalRecycler() {

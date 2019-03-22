@@ -1,7 +1,7 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Review
 
 import android.content.Context
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import java.util.*
 

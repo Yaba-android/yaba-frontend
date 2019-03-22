@@ -1,6 +1,7 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book
 
 import android.content.Context
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Book.BModelFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 
 class BModelProvider(private var context: Context) {
@@ -13,7 +14,8 @@ class BModelProvider(private var context: Context) {
         val allBooksDb = arrayListOf<BModel>()
 
         for (index in 0..(NB_ALL_BOOKS_DATABASE - 1)) {
-            allBooksDb.add(BModelFactory(context)
+            allBooksDb.add(
+                BModelFactory(context)
                 .getInstance(
                     index
                 )

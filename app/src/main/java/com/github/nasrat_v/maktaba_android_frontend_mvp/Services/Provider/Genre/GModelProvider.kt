@@ -1,11 +1,11 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre
 
 import android.content.Context
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import java.util.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import kotlin.collections.ArrayList
 
 class GModelProvider(var context: Context) {

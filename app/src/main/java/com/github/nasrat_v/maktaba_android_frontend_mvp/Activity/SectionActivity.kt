@@ -18,14 +18,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.BigListBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.BModelProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModelProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 @SuppressLint("Registered")
@@ -151,7 +149,8 @@ class SectionActivity : AppCompatActivity(),
     }
 
     private fun initVerticalRecycler() {
-        val mDataset = GModelProvider(this).getListAllBooksFromGenre(NB_BOOKS_PER_ROW, mSelectedSection)
+        val mDataset = GModelProvider(this)
+            .getListAllBooksFromGenre(NB_BOOKS_PER_ROW, mSelectedSection)
 
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
