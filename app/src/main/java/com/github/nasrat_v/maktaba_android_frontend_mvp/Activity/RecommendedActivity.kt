@@ -37,6 +37,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import com.mcxiaoke.koi.ext.find
 
 class RecommendedActivity() : AppCompatActivity(),
     LoaderManager.LoaderCallbacks<LibraryBModel>,
@@ -76,10 +77,11 @@ class RecommendedActivity() : AppCompatActivity(),
         supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
         setContentView(R.layout.activity_recommended_structure)
 
-        setListenerButtonCloseGenre()
         setListenerButtonCloseProfile()
         setListenerBrowseButtonFooter()
         setListenerLibraryButtonFooter()
+        setListenerButtonBrowseSection()
+        setListenerViewAllSection()
 
         initAllViews()
         initDrawerLayout()
@@ -124,10 +126,6 @@ class RecommendedActivity() : AppCompatActivity(),
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
-    override fun sectionEventButtonClicked(section: GModel) {
-        // Open section page
-    }
-
     override fun popularSpeciesEventButtonClicked(pspecies: GModel) {
         val intent = Intent(this, PopularSpeciesActivity::class.java)
 
@@ -146,7 +144,6 @@ class RecommendedActivity() : AppCompatActivity(),
         initPopularSpeciesHorizontalRecycler()
         initSecondVerticalRecycler()
         initSmallVerticalRecycler()
-        initSectionNavVerticalRecycler()
     }
 
     private fun killAllActivities() {
@@ -154,18 +151,6 @@ class RecommendedActivity() : AppCompatActivity(),
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
-    }
-
-    private fun setListenerButtonCloseGenre() {
-        /*val nav = findViewById<NavigationView>(R.id.nav_view_section)
-        val buttonCloseGenre = nav.findViewById<Button>(R.id.button_close_section)
-
-        buttonCloseGenre.setOnClickListener {
-            if (mDrawerLayout.isDrawerOpen(Gravity.END))
-                mDrawerLayout.closeDrawer(Gravity.END)
-            else
-                mDrawerLayout.openDrawer(Gravity.END)
-        }*/
     }
 
     private fun setListenerButtonCloseProfile() {
@@ -203,12 +188,30 @@ class RecommendedActivity() : AppCompatActivity(),
         }
     }
 
-    private fun setListenerOpenNavSection() {
-        val button = findViewById<Button>(R.id.button_nav_section)
+    private fun setListenerButtonBrowseSection() {
+        val button = findViewById<Button>(R.id.button_browse_sections)
 
         button.setOnClickListener {
-            
+            startSectionActivity()
         }
+    }
+
+    private fun setListenerViewAllSection() {
+        val layout = findViewById<RelativeLayout>(R.id.title_layout_genre)
+        val button = layout.findViewById<Button>(R.id.view_all_button)
+
+        button.setOnClickListener {
+            startSectionActivity()
+        }
+    }
+
+    private fun startSectionActivity() {
+        val intent = Intent(this, SectionActivity::class.java)
+
+        Toast.makeText(this, SectionActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     private fun initDrawerLayout() {
@@ -217,17 +220,17 @@ class RecommendedActivity() : AppCompatActivity(),
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         mDrawerLayout = findViewById(R.id.drawer_recommended)
-        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END);
+        //mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END)
         val mDrawerToggle = ActionBarDrawerToggle(
             this, mDrawerLayout, toolbar,
             R.string.navigation_drawer_profile_open,
             R.string.navigation_drawer_profile_close
         )
-        //mDrawerToggle.isDrawerIndicatorEnabled = false
-        /*mDrawerToggle.toolbarNavigationClickListener = View.OnClickListener {
+        mDrawerToggle.isDrawerIndicatorEnabled = false
+        mDrawerToggle.toolbarNavigationClickListener = View.OnClickListener {
             mDrawerLayout.openDrawer(GravityCompat.START)
         }
-        mDrawerToggle.setHomeAsUpIndicator(R.drawable.menu_drawer)*/
+        mDrawerToggle.setHomeAsUpIndicator(R.drawable.menu_drawer)
         mDrawerToggle.syncState()
         mDrawerLayout.setDrawerListener(mDrawerToggle)
     }
@@ -354,22 +357,6 @@ class RecommendedActivity() : AppCompatActivity(),
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
-    }
-
-    private fun initSectionNavVerticalRecycler() {
-        /*val genreList = GModelProvider(this).getAllGenres()
-        val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_recyclerview_section)
-        //val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_section)
-        val adapterBookVertical = GSRecyclerViewAdapter(this, genreList, this)
-
-        verticalRecyclerView.setHasFixedSize(true)
-        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
-        verticalRecyclerView.addItemDecoration(
-            BottomOffsetDecoration(this, R.dimen.bottom_section_vertical_recycler_view)
-        )
-        verticalRecyclerView.isFocusable = false*/
-        //linearLayout.requestFocus()
     }
 
     private fun mockDatasetCarousel(): ArrayList<BModel> {

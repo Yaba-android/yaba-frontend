@@ -30,7 +30,7 @@
             android:textColor="@color/colorTextGrey"/>
 
     <Button
-            android:id="@+id/button_dont_find"
+            android:id="@+id/button_browse_sections"
             android:layout_width="160dp"
             android:layout_height="40dp"
             android:layout_below="@+id/second_text_dont_find"
@@ -40,7 +40,7 @@
             android:gravity="end|center"
             android:background="@color/colorButtonDontFindBlueHolo"
             android:drawableStart="@drawable/left_arrow"
-            android:text="@string/browse_categories"
+            android:text="@string/browse_section"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="12sp"

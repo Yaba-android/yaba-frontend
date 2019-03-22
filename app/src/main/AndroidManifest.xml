@@ -38,6 +38,10 @@
                 android:name=".Activity.GroupActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
+        <activity
+                android:name=".Activity.SectionActivity"
+                tools:ignore="InnerclassSeparator">
+        </activity>
     </application>
 
 </manifest>

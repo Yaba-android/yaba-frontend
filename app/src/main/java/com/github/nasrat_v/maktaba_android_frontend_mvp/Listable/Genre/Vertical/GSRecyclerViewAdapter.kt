@@ -10,16 +10,17 @@ import android.widget.TextView
 import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ISectionAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class GSRecyclerViewAdapter(private var context: Context, private var list: ArrayList<GModel>,
-                            private var mAdditionalClickCallback: IRecommendedAdditionalClickCallback)
-    : RecyclerView.Adapter<GSRecyclerViewAdapter.ViewHolder>() {
-
-    private var mLastClickTime: Long = 0
+class GSRecyclerViewAdapter(
+    private var context: Context, private var list: ArrayList<GModel>,
+    private var mAdditionalClickCallback: ISectionAdditionalClickCallback
+) : RecyclerView.Adapter<GSRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
-        val rootView = LayoutInflater.from(container.context).inflate(R.layout.vertical_recyclerview_section, container, false)
+        val rootView =
+            LayoutInflater.from(container.context).inflate(R.layout.vertical_recyclerview_section, container, false)
         return ViewHolder(
             rootView
         )
@@ -35,11 +36,7 @@ class GSRecyclerViewAdapter(private var context: Context, private var list: Arra
         holder.mSectionButton.text = (model.name + " (" + model.nb + ')')
         holder.mSectionButton.setOnClickListener {
             Toast.makeText(context, model.name, Toast.LENGTH_SHORT).show()
-            if ((SystemClock.elapsedRealtime() - mLastClickTime) >= 1000) { // Prevent double click
-                // envoyer le bon livre grace à position
-                mAdditionalClickCallback.sectionEventButtonClicked(list[position])
-            }
-            mLastClickTime = SystemClock.elapsedRealtime();
+            mAdditionalClickCallback.sectionEventButtonClicked(list[position])
         }
     }
 

@@ -43,7 +43,7 @@ class PopularSpeciesActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        setContentView(R.layout.activity_popular_species_structure)
+        setContentView(R.layout.activity_popular_sections_structure)
 
         mSelectedPSpecies = intent.getParcelableExtra(RecommendedActivity.SELECTED_POPULAR_SPECIES)
         fetchAllBooksFromDatabase()

@@ -82,5 +82,7 @@
     <string name="results">Results</string>
     <string name="art">Art</string>
     <string name="business">Business</string>
+    <string name="browse_sections">Browse sections</string>
+    <string name="browse_section">Browse Section</string>
 </resources>
 

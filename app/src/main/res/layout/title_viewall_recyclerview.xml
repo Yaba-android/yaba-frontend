@@ -23,6 +23,7 @@
             tools:ignore="RtlHardcoded"/>
 
     <Button
+            android:id="@+id/view_all_button"
             android:layout_width="@dimen/button_view_all_sort_width"
             android:layout_height="@dimen/button_view_all_sort_height"
             android:layout_alignParentStart="true"
