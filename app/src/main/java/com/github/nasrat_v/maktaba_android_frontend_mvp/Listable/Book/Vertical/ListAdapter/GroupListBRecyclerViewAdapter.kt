@@ -6,9 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.AllBooksBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.GroupBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
@@ -19,8 +17,7 @@ class GroupListBRecyclerViewAdapter(
     private var context: Context,
     private var listAllBooks: ArrayList<NoTitleListBModel>,
     private var listDownloadedBooks: ArrayList<DownloadListBModel>,
-    private var bookClickCallback: IBookClickCallback,
-    private var downloadBookClickCallback: IDownloadBookClickCallback
+    private var bookClickCallback: IBookClickCallback
 ) : RecyclerView.Adapter<GroupListBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mHorizontalRecyclerViewAdapter: GroupBRecyclerViewAdapter
@@ -47,12 +44,10 @@ class GroupListBRecyclerViewAdapter(
 
         mHorizontalRecyclerViewAdapter =
             GroupBRecyclerViewAdapter(
-                context,
                 listDownloadedBooks,
                 model.bookModels
             )
         mHorizontalRecyclerViewAdapter.setTabFragmentClickCallback(bookClickCallback)
-        mHorizontalRecyclerViewAdapter.setDownloadBookClickCallback(downloadBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager =

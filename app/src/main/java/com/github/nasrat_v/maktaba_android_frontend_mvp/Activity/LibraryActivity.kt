@@ -1,9 +1,9 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.os.SystemClock
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.view.GravityCompat
@@ -13,13 +13,13 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
+import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
 import com.folioreader.FolioReader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.DownloadBModel
@@ -40,7 +40,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCus
 class LibraryActivity : AppCompatActivity(),
     IBookClickCallback,
     IGroupClickCallback,
-    IDownloadBookClickCallback,
     ITabLayoutSetupCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
@@ -59,6 +58,8 @@ class LibraryActivity : AppCompatActivity(),
         const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
         const val DOWNLOADED_BOOKS = "DownloadedBooks"
         const val PATH_TO_EBOOK_EPUB = "/storage/emulated/0/Download/pg58892-images.epub"
+        const val ACTION_BUTTON_TEXT_DOWNLOAD = "Download Book"
+        const val ACTION_BUTTON_TEXT_OPEN = "Open Book"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,11 +104,9 @@ class LibraryActivity : AppCompatActivity(),
 
     override fun bookEventButtonClicked(book: BModel) {
         if (isBookAlreadyDownloaded(book)) {
-            Toast.makeText(this, ("Opening " + book.title + " ..."), Toast.LENGTH_SHORT).show()
-            openFolioReader()
+            requestOpenBook(book)
         } else {
-            Toast.makeText(this, ("Downloading " + book.title + " ..."), Toast.LENGTH_SHORT).show()
-            addDownloadedBook(book)
+            requestDownloadBook(book)
         }
     }
 
@@ -118,10 +117,6 @@ class LibraryActivity : AppCompatActivity(),
         intent.putExtra(DOWNLOADED_BOOKS, mLibraryDataset.downloadBooks)
         startActivityForResult(intent, REQUEST_BOOKS_ADD_DOWNLOAD_LIST)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-    }
-
-    override fun downloadBookEventButtonClicked(book: BModel) {
-        addDownloadedBook(book)
     }
 
     override fun setupTabLayout(viewPager: ViewPager) {
@@ -163,6 +158,54 @@ class LibraryActivity : AppCompatActivity(),
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
+    }
+
+    private fun requestDownloadBook(book: BModel) {
+        val dialog = Dialog(this, R.style.DownloadDialog)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_action_book)
+
+        val closeButton = dialog.findViewById<Button>(R.id.button_close_dialog)
+        val actionButton = dialog.findViewById<Button>(R.id.button_action_dialog)
+
+        actionButton.text = ACTION_BUTTON_TEXT_DOWNLOAD
+        closeButton.setOnClickListener {
+            dialog.hide()
+        }
+        actionButton.setOnClickListener {
+            downloadBook(book)
+            dialog.hide()
+        }
+        dialog.show()
+    }
+
+    private fun requestOpenBook(book: BModel) {
+        val dialog = Dialog(this, R.style.DownloadDialog)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_action_book)
+
+        val closeButton = dialog.findViewById<Button>(R.id.button_close_dialog)
+        val actionButton = dialog.findViewById<Button>(R.id.button_action_dialog)
+
+        actionButton.text = ACTION_BUTTON_TEXT_OPEN
+        closeButton.setOnClickListener {
+            dialog.hide()
+        }
+        actionButton.setOnClickListener {
+            Toast.makeText(this, ("Opening " + book.title + " ..."), Toast.LENGTH_SHORT).show()
+            dialog.hide()
+            openBook(book)
+        }
+        dialog.show()
+    }
+
+    private fun downloadBook(book: BModel) {
+        Toast.makeText(this, ("Downloading " + book.title + " ..."), Toast.LENGTH_SHORT).show()
+        addDownloadedBook(book)
+    }
+
+    private fun openBook(book: BModel) {
+        openFolioReader()
     }
 
     private fun isBookAlreadyDownloaded(book: BModel): Boolean {
@@ -239,7 +282,6 @@ class LibraryActivity : AppCompatActivity(),
 
         mContainerFragment.setBookClickCallback(this) // permet de gerer les click depuis le fragment
         mContainerFragment.setGroupClickCallback(this)
-        mContainerFragment.setDownloadBookClickCallback(this)
         mContainerFragment.setLibraryDataset(mLibraryDataset)
         //mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         val mFragmentTransaction = mFragmentManager.beginTransaction()

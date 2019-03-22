@@ -12,15 +12,12 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class AllBooksFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
-    private lateinit var mDownloadBookClickCallback: IDownloadBookClickCallback
     private lateinit var mAdapterBookVertical: AllBooksListBRecyclerViewAdapter
     private var mDataset = arrayListOf<NoTitleListBModel>()
     private var mDownloadedBooks = arrayListOf<DownloadListBModel>()
@@ -39,10 +36,6 @@ class AllBooksFragment : Fragment() {
 
     fun setBookClickCallback(bookClickCallback: IBookClickCallback) {
         mBookClickCallback = bookClickCallback
-    }
-
-    fun setDownloadBookClickCallback(downloadBookClickCallback: IDownloadBookClickCallback) {
-        mDownloadBookClickCallback = downloadBookClickCallback
     }
 
     fun setDatasetVerticalRecyclerView(dataset: ArrayList<NoTitleListBModel>) {
@@ -66,8 +59,7 @@ class AllBooksFragment : Fragment() {
                 container.context,
                 mDataset,
                 mDownloadedBooks,
-                mBookClickCallback,
-                mDownloadBookClickCallback
+                mBookClickCallback
             )
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)

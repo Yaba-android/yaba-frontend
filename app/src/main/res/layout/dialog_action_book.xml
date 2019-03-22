@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="@android:color/white">
+
+    <Button
+            android:id="@+id/button_close_dialog"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:background="?android:selectableItemBackground"/>
+
+    <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="26dp"
+            android:background="@drawable/cancel"/>
+
+    <Button
+            android:id="@+id/button_action_dialog"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:background="@color/colorButtonDownloadBlue"
+            android:text="@string/action"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"/>
+
+</RelativeLayout>

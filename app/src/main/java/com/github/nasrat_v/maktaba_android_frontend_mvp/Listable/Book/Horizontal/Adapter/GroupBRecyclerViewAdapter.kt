@@ -7,22 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IDownloadBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class GroupBRecyclerViewAdapter(
-    private var context: Context,
     private var downloadedBooks: ArrayList<DownloadListBModel>,
     private var list: ArrayList<BModel>
 ) : RecyclerView.Adapter<GroupBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
-    private lateinit var mDownloadBookClickCallback: IDownloadBookClickCallback
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
@@ -41,23 +36,15 @@ class GroupBRecyclerViewAdapter(
         val model = list[position]
 
         if (isBookAlreadyDownloaded(model))
-            holder.mButtonDownload.visibility = View.INVISIBLE
+            holder.mImageDownload.visibility = View.INVISIBLE
         holder.mImage.setImageResource(model.image)
         holder.itemView.setOnClickListener {
             mBookClickCallback.bookEventButtonClicked(list[position])
-        }
-        holder.mButtonDownload.setOnClickListener {
-            Toast.makeText(context, ("Downloading " + model.title + " ..."), Toast.LENGTH_SHORT).show()
-            mDownloadBookClickCallback.downloadBookEventButtonClicked(list[position])
         }
     }
 
     fun setTabFragmentClickCallback(bookClickCallback: IBookClickCallback) {
         mBookClickCallback = bookClickCallback
-    }
-
-    fun setDownloadBookClickCallback(downloadBookClickCallback: IDownloadBookClickCallback) {
-        mDownloadBookClickCallback = downloadBookClickCallback
     }
 
     private fun isBookAlreadyDownloaded(book: BModel): Boolean {
@@ -70,6 +57,6 @@ class GroupBRecyclerViewAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!
-        var mButtonDownload = itemView.findViewById<Button>(R.id.button_download_book_library)!!
+        var mImageDownload = itemView.findViewById<Button>(R.id.download_book_library_image)!!
     }
 }

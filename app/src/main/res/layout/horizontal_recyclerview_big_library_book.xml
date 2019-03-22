@@ -20,8 +20,8 @@
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"/>
 
-        <Button
-                android:id="@+id/button_download_book_library"
+        <ImageView
+                android:id="@+id/download_book_library_image"
                 android:layout_width="@dimen/button_download_library_width"
                 android:layout_height="@dimen/button_download_library_height"
                 android:layout_gravity="end|bottom"
