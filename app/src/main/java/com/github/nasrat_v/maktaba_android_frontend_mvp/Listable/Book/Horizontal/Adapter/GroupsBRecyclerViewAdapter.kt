@@ -65,7 +65,7 @@ class GroupsBRecyclerViewAdapter(private var context: Context, private var list:
                 holder.mThirdImage.setImageResource(books[2].image)
             }
             books.size > 1 -> {
-                holder.mSecondImage.setImageResource(books[1].image)
+                holder.mThirdImage.setImageResource(books[1].image)
                 holder.mSecondCardView.visibility = View.INVISIBLE
             }
             else -> {
