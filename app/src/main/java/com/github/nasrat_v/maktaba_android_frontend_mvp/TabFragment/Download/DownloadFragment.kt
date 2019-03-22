@@ -41,20 +41,20 @@ class DownloadFragment : Fragment() {
         mDataset = dataset
     }
 
-    fun notifyDataSetChangedDownloadList() {
+    fun notifyDataSetChanged() {
         mAdapterBookVertical.notifyDataSetChangedDownloadList()
     }
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
+        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
+
         mAdapterBookVertical =
             DownloadListBRecyclerViewAdapter(
                 container.context,
                 mDataset,
                 mBookClickCallback
             )
-        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
-
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVertical

@@ -35,8 +35,9 @@ class GroupActivity : AppCompatActivity(),
 
     private lateinit var mSelectedGroup: GroupBModel
     private lateinit var mDownloadedBooks: ArrayList<DownloadListBModel>
-    private var mBooksToAddToDownload = arrayListOf<BModel>()
+    private lateinit var mAdapterBookVertical: GroupListBRecyclerViewAdapter
     private lateinit var mDrawerLayout: DrawerLayout
+    private var mBooksToAddToDownload = arrayListOf<BModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,8 +82,32 @@ class GroupActivity : AppCompatActivity(),
     }
 
     override fun downloadBookEventButtonClicked(book: BModel) {
-        if (mBooksToAddToDownload.find { it == book } == null)
+        if (mBooksToAddToDownload.find { it == book } == null) {
             mBooksToAddToDownload.add(book)
+            addDownloadedBook(book)
+            mAdapterBookVertical.notifyDataSetChangedDownloadList()
+        }
+    }
+
+    private fun addDownloadedBook(book: BModel) {
+        val downloadBook = DownloadBModel(book)
+
+        if (!addBookToRowWithSpace(mDownloadedBooks.last(), downloadBook)) {
+            val newList = arrayListOf<DownloadBModel>()
+
+            newList.add(downloadBook)
+            mDownloadedBooks.add(DownloadListBModel(newList))
+        }
+    }
+
+    private fun addBookToRowWithSpace(rowBooks: DownloadListBModel, newBook: DownloadBModel)
+            : Boolean {
+
+        if (rowBooks.bookModels.size < GROUP_NB_BOOK_PER_ROW) {
+            rowBooks.bookModels.add(newBook)
+            return true
+        }
+        return false
     }
 
     private fun finishSendResult() {
@@ -127,7 +152,6 @@ class GroupActivity : AppCompatActivity(),
             finishSendResult()
         }
     }
-
 
     private fun setListenerLibraryButtonFooter() {
         val intent = Intent(this, LibraryActivity::class.java)
@@ -219,7 +243,7 @@ class GroupActivity : AppCompatActivity(),
         val mDataset = getGroupBooksFormatedForAdapter()
 
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
-        val adapterBookVertical =
+        mAdapterBookVertical =
             GroupListBRecyclerViewAdapter(
                 this,
                 mDataset,
@@ -231,7 +255,7 @@ class GroupActivity : AppCompatActivity(),
 
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.adapter = mAdapterBookVertical
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_all_books_vertical_recycler_view)
         )

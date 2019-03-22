@@ -47,6 +47,8 @@ class GroupsFragment : Fragment() {
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
+        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
+
         val adapterBookVertical =
             GroupsListBRecyclerViewAdapter(
                 container.context,
@@ -54,8 +56,6 @@ class GroupsFragment : Fragment() {
                 mBookClickCallback,
                 mGroupClickCallback
             )
-        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
-
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = adapterBookVertical

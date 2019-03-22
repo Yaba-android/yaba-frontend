@@ -76,8 +76,9 @@ class LibraryContainerFragment : Fragment() {
         mLibraryDataset = libraryDataset
     }
 
-    fun notifyDataSetChangedDownloadList() {
-        mDownloadFrag.notifyDataSetChangedDownloadList()
+    fun notifyDataSetChanged() {
+        mDownloadFrag.notifyDataSetChanged()
+        mAllBooksFrag.notifyDataSetChanged()
     }
 
     private fun initTabFragment() {

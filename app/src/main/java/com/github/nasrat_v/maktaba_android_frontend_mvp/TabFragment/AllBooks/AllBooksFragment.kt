@@ -21,6 +21,7 @@ class AllBooksFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mDownloadBookClickCallback: IDownloadBookClickCallback
+    private lateinit var mAdapterBookVertical: AllBooksListBRecyclerViewAdapter
     private var mDataset = arrayListOf<NoTitleListBModel>()
     private var mDownloadedBooks = arrayListOf<DownloadListBModel>()
 
@@ -52,9 +53,15 @@ class AllBooksFragment : Fragment() {
         mDownloadedBooks = downloadedBooks
     }
 
+    fun notifyDataSetChanged() {
+        mAdapterBookVertical.notifyDataSetChangedDownloadList()
+    }
+
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
-        val adapterBookVertical =
+        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
+
+        mAdapterBookVertical =
             AllBooksListBRecyclerViewAdapter(
                 container.context,
                 mDataset,
@@ -62,11 +69,9 @@ class AllBooksFragment : Fragment() {
                 mBookClickCallback,
                 mDownloadBookClickCallback
             )
-        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
-
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.adapter = mAdapterBookVertical
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(container.context, R.dimen.bottom_all_books_vertical_recycler_view)
         )

@@ -23,6 +23,7 @@ class GroupListBRecyclerViewAdapter(
     private var mDownloadBookClickCallback: IDownloadBookClickCallback
 ) : RecyclerView.Adapter<GroupListBRecyclerViewAdapter.ViewHolder>() {
 
+    private lateinit var mHorizontalRecyclerViewAdapter: GroupBRecyclerViewAdapter
     private var viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
@@ -41,23 +42,27 @@ class GroupListBRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = listAllBooks[position]
 
-        val horizontalRecyclerViewAdapter =
+        mHorizontalRecyclerViewAdapter =
             GroupBRecyclerViewAdapter(
                 context,
                 listDownloadedBooks,
                 model.bookModels
             )
-
-        horizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
-        horizontalRecyclerViewAdapter.setDownloadBookClickCallback(mDownloadBookClickCallback)
+        mHorizontalRecyclerViewAdapter.setTabFragmentClickCallback(mBookClickCallback)
+        mHorizontalRecyclerViewAdapter.setDownloadBookClickCallback(mDownloadBookClickCallback)
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
+        holder.horizontalRecyclerView.adapter = mHorizontalRecyclerViewAdapter
         holder.horizontalRecyclerView.addItemDecoration(
             LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
         )
+    }
+
+    fun notifyDataSetChangedDownloadList() {
+        this.notifyDataSetChanged()
+        mHorizontalRecyclerViewAdapter.notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

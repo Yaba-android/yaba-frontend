@@ -97,7 +97,6 @@ class LibraryActivity : AppCompatActivity(),
                 data!!.getParcelableArrayListExtra<BModel>(BOOKS_ADD_DOWNLOAD_LIST)
 
             addDownloadedBooks(booksToAddToDownload)
-            mContainerFragment.notifyDataSetChangedDownloadList()
         }
     }
 
@@ -192,6 +191,7 @@ class LibraryActivity : AppCompatActivity(),
             newList.add(downloadBook)
             mLibraryDataset.downloadBooks.add(DownloadListBModel(newList))
         }
+        mContainerFragment.notifyDataSetChanged()
     }
 
     private fun addBookToRowWithSpace(rowBooks: DownloadListBModel, newBook: DownloadBModel)
