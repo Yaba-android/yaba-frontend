@@ -23,8 +23,10 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListEraseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
@@ -33,15 +35,14 @@ class BrowseActivity : AppCompatActivity(),
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mAdapterBookVertical: BrowseBRecyclerViewAdapter
+    private lateinit var mAdapterBookSecondVertical: ListEraseBRecyclerViewAdapter
     private lateinit var mEditText: EditText
     private lateinit var mSecondVerticalRecyclerView: RecyclerView
     private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
-    private var mListResultBrowse = arrayListOf<BModel>()
-    private var mListAllBooksDatabase = arrayListOf<BModel>()
+    private val mListResultBrowse = arrayListOf<BModel>()
+    private val mDatasetSecondRecyclerView = arrayListOf<ListBModel>()
 
     companion object {
-        const val NB_ALL_BOOKS_DATABASE = 20
-        const val NB_BOOKS_PER_ROW = 6
         const val ACTIVITY_NAME = "Browse"
     }
 
@@ -54,7 +55,6 @@ class BrowseActivity : AppCompatActivity(),
         setListenerLibraryButtonFooter()
         setListenerRecommendedButtonFooter()
 
-        initListAllBooksDatabase()
         initVerticalRecycler()
         initSecondVerticalRecycler()
         initEditText()
@@ -93,6 +93,10 @@ class BrowseActivity : AppCompatActivity(),
             mListResultBrowse.remove(book)
             notifyDataSetChanged()
         }
+    }
+
+    override fun recyclerViewEraseEventButtonClicked() {
+        mSecondVerticalRecyclerView.visibility = View.GONE
     }
 
     private fun fetchAllBooksFromDatabase() {
@@ -145,13 +149,6 @@ class BrowseActivity : AppCompatActivity(),
         mDrawerLayout.setDrawerListener(mDrawerToggle)
     }
 
-    private fun initListAllBooksDatabase() {
-        mListAllBooksDatabase.addAll(
-            BModelRandomProvider(
-                this
-            ).getRandomsInstances(NB_ALL_BOOKS_DATABASE))
-    }
-
     private fun initVerticalRecycler() {
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_browse_recyclerview)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_browse_book)
@@ -174,38 +171,33 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     private fun initSecondVerticalRecycler() {
-        val dataset = arrayListOf<ListBModel>()
-
-        mockDatasetSecondRecyclerView(dataset)
+        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_browse_book)
 
         mSecondVerticalRecyclerView = findViewById(R.id.vertical_browse_second_recyclerview)
-        val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_browse_book)
-        val adapterBookVertical =
-            ListBRecyclerViewAdapter(
+        mAdapterBookSecondVertical =
+            ListEraseBRecyclerViewAdapter(
                 this,
-                dataset,
+                mDatasetSecondRecyclerView,
+                this,
                 this
             )
-
         mSecondVerticalRecyclerView.setHasFixedSize(true)
         mSecondVerticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        mSecondVerticalRecyclerView.adapter = adapterBookVertical
+        mSecondVerticalRecyclerView.adapter = mAdapterBookSecondVertical
         mSecondVerticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
     }
 
-    private fun mockDatasetSecondRecyclerView(dataset: ArrayList<ListBModel>) {
-        val factory = BModelRandomProvider(this)
+    private fun findDatasetSecondRecyclerView() {
+        val genre: GModel
+        val list: ArrayList<BModel>
 
-        dataset.add(
-            ListBModel(
-                RecommendedActivity.TITLE_FIRST_RECYCLER_VIEW,
-                factory.getRandomsInstancesFromList(
-                    NB_BOOKS_PER_ROW,
-                    mAllBooksFromDatabase
-                )
-            )
-        )
+        mDatasetSecondRecyclerView.clear()
+        if (mListResultBrowse.isNotEmpty()) {
+            genre = mListResultBrowse.first().genre
+            list = GModelProvider(this).getAllBooksFromGenre(genre)
+            mDatasetSecondRecyclerView.add(ListBModel(("Category: " + genre.name), list))
+        }
     }
 
     private fun browseSearch() {
@@ -213,10 +205,11 @@ class BrowseActivity : AppCompatActivity(),
 
         mListResultBrowse.clear()
         mListResultBrowse.addAll(
-            mListAllBooksDatabase.filter {
+            mAllBooksFromDatabase.filter {
                 isSearchMatching(it, str)
             }
         )
+        findDatasetSecondRecyclerView()
         notifyDataSetChanged()
     }
 
@@ -242,6 +235,7 @@ class BrowseActivity : AppCompatActivity(),
     private fun notifyDataSetChanged() {
         setVisibilityText()
         mAdapterBookVertical.notifyDataSetChanged()
+        mAdapterBookSecondVertical.notifyDataSetChanged()
     }
 
     private fun setVisibilityText() {

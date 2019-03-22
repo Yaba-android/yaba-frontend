@@ -61,7 +61,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"/>
 
-
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

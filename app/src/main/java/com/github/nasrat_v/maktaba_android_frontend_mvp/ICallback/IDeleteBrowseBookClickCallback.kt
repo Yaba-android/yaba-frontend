@@ -4,4 +4,5 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 
 interface IDeleteBrowseBookClickCallback {
     fun bookEraseEventButtonClicked(book: BModel)
+    fun recyclerViewEraseEventButtonClicked()
 }

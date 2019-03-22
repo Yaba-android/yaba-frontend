@@ -17,8 +17,6 @@ class BrowseBRecyclerViewAdapter(
     private var mDeleteBrowseBookClickCallback: IDeleteBrowseBookClickCallback
 ) : RecyclerView.Adapter<BrowseBRecyclerViewAdapter.ViewHolder>() {
 
-    private var viewPool = RecyclerView.RecycledViewPool()
-
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
             R.layout.vertical_recyclerview_browse_book, container, false

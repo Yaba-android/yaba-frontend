@@ -51,13 +51,19 @@ class GModelProvider(var context: Context) {
         return -1 // error
     }
 
-    fun getListAllBooksFromGenre(nbPerRow: Int, genre: GModel): ArrayList<NoTitleListBModel> {
+    fun getAllBooksFromGenre(genre: GModel): ArrayList<BModel> {
         val allbooks = BModelProvider(context).getAllBooksFromDatabase()
-        val filteredList = ArrayList(
+
+        return ArrayList(
             allbooks.filter {
                 it.genre == genre
             }
         )
+    }
+
+    fun getListAllBooksFromGenre(nbPerRow: Int, genre: GModel): ArrayList<NoTitleListBModel> {
+        val allbooks = BModelProvider(context).getAllBooksFromDatabase()
+        val filteredList = getAllBooksFromGenre(genre)
 
         if (filteredList.isNotEmpty()) {
             return simpleListToNoTitleList(nbPerRow, filteredList)
