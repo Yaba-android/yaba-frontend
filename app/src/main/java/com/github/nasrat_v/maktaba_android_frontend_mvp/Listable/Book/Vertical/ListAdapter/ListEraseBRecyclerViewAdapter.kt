@@ -55,7 +55,7 @@ class ListEraseBRecyclerViewAdapter(
         holder.mHorizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
         GravitySnapHelper(Gravity.END).attachToRecyclerView(holder.mHorizontalRecyclerView)
         holder.mEraseButton.setOnClickListener {
-            deleteBrowseBookClickCallback.recyclerViewEraseEventButtonClicked()
+            deleteBrowseBookClickCallback.recyclerViewEraseEventButtonClicked(holder.adapterPosition)
         }
     }
 

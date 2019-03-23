@@ -45,7 +45,7 @@ class BrowseBRecyclerViewAdapter(
             mBookClickCallback.bookEventButtonClicked(model)
         }
         holder.mButtonDelete.setOnClickListener {
-            mDeleteBrowseBookClickCallback.bookEraseEventButtonClicked(model)
+            mDeleteBrowseBookClickCallback.bookEraseEventButtonClicked(model, holder.adapterPosition)
         }
 
     }

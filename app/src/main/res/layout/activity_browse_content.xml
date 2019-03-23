@@ -23,6 +23,7 @@
                 android:text="@string/find_the_books_you_love"
                 android:textSize="16sp"
                 android:textColor="@color/colorTextBlackGroup"
+                android:visibility="gone"
                 android:gravity="center"/>
 
         <TextView
@@ -33,6 +34,7 @@
                 android:text="@string/search_by_title_author_or_word"
                 android:textSize="12sp"
                 android:textColor="@color/colorTextGrey"
+                android:visibility="gone"
                 android:gravity="center"/>
 
         <TextView
@@ -46,6 +48,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/colorTextBlackGroup"
                 android:textStyle="bold"
+                android:visibility="gone"
                 android:gravity="end"/>
 
         <android.support.v7.widget.RecyclerView
