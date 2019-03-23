@@ -20,7 +20,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDec
 import android.app.Activity
 import android.view.KeyEvent
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListEraseBRecyclerViewAdapter
@@ -272,12 +271,11 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     private fun isSearchMatching(book: BModel, str: String): Boolean {
-        return (book.title.toLowerCase() == str ||
-                book.author.toLowerCase() == str ||
-                book.country.toLowerCase() == str ||
-                book.genre.name.toLowerCase() == str ||
-                book.datePublication.toLowerCase() == str ||
-                book.publisher.toLowerCase() == str)
+        return (book.title.toLowerCase().contains(str) ||
+                book.author.toLowerCase().contains(str) ||
+                book.country.toLowerCase().contains(str) ||
+                book.genre.name.toLowerCase().contains(str) ||
+                book.publisher.toLowerCase().contains(str))
     }
 
     private fun hideKeyboard() {
