@@ -110,26 +110,6 @@ class BrowseActivity : AppCompatActivity(),
         mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
-    private fun resetAllStates() {
-        /*val browseAnim = BrowseActivityAnimation(this)
-
-        mEditText.text.clear()
-        if (mListResultBrowse.isNotEmpty()) {
-            browseAnim.resetAnimationFirstRecyclerView(mFirstVerticalRecyclerView, mListResultBrowse)
-            mAdapterBookVertical.notifyDataSetChanged()
-        }
-        if (mDatasetSecondRecyclerView.isNotEmpty()) {
-            browseAnim.resetAnimationSecondRecyclerView(mSecondVerticalRecyclerView, mDatasetSecondRecyclerView)
-            mAdapterBookSecondVertical.notifyDataSetChanged()
-        }
-        if (mTitleResults.visibility == View.VISIBLE)
-            browseAnim.resetAnimationTextView(mTitleResults)
-        if (mTitleEmpty.visibility == View.VISIBLE)
-            browseAnim.resetAnimationTextView(mTitleEmpty)
-        if (mContentEmpty.visibility == View.VISIBLE)
-            browseAnim.resetAnimationTextView(mContentEmpty)*/
-    }
-
     private fun setListenerRecommendedButtonFooter() {
         val intent = Intent(this, RecommendedActivity::class.java)
         val button = findViewById<Button>(R.id.button_recommended_footer)
