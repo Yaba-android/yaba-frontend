@@ -20,6 +20,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDec
 import android.app.Activity
 import android.view.KeyEvent
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListEraseBRecyclerViewAdapter
@@ -211,7 +212,7 @@ class BrowseActivity : AppCompatActivity(),
     private fun initVerticalRecycler() {
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_browse_book)
 
-        mFirstVerticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_browse_recyclerview)
+        mFirstVerticalRecyclerView = findViewById(R.id.vertical_browse_recyclerview)
         mAdapterBookVertical =
             BrowseBRecyclerViewAdapter(
                 this,

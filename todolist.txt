@@ -1,3 +1,7 @@
-* charger donner async task
+* bug lorsque l'on lance library pour la premiere fois depuis browse
+== crash
+car library a besoin de la libraryDataset => seul recommended peut lui donner
+--> solution == charger libraryDataset en asyncTask
+depuis la library et non pas depuis recommended
 
 * mettre tous les textes en arabe + changer police
