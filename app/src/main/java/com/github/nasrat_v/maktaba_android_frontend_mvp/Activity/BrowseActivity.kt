@@ -28,8 +28,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
-import android.view.ViewTreeObserver
-
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
