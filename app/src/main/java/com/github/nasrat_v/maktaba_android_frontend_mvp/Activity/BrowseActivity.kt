@@ -18,6 +18,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Adapter.BrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import android.app.Activity
+import android.content.Context
 import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AlphaAnimation
@@ -29,6 +30,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Animation.BrowseActivityAnimation
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
@@ -39,6 +41,7 @@ class BrowseActivity : AppCompatActivity(),
     private lateinit var mAdapterBookVertical: BrowseBRecyclerViewAdapter
     private lateinit var mAdapterBookSecondVertical: ListEraseBRecyclerViewAdapter
     private lateinit var mEditText: EditText
+    private lateinit var mFirstVerticalRecyclerView: RecyclerView
     private lateinit var mSecondVerticalRecyclerView: RecyclerView
     private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
     private lateinit var mFadeInResultAnim: Animation
@@ -47,7 +50,6 @@ class BrowseActivity : AppCompatActivity(),
     private lateinit var mFadeOutTitleEmptyAnim: Animation
     private lateinit var mFadeInContentEmptyAnim: Animation
     private lateinit var mFadeOutContentEmptyAnim: Animation
-    private lateinit var mFadeOutGenericAnim: AlphaAnimation
     private lateinit var mTitleEmpty: TextView
     private lateinit var mContentEmpty: TextView
     private lateinit var mTitleResults: TextView
@@ -131,15 +133,22 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     private fun resetAllStates() {
-        mListResultBrowse.clear()
-        mDatasetSecondRecyclerView.clear()
-        mAdapterBookVertical.notifyDataSetChanged()
-        mAdapterBookSecondVertical.notifyDataSetChanged()
-        mTitleResults.visibility = View.GONE
-        mTitleEmpty.startAnimation(mFadeOutGenericAnim)
-        mContentEmpty.startAnimation(mFadeOutGenericAnim)
-        mTitleEmpty.visibility = View.GONE
-        mContentEmpty.visibility = View.GONE
+        val browseAnim = BrowseActivityAnimation(this)
+
+        if (mListResultBrowse.isNotEmpty()) {
+            browseAnim.resetAnimationFirstRecyclerView(mFirstVerticalRecyclerView, mListResultBrowse)
+            mAdapterBookVertical.notifyDataSetChanged()
+        }
+        if (mDatasetSecondRecyclerView.isNotEmpty()) {
+            browseAnim.resetAnimationSecondRecyclerView(mSecondVerticalRecyclerView, mDatasetSecondRecyclerView)
+            mAdapterBookSecondVertical.notifyDataSetChanged()
+        }
+        if (mTitleResults.visibility == View.VISIBLE)
+            browseAnim.resetAnimationTextView(mTitleResults)
+        if (mTitleEmpty.visibility == View.VISIBLE)
+            browseAnim.resetAnimationTextView(mTitleEmpty)
+        if (mContentEmpty.visibility == View.VISIBLE)
+            browseAnim.resetAnimationTextView(mContentEmpty)
     }
 
     private fun setListenerRecommendedButtonFooter() {
@@ -166,10 +175,17 @@ class BrowseActivity : AppCompatActivity(),
 
     private fun setListenerButtonCancel() {
         val buttonCancel = findViewById<Button>(R.id.button_cancel_browse)
+        var firstRecyclerSize: Int
+        var secondRecyclerSize: Int
 
         buttonCancel.setOnClickListener {
             mEditText.text.clear()
-            clearAllDatasetRecyclerViews(mListResultBrowse.size, mDatasetSecondRecyclerView.size)
+            firstRecyclerSize = mListResultBrowse.size
+            secondRecyclerSize = mDatasetSecondRecyclerView.size
+            mListResultBrowse.clear()
+            mDatasetSecondRecyclerView.clear()
+            setVisibilityText()
+            notifyAllItemRemoved(firstRecyclerSize, secondRecyclerSize)
         }
     }
 
@@ -190,8 +206,9 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     private fun initVerticalRecycler() {
-        val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_browse_recyclerview)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_browse_book)
+
+        mFirstVerticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_browse_recyclerview)
         mAdapterBookVertical =
             BrowseBRecyclerViewAdapter(
                 this,
@@ -199,14 +216,13 @@ class BrowseActivity : AppCompatActivity(),
                 this,
                 this
             )
-
-        verticalRecyclerView.setHasFixedSize(true)
-        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = mAdapterBookVertical
-        verticalRecyclerView.addItemDecoration(
+        mFirstVerticalRecyclerView.setHasFixedSize(true)
+        mFirstVerticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        mFirstVerticalRecyclerView.adapter = mAdapterBookVertical
+        mFirstVerticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_browse_book_vertical_recycler_view)
         )
-        verticalRecyclerView.isFocusable = false
+        mFirstVerticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
     }
 
@@ -292,7 +308,9 @@ class BrowseActivity : AppCompatActivity(),
 
     private fun setVisibilityText() {
         if (mListResultBrowse.isEmpty()) {
-            mTitleResults.startAnimation(mFadeOutResultAnim)
+            if (mTitleResults.visibility == View.VISIBLE) {
+                mTitleResults.startAnimation(mFadeOutResultAnim)
+            }
         } else {
             mTitleEmpty.startAnimation(mFadeOutTitleEmptyAnim)
             mContentEmpty.startAnimation(mFadeOutContentEmptyAnim)
@@ -322,8 +340,6 @@ class BrowseActivity : AppCompatActivity(),
         mTitleEmpty = findViewById(R.id.title_browse_empty)
         mContentEmpty = findViewById(R.id.content_browse_empty)
         mTitleResults = findViewById(R.id.title_browse_results)
-        mFadeOutGenericAnim = AlphaAnimation(1.0f, 0.0f)
-        mFadeOutGenericAnim.duration = 1000
 
         setTitleResultAnimation()
         setTitleEmptyAnimation()
@@ -353,12 +369,12 @@ class BrowseActivity : AppCompatActivity(),
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
+                mTitleResults.visibility = View.GONE
                 mTitleEmpty.startAnimation(mFadeInTitleEmptyAnim)
                 mContentEmpty.startAnimation(mFadeInContentEmptyAnim)
             }
 
             override fun onAnimationStart(animation: Animation?) {
-                mTitleResults.visibility = View.GONE
             }
         })
     }
@@ -379,11 +395,11 @@ class BrowseActivity : AppCompatActivity(),
         mFadeOutTitleEmptyAnim.setAnimationListener(object: Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
-            override fun onAnimationEnd(animation: Animation?) {}
-
-            override fun onAnimationStart(animation: Animation?) {
+            override fun onAnimationEnd(animation: Animation?) {
                 mTitleEmpty.visibility = View.GONE
             }
+
+            override fun onAnimationStart(animation: Animation?) {}
         })
     }
 
@@ -404,12 +420,11 @@ class BrowseActivity : AppCompatActivity(),
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
+                mContentEmpty.visibility = View.GONE
                 mTitleResults.startAnimation(mFadeInResultAnim)
             }
 
-            override fun onAnimationStart(animation: Animation?) {
-                mContentEmpty.visibility = View.GONE
-            }
+            override fun onAnimationStart(animation: Animation?) {}
         })
     }
 }
