@@ -42,10 +42,11 @@ class SectionActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+        fetchAllBooksFromDatabase()
         setContentView(R.layout.activity_section_structure)
 
         mSelectedSection = intent.getParcelableExtra(RecommendedActivity.SELECTED_POPULAR_SPECIES)
-        fetchAllBooksFromDatabase()
         setListenerLibraryButtonFooter()
         setListenerBrowseButtonFooter()
         setListenerRecommendedButtonFooter()

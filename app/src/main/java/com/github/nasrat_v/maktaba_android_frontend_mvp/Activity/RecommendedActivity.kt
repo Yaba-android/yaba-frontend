@@ -37,13 +37,11 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDeco
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
 class RecommendedActivity() : AppCompatActivity(),
-    LoaderManager.LoaderCallbacks<LibraryBModel>,
     IBookClickCallback,
     IRecommendedAdditionalClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
-    private lateinit var mLibraryDataset: LibraryBModel
 
     companion object {
         const val NB_BOOKS_CAROUSEL = 15
@@ -54,8 +52,6 @@ class RecommendedActivity() : AppCompatActivity(),
         const val SECOND_RECYCLERVIEW_NB_COLUMNS = 1
         const val SMALL_RECYCLERVIEW_NB_COLUMNS = 2
         const val ACTIVITY_NAME = "Recommended"
-        const val LIBRARY_DATASET = "LibraryDataset"
-        const val ALL_BOOKS_FROM_DATABASE = "AllBooksFromDatabase"
         const val SELECTED_BOOK = "SelectedBook"
         const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
         const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
@@ -71,7 +67,6 @@ class RecommendedActivity() : AppCompatActivity(),
         super.onCreate(savedInstanceState)
 
         fetchAllBooksFromDatabase()
-        supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
         setContentView(R.layout.activity_recommended_structure)
 
         setListenerButtonCloseProfile()
@@ -82,20 +77,6 @@ class RecommendedActivity() : AppCompatActivity(),
 
         initAllViews()
         initDrawerLayout()
-    }
-
-    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<LibraryBModel> {
-        return LibraryBModelAsyncFetchData(
-            this,
-            mAllBooksFromDatabase
-        )
-    }
-
-    override fun onLoadFinished(p0: Loader<LibraryBModel>, data: LibraryBModel?) {
-        mLibraryDataset = data!!
-    }
-
-    override fun onLoaderReset(p0: Loader<LibraryBModel>) {
     }
 
     override fun onBackPressed() {
@@ -182,7 +163,6 @@ class RecommendedActivity() : AppCompatActivity(),
         button.setOnClickListener {
             Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            intent.putExtra(LIBRARY_DATASET, mLibraryDataset)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }

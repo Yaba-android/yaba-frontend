@@ -63,7 +63,6 @@ class AllBooksListBRecyclerViewAdapter(
 
     fun notifyDataSetChangedDownloadList() {
         mHorizontalRecyclerViewAdapter.notifyDataSetChanged()
-        this.notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

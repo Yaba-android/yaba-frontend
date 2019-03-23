@@ -10,7 +10,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class BrowseActivityAnimation(var context: Context) {
+class BrowseActivityAnimation(private var context: Context) {
 
     fun resetAnimationFirstRecyclerView(recycler: RecyclerView, list: ArrayList<BModel>) {
         val fadeOut = AnimationUtils.loadAnimation(context, R.anim.fade_out)

@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
+import android.support.v4.app.LoaderManager
+import android.support.v4.content.Loader
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
@@ -27,6 +29,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.LibraryBModelAsyncFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 
@@ -38,12 +42,14 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCus
  */
 
 class LibraryActivity : AppCompatActivity(),
+    LoaderManager.LoaderCallbacks<LibraryBModel>,
     IBookClickCallback,
     IGroupClickCallback,
     ITabLayoutSetupCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mLibraryDataset: LibraryBModel
+    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
     private val mFolioReader = FolioReader.get()
     private val mContainerFragment = LibraryContainerFragment()
 
@@ -65,9 +71,11 @@ class LibraryActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+        fetchAllBooksFromDatabase()
+        supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
         setContentView(R.layout.activity_library)
 
-        mLibraryDataset = intent.getParcelableExtra(RecommendedActivity.LIBRARY_DATASET)
         setListenerButtonCloseProfile()
         setListenerBrowseButtonFooter()
         setListenerRecommendedButtonFooter()
@@ -76,6 +84,25 @@ class LibraryActivity : AppCompatActivity(),
         if (savedInstanceState == null) {
             initFragmentManager()
         }
+    }
+
+    private fun fetchAllBooksFromDatabase() {
+        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
+    }
+
+    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<LibraryBModel> {
+        return LibraryBModelAsyncFetchData(
+            this,
+            mAllBooksFromDatabase
+        )
+    }
+
+    override fun onLoadFinished(p0: Loader<LibraryBModel>, data: LibraryBModel?) {
+        mLibraryDataset = data!!
+        mContainerFragment.setLibraryDataset(mLibraryDataset)
+    }
+
+    override fun onLoaderReset(p0: Loader<LibraryBModel>) {
     }
 
     override fun finish() {
@@ -154,7 +181,6 @@ class LibraryActivity : AppCompatActivity(),
         buttonBrowse.setOnClickListener {
             Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            intent.putExtra(RecommendedActivity.LIBRARY_DATASET, mLibraryDataset)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
@@ -235,7 +261,7 @@ class LibraryActivity : AppCompatActivity(),
             newList.add(downloadBook)
             mLibraryDataset.downloadBooks.add(DownloadListBModel(newList))
         }
-        mContainerFragment.notifyDataSetChanged()
+        mContainerFragment.notifyDownloadDataSetChanged()
     }
 
     private fun addBookToRowWithSpace(rowBooks: DownloadListBModel, newBook: DownloadBModel)
@@ -279,12 +305,10 @@ class LibraryActivity : AppCompatActivity(),
 
     private fun initFragmentManager() {
         val mFragmentManager = supportFragmentManager
+        val mFragmentTransaction = mFragmentManager.beginTransaction()
 
         mContainerFragment.setBookClickCallback(this) // permet de gerer les click depuis le fragment
         mContainerFragment.setGroupClickCallback(this)
-        mContainerFragment.setLibraryDataset(mLibraryDataset)
-        //mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        val mFragmentTransaction = mFragmentManager.beginTransaction()
         mFragmentTransaction.replace(R.id.fragment_container_library, mContainerFragment).commit()
     }
 }

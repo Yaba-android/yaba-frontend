@@ -19,6 +19,7 @@ class GroupsFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mGroupClickCallback: IGroupClickCallback
+    private lateinit var mAdapterBookVertical: GroupsListBRecyclerViewAdapter
     private var mDataset = arrayListOf<GroupListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,14 +43,19 @@ class GroupsFragment : Fragment() {
     }
 
     fun setDatasetVerticalRecyclerView(dataset: ArrayList<GroupListBModel>) {
-        mDataset = dataset
+        mDataset.clear()
+        mDataset.addAll(dataset)
+    }
+
+    fun notifyVerticalDataSetChanged() {
+        mAdapterBookVertical.notifyDataSetChanged()
     }
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
 
-        val adapterBookVertical =
+        mAdapterBookVertical =
             GroupsListBRecyclerViewAdapter(
                 container.context,
                 mDataset,
@@ -58,7 +64,7 @@ class GroupsFragment : Fragment() {
             )
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.adapter = mAdapterBookVertical
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(container.context, R.dimen.bottom_groups_vertical_recycler_view)
         )

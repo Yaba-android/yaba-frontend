@@ -5,8 +5,20 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Genre.GModelFactory
 
 class BModelFactory(private var context: Context) {
+
+    fun getEmptyInstance(): BModel {
+        return (BModel(
+            getEmptyImage(), "",
+            "", 0f,
+            0, 0f,
+            0, GModelFactory().getEmptyInstance(),
+            "", "",
+            "", ""
+        ))
+    }
 
     fun getInstance(index: Int): BModel {
         return (BModel(
@@ -17,6 +29,14 @@ class BModelFactory(private var context: Context) {
             getFileSize(index), getCountry(index),
             getDatePublication(index), getPublisher(index)
         ))
+    }
+
+    private fun getEmptyImage(): Int {
+        val imgArray = context.resources.obtainTypedArray(R.array.empty_image_book)
+        val img = imgArray.getResourceId(0, -1)
+
+        imgArray.recycle()
+        return img
     }
 
     private fun getImage(index: Int): Int {

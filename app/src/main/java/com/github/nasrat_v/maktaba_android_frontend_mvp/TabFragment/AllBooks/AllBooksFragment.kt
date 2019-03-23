@@ -39,15 +39,18 @@ class AllBooksFragment : Fragment() {
     }
 
     fun setDatasetVerticalRecyclerView(dataset: ArrayList<NoTitleListBModel>) {
-        mDataset = dataset
+        mDataset.clear()
+        mDataset.addAll(dataset)
     }
 
     fun setDownloadedBooks(downloadedBooks: ArrayList<DownloadListBModel>) {
-        mDownloadedBooks = downloadedBooks
+        mDownloadedBooks.clear()
+        mDownloadedBooks.addAll(downloadedBooks)
     }
 
-    fun notifyDataSetChanged() {
+    fun notifyBothDataSetChanged() {
         mAdapterBookVertical.notifyDataSetChangedDownloadList()
+        mAdapterBookVertical.notifyDataSetChanged()
     }
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {

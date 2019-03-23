@@ -18,7 +18,6 @@ class DownloadFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mAdapterBookVertical: DownloadListBRecyclerViewAdapter
-
     private var mDataset = arrayListOf<DownloadListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,11 +37,16 @@ class DownloadFragment : Fragment() {
     }
 
     fun setDatasetVerticalRecyclerView(dataset: ArrayList<DownloadListBModel>) {
-        mDataset = dataset
+        mDataset.clear()
+        mDataset.addAll(dataset)
     }
 
-    fun notifyDataSetChanged() {
+    fun notifyHorizontalDataSetChanged() {
         mAdapterBookVertical.notifyDataSetChangedDownloadList()
+    }
+
+    fun notifyVerticalDataSetChanged() {
+        mAdapterBookVertical.notifyDataSetChanged()
     }
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {

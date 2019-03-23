@@ -15,6 +15,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Book.LibraryBModelFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.AllBooks.AllBooksFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Download.DownloadFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Groups.GroupsFragment
@@ -45,6 +46,7 @@ class LibraryContainerFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initEmptyLibraryDataset()
         initTabFragment()
         initTabNamesList()
     }
@@ -68,11 +70,28 @@ class LibraryContainerFragment : Fragment() {
 
     fun setLibraryDataset(libraryDataset: LibraryBModel) {
         mLibraryDataset = libraryDataset
+        resetAllDatasetFragment()
     }
 
-    fun notifyDataSetChanged() {
-        mDownloadFrag.notifyDataSetChanged()
-        mAllBooksFrag.notifyDataSetChanged()
+    fun notifyDownloadDataSetChanged() {
+        mDownloadFrag.setDatasetVerticalRecyclerView(mLibraryDataset.downloadBooks)
+        mDownloadFrag.notifyHorizontalDataSetChanged()
+        mAllBooksFrag.setDownloadedBooks(mLibraryDataset.downloadBooks)
+        mAllBooksFrag.notifyBothDataSetChanged()
+    }
+
+    private fun initEmptyLibraryDataset() { // on init une library empty en attendant les dataset de l'asynTask
+        mLibraryDataset = LibraryBModelFactory().getEmptyInstance()
+    }
+
+    private fun resetAllDatasetFragment() { // on reset les dataset une fois que l'asyncTask les as chargés
+        mDownloadFrag.setDatasetVerticalRecyclerView(mLibraryDataset.downloadBooks)
+        mGroupsFrag.setDatasetVerticalRecyclerView(mLibraryDataset.groupBooks)
+        mAllBooksFrag.setDatasetVerticalRecyclerView(mLibraryDataset.allBooks)
+        mAllBooksFrag.setDownloadedBooks(mLibraryDataset.downloadBooks)
+        // on ne notifie que les deux premiers tabs car le troisieme n'est pas encore inflate
+        mDownloadFrag.notifyVerticalDataSetChanged()
+        mGroupsFrag.notifyVerticalDataSetChanged()
     }
 
     private fun initTabFragment() {

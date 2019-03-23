@@ -5,6 +5,10 @@
         <item>50</item>
     </integer-array>
 
+    <integer-array name="empty_image_book">
+        <item>@drawable/book1</item>
+    </integer-array>
+
     <integer-array name="images_books">
         <item>@drawable/book1</item>
         <item>@drawable/book2</item>
