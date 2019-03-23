@@ -18,10 +18,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Adapter.BrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import android.app.Activity
-import android.content.Context
 import android.view.KeyEvent
 import android.view.View
-import android.view.animation.AlphaAnimation
 import android.view.inputmethod.InputMethodManager
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListEraseBRecyclerViewAdapter
@@ -55,6 +53,7 @@ class BrowseActivity : AppCompatActivity(),
     private lateinit var mTitleResults: TextView
     private val mListResultBrowse = arrayListOf<BModel>()
     private val mDatasetSecondRecyclerView = arrayListOf<ListBModel>()
+    private var mInsertAnimationStart = false
 
     companion object {
         const val ACTIVITY_NAME = "Browse"
@@ -110,12 +109,16 @@ class BrowseActivity : AppCompatActivity(),
         if (mListResultBrowse.find { it == book } != null) {
             mListResultBrowse.removeAt(position)
             mAdapterBookVertical.notifyItemRemoved(position)
+            if (mListResultBrowse.isEmpty())
+                mFirstVerticalRecyclerView.visibility = View.GONE
         }
     }
 
     override fun recyclerViewEraseEventButtonClicked(position: Int) {
         mDatasetSecondRecyclerView.removeAt(position)
         mAdapterBookSecondVertical.notifyItemRemoved(position)
+        if (mDatasetSecondRecyclerView.isEmpty())
+            mSecondVerticalRecyclerView.visibility = View.GONE
     }
 
     private fun fetchAllBooksFromDatabase() {
@@ -184,7 +187,7 @@ class BrowseActivity : AppCompatActivity(),
             secondRecyclerSize = mDatasetSecondRecyclerView.size
             mListResultBrowse.clear()
             mDatasetSecondRecyclerView.clear()
-            setVisibilityText()
+            setVisibilityTextRemove()
             notifyAllItemRemoved(firstRecyclerSize, secondRecyclerSize)
         }
     }
@@ -244,6 +247,35 @@ class BrowseActivity : AppCompatActivity(),
         linearLayout.requestFocus()
     }
 
+    private fun initEditText() {
+        val buttonConfirm = findViewById<Button>(R.id.button_confirm_browse)
+        mEditText = findViewById(R.id.edit_text_browse)
+
+        mEditText.setOnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                hideKeyboard()
+                browseSearch()
+            }
+            true
+        }
+        buttonConfirm.setOnClickListener {
+            hideKeyboard()
+            browseSearch()
+        }
+        setListenerButtonCancel()
+    }
+
+    private fun setVisibilityTextRemove() {
+        if (mTitleResults.visibility == View.VISIBLE) {
+            mTitleResults.startAnimation(mFadeOutResultAnim)
+        }
+    }
+
+    private fun setVisibilityItemInsert() {
+        mTitleEmpty.startAnimation(mFadeOutTitleEmptyAnim)
+        mContentEmpty.startAnimation(mFadeOutContentEmptyAnim)
+    }
+
     private fun findDatasetSecondRecyclerView() {
         val genre: GModel = mListResultBrowse.first().genre
         val list: ArrayList<BModel>
@@ -255,6 +287,8 @@ class BrowseActivity : AppCompatActivity(),
     private fun browseSearch() {
         val str = mEditText.text.toString().toLowerCase()
 
+        mFirstVerticalRecyclerView.visibility = View.VISIBLE
+        mSecondVerticalRecyclerView.visibility = View.VISIBLE
         clearAllDatasetRecyclerViews(mListResultBrowse.size, mDatasetSecondRecyclerView.size)
         mListResultBrowse.addAll(
             mAllBooksFromDatabase.filter {
@@ -263,7 +297,7 @@ class BrowseActivity : AppCompatActivity(),
         )
         if (mListResultBrowse.isNotEmpty()) {
             findDatasetSecondRecyclerView()
-            setVisibilityText()
+            setVisibilityItemInsert()
             notifyAllItemInserted(mListResultBrowse.size, mDatasetSecondRecyclerView.size)
         }
     }
@@ -272,7 +306,7 @@ class BrowseActivity : AppCompatActivity(),
         if (mListResultBrowse.isNotEmpty() || mDatasetSecondRecyclerView.isNotEmpty()) {
             mListResultBrowse.clear()
             mDatasetSecondRecyclerView.clear()
-            setVisibilityText()
+            setVisibilityTextRemove()
             notifyAllItemRemoved(firstRecyclerSize, secondRecyclerSize)
         }
     }
@@ -306,36 +340,6 @@ class BrowseActivity : AppCompatActivity(),
         mAdapterBookSecondVertical.notifyItemRangeInserted(0, secondRecyclerSize)
     }
 
-    private fun setVisibilityText() {
-        if (mListResultBrowse.isEmpty()) {
-            if (mTitleResults.visibility == View.VISIBLE) {
-                mTitleResults.startAnimation(mFadeOutResultAnim)
-            }
-        } else {
-            mTitleEmpty.startAnimation(mFadeOutTitleEmptyAnim)
-            mContentEmpty.startAnimation(mFadeOutContentEmptyAnim)
-        }
-    }
-
-    private fun initEditText() {
-        val buttonConfirm = findViewById<Button>(R.id.button_confirm_browse)
-        mEditText = findViewById(R.id.edit_text_browse)
-
-        mEditText.setOnKeyListener { _, keyCode, _ ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                hideKeyboard()
-                browseSearch()
-            }
-            true
-        }
-        buttonConfirm.setOnClickListener {
-            hideKeyboard()
-            browseSearch()
-        }
-        setListenerButtonCancel()
-
-    }
-
     private fun setFadeAnimation() {
         mTitleEmpty = findViewById(R.id.title_browse_empty)
         mContentEmpty = findViewById(R.id.content_browse_empty)
@@ -355,7 +359,7 @@ class BrowseActivity : AppCompatActivity(),
         mFadeInResultAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         mFadeOutResultAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
-        mFadeInResultAnim.setAnimationListener(object: Animation.AnimationListener {
+        mFadeInResultAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {}
@@ -365,7 +369,7 @@ class BrowseActivity : AppCompatActivity(),
             }
 
         })
-        mFadeOutResultAnim.setAnimationListener(object: Animation.AnimationListener {
+        mFadeOutResultAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
@@ -383,7 +387,7 @@ class BrowseActivity : AppCompatActivity(),
         mFadeInTitleEmptyAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         mFadeOutTitleEmptyAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
-        mFadeInTitleEmptyAnim.setAnimationListener(object: Animation.AnimationListener {
+        mFadeInTitleEmptyAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {}
@@ -392,7 +396,7 @@ class BrowseActivity : AppCompatActivity(),
                 mTitleEmpty.visibility = View.VISIBLE
             }
         })
-        mFadeOutTitleEmptyAnim.setAnimationListener(object: Animation.AnimationListener {
+        mFadeOutTitleEmptyAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
@@ -407,7 +411,7 @@ class BrowseActivity : AppCompatActivity(),
         mFadeInContentEmptyAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         mFadeOutContentEmptyAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
-        mFadeInContentEmptyAnim.setAnimationListener(object: Animation.AnimationListener {
+        mFadeInContentEmptyAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {}
@@ -416,7 +420,7 @@ class BrowseActivity : AppCompatActivity(),
                 mContentEmpty.visibility = View.VISIBLE
             }
         })
-        mFadeOutContentEmptyAnim.setAnimationListener(object: Animation.AnimationListener {
+        mFadeOutContentEmptyAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
