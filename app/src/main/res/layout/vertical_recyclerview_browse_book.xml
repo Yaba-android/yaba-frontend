@@ -40,9 +40,10 @@
 
     <TextView
             android:id="@+id/title_vertical_browse_book"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/cardview_browse"
+            android:layout_toEndOf="@+id/button_erase_browse_book"
             android:layout_alignTop="@+id/cardview_browse"
             android:layout_marginTop="@dimen/size_shadow_browse_book"
             android:layout_marginEnd="10dp"
@@ -55,9 +56,10 @@
 
     <TextView
             android:id="@+id/author_vertical_browse_book"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/cardview_browse"
+            android:layout_toEndOf="@+id/button_erase_browse_book"
             android:layout_below="@+id/title_vertical_browse_book"
             android:layout_marginEnd="10dp"
             android:paddingBottom="8dp"
@@ -83,6 +85,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/author_vertical_browse_book"
             android:layout_toStartOf="@+id/rating_bar_vertical_browse_book"
+            android:layout_toEndOf="@+id/button_erase_browse_book"
+            android:layoutDirection="rtl"
             android:text="@string/number_rating"
             android:textColor="@color/colorReviewTextBlack"
             android:textSize="10sp"
@@ -94,8 +98,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/rating_bar_vertical_browse_book"
+            android:layout_toEndOf="@+id/button_erase_browse_book"
             android:layout_toStartOf="@+id/cardview_browse"
             android:layout_marginEnd="10dp"
+            android:layoutDirection="rtl"
             android:text="@string/price"
             android:textColor="@color/colorReviewTextBlack"
             android:textSize="12sp"/>

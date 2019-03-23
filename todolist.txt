@@ -1,3 +1,5 @@
-* tester sur pixel pour si bug affichage
+* remove animation browse item
+
+* charger donner async task
 
 * mettre tous les textes en arabe + changer police
