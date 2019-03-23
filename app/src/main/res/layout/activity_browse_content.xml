@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorCarouselGrey">
@@ -55,13 +56,15 @@
                 android:id="@+id/vertical_browse_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:ignore="RtlSymmetry"/>
+                tools:ignore="RtlSymmetry"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/vertical_browse_second_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"/>
+                android:layout_marginTop="60dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     </LinearLayout>
 
