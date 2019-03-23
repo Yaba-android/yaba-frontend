@@ -30,7 +30,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.LibraryBModelAsyncFetchData
+import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.LibraryBModelAsyncFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 
@@ -84,10 +84,6 @@ class LibraryActivity : AppCompatActivity(),
         if (savedInstanceState == null) {
             initFragmentManager()
         }
-    }
-
-    private fun fetchAllBooksFromDatabase() {
-        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<LibraryBModel> {
@@ -153,6 +149,10 @@ class LibraryActivity : AppCompatActivity(),
         tabLayout.setupWithViewPager(viewPager)
         customListener.setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
         customListener.setListenerTabLayout(tabLayout)
+    }
+
+    private fun fetchAllBooksFromDatabase() {
+        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
     private fun setListenerButtonCloseProfile() {

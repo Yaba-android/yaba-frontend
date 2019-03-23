@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book
+package com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask
 
 import android.content.Context
 import android.support.v4.content.AsyncTaskLoader
@@ -8,6 +8,9 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.LibraryBModelProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.LibraryBModelRandomProvider
 
 class LibraryBModelAsyncFetchData(
     context: Context,

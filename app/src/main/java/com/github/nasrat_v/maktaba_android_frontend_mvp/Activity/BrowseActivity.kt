@@ -21,13 +21,15 @@ import android.app.Activity
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListEraseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
+import android.view.ViewTreeObserver
+
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
@@ -50,6 +52,7 @@ class BrowseActivity : AppCompatActivity(),
     private lateinit var mTitleEmpty: TextView
     private lateinit var mContentEmpty: TextView
     private lateinit var mTitleResults: TextView
+    private lateinit var mProgressBar: ProgressBar
     private val mListResultBrowse = arrayListOf<BModel>()
     private val mDatasetSecondRecyclerView = arrayListOf<ListBModel>()
 
@@ -208,6 +211,7 @@ class BrowseActivity : AppCompatActivity(),
 
     private fun initEditText() {
         val buttonConfirm = findViewById<Button>(R.id.button_confirm_browse)
+        mProgressBar = findViewById(R.id.progress_bar_browse)
         mEditText = findViewById(R.id.edit_text_browse)
 
         mEditText.setOnKeyListener { _, keyCode, _ ->
@@ -246,6 +250,7 @@ class BrowseActivity : AppCompatActivity(),
     private fun browseSearch() {
         val str = mEditText.text.toString().toLowerCase()
 
+        mProgressBar.visibility = View.VISIBLE
         mFirstVerticalRecyclerView.visibility = View.VISIBLE
         mSecondVerticalRecyclerView.visibility = View.VISIBLE
         clearAllDatasetRecyclerViews(mListResultBrowse.size, mDatasetSecondRecyclerView.size)
@@ -261,6 +266,14 @@ class BrowseActivity : AppCompatActivity(),
         }
     }
 
+    private fun isSearchMatching(book: BModel, str: String): Boolean {
+        return (book.title.toLowerCase().contains(str) ||
+                book.author.toLowerCase().contains(str) ||
+                book.country.toLowerCase().contains(str) ||
+                book.genre.name.toLowerCase().contains(str) ||
+                book.publisher.toLowerCase().contains(str))
+    }
+
     private fun clearAllDatasetRecyclerViews(firstRecyclerSize: Int, secondRecyclerSize: Int) {
         if (mListResultBrowse.isNotEmpty() || mDatasetSecondRecyclerView.isNotEmpty()) {
             mListResultBrowse.clear()
@@ -268,14 +281,6 @@ class BrowseActivity : AppCompatActivity(),
             setVisibilityTextRemove()
             notifyAllItemRemoved(firstRecyclerSize, secondRecyclerSize)
         }
-    }
-
-    private fun isSearchMatching(book: BModel, str: String): Boolean {
-        return (book.title.toLowerCase().contains(str) ||
-                book.author.toLowerCase().contains(str) ||
-                book.country.toLowerCase().contains(str) ||
-                book.genre.name.toLowerCase().contains(str) ||
-                book.publisher.toLowerCase().contains(str))
     }
 
     private fun hideKeyboard() {
@@ -323,6 +328,7 @@ class BrowseActivity : AppCompatActivity(),
             override fun onAnimationEnd(animation: Animation?) {}
 
             override fun onAnimationStart(animation: Animation?) {
+                mProgressBar.visibility = View.GONE
                 mTitleResults.visibility = View.VISIBLE
             }
 
