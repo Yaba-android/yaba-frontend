@@ -29,7 +29,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Animation.BrowseActivityAnimation
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
