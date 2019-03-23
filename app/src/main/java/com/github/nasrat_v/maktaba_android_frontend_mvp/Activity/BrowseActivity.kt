@@ -54,7 +54,6 @@ class BrowseActivity : AppCompatActivity(),
     private lateinit var mTitleResults: TextView
     private val mListResultBrowse = arrayListOf<BModel>()
     private val mDatasetSecondRecyclerView = arrayListOf<ListBModel>()
-    private var mInsertAnimationStart = false
 
     companion object {
         const val ACTIVITY_NAME = "Browse"
@@ -79,23 +78,8 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     override fun onBackPressed() {
-        returnToHome()
-    }
-
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        val anim = intent!!.getIntExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
-
-        if (anim == 0) // left
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-        else if (anim == 1) // right
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        startLaunchAnimation()
+        super.onBackPressed()
+        finish()
     }
 
     override fun bookEventButtonClicked(book: BModel) {
@@ -104,7 +88,6 @@ class BrowseActivity : AppCompatActivity(),
         intent.putExtra(RecommendedActivity.SELECTED_BOOK, book)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-        resetAllStates()
     }
 
     override fun bookEraseEventButtonClicked(book: BModel, position: Int) {
@@ -127,19 +110,10 @@ class BrowseActivity : AppCompatActivity(),
         mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
-    private fun returnToHome() {
-        val intent = Intent(this, RecommendedActivity::class.java)
-
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 1)
-        startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        resetAllStates()
-    }
-
     private fun resetAllStates() {
-        val browseAnim = BrowseActivityAnimation(this)
+        /*val browseAnim = BrowseActivityAnimation(this)
 
+        mEditText.text.clear()
         if (mListResultBrowse.isNotEmpty()) {
             browseAnim.resetAnimationFirstRecyclerView(mFirstVerticalRecyclerView, mListResultBrowse)
             mAdapterBookVertical.notifyDataSetChanged()
@@ -153,15 +127,20 @@ class BrowseActivity : AppCompatActivity(),
         if (mTitleEmpty.visibility == View.VISIBLE)
             browseAnim.resetAnimationTextView(mTitleEmpty)
         if (mContentEmpty.visibility == View.VISIBLE)
-            browseAnim.resetAnimationTextView(mContentEmpty)
+            browseAnim.resetAnimationTextView(mContentEmpty)*/
     }
 
     private fun setListenerRecommendedButtonFooter() {
+        val intent = Intent(this, RecommendedActivity::class.java)
         val button = findViewById<Button>(R.id.button_recommended_footer)
 
         button.setOnClickListener {
             Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
-            returnToHome()
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 1)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            finish()
         }
     }
 
@@ -174,7 +153,7 @@ class BrowseActivity : AppCompatActivity(),
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-            resetAllStates()
+            finish()
         }
     }
 
