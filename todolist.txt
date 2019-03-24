@@ -3,8 +3,13 @@
 * bug quand on click sur un book puis on click encore sur un book
 si on click sur recommended on revient au premier book
 
-* Bug affichage double recyclerview sur emulator
-
 https://developer.android.com/training/basics/supporting-devices/languages
 
+
+* pour plus tard =>
+
+creer dossier drawable et dimen selon les dimensions des ecrans et/ou dpi
+(ex: drawable-mdpi)
+
+au lieu de double recyclerview => regarder recyclerview et gridLayout
 
