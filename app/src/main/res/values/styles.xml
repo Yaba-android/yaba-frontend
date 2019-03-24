@@ -57,11 +57,11 @@
         <item name="tabTextColor">@color/colorTextGrey</item>
     </style>
 
-    <style name="DownloadDialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowAnimationStyle">@style/DownloadDialogAnimation</item>
+    <style name="DownloadOpenDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/DownloadOpenDialogAnimation</item>
     </style>
 
-    <style name="DownloadDialogAnimation">
+    <style name="DownloadOpenDialogAnimation">
         <item name="android:windowEnterAnimation">@anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>

@@ -144,7 +144,7 @@ class GroupActivity : AppCompatActivity(),
     }
 
     private fun requestDownloadBook(book: BModel) {
-        val dialog = Dialog(this, R.style.DownloadDialog)
+        val dialog = Dialog(this, R.style.DownloadOpenDialog)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_action_book)
 
@@ -163,7 +163,7 @@ class GroupActivity : AppCompatActivity(),
     }
 
     private fun requestOpenBook(book: BModel) {
-        val dialog = Dialog(this, R.style.DownloadDialog)
+        val dialog = Dialog(this, R.style.DownloadOpenDialog)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_action_book)
 

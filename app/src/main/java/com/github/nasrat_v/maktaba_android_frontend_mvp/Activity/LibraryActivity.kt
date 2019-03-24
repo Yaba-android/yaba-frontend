@@ -2,6 +2,7 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -14,6 +15,7 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.AttributeSet
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -36,7 +38,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCus
 
 /*
     for epub files see:
-
     gutenberg.org/ebooks/
 
  */
@@ -50,8 +51,11 @@ class LibraryActivity : AppCompatActivity(),
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mLibraryDataset: LibraryBModel
     private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
-    private val mFolioReader = FolioReader.get()
-    private val mContainerFragment = LibraryContainerFragment()
+    private lateinit var mFolioReader: FolioReader
+    private lateinit var mToolbar: Toolbar
+    private lateinit var mTabLayout: TabLayout
+    private lateinit var mContainerFragment: LibraryContainerFragment
+    private var mFirstInit = true
 
     companion object {
         const val DOWNLOAD_NB_BOOK_PER_ROW = 2
@@ -71,19 +75,31 @@ class LibraryActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
-        fetchAllBooksFromDatabase()
-        supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
         setContentView(R.layout.activity_library)
 
-        setListenerButtonCloseProfile()
-        setListenerBrowseButtonFooter()
-        setListenerRecommendedButtonFooter()
+        mFirstInit = true
+        mContainerFragment = LibraryContainerFragment()
+        mDrawerLayout = findViewById(R.id.drawer_library)
+        mToolbar = findViewById(R.id.toolbar_application)
+        mTabLayout = findViewById(R.id.tabs)
 
         initRootDrawerLayout()
-        if (savedInstanceState == null) {
-            initFragmentManager()
+        initFragmentManager()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (mFirstInit) {
+            fetchAllBooksFromDatabase()
+            mFolioReader = FolioReader.get()
+
+            setListenerButtonCloseProfile()
+            setListenerBrowseButtonFooter()
+            setListenerRecommendedButtonFooter()
+            supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
         }
+        mFirstInit = false
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<LibraryBModel> {
@@ -143,12 +159,11 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     override fun setupTabLayout(viewPager: ViewPager) {
-        val tabLayout = findViewById<TabLayout>(R.id.tabs)
         val customListener = TabLayoutCustomListener(this)
 
-        tabLayout.setupWithViewPager(viewPager)
-        customListener.setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
-        customListener.setListenerTabLayout(tabLayout)
+        mTabLayout.setupWithViewPager(viewPager)
+        customListener.setTabTextToBold(mTabLayout, mTabLayout.selectedTabPosition)
+        customListener.setListenerTabLayout(mTabLayout)
     }
 
     private fun fetchAllBooksFromDatabase() {
@@ -166,9 +181,9 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     private fun setListenerRecommendedButtonFooter() {
-        val button = findViewById<Button>(R.id.button_recommended_footer)
+        val buttonRecommended = findViewById<Button>(R.id.button_recommended_footer)
 
-        button.setOnClickListener {
+        buttonRecommended.setOnClickListener {
             Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             returnToHome()
         }
@@ -186,7 +201,7 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     private fun requestDownloadBook(book: BModel) {
-        val dialog = Dialog(this, R.style.DownloadDialog)
+        val dialog = Dialog(this, R.style.DownloadOpenDialog)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_action_book)
 
@@ -205,7 +220,7 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     private fun requestOpenBook(book: BModel) {
-        val dialog = Dialog(this, R.style.DownloadDialog)
+        val dialog = Dialog(this, R.style.DownloadOpenDialog)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_action_book)
 
@@ -283,13 +298,10 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     private fun initRootDrawerLayout() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
-
-        setSupportActionBar(toolbar)
+        setSupportActionBar(mToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        mDrawerLayout = findViewById(R.id.drawer_library)
         val mDrawerToggle = ActionBarDrawerToggle(
-            this, mDrawerLayout, toolbar,
+            this, mDrawerLayout, mToolbar,
             R.string.navigation_drawer_profile_open,
             R.string.navigation_drawer_profile_close
         )

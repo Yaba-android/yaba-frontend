@@ -1,1 +1,14 @@
 * mettre tous les textes en arabe + changer police
+
+* regler les warnings
+
+* bug quand on click sur un book puis on click encore sur un book
+si on click sur recommended on revient au premier book
+
+* faire optimisation OnStart sur toutes les activités !!!!!
+
+* Bug affichage double recyclerview sur emulator
+
+https://developer.android.com/training/basics/supporting-devices/languages
+
+
