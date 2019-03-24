@@ -25,10 +25,8 @@
                     android:layout_height="@dimen/height_image_book_details"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/book2"
                     android:scaleType="centerCrop"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/shadow"/>
+                    android:adjustViewBounds="true"/>
 
         </RelativeLayout>
 

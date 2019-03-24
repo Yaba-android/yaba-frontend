@@ -4,7 +4,7 @@ import android.content.Context
 import android.support.v4.content.AsyncTaskLoader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BookDetailsBRModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
@@ -25,7 +25,10 @@ class BookDetailsBRModelAsyncFetchData(
 
         mockDatasetBook(datasetBooks, allBooksFromDatabase)
         fetchDatasetReviewVerticalRecyclerView(datasetReviews)
-        return BookDetailsBRModel(datasetBooks, datasetReviews)
+        return BookDetailsBRModel(
+            datasetBooks,
+            datasetReviews
+        )
     }
 
     private fun fetchAllBooksFromDatabase(): ArrayList<BModel> {

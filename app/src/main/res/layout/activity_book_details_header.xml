@@ -25,7 +25,6 @@
             android:layout_below="@+id/image_book_layout"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="@string/title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/colorTextBlack"
@@ -39,7 +38,6 @@
             android:layout_below="@+id/title_book"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="@string/author"
             android:textSize="14sp"
             android:textColor="@color/colorTextGrey"
             tools:ignore="RtlHardcoded"/>
@@ -65,7 +63,6 @@
             android:layout_marginTop="8dp"
             android:layout_below="@id/author_book"
             android:layout_toStartOf="@+id/rating_bar_book"
-            android:text="@string/number_rating"
             android:textColor="@color/colorTextBlack"
             android:textSize="12sp"
             android:paddingEnd="3dp"

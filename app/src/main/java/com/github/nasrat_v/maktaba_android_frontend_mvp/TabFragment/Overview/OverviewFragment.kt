@@ -30,6 +30,7 @@ class OverviewFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_overview, container, false)
 
+        initAuthorAttributes(rootView)
         initBookDetailsAttributes(rootView)
         initVerticalRecyclerView(rootView, container!!)
         return rootView
@@ -73,8 +74,21 @@ class OverviewFragment : Fragment() {
         linearLayout.requestFocus()
     }
 
+    private fun initAuthorAttributes(view: View) {
+        val authorTitle = view.findViewById<TextView>(R.id.author_desc_review_overview)
+        val authorDesc = view.findViewById<TextView>(R.id.author_desc_review_overview)
+        val authorPicture = view.findViewById<ImageView>(R.id.author_picture_review_overview)
+
+        authorTitle.text = mSelectedBook.author.name
+        authorDesc.text = mSelectedBook.author.desc
+        authorPicture.setImageResource(mSelectedBook.author.picture)
+    }
+
     @SuppressLint("SetTextI18n")
     private fun initBookDetailsAttributes(view: View) { // faire passer le selected book au fragment
+        val resumeBook = view.findViewById<TextView>(R.id.resume_book_overview)
+
+        resumeBook.text = mSelectedBook.resume
         initBookDetailsInfoAttributes(view, R.id.overview_category_length, "Length", mSelectedBook.length.toString())
         initBookDetailsInfoAttributes(view, R.id.overview_category_file_size, "File size", mSelectedBook.fileSize)
         initBookDetailsInfoAttributes(

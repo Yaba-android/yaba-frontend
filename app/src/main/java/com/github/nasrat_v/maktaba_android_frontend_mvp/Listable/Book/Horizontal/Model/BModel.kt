@@ -2,24 +2,28 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizonta
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Author.AModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-data class BModel(var image: Int, var title: String, var author: String,
-             var rating: Float, var numberRating: Int, var price: Float,
-             var length: Int, var genre: GModel, var fileSize: String,
-             var country: String, var datePublication: String, var publisher: String)
-    : Parcelable {
+data class BModel(
+    var image: Int, var title: String, var author: AModel,
+    var rating: Float, var numberRating: Int, var price: Float,
+    var length: Int, var genre: GModel, var fileSize: String,
+    var country: String, var datePublication: String,
+    var publisher: String, var resume: String
+) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
-        parcel.readString(),
+        parcel.readParcelable<AModel>(AModel::class.java.classLoader),
         parcel.readFloat(),
         parcel.readInt(),
         parcel.readFloat(),
         parcel.readInt(),
         parcel.readParcelable<GModel>(GModel::class.java.classLoader),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -29,7 +33,7 @@ data class BModel(var image: Int, var title: String, var author: String,
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(image)
         parcel.writeString(title)
-        parcel.writeString(author)
+        parcel.writeParcelable(author, flags)
         parcel.writeFloat(rating)
         parcel.writeInt(numberRating)
         parcel.writeFloat(price)
@@ -39,6 +43,7 @@ data class BModel(var image: Int, var title: String, var author: String,
         parcel.writeString(country)
         parcel.writeString(datePublication)
         parcel.writeString(publisher)
+        parcel.writeString(resume)
     }
 
     override fun describeContents(): Int {

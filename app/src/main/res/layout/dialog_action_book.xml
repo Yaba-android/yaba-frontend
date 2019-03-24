@@ -31,7 +31,6 @@
             android:layout_marginTop="95dp"
             android:gravity="center"
             android:background="@color/colorButtonDownloadBlue"
-            android:text="@string/action"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="12sp"/>

@@ -7,7 +7,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
@@ -34,6 +36,7 @@ class ReviewFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_review, container, false)
 
+        initAuthorAttributes(rootView)
         initReviewVerticalRecyclerView(rootView, container!!)
         initBookVerticalRecyclerView(rootView, container)
         return rootView
@@ -63,6 +66,16 @@ class ReviewFragment : Fragment() {
 
     fun notifyVerticalReviewDataSetChanged() {
         mAdapterReviewVertical.notifyDataSetChanged()
+    }
+
+    private fun initAuthorAttributes(view: View) {
+        val authorTitle = view.findViewById<TextView>(R.id.author_desc_review_overview)
+        val authorDesc = view.findViewById<TextView>(R.id.author_desc_review_overview)
+        val authorPicture = view.findViewById<ImageView>(R.id.author_picture_review_overview)
+
+        authorTitle.text = mSelectedBook.author.name
+        authorDesc.text = mSelectedBook.author.desc
+        authorPicture.setImageResource(mSelectedBook.author.picture)
     }
 
     private fun initReviewVerticalRecyclerView(view: View, container: ViewGroup) {

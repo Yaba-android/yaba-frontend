@@ -34,7 +34,7 @@ class BrowseBRecyclerViewAdapter(
         val model = list[position]
 
         holder.mTitle.text = model.title
-        holder.mAuthor.text = model.author
+        holder.mAuthor.text = model.author.name
         holder.mImage.setImageResource(model.image)
         holder.mRating.rating = model.rating
         holder.mNumberRating.text = ("(" + model.numberRating + ")")

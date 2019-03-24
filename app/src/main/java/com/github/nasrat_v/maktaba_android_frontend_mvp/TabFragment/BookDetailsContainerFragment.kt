@@ -14,12 +14,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.BookDetailsActi
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookInfosProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BookDetailsBRModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.BookDetailsBRModelFactory
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Overview.OverviewFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Review.ReviewFragment
 

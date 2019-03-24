@@ -20,13 +20,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsC
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookInfosProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BookDetailsBRModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Review.RModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 
 class BookDetailsActivity : AppCompatActivity(),
@@ -188,7 +183,7 @@ class BookDetailsActivity : AppCompatActivity(),
 
         image.setImageResource(mSelectedBook.image)
         title.text = mSelectedBook.title
-        author.text = mSelectedBook.author
+        author.text = mSelectedBook.author.name
         ratingBar.rating = mSelectedBook.rating
         numberRating.text = ("(" + mSelectedBook.numberRating + ")")
         buyButton.text = ("$" + mSelectedBook.price + " " + buyButton.text)

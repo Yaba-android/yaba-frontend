@@ -16,7 +16,6 @@
                     android:id="@+id/horizontal_small_image"
                     android:layout_width="@dimen/width_image_small_book"
                     android:layout_height="@dimen/height_image_small_book"
-                    android:src="@drawable/book3"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true"/>
 

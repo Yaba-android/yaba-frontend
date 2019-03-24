@@ -28,11 +28,8 @@
                     android:layout_height="@dimen/height_image_browse_book"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/book22"
                     android:scaleType="centerCrop"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/shadow"
-                    android:contentDescription="@string/browse"/>
+                    android:adjustViewBounds="true"/>
 
         </RelativeLayout>
 
@@ -49,7 +46,6 @@
             android:layout_marginEnd="10dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:text="@string/title"
             android:textSize="12sp"
             android:textDirection="rtl"
             android:textColor="@color/colorReviewTextBlack"/>
@@ -63,7 +59,6 @@
             android:layout_below="@+id/title_vertical_browse_book"
             android:layout_marginEnd="10dp"
             android:paddingBottom="8dp"
-            android:text="@string/author"
             android:textSize="12sp"
             android:textDirection="rtl"
             android:textColor="@color/colorTextGrey"/>
@@ -87,7 +82,6 @@
             android:layout_toStartOf="@+id/rating_bar_vertical_browse_book"
             android:layout_toEndOf="@+id/button_erase_browse_book"
             android:layoutDirection="rtl"
-            android:text="@string/number_rating"
             android:textColor="@color/colorReviewTextBlack"
             android:textSize="10sp"
             android:paddingEnd="2dp"
@@ -102,7 +96,6 @@
             android:layout_toStartOf="@+id/cardview_browse"
             android:layout_marginEnd="10dp"
             android:layoutDirection="rtl"
-            android:text="@string/price"
             android:textColor="@color/colorReviewTextBlack"
             android:textSize="12sp"/>
 

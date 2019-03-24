@@ -16,12 +16,11 @@
             android:background="@android:color/white">
 
         <TextView
-                android:id="@+id/desc_overview"
+                android:id="@+id/resume_book_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 android:textDirection="rtl"
-                android:text="@string/resume_book"
                 android:textColor="@color/colorTextBlack"
                 android:textSize="14sp"
                 tools:ignore="RtlHardcoded"

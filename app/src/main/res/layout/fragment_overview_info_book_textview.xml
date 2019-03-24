@@ -11,8 +11,7 @@
             android:layout_height="wrap_content"
             android:textDirection="rtl"
             android:textColor="@color/colorTextGrey"
-            android:textSize="12sp"
-            android:text="@string/title_category"/>
+            android:textSize="12sp"/>
 
     <TextView
             android:id="@+id/content_category"
@@ -21,7 +20,6 @@
             android:textDirection="rtl"
             android:textColor="@color/colorTextBlack"
             android:textSize="20sp"
-            android:text="@string/content_category"
             android:textStyle="bold"/>
 
 </LinearLayout>

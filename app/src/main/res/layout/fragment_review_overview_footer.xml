@@ -8,12 +8,11 @@
         android:orientation="vertical">
 
     <TextView
-            android:id="@+id/author_title_overview"
+            android:id="@+id/author_title_review_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:gravity="right"
-            android:text="@string/inam_kaghi"
             android:textColor="@color/colorTextBlack"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -29,23 +28,21 @@
             tools:ignore="RtlSymmetry">
 
         <ImageView
-                android:id="@+id/author_picture_overview"
+                android:id="@+id/author_picture_review_overview"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:layout_marginBottom="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/author_round"/>
+                android:layout_alignParentTop="true"/>
 
         <TextView
-                android:id="@+id/author_desc_overview"
+                android:id="@+id/author_desc_review_overview"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/author_picture_overview"
+                android:layout_toStartOf="@id/author_picture_review_overview"
                 android:layout_marginEnd="5dp"
                 android:gravity="right"
-                android:text="@string/mohamed_abdel_nabi_description"
                 android:textSize="12sp"
                 android:textColor="@color/colorTextGrey"
                 tools:ignore="RtlHardcoded"/>
@@ -55,8 +52,8 @@
                 android:layout_width="114dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="12dp"
-                android:layout_toStartOf="@id/author_picture_overview"
-                android:layout_below="@+id/author_desc_overview"
+                android:layout_toStartOf="@id/author_picture_review_overview"
+                android:layout_below="@+id/author_desc_review_overview"
                 android:layout_marginBottom="50dp"
                 android:gravity="end|center"
                 android:text="@string/read_more"

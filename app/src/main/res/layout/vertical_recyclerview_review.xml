@@ -26,7 +26,6 @@
             android:layout_marginTop="28dp"
             android:layout_toStartOf="@+id/profile_picture_review"
             android:textDirection="rtl"
-            android:text="@string/author_review"
             android:textSize="14sp"
             android:textColor="@color/colorReviewTextBlack"
             android:paddingBottom="5dp"
@@ -55,7 +54,6 @@
             android:layout_alignEnd="@+id/author_review"
             android:layout_marginTop="14dp"
             android:textDirection="rtl"
-            android:text="@string/comment_review"
             android:textSize="12sp"
             android:textColor="@color/colorTextGrey"
             tools:ignore="RtlHardcoded"/>

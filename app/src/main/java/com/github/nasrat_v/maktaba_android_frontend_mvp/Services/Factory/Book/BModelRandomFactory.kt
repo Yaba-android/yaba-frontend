@@ -1,10 +1,12 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Book
 
 import android.content.Context
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Author.AModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Author.AModelFactory
 
 class BModelRandomFactory(private var context: Context) {
 
@@ -15,7 +17,8 @@ class BModelRandomFactory(private var context: Context) {
             getRandomNumberRating(), getRandomPrice(),
             getRandomLength(), getRandomGenre(),
             getRandomFileSize(), getRandomCountry(),
-            getRandomDatePublication(), getRandomPublisher()
+            getRandomDatePublication(),
+            getRandomPublisher(), context.getString(R.string.resume_book)
         ))
     }
 
@@ -33,10 +36,12 @@ class BModelRandomFactory(private var context: Context) {
         return titleArray[(0..(titleArray.size - 1)).random()]
     }
 
-    private fun getRandomAuthor() : String {
+    private fun getRandomAuthor() : AModel {
         val authorArray = context.resources.getStringArray(R.array.authors_books)
+        val author = AModelFactory(context).getEmptyInstance()
 
-        return authorArray[(0..(authorArray.size - 1)).random()]
+        author.name = authorArray[(0..(authorArray.size - 1)).random()]
+        return author
     }
 
     private fun getRandomRating() : Float {

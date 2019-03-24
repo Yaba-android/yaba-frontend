@@ -1,10 +1,13 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Book
 
 import android.content.Context
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Author.AModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Author.AModelFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Genre.GModelFactory
 
 class BModelFactory(private var context: Context) {
@@ -12,11 +15,11 @@ class BModelFactory(private var context: Context) {
     fun getEmptyInstance(): BModel {
         return (BModel(
             getEmptyImage(), "",
-            "", 0f,
+            AModelFactory(context).getEmptyInstance(), 0f,
             0, 0f,
             0, GModelFactory().getEmptyInstance(),
             "", "",
-            "", ""
+            "", "", ""
         ))
     }
 
@@ -27,7 +30,8 @@ class BModelFactory(private var context: Context) {
             getNumberRating(index), getPrice(index),
             getLength(index), getGenre(index),
             getFileSize(index), getCountry(index),
-            getDatePublication(index), getPublisher(index)
+            getDatePublication(index),
+            getPublisher(index), context.getString(R.string.resume_book)
         ))
     }
 
@@ -53,10 +57,12 @@ class BModelFactory(private var context: Context) {
         return titleArray[index]
     }
 
-    private fun getAuthor(index: Int): String {
+    private fun getAuthor(index: Int): AModel {
         val authorArray = context.resources.getStringArray(R.array.authors_books)
+        val author = AModelFactory(context).getEmptyInstance()
 
-        return authorArray[index]
+        author.name = authorArray[index]
+        return author
     }
 
     private fun getRating(index: Int): Float {

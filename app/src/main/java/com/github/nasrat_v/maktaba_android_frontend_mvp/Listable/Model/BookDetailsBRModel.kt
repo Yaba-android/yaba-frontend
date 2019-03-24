@@ -1,4 +1,4 @@
-package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable
+package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model
 
 import android.os.Parcel
 import android.os.Parcelable

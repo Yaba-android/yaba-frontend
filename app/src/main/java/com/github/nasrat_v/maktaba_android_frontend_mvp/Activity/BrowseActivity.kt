@@ -266,7 +266,7 @@ class BrowseActivity : AppCompatActivity(),
 
     private fun isSearchMatching(book: BModel, str: String): Boolean {
         return (book.title.toLowerCase().contains(str) ||
-                book.author.toLowerCase().contains(str) ||
+                book.author.name.toLowerCase().contains(str) ||
                 book.country.toLowerCase().contains(str) ||
                 book.genre.name.toLowerCase().contains(str) ||
                 book.publisher.toLowerCase().contains(str))

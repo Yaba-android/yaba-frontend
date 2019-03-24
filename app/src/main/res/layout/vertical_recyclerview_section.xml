@@ -11,7 +11,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start|center_vertical"
-            android:text="@string/section_name"
             android:textAllCaps="false"
             android:textSize="18sp"
             android:background="@android:color/transparent"/>
