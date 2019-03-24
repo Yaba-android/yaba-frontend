@@ -21,18 +21,17 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsC
 
 class OverviewFragment : Fragment() {
 
-    private var mDataset = arrayListOf<ListBModel>()
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mSelectedBook: BModel
-    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
+    private lateinit var mAdapterBookVertical: ListBRecyclerViewAdapter
+    private val mDataset = arrayListOf<ListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_overview, container, false)
 
         initBookDetailsAttributes(rootView)
-        mockDataset(container!!)
-        initVerticalRecyclerView(rootView, container)
+        initVerticalRecyclerView(rootView, container!!)
         return rootView
     }
 
@@ -44,24 +43,29 @@ class OverviewFragment : Fragment() {
         mSelectedBook = book
     }
 
-    fun setAllBooksFromDatabase(allBooksDb: ArrayList<BModel>) {
-        mAllBooksFromDatabase = allBooksDb
+    fun setBookVerticalRecyclerView(books: ArrayList<ListBModel>) {
+        mDataset.clear()
+        mDataset.addAll(books)
+    }
+
+    fun notifyVerticalDataSetChanged() {
+        mAdapterBookVertical.notifyDataSetChanged()
     }
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_overview)
-        val adapterBookVertical =
+        val verticalRecyclerView =
+            view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
+
+        mAdapterBookVertical =
             ListBRecyclerViewAdapter(
                 container.context,
                 mDataset,
                 mBookClickCallback
             )
-        val verticalRecyclerView =
-            view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
-
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.adapter = mAdapterBookVertical
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(container.context, R.dimen.bottom_book_vertical_recycler_view)
         )
@@ -91,16 +95,5 @@ class OverviewFragment : Fragment() {
 
         titleCategory.text = title
         contentCategory.text = content
-    }
-
-    private fun mockDataset(container: ViewGroup) {
-        mDataset.addAll(
-            BModelRandomProvider(container.context).getRandomsInstancesFromListToListBModel(
-                BookDetailsContainerFragment.RECYCLER_VIEW_TITLE,
-                BookDetailsContainerFragment.RECYCLER_VIEW_NB_COLUMNS,
-                BookDetailsContainerFragment.RECYCLER_VIEW_NB_BOOKS_PER_ROW,
-                mAllBooksFromDatabase
-            )
-        )
     }
 }

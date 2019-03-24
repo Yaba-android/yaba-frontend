@@ -50,7 +50,6 @@ class LibraryActivity : AppCompatActivity(),
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mLibraryDataset: LibraryBModel
-    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
     private lateinit var mFolioReader: FolioReader
     private lateinit var mToolbar: Toolbar
     private lateinit var mTabLayout: TabLayout
@@ -84,29 +83,28 @@ class LibraryActivity : AppCompatActivity(),
         mTabLayout = findViewById(R.id.tabs)
 
         initRootDrawerLayout()
-        initFragmentManager()
+        if (savedInstanceState == null) {
+            initFragmentManager()
+        }
     }
 
     override fun onStart() {
         super.onStart()
 
         if (mFirstInit) {
-            fetchAllBooksFromDatabase()
             mFolioReader = FolioReader.get()
 
             setListenerButtonCloseProfile()
             setListenerBrowseButtonFooter()
             setListenerRecommendedButtonFooter()
+
             supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
         }
         mFirstInit = false
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<LibraryBModel> {
-        return LibraryBModelAsyncFetchData(
-            this,
-            mAllBooksFromDatabase
-        )
+        return LibraryBModelAsyncFetchData(this)
     }
 
     override fun onLoadFinished(p0: Loader<LibraryBModel>, data: LibraryBModel?) {
@@ -164,10 +162,6 @@ class LibraryActivity : AppCompatActivity(),
         mTabLayout.setupWithViewPager(viewPager)
         customListener.setTabTextToBold(mTabLayout, mTabLayout.selectedTabPosition)
         customListener.setListenerTabLayout(mTabLayout)
-    }
-
-    private fun fetchAllBooksFromDatabase() {
-        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
     private fun setListenerButtonCloseProfile() {

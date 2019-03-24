@@ -6,49 +6,87 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
+import android.support.v4.app.LoaderManager
+import android.support.v4.content.Loader
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.*
 import android.widget.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.BookDetailsBRModelAsyncFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookInfosProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BookDetailsBRModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Review.RModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 
 class BookDetailsActivity : AppCompatActivity(),
+    LoaderManager.LoaderCallbacks<BookDetailsBRModel>,
     IBookClickCallback,
     ITabLayoutSetupCallback,
     IBookInfosProvider {
 
     private lateinit var mSelectedBook: BModel
-    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
     private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mTabLayout: TabLayout
+    private lateinit var mToolbar: Toolbar
+    private lateinit var mContainerFragment: BookDetailsContainerFragment
+    private lateinit var mBookDetailsBRModel: BookDetailsBRModel
+    private var mFirstInit = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
-        fetchAllBooksFromDatabase()
         setContentView(R.layout.activity_book_details)
 
+        mFirstInit = true
         mSelectedBook = intent.getParcelableExtra(RecommendedActivity.SELECTED_BOOK)
-        setBookDetailsAttributes()
-
-        setListenerButtonCloseProfile()
-        setListenerBrowseButtonFooter()
-        setListenerRecommendedButtonFooter()
-        setListenerLibraryButtonFooter()
+        mContainerFragment = BookDetailsContainerFragment()
+        mDrawerLayout = findViewById(R.id.drawer_book_details)
+        mToolbar = findViewById(R.id.toolbar_book_details)
+        mTabLayout = findViewById(R.id.tabs)
 
         initRootDrawerLayout()
         if (savedInstanceState == null) {
             initFragmentManager()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (mFirstInit) {
+            setBookDetailsAttributes()
+
+            setListenerButtonCloseProfile()
+            setListenerBrowseButtonFooter()
+            setListenerRecommendedButtonFooter()
+            setListenerLibraryButtonFooter()
+
+            supportLoaderManager.initLoader(0, null, this).forceLoad() // init BRModel in async task
+        }
+        mFirstInit = false
+    }
+
+    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<BookDetailsBRModel> {
+        return BookDetailsBRModelAsyncFetchData(this)
+    }
+
+    override fun onLoadFinished(p0: Loader<BookDetailsBRModel>, data: BookDetailsBRModel?) {
+        mBookDetailsBRModel = data!!
+        mContainerFragment.setBookDetailBRModelDataset(mBookDetailsBRModel)
+    }
+
+    override fun onLoaderReset(p0: Loader<BookDetailsBRModel>) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -84,20 +122,15 @@ class BookDetailsActivity : AppCompatActivity(),
     }
 
     override fun setupTabLayout(viewPager: ViewPager) {
-        val tabLayout = findViewById<TabLayout>(R.id.tabs)
         val customListener = TabLayoutCustomListener(this)
 
-        tabLayout.setupWithViewPager(viewPager)
-        customListener.setTabTextToBold(tabLayout, tabLayout.selectedTabPosition)
-        customListener.setListenerTabLayout(tabLayout)
+        mTabLayout.setupWithViewPager(viewPager)
+        customListener.setTabTextToBold(mTabLayout, mTabLayout.selectedTabPosition)
+        customListener.setListenerTabLayout(mTabLayout)
     }
 
     override fun getSelectedBook(): BModel {
         return mSelectedBook
-    }
-
-    private fun fetchAllBooksFromDatabase() {
-        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
     private fun setListenerButtonCloseProfile() {
@@ -162,13 +195,10 @@ class BookDetailsActivity : AppCompatActivity(),
     }
 
     private fun initRootDrawerLayout() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_book_details)
-
-        setSupportActionBar(toolbar)
+        setSupportActionBar(mToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        mDrawerLayout = findViewById(R.id.drawer_book_details)
         val mDrawerToggle = ActionBarDrawerToggle(
-            this, mDrawerLayout, toolbar,
+            this, mDrawerLayout, mToolbar,
             R.string.navigation_drawer_profile_open,
             R.string.navigation_drawer_profile_close
         )
@@ -178,15 +208,13 @@ class BookDetailsActivity : AppCompatActivity(),
     }
 
     private fun initFragmentManager() {
-        val containerFragment = BookDetailsContainerFragment()
         val mFragmentManager = supportFragmentManager
 
-        containerFragment.setNumberRatingTabNameReview(mSelectedBook.numberRating)
-        containerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis le fragment
-        containerFragment.setBookInfosProvider(this)
-        containerFragment.setAllBooksFromDatabase(mAllBooksFromDatabase)
+        mContainerFragment.setNumberRatingTabNameReview(mSelectedBook.numberRating)
+        mContainerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis le fragment
+        mContainerFragment.setBookInfosProvider(this)
         mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         val mFragmentTransaction = mFragmentManager.beginTransaction()
-        mFragmentTransaction.replace(R.id.fragment_container_book_details, containerFragment).commit()
+        mFragmentTransaction.replace(R.id.fragment_container_book_details, mContainerFragment).commit()
     }
 }

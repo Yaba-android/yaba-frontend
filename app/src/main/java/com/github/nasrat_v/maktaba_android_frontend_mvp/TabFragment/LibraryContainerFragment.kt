@@ -89,6 +89,7 @@ class LibraryContainerFragment : Fragment() {
         mGroupsFrag.setDatasetVerticalRecyclerView(mLibraryDataset.groupBooks)
         mAllBooksFrag.setDatasetVerticalRecyclerView(mLibraryDataset.allBooks)
         mAllBooksFrag.setDownloadedBooks(mLibraryDataset.downloadBooks)
+
         // on ne notifie que les deux premiers tabs car le troisieme n'est pas encore inflate
         mDownloadFrag.notifyVerticalDataSetChanged()
         mGroupsFrag.notifyVerticalDataSetChanged()
@@ -113,16 +114,12 @@ class LibraryContainerFragment : Fragment() {
         override fun getItem(position: Int): Fragment? {
             when (position) {
                 0 -> {
-                    mDownloadFrag.setDatasetVerticalRecyclerView(mLibraryDataset.downloadBooks)
                     return mDownloadFrag
                 }
                 1 -> {
-                    mGroupsFrag.setDatasetVerticalRecyclerView(mLibraryDataset.groupBooks)
                     return mGroupsFrag
                 }
                 2 -> {
-                    mAllBooksFrag.setDatasetVerticalRecyclerView(mLibraryDataset.allBooks)
-                    mAllBooksFrag.setDownloadedBooks(mLibraryDataset.downloadBooks)
                     return mAllBooksFrag
                 }
             }

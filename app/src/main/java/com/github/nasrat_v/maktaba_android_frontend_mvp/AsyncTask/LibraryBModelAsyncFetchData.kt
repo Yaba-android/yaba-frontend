@@ -8,33 +8,36 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.LibraryBModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.LibraryBModelRandomProvider
 
 class LibraryBModelAsyncFetchData(
-    context: Context,
-    private var allBooksFromDatabase: ArrayList<BModel>
+    context: Context
 ) :
     AsyncTaskLoader<LibraryBModel>(context) {
 
     override fun loadInBackground(): LibraryBModel? {
         //android.os.Debug.waitForDebugger()
+
+        val allBooksFromDatabase = fetchAllBooksFromDatabase()
         val allbooksLibrary = arrayListOf<NoTitleListBModel>()
         val downloadsLibrary = arrayListOf<DownloadListBModel>()
         val groupsLibrary = arrayListOf<GroupListBModel>()
 
-        mockDatasetAllBooks(allbooksLibrary)
+        mockDatasetAllBooks(allbooksLibrary, allBooksFromDatabase)
         mockDatasetGroups(allbooksLibrary, groupsLibrary)
         mockDatasetDownload(allbooksLibrary, downloadsLibrary)
         return LibraryBModel(downloadsLibrary, groupsLibrary, allbooksLibrary)
     }
 
-    fun deliverResult(data: LibraryBModel) {
-        super.deliverResult(data)
+    private fun fetchAllBooksFromDatabase(): ArrayList<BModel> {
+        return BModelProvider(context).getAllBooksFromDatabase()
     }
 
-    private fun mockDatasetAllBooks(dataset: ArrayList<NoTitleListBModel>) {
+
+    private fun mockDatasetAllBooks(dataset: ArrayList<NoTitleListBModel>, allBooksFromDatabase: ArrayList<BModel>) {
         dataset.addAll(
             BModelRandomProvider(context).getRandomsInstancesFromListToNoTitleListBModel(
                 LibraryActivity.ALLBOOKS_NB_BOOK_COLUMNS,
