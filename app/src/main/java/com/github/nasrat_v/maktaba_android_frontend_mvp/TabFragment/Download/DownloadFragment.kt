@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.DownloadListBRecyclerViewAdapter
@@ -18,6 +19,7 @@ class DownloadFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mAdapterBookVertical: DownloadListBRecyclerViewAdapter
+    private lateinit var mButtonSort: Button
     private var mDataset = arrayListOf<DownloadListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

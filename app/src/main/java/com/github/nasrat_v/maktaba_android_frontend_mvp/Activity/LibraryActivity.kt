@@ -20,6 +20,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.folioreader.FolioReader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
@@ -54,6 +55,7 @@ class LibraryActivity : AppCompatActivity(),
     private lateinit var mToolbar: Toolbar
     private lateinit var mTabLayout: TabLayout
     private lateinit var mContainerFragment: LibraryContainerFragment
+    private lateinit var mProgressBar: ProgressBar
     private var mFirstInit = true
 
     companion object {
@@ -77,6 +79,7 @@ class LibraryActivity : AppCompatActivity(),
         setContentView(R.layout.activity_library)
 
         mFirstInit = true
+        mProgressBar = findViewById(R.id.progress_bar_library)
         mContainerFragment = LibraryContainerFragment()
         mDrawerLayout = findViewById(R.id.drawer_library)
         mToolbar = findViewById(R.id.toolbar_application)
@@ -110,6 +113,7 @@ class LibraryActivity : AppCompatActivity(),
     override fun onLoadFinished(p0: Loader<LibraryBModel>, data: LibraryBModel?) {
         mLibraryDataset = data!!
         mContainerFragment.setLibraryDataset(mLibraryDataset)
+        mProgressBar.visibility = View.GONE
     }
 
     override fun onLoaderReset(p0: Loader<LibraryBModel>) {

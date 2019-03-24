@@ -36,6 +36,7 @@ class BookDetailsActivity : AppCompatActivity(),
     private lateinit var mToolbar: Toolbar
     private lateinit var mContainerFragment: BookDetailsContainerFragment
     private lateinit var mBookDetailsBRModel: BookDetailsBRModel
+    private lateinit var mProgressBar: ProgressBar
     private var mFirstInit = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +45,7 @@ class BookDetailsActivity : AppCompatActivity(),
         setContentView(R.layout.activity_book_details)
 
         mFirstInit = true
+        mProgressBar = findViewById(R.id.progress_bar_book_details)
         mSelectedBook = intent.getParcelableExtra(RecommendedActivity.SELECTED_BOOK)
         mContainerFragment = BookDetailsContainerFragment()
         mDrawerLayout = findViewById(R.id.drawer_book_details)
@@ -78,6 +80,7 @@ class BookDetailsActivity : AppCompatActivity(),
         mBookDetailsBRModel = data!!
         setBookDetailsAttributes()
         mContainerFragment.setBookDetailBRModelDataset(mBookDetailsBRModel)
+        mProgressBar.visibility = View.GONE
     }
 
     override fun onLoaderReset(p0: Loader<BookDetailsBRModel>) {

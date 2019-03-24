@@ -77,8 +77,8 @@ class RecommendedActivity() : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_recommended_structure)
+
         mProgressBar = findViewById(R.id.progress_bar_recommeded)
         mFirstInit = true
 
