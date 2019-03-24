@@ -29,6 +29,9 @@ class ReviewFragment : Fragment() {
     private lateinit var mSelectedBook: BModel
     private lateinit var mAdapterBookVertical: ListBRecyclerViewAdapter
     private lateinit var mAdapterReviewVertical: RRecyclerViewAdapter
+    private lateinit var mAuthorTitle: TextView
+    private lateinit var mAuthorDesc: TextView
+    private lateinit var mAuthorPicture: ImageView
     private val mDatasetBooks = arrayListOf<ListBModel>()
     private val mDatasetReviews = arrayListOf<RModel>()
 
@@ -36,7 +39,10 @@ class ReviewFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_review, container, false)
 
-        initAuthorAttributes(rootView)
+        mAuthorTitle = rootView.findViewById(R.id.author_title_review_overview)
+        mAuthorDesc = rootView.findViewById(R.id.author_desc_review_overview)
+        mAuthorPicture = rootView.findViewById(R.id.author_picture_review_overview)
+
         initReviewVerticalRecyclerView(rootView, container!!)
         initBookVerticalRecyclerView(rootView, container)
         return rootView
@@ -68,14 +74,14 @@ class ReviewFragment : Fragment() {
         mAdapterReviewVertical.notifyDataSetChanged()
     }
 
-    private fun initAuthorAttributes(view: View) {
-        val authorTitle = view.findViewById<TextView>(R.id.author_desc_review_overview)
-        val authorDesc = view.findViewById<TextView>(R.id.author_desc_review_overview)
-        val authorPicture = view.findViewById<ImageView>(R.id.author_picture_review_overview)
+    fun initBookAttributes() {
+        initAuthorAttributes()
+    }
 
-        authorTitle.text = mSelectedBook.author.name
-        authorDesc.text = mSelectedBook.author.desc
-        authorPicture.setImageResource(mSelectedBook.author.picture)
+    private fun initAuthorAttributes() {
+        mAuthorTitle.text = mSelectedBook.author.name
+        mAuthorDesc.text = mSelectedBook.author.desc
+        mAuthorPicture.setImageResource(mSelectedBook.author.picture)
     }
 
     private fun initReviewVerticalRecyclerView(view: View, container: ViewGroup) {

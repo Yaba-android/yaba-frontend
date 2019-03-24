@@ -86,10 +86,12 @@ class BookDetailsContainerFragment : Fragment() {
         mBookDetailsBRModel = BookDetailsBRModelFactory().getEmptyInstance()
     }
 
-    private fun resetAllDatasetFragment() { // on reset vetical book dataset une fois que le container les a fetch
+    private fun resetAllDatasetFragment() { // on reset tous les dataset une fois que le container les a fetch en async task
         mOverview.setBookVerticalRecyclerView(mBookDetailsBRModel.books)
+        mOverview.initBookAttributes()
         mReview.setBookVerticalRecyclerView(mBookDetailsBRModel.books)
         mReview.setReviewVerticalRecyclerView(mBookDetailsBRModel.reviews)
+        mReview.initBookAttributes()
 
         mOverview.notifyVerticalDataSetChanged()
         mReview.notifyVerticalBookDataSetChanged()

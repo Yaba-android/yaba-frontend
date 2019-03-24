@@ -60,8 +60,6 @@ class BookDetailsActivity : AppCompatActivity(),
         super.onStart()
 
         if (mFirstInit) {
-            setBookDetailsAttributes()
-
             setListenerButtonCloseProfile()
             setListenerBrowseButtonFooter()
             setListenerRecommendedButtonFooter()
@@ -78,6 +76,7 @@ class BookDetailsActivity : AppCompatActivity(),
 
     override fun onLoadFinished(p0: Loader<BookDetailsBRModel>, data: BookDetailsBRModel?) {
         mBookDetailsBRModel = data!!
+        setBookDetailsAttributes()
         mContainerFragment.setBookDetailBRModelDataset(mBookDetailsBRModel)
     }
 

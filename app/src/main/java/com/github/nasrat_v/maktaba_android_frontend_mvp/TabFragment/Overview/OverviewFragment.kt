@@ -24,14 +24,34 @@ class OverviewFragment : Fragment() {
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mSelectedBook: BModel
     private lateinit var mAdapterBookVertical: ListBRecyclerViewAdapter
+    private lateinit var mAuthorTitle: TextView
+    private lateinit var mAuthorDesc: TextView
+    private lateinit var mAuthorPicture: ImageView
+    private lateinit var mResumeBook: TextView
+    private lateinit var mLayoutLength: LinearLayout
+    private lateinit var mLayoutFileSize: LinearLayout
+    private lateinit var mLayoutDatePublication: LinearLayout
+    private lateinit var mLayoutGenre: LinearLayout
+    private lateinit var mLayoutCountry: LinearLayout
+    private lateinit var mLayoutPublisher: LinearLayout
+
     private val mDataset = arrayListOf<ListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_overview, container, false)
 
-        initAuthorAttributes(rootView)
-        initBookDetailsAttributes(rootView)
+        mAuthorTitle = rootView.findViewById(R.id.author_title_review_overview)
+        mAuthorDesc = rootView.findViewById(R.id.author_desc_review_overview)
+        mAuthorPicture = rootView.findViewById(R.id.author_picture_review_overview)
+        mResumeBook = rootView.findViewById(R.id.resume_book_overview)
+        mLayoutLength = rootView.findViewById(R.id.overview_category_length)
+        mLayoutFileSize = rootView.findViewById(R.id.overview_category_file_size)
+        mLayoutDatePublication = rootView.findViewById(R.id.overview_category_date_publication)
+        mLayoutGenre = rootView.findViewById(R.id.overview_category_genre)
+        mLayoutCountry = rootView.findViewById(R.id.overview_category_country)
+        mLayoutPublisher = rootView.findViewById(R.id.overview_category_publisher)
+
         initVerticalRecyclerView(rootView, container!!)
         return rootView
     }
@@ -49,8 +69,38 @@ class OverviewFragment : Fragment() {
         mDataset.addAll(books)
     }
 
+    fun initBookAttributes() {
+        initAuthorAttributes()
+        initBookDetailsAttributes()
+    }
+
     fun notifyVerticalDataSetChanged() {
         mAdapterBookVertical.notifyDataSetChanged()
+    }
+
+    private fun initAuthorAttributes() {
+        mAuthorTitle.text = mSelectedBook.author.name
+        mAuthorDesc.text = mSelectedBook.author.desc
+        mAuthorPicture.setImageResource(mSelectedBook.author.picture)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initBookDetailsAttributes() { // faire passer le selected book au fragment
+        mResumeBook.text = mSelectedBook.resume
+        initBookDetailsInfoAttributes(mLayoutLength, "Length", mSelectedBook.length.toString())
+        initBookDetailsInfoAttributes(mLayoutFileSize, "File size", mSelectedBook.fileSize)
+        initBookDetailsInfoAttributes(mLayoutDatePublication, "Date of publication", mSelectedBook.datePublication)
+        initBookDetailsInfoAttributes(mLayoutGenre, "Genre", mSelectedBook.genre.name)
+        initBookDetailsInfoAttributes(mLayoutCountry, "Country", mSelectedBook.country)
+        initBookDetailsInfoAttributes(mLayoutPublisher, "Publisher", mSelectedBook.publisher)
+    }
+
+    private fun initBookDetailsInfoAttributes(layout: LinearLayout, title: String, content: String) {
+        val titleCategory = layout.findViewById<TextView>(R.id.title_category)
+        val contentCategory = layout.findViewById<TextView>(R.id.content_category)
+
+        titleCategory.text = title
+        contentCategory.text = content
     }
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
@@ -72,42 +122,5 @@ class OverviewFragment : Fragment() {
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
-    }
-
-    private fun initAuthorAttributes(view: View) {
-        val authorTitle = view.findViewById<TextView>(R.id.author_desc_review_overview)
-        val authorDesc = view.findViewById<TextView>(R.id.author_desc_review_overview)
-        val authorPicture = view.findViewById<ImageView>(R.id.author_picture_review_overview)
-
-        authorTitle.text = mSelectedBook.author.name
-        authorDesc.text = mSelectedBook.author.desc
-        authorPicture.setImageResource(mSelectedBook.author.picture)
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun initBookDetailsAttributes(view: View) { // faire passer le selected book au fragment
-        val resumeBook = view.findViewById<TextView>(R.id.resume_book_overview)
-
-        resumeBook.text = mSelectedBook.resume
-        initBookDetailsInfoAttributes(view, R.id.overview_category_length, "Length", mSelectedBook.length.toString())
-        initBookDetailsInfoAttributes(view, R.id.overview_category_file_size, "File size", mSelectedBook.fileSize)
-        initBookDetailsInfoAttributes(
-            view,
-            R.id.overview_category_date_publication,
-            "Date of publication",
-            mSelectedBook.datePublication
-        )
-        initBookDetailsInfoAttributes(view, R.id.overview_category_genre, "Genre", mSelectedBook.genre.name)
-        initBookDetailsInfoAttributes(view, R.id.overview_category_country, "Country", mSelectedBook.country)
-        initBookDetailsInfoAttributes(view, R.id.overview_category_publisher, "Publisher", mSelectedBook.publisher)
-    }
-
-    private fun initBookDetailsInfoAttributes(view: View, idLayout: Int, title: String, content: String) {
-        val layout = view.findViewById<LinearLayout>(idLayout)
-        val titleCategory = layout.findViewById<TextView>(R.id.title_category)
-        val contentCategory = layout.findViewById<TextView>(R.id.content_category)
-
-        titleCategory.text = title
-        contentCategory.text = content
     }
 }
