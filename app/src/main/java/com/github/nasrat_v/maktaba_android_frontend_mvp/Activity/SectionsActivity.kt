@@ -11,13 +11,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
-import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.SectionGModelAsynFetchData
+import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.SectionsGModelAsynFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ISectionAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.GSRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 @SuppressLint("Registered")
@@ -54,7 +52,7 @@ class SectionsActivity : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<ArrayList<GModel>> {
-        return SectionGModelAsynFetchData(this)
+        return SectionsGModelAsynFetchData(this)
     }
 
     override fun onLoadFinished(p0: Loader<ArrayList<GModel>>, data: ArrayList<GModel>?) {

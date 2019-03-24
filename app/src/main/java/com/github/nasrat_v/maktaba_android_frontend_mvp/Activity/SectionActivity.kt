@@ -3,6 +3,8 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.LoaderManager
+import android.support.v4.content.Loader
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -17,9 +19,12 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.SectionNoTitleListBModelAsynFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.BigListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
@@ -28,11 +33,14 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 @SuppressLint("Registered")
 class SectionActivity : AppCompatActivity(),
+    LoaderManager.LoaderCallbacks<ArrayList<NoTitleListBModel>>,
     IBookClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
-    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
     private lateinit var mSelectedSection: GModel
+    private lateinit var mAdapterBookVertical: BigListBRecyclerViewAdapter
+    private val mDataset = arrayListOf<NoTitleListBModel>()
+    private var mFirstInit = true
 
     companion object {
         const val NB_BOOKS_PER_ROW = 2
@@ -41,18 +49,40 @@ class SectionActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
-        fetchAllBooksFromDatabase()
         setContentView(R.layout.activity_section_structure)
 
         mSelectedSection = intent.getParcelableExtra(RecommendedActivity.SELECTED_POPULAR_SPECIES)
-        setListenerLibraryButtonFooter()
-        setListenerBrowseButtonFooter()
-        setListenerRecommendedButtonFooter()
+        mFirstInit = true
 
         initDrawerLayout()
-        initTitle()
         initVerticalRecycler()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (mFirstInit) {
+            setListenerLibraryButtonFooter()
+            setListenerBrowseButtonFooter()
+            setListenerRecommendedButtonFooter()
+
+            supportLoaderManager.initLoader(0, null, this).forceLoad() // init NoTitleListBModel in async task
+        }
+        mFirstInit = false
+    }
+
+    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<ArrayList<NoTitleListBModel>> {
+        return SectionNoTitleListBModelAsynFetchData(this, mSelectedSection)
+    }
+
+    override fun onLoadFinished(p0: Loader<ArrayList<NoTitleListBModel>>, data: ArrayList<NoTitleListBModel>?) {
+        mDataset.clear()
+        mDataset.addAll(data!!)
+        initTitle()
+        mAdapterBookVertical.notifyDataSetChanged()
+    }
+
+    override fun onLoaderReset(p0: Loader<ArrayList<NoTitleListBModel>>) {
     }
 
     override fun finish() {
@@ -85,10 +115,6 @@ class SectionActivity : AppCompatActivity(),
             finish()
         }
         return true
-    }
-
-    private fun fetchAllBooksFromDatabase() {
-        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
     }
 
     private fun initDrawerLayout() {
@@ -148,21 +174,18 @@ class SectionActivity : AppCompatActivity(),
     }
 
     private fun initVerticalRecycler() {
-        val mDataset = GModelProvider(this)
-            .getListAllBooksFromGenre(NB_BOOKS_PER_ROW, mSelectedSection)
-
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
-        val adapterBookVertical =
+
+        mAdapterBookVertical =
             BigListBRecyclerViewAdapter(
                 this,
                 mDataset,
                 this
             )
-
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.adapter = mAdapterBookVertical
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_big_book_vertical_recycler_view)
         )
