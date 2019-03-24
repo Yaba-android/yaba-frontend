@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -56,6 +57,7 @@ class LibraryActivity : AppCompatActivity(),
     private lateinit var mTabLayout: TabLayout
     private lateinit var mContainerFragment: LibraryContainerFragment
     private lateinit var mProgressBar: ProgressBar
+    private lateinit var mDisplayMetrics: DisplayMetrics
     private var mFirstInit = true
 
     companion object {
@@ -85,6 +87,7 @@ class LibraryActivity : AppCompatActivity(),
         mToolbar = findViewById(R.id.toolbar_application)
         mTabLayout = findViewById(R.id.tabs)
 
+        initDisplayMetrics()
         initRootDrawerLayout()
         if (savedInstanceState == null) {
             initFragmentManager()
@@ -318,6 +321,12 @@ class LibraryActivity : AppCompatActivity(),
 
         mContainerFragment.setBookClickCallback(this) // permet de gerer les click depuis le fragment
         mContainerFragment.setGroupClickCallback(this)
+        mContainerFragment.setDisplayMetrics(mDisplayMetrics)
         mFragmentTransaction.replace(R.id.fragment_container_library, mContainerFragment).commit()
+    }
+
+    private fun initDisplayMetrics() {
+        mDisplayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(mDisplayMetrics)
     }
 }

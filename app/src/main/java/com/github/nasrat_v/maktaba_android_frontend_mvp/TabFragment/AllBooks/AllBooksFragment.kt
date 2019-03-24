@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ class AllBooksFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mAdapterBookVertical: AllBooksListBRecyclerViewAdapter
+    private lateinit var mDisplayMetrics: DisplayMetrics
     private var mDataset = arrayListOf<NoTitleListBModel>()
     private var mDownloadedBooks = arrayListOf<DownloadListBModel>()
 
@@ -53,6 +55,10 @@ class AllBooksFragment : Fragment() {
         mAdapterBookVertical.notifyDataSetChanged()
     }
 
+    fun setDisplayMetrics(displayMetrics: DisplayMetrics) {
+        mDisplayMetrics = displayMetrics
+    }
+
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
@@ -64,6 +70,7 @@ class AllBooksFragment : Fragment() {
                 mDownloadedBooks,
                 mBookClickCallback
             )
+        mAdapterBookVertical.setDisplayMetrics(mDisplayMetrics)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVertical

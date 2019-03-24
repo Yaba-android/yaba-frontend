@@ -19,7 +19,7 @@ class SplashScreenActivity : AppCompatActivity() {
     private var mDelayHandler: Handler? = null
 
     companion object {
-        const val SPLASH_DELAY: Long = 2000
+        const val SPLASH_DELAY: Long = 1000
     }
 
     private val mRunnable: Runnable = Runnable {
@@ -57,7 +57,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun initFadeInAnimation() {
-        mFadeInAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in_splash_screen)
+        mFadeInAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         mFadeInAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
@@ -72,7 +72,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun initFadeOutAnimation() {
-        mFadeOutAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out_splash_screen)
+        mFadeOutAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out)
         mFadeOutAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 

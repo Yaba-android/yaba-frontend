@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.util.DisplayMetrics
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.LibraryActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
@@ -26,6 +27,7 @@ class LibraryContainerFragment : Fragment() {
     private lateinit var mGroupClickCallback: IGroupClickCallback
     private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
     private lateinit var mLibraryDataset: LibraryBModel
+    private lateinit var mDisplayMetrics: DisplayMetrics
     private val mTabNamesList = arrayListOf<String>()
     private val mDownloadFrag = DownloadFragment()
     private val mGroupsFrag = GroupsFragment()
@@ -80,6 +82,10 @@ class LibraryContainerFragment : Fragment() {
         mAllBooksFrag.notifyBothDataSetChanged()
     }
 
+    fun setDisplayMetrics(displayMetrics: DisplayMetrics) {
+        mDisplayMetrics = displayMetrics
+    }
+
     private fun initEmptyLibraryDataset() { // on init une library empty en attendant les dataset de l'asynTask
         mLibraryDataset = LibraryBModelFactory().getEmptyInstance()
     }
@@ -97,9 +103,11 @@ class LibraryContainerFragment : Fragment() {
 
     private fun initTabFragment() {
         mDownloadFrag.setBookClickCallback(mBookClickCallback)
+        mDownloadFrag.setDisplayMetrics(mDisplayMetrics)
         mGroupsFrag.setBookClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
         mGroupsFrag.setGroupClickCallback(mGroupClickCallback)
         mAllBooksFrag.setBookClickCallback(mBookClickCallback)
+        mAllBooksFrag.setDisplayMetrics(mDisplayMetrics)
     }
 
     private fun initTabNamesList() {

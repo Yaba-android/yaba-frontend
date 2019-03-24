@@ -3,6 +3,7 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class GroupListBRecyclerViewAdapter(
@@ -21,6 +23,7 @@ class GroupListBRecyclerViewAdapter(
 ) : RecyclerView.Adapter<GroupListBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mHorizontalRecyclerViewAdapter: GroupBRecyclerViewAdapter
+    private lateinit var mDisplayMetrics: DisplayMetrics
     private var viewPool = RecyclerView.RecycledViewPool()
     private var mDecorationFlag = true
 
@@ -54,9 +57,22 @@ class GroupListBRecyclerViewAdapter(
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.horizontalRecyclerView.adapter = mHorizontalRecyclerViewAdapter
         if (mDecorationFlag) {
-            holder.horizontalRecyclerView.addItemDecoration(
-                LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
-            )
+            if (needNegativeDivider()) {
+                holder.horizontalRecyclerView.addItemDecoration(
+                    LeftOffsetDecoration(context, R.dimen.left_big_book_horizontal_recycler_view)
+                )
+            } else {
+                for (index in 0..(getNbItemDecoration() - 1)) {
+                    holder.horizontalRecyclerView.addItemDecoration(
+                        LeftOffsetDecoration(context, R.dimen.left_divider)
+                    )
+                }
+                for (index in 0..(getNbItemDecoration() - 1)) {
+                    holder.horizontalRecyclerView.addItemDecoration(
+                        RightOffsetDecoration(context, R.dimen.left_divider)
+                    )
+                }
+            }
         }
         mDecorationFlag = false
     }
@@ -64,6 +80,28 @@ class GroupListBRecyclerViewAdapter(
     fun notifyDataSetChangedDownloadList() {
         mHorizontalRecyclerViewAdapter.notifyDataSetChanged()
         this.notifyDataSetChanged()
+    }
+
+    fun setDisplayMetrics(displayMetrics: DisplayMetrics) {
+        mDisplayMetrics = displayMetrics
+    }
+
+    private fun getScreenWidth(): Int {
+        return mDisplayMetrics.widthPixels
+    }
+
+    private fun getScreenHeight(): Int {
+        return mDisplayMetrics.heightPixels
+    }
+
+    private fun needNegativeDivider(): Boolean {
+        return ((context.resources.getDimensionPixelOffset(R.dimen.width_image_big_book) * 2) > (getScreenWidth() * 0.80f))
+    }
+
+    private fun getNbItemDecoration(): Int {
+        val sizeImage = context.resources.getDimensionPixelOffset(R.dimen.width_image_big_book)
+        val size = ((getScreenWidth() / sizeImage) * 6f)
+        return size.toInt()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

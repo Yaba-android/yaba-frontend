@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.util.DisplayMetrics
 import android.view.*
 import android.widget.*
 import com.folioreader.FolioReader
@@ -43,6 +44,7 @@ class GroupActivity : AppCompatActivity(),
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mFolioReader: FolioReader
     private lateinit var mProgressBar: ProgressBar
+    private lateinit var mDisplayMetrics: DisplayMetrics
     private val mDataset = arrayListOf<NoTitleListBModel>()
     private var mBooksToAddToDownload = arrayListOf<BModel>()
     private var mFirstInit = true
@@ -57,6 +59,7 @@ class GroupActivity : AppCompatActivity(),
         mProgressBar = findViewById(R.id.progress_bar_group)
         mFirstInit = true
 
+        initDisplayMetrics()
         initRootDrawerLayout()
         initVerticalRecyclerView()
     }
@@ -293,6 +296,7 @@ class GroupActivity : AppCompatActivity(),
                 mDownloadedBooks,
                 this
             )
+        mAdapterBookVertical.setDisplayMetrics(mDisplayMetrics)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVertical
@@ -301,5 +305,10 @@ class GroupActivity : AppCompatActivity(),
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
+    }
+
+    private fun initDisplayMetrics() {
+        mDisplayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(mDisplayMetrics)
     }
 }

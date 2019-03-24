@@ -19,6 +19,7 @@
 
     <dimen name="left_carousel_recycler_view">0dp</dimen>
     <dimen name="right_carousel_recycler_view">-30dp</dimen>
+    <dimen name="left_divider">1dp</dimen>
     <dimen name="left_big_book_horizontal_recycler_view">-10dp</dimen>
     <dimen name="left_group_book_horizontal_recycler_view">-20dp</dimen>
     <dimen name="left_book_horizontal_recycler_view">5dp</dimen>
@@ -43,6 +44,7 @@
     <dimen name="height_image_group_book">184dp</dimen>
     <dimen name="width_image_carousel_book">128dp</dimen>
     <dimen name="height_image_carousel_book">204dp</dimen>
+
     <dimen name="width_image_big_book">134dp</dimen>
     <dimen name="height_image_big_book">204dp</dimen>
     <dimen name="width_image_book_details">166dp</dimen>

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.util.DisplayMetrics
 import android.view.*
 import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.SectionNoTitleListBModelAsynFetchData
@@ -34,6 +35,7 @@ class SectionActivity : AppCompatActivity(),
     private lateinit var mSelectedSection: GModel
     private lateinit var mAdapterBookVertical: BigListBRecyclerViewAdapter
     private lateinit var mProgressBar: ProgressBar
+    private lateinit var mDisplayMetrics: DisplayMetrics
     private val mDataset = arrayListOf<NoTitleListBModel>()
     private var mFirstInit = true
 
@@ -50,6 +52,7 @@ class SectionActivity : AppCompatActivity(),
         mProgressBar = findViewById(R.id.progress_bar_section)
         mFirstInit = true
 
+        initDisplayMetrics()
         initDrawerLayout()
         initVerticalRecycler()
     }
@@ -180,6 +183,7 @@ class SectionActivity : AppCompatActivity(),
                 mDataset,
                 this
             )
+        mAdapterBookVertical.setDisplayMetrics(mDisplayMetrics)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVertical
@@ -188,5 +192,10 @@ class SectionActivity : AppCompatActivity(),
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
+    }
+
+    private fun initDisplayMetrics() {
+        mDisplayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(mDisplayMetrics)
     }
 }
