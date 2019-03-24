@@ -5,6 +5,8 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.LoaderManager
+import android.support.v4.content.Loader
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -14,6 +16,7 @@ import android.support.v7.widget.Toolbar
 import android.view.*
 import android.widget.*
 import com.folioreader.FolioReader
+import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.GroupNoTitleListBModelAsynFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.DownloadBModel
@@ -26,6 +29,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 @SuppressLint("Registered")
 class GroupActivity : AppCompatActivity(),
+    LoaderManager.LoaderCallbacks<ArrayList<NoTitleListBModel>>,
     IBookClickCallback {
 
     companion object {
@@ -37,8 +41,10 @@ class GroupActivity : AppCompatActivity(),
     private lateinit var mDownloadedBooks: ArrayList<DownloadListBModel>
     private lateinit var mAdapterBookVertical: GroupListBRecyclerViewAdapter
     private lateinit var mDrawerLayout: DrawerLayout
-    private val mFolioReader = FolioReader.get()
+    private lateinit var mFolioReader: FolioReader
+    private val mDataset = arrayListOf<NoTitleListBModel>()
     private var mBooksToAddToDownload = arrayListOf<BModel>()
+    private var mFirstInit = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,14 +53,37 @@ class GroupActivity : AppCompatActivity(),
 
         mSelectedGroup = intent.getParcelableExtra(SELECTED_GROUP)
         mDownloadedBooks = intent.getParcelableArrayListExtra(LibraryActivity.DOWNLOADED_BOOKS)
-        setGroupDetailsAttributes()
 
-        setListenerBrowseButtonFooter()
-        setListenerLibraryButtonFooter()
-        setListenerRecommendedButtonFooter()
-
-        initVerticalRecyclerView()
         initRootDrawerLayout()
+        initVerticalRecyclerView()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (mFirstInit) {
+            mFolioReader = FolioReader.get()
+            setListenerBrowseButtonFooter()
+            setListenerLibraryButtonFooter()
+            setListenerRecommendedButtonFooter()
+
+            supportLoaderManager.initLoader(0, null, this).forceLoad() // init NoTitleListBModel in async task
+        }
+        mFirstInit = false
+    }
+
+    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<ArrayList<NoTitleListBModel>> {
+        return GroupNoTitleListBModelAsynFetchData(this, mSelectedGroup)
+    }
+
+    override fun onLoadFinished(p0: Loader<ArrayList<NoTitleListBModel>>, data: ArrayList<NoTitleListBModel>?) {
+        mDataset.clear()
+        mDataset.addAll(data!!)
+        setGroupDetailsAttributes()
+        mAdapterBookVertical.notifyDataSetChanged()
+    }
+
+    override fun onLoaderReset(p0: Loader<ArrayList<NoTitleListBModel>>) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -249,57 +278,7 @@ class GroupActivity : AppCompatActivity(),
         mDrawerLayout.setDrawerListener(mDrawerToggle)
     }
 
-    private fun getGroupBooksFormatedForAdapter(): ArrayList<NoTitleListBModel> {
-        var noTitle: NoTitleListBModel
-        var slice: Int
-        val listNoTitleList = arrayListOf<NoTitleListBModel>()
-        val sizeColumns = getNbColumns(GROUP_NB_BOOK_PER_ROW, mSelectedGroup.bookModels.size)
-        val offset = if (mSelectedGroup.bookModels.size < GROUP_NB_BOOK_PER_ROW)
-            mSelectedGroup.bookModels.size
-        else
-            GROUP_NB_BOOK_PER_ROW
-
-        for (index in 0..(sizeColumns - 1)) {
-            slice = (index * offset)
-            noTitle = addBooksToRows(slice, (slice + offset), getNbBooksAdded(listNoTitleList))
-            listNoTitleList.add(noTitle)
-        }
-        return listNoTitleList
-    }
-
-    private fun getNbBooksAdded(list: ArrayList<NoTitleListBModel>): Int {
-        var nb = 0
-
-        list.forEach {
-            nb += it.bookModels.size
-        }
-        return nb
-    }
-
-    private fun addBooksToRows(firstSlice: Int, lastSlice: Int, nbBooksAdded: Int): NoTitleListBModel {
-        return if (((mSelectedGroup.bookModels.size % 2) != 0)
-            && (nbBooksAdded == (mSelectedGroup.bookModels.size - 1))
-        ) { // si la taille est impair et que c'est le dernier item -> juste le dernier
-            NoTitleListBModel(arrayListOf(mSelectedGroup.bookModels.last()))
-        } else {
-            NoTitleListBModel(
-                ArrayList( // sinon de 2 en 2
-                    mSelectedGroup.bookModels.subList(firstSlice, lastSlice)
-                )
-            )
-        }
-    }
-
-    private fun getNbColumns(nbRows: Int, nbBooks: Int): Int {
-        if ((nbBooks % 2) == 0) {
-            return (nbBooks / nbRows)
-        }
-        return ((nbBooks / nbRows) + 1)
-    }
-
     private fun initVerticalRecyclerView() {
-        // on format en deux listes (vertical & horizontal) pour recylerviews
-        val mDataset = getGroupBooksFormatedForAdapter()
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
 

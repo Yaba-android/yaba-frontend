@@ -5,7 +5,7 @@
 * bug quand on click sur un book puis on click encore sur un book
 si on click sur recommended on revient au premier book
 
-* faire optimisation OnStart sur toutes les activités !!!!!
+* faire optimisation OnStart browse, recommended et group
 
 * Bug affichage double recyclerview sur emulator
 
