@@ -36,7 +36,6 @@ class SectionActivity : AppCompatActivity(),
 
     companion object {
         const val NB_BOOKS_PER_ROW = 2
-        const val NB_BOOKS_COLUMNS = 8
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
