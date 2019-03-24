@@ -25,6 +25,7 @@ class BookDetailsBRModelAsyncFetchData(
 
         mockDatasetBook(datasetBooks, allBooksFromDatabase)
         fetchDatasetReviewVerticalRecyclerView(datasetReviews)
+
         return BookDetailsBRModel(
             datasetBooks,
             datasetReviews

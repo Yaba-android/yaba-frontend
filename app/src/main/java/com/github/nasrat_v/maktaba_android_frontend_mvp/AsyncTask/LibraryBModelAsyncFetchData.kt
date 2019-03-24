@@ -29,7 +29,12 @@ class LibraryBModelAsyncFetchData(
         mockDatasetAllBooks(allbooksLibrary, allBooksFromDatabase)
         mockDatasetGroups(allbooksLibrary, groupsLibrary)
         mockDatasetDownload(allbooksLibrary, downloadsLibrary)
-        return LibraryBModel(downloadsLibrary, groupsLibrary, allbooksLibrary)
+
+        return LibraryBModel(
+            downloadsLibrary,
+            groupsLibrary,
+            allbooksLibrary
+        )
     }
 
     private fun fetchAllBooksFromDatabase(): ArrayList<BModel> {

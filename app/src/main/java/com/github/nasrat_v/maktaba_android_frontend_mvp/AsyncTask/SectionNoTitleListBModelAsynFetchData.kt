@@ -16,7 +16,8 @@ class SectionNoTitleListBModelAsynFetchData(
     override fun loadInBackground(): ArrayList<NoTitleListBModel>? {
         //android.os.Debug.waitForDebugger()
 
-        return GModelProvider(context)
-            .getListAllBooksFromGenre(SectionActivity.NB_BOOKS_PER_ROW, selectedSection)
+        return GModelProvider(context).getListAllBooksFromGenre(
+            SectionActivity.NB_BOOKS_PER_ROW, selectedSection
+        )
     }
 }

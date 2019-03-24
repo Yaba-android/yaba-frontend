@@ -65,7 +65,7 @@ class BookDetailsActivity : AppCompatActivity(),
             setListenerRecommendedButtonFooter()
             setListenerLibraryButtonFooter()
 
-            supportLoaderManager.initLoader(0, null, this).forceLoad() // init BRModel in async task
+            supportLoaderManager.initLoader(0, null, this).forceLoad() // init BookDetailsBRModel in async task
         }
         mFirstInit = false
     }

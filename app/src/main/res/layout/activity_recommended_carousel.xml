@@ -10,6 +10,15 @@
         android:orientation="vertical"
         android:paddingTop="100dp">
 
+    <ProgressBar
+            android:id="@+id/progress_bar_recommeded"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:paddingTop="150dp"
+            android:paddingBottom="500dp"
+            android:indeterminate="true"/>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,23 +27,22 @@
             tools:ignore="RtlSymmetry">
 
         <TextView
+                android:id="@+id/title_carousel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="@string/carousel_title_first"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorTextBlack"/>
 
         <TextView
+                android:id="@+id/title_bis_carousel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="@string/carousel_title_second"
                 android:textSize="12sp"
                 android:textColor="@color/colorTextGrey"
-                android:paddingTop="5dp"
-                android:id="@+id/title_bis_carousel"/>
+                android:paddingTop="5dp"/>
 
     </LinearLayout>
 

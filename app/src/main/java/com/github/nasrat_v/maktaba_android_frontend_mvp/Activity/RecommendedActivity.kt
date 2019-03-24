@@ -10,11 +10,14 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import android.support.design.widget.NavigationView
+import android.support.v4.app.LoaderManager
+import android.support.v4.content.Loader
 import android.support.v4.view.GravityCompat
 import android.support.v7.widget.*
 import android.support.v7.widget.Toolbar
 import android.view.*
 import android.widget.*
+import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.RecommendedBRModelAsyncFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
@@ -29,15 +32,28 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Horizontal.GPSRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecoration
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.RecommendedBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
 class RecommendedActivity() : AppCompatActivity(),
+    LoaderManager.LoaderCallbacks<RecommendedBRModel>,
     IBookClickCallback,
     IRecommendedAdditionalClickCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
-    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
+    private lateinit var mAdapterBookVerticalCarousel: CarouselBRecyclerViewAdapter
+    private lateinit var mAdapterBookVerticalFirstRecyclerView: ListBRecyclerViewAdapter
+    private lateinit var mAdapterGenreHorizontal: GPSRecyclerViewAdapter
+    private lateinit var mAdapterBookVerticalSecondRecyclerView: ListBRecyclerViewAdapter
+    private lateinit var mAdapterBookVerticalSmallRecyclerView: SmallListBRecyclerViewAdapter
+    private lateinit var mProgressBar: ProgressBar
+    private val mDatasetCarousel = arrayListOf<BModel>()
+    private val mDatasetFirstRecyclerView = arrayListOf<ListBModel>()
+    private val mPopularList = arrayListOf<GModel>()
+    private val mDatasetSecondRecyclerView = arrayListOf<ListBModel>()
+    private val mDatasetSmallRecyclerView = arrayListOf<NoTitleListBModel>()
+    private var mFirstInit = true
 
     companion object {
         const val NB_BOOKS_CAROUSEL = 15
@@ -62,17 +78,55 @@ class RecommendedActivity() : AppCompatActivity(),
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         super.onCreate(savedInstanceState)
 
-        fetchAllBooksFromDatabase()
         setContentView(R.layout.activity_recommended_structure)
-
-        setListenerButtonCloseProfile()
-        setListenerBrowseButtonFooter()
-        setListenerLibraryButtonFooter()
-        setListenerButtonBrowseSection()
-        setListenerViewAllSection()
+        mProgressBar = findViewById(R.id.progress_bar_recommeded)
+        mFirstInit = true
 
         initAllViews()
         initDrawerLayout()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (mFirstInit) {
+            setListenerButtonCloseProfile()
+            setListenerBrowseButtonFooter()
+            setListenerLibraryButtonFooter()
+            setListenerButtonBrowseSection()
+            setListenerViewAllSection()
+
+            supportLoaderManager.initLoader(0, null, this).forceLoad() // init RecommendedBRModel in async task
+        }
+        mFirstInit = false
+    }
+
+    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<RecommendedBRModel> {
+        return RecommendedBRModelAsyncFetchData(this)
+    }
+
+    override fun onLoadFinished(p0: Loader<RecommendedBRModel>, data: RecommendedBRModel?) {
+        mDatasetCarousel.clear()
+        mDatasetFirstRecyclerView.clear()
+        mPopularList.clear()
+        mDatasetSecondRecyclerView.clear()
+        mDatasetSmallRecyclerView.clear()
+        mDatasetCarousel.addAll(data!!.booksCarousel)
+        mDatasetFirstRecyclerView.addAll(data.booksFirstRecyclerView)
+        mPopularList.addAll(data.popularGenre)
+        mDatasetSecondRecyclerView.addAll(data.booksSecondRecyclerView)
+        mDatasetSmallRecyclerView.addAll(data.booksSmallRecyclerView)
+
+        initTitle()
+        mAdapterBookVerticalCarousel.notifyDataSetChanged()
+        mAdapterBookVerticalFirstRecyclerView.notifyDataSetChanged()
+        mAdapterGenreHorizontal.notifyDataSetChanged()
+        mAdapterBookVerticalSecondRecyclerView.notifyDataSetChanged()
+        mAdapterBookVerticalSmallRecyclerView.notifyDataSetChanged()
+        mProgressBar.visibility = View.GONE
+    }
+
+    override fun onLoaderReset(p0: Loader<RecommendedBRModel>) {
     }
 
     override fun onBackPressed() {
@@ -111,8 +165,12 @@ class RecommendedActivity() : AppCompatActivity(),
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
-    private fun fetchAllBooksFromDatabase() {
-        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
+    private fun initTitle() {
+        val title = findViewById<TextView>(R.id.title_carousel)
+        val titleBis = findViewById<TextView>(R.id.title_bis_carousel)
+
+        title.text = getString(R.string.carousel_title_first)
+        titleBis.text = getString(R.string.carousel_title_second)
     }
 
     private fun initAllViews() {
@@ -195,7 +253,6 @@ class RecommendedActivity() : AppCompatActivity(),
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         mDrawerLayout = findViewById(R.id.drawer_recommended)
-        //mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END)
         val mDrawerToggle = ActionBarDrawerToggle(
             this, mDrawerLayout, toolbar,
             R.string.navigation_drawer_profile_open,
@@ -211,21 +268,20 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun initCarouselRecycler() {
-        val hmodels = mockDatasetCarousel()
         val carouselRecyclerView = findViewById<RecyclerView>(R.id.carousel_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
         val linearManager = CarouselLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        val adapterBookVertical =
+
+        mAdapterBookVerticalCarousel =
             CarouselBRecyclerViewAdapter(
                 this,
-                hmodels
+                mDatasetCarousel
             )
-
-        adapterBookVertical.setTabFragmentClickCallback(this)
+        mAdapterBookVerticalCarousel.setTabFragmentClickCallback(this)
         GravitySnapHelper(Gravity.START).attachToRecyclerView(carouselRecyclerView)
         carouselRecyclerView.setHasFixedSize(true)
         carouselRecyclerView.layoutManager = linearManager
-        carouselRecyclerView.adapter = adapterBookVertical
+        carouselRecyclerView.adapter = mAdapterBookVerticalCarousel
         carouselRecyclerView.addItemDecoration(
             LeftOffsetDecoration(this, R.dimen.left_carousel_recycler_view)
         )
@@ -237,22 +293,18 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun initFirstVerticalRecycler() {
-        val dataset = arrayListOf<ListBModel>()
-
-        mockDatasetFirstRecyclerView(dataset)
-
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.first_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val adapterBookVertical =
+
+        mAdapterBookVerticalFirstRecyclerView =
             ListBRecyclerViewAdapter(
                 this,
-                dataset,
+                mDatasetFirstRecyclerView,
                 this
             )
-
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.adapter = mAdapterBookVerticalFirstRecyclerView
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
         )
@@ -261,18 +313,17 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun initPopularSpeciesHorizontalRecycler() {
-        val popularList = GModelProvider(this).getPopularGenres()
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_genre)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val horizontalRecyclerView = findViewById<RecyclerView>(R.id.genre_horizontal_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val adapterGenreHorizontal = GPSRecyclerViewAdapter(this, popularList, this)
 
+        mAdapterGenreHorizontal = GPSRecyclerViewAdapter(this, mPopularList, this)
         title.text = TITLE_POPULAR_SPECIES_RECYCLER_VIEW
         //GravitySnapHelper(Gravity.END).attachToRecyclerView(horizontalRecyclerView)
         horizontalRecyclerView.setHasFixedSize(true)
         horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        horizontalRecyclerView.adapter = adapterGenreHorizontal
+        horizontalRecyclerView.adapter = mAdapterGenreHorizontal
         horizontalRecyclerView.addItemDecoration(
             LeftOffsetDecoration(this, R.dimen.left_popular_genre_horizontal_recycler_view)
         )
@@ -284,22 +335,18 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun initSecondVerticalRecycler() {
-        val dataset = arrayListOf<ListBModel>()
-
-        mockDatasetSecondRecyclerView(dataset)
-
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.second_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val adapterBookVertical =
+
+        mAdapterBookVerticalSecondRecyclerView =
             ListBRecyclerViewAdapter(
                 this,
-                dataset,
+                mDatasetSecondRecyclerView,
                 this
             )
-
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.adapter = mAdapterBookVerticalSecondRecyclerView
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
         )
@@ -308,67 +355,25 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun initSmallVerticalRecycler() {
-        val dataset = arrayListOf<NoTitleListBModel>()
-
-        mockDatasetSmallRecyclerView(dataset)
-
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_small)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.small_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val adapterBookVertical =
+
+        mAdapterBookVerticalSmallRecyclerView =
             SmallListBRecyclerViewAdapter(
                 this,
-                dataset,
+                mDatasetSmallRecyclerView,
                 this
             )
-
         title.text = TITLE_SMALL_RECYCLER_VIEW
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        verticalRecyclerView.adapter = adapterBookVertical
+        verticalRecyclerView.adapter = mAdapterBookVerticalSmallRecyclerView
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_small_book_vertical_recycler_view)
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
-    }
-
-    private fun mockDatasetCarousel(): ArrayList<BModel> {
-        val factory = BModelRandomProvider(this)
-
-        return factory.getRandomsInstances(NB_BOOKS_CAROUSEL)
-    }
-
-    private fun mockDatasetFirstRecyclerView(dataset: ArrayList<ListBModel>) {
-        dataset.addAll(
-            BModelRandomProvider(this).getRandomsInstancesFromListToListBModel(
-                TITLE_FIRST_RECYCLER_VIEW,
-                FIRST_RECYCLERVIEW_NB_COLUMNS,
-                NB_BOOKS_FIRST_RECYCLERVIEW,
-                mAllBooksFromDatabase
-            )
-        )
-    }
-
-    private fun mockDatasetSecondRecyclerView(dataset: ArrayList<ListBModel>) {
-        dataset.addAll(
-            BModelRandomProvider(this).getRandomsInstancesFromListToListBModel(
-                TITLE_SECOND_RECYCLER_VIEW,
-                SECOND_RECYCLERVIEW_NB_COLUMNS,
-                NB_BOOKS_SECOND_RECYCLERVIEW,
-                mAllBooksFromDatabase
-            )
-        )
-    }
-
-    private fun mockDatasetSmallRecyclerView(dataset: ArrayList<NoTitleListBModel>) {
-        dataset.addAll(
-            BModelRandomProvider(this).getRandomsInstancesFromListToNoTitleListBModel(
-                SMALL_RECYCLERVIEW_NB_COLUMNS,
-                NB_BOOKS_SMALL_RECYCLERVIEW,
-                mAllBooksFromDatabase
-            )
-        )
     }
 }
