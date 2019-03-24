@@ -210,7 +210,7 @@ class GroupActivity : AppCompatActivity(),
         actionButton.setOnClickListener {
             Toast.makeText(this, ("Opening " + book.title + " ..."), Toast.LENGTH_SHORT).show()
             dialog.hide()
-            openBook(book)
+            openBook()
         }
         dialog.show()
     }
@@ -222,7 +222,7 @@ class GroupActivity : AppCompatActivity(),
         mAdapterBookVertical.notifyDataSetChangedDownloadList()
     }
 
-    private fun openBook(book: BModel) {
+    private fun openBook() {
         openFolioReader()
     }
 
@@ -279,7 +279,7 @@ class GroupActivity : AppCompatActivity(),
 
         mDrawerToggle.isDrawerIndicatorEnabled = false
         mDrawerToggle.syncState()
-        mDrawerLayout.setDrawerListener(mDrawerToggle)
+        mDrawerLayout.addDrawerListener(mDrawerToggle)
     }
 
     private fun initVerticalRecyclerView() {

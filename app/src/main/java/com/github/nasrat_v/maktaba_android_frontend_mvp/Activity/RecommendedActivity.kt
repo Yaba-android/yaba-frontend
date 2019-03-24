@@ -261,7 +261,7 @@ class RecommendedActivity() : AppCompatActivity(),
         }
         mDrawerToggle.setHomeAsUpIndicator(R.drawable.menu_drawer)
         mDrawerToggle.syncState()
-        mDrawerLayout.setDrawerListener(mDrawerToggle)
+        mDrawerLayout.addDrawerListener(mDrawerToggle)
     }
 
     private fun initCarouselRecycler() {

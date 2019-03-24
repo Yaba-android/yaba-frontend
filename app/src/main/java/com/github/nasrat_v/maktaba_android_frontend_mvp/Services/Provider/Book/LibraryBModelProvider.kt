@@ -39,13 +39,13 @@ class LibraryBModelProvider {
         val booksSelected = arrayListOf<GroupBModel>()
 
         for (index in 0..(nb - 1)) {
-            findBookFromGenre(nb, genresSelected, allBooks, booksSelected)
+            findBookFromGenre(genresSelected, allBooks, booksSelected)
         }
         return booksSelected
     }
 
     private fun findBookFromGenre(
-        nb: Int, genresSelected: ArrayList<GModel>,
+        genresSelected: ArrayList<GModel>,
         allBooks: ArrayList<NoTitleListBModel>,
         booksSelected: ArrayList<GroupBModel>
     ) {
@@ -53,14 +53,14 @@ class LibraryBModelProvider {
         allBooks.forEach {
             if (genresSelected.size == 0)
                 return
-            addSelectedBook(nb, genresSelected.first(), it.bookModels, booksSelected)
+            addSelectedBook(genresSelected.first(), it.bookModels, booksSelected)
         }
         genresSelected.remove(genresSelected.first())
     }
 
 
     private fun addSelectedBook(
-        nb: Int, genre: GModel, list: ArrayList<BModel>,
+        genre: GModel, list: ArrayList<BModel>,
         booksSelected: ArrayList<GroupBModel>
     ) {
         val filteredList = ArrayList(list.filter { it.genre == genre })

@@ -232,7 +232,7 @@ class LibraryActivity : AppCompatActivity(),
         actionButton.setOnClickListener {
             Toast.makeText(this, ("Opening " + book.title + " ..."), Toast.LENGTH_SHORT).show()
             dialog.hide()
-            openBook(book)
+            openBook()
         }
         dialog.show()
     }
@@ -242,7 +242,7 @@ class LibraryActivity : AppCompatActivity(),
         addDownloadedBook(book)
     }
 
-    private fun openBook(book: BModel) {
+    private fun openBook() {
         openFolioReader()
     }
 
@@ -309,7 +309,7 @@ class LibraryActivity : AppCompatActivity(),
         }
         mDrawerToggle.setHomeAsUpIndicator(R.drawable.menu_drawer)
         mDrawerToggle.syncState()
-        mDrawerLayout.setDrawerListener(mDrawerToggle)
+        mDrawerLayout.addDrawerListener(mDrawerToggle)
     }
 
     private fun initFragmentManager() {

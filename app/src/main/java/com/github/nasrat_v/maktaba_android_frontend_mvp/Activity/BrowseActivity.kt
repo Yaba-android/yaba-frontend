@@ -206,7 +206,7 @@ class BrowseActivity : AppCompatActivity(),
         )
         mDrawerToggle.isDrawerIndicatorEnabled = false
         mDrawerToggle.syncState()
-        mDrawerLayout.setDrawerListener(mDrawerToggle)
+        mDrawerLayout.addDrawerListener(mDrawerToggle)
     }
 
     private fun initVerticalRecycler() {

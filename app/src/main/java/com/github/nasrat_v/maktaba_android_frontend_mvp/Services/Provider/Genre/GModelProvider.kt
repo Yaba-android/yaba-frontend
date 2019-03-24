@@ -62,7 +62,6 @@ class GModelProvider(var context: Context) {
     }
 
     fun getListAllBooksFromGenre(nbPerRow: Int, genre: GModel): ArrayList<NoTitleListBModel> {
-        val allbooks = BModelProvider(context).getAllBooksFromDatabase()
         val filteredList = getAllBooksFromGenre(genre)
 
         if (filteredList.isNotEmpty()) {
