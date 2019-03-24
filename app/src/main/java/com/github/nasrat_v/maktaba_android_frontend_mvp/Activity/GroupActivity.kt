@@ -53,6 +53,7 @@ class GroupActivity : AppCompatActivity(),
 
         mSelectedGroup = intent.getParcelableExtra(SELECTED_GROUP)
         mDownloadedBooks = intent.getParcelableArrayListExtra(LibraryActivity.DOWNLOADED_BOOKS)
+        mFirstInit = true
 
         initRootDrawerLayout()
         initVerticalRecyclerView()

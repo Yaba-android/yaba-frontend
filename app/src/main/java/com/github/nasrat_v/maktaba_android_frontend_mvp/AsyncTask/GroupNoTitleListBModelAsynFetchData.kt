@@ -16,6 +16,8 @@ class GroupNoTitleListBModelAsynFetchData(
     AsyncTaskLoader<ArrayList<NoTitleListBModel>>(context) {
 
     override fun loadInBackground(): ArrayList<NoTitleListBModel>? {
+        //android.os.Debug.waitForDebugger()
+
         // on format en deux listes (vertical & horizontal) pour recylerviews
         return getGroupBooksFormatedForAdapter()
     }

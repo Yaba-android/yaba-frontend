@@ -18,6 +18,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Adapter.BrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import android.app.Activity
+import android.support.v4.app.LoaderManager
+import android.support.v4.content.Loader
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -27,12 +29,19 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.BrowseBModelAsynFetchData
+import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IInputBrowseCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Model.BrowseBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Book.BrowseBModelFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
+    LoaderManager.LoaderCallbacks<BrowseBModel>,
     IBookClickCallback,
-    IDeleteBrowseBookClickCallback {
+    IDeleteBrowseBookClickCallback,
+    IInputBrowseCallback {
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mAdapterBookVertical: BrowseBRecyclerViewAdapter
@@ -40,7 +49,6 @@ class BrowseActivity : AppCompatActivity(),
     private lateinit var mEditText: EditText
     private lateinit var mFirstVerticalRecyclerView: RecyclerView
     private lateinit var mSecondVerticalRecyclerView: RecyclerView
-    private lateinit var mAllBooksFromDatabase: ArrayList<BModel>
     private lateinit var mFadeInResultAnim: Animation
     private lateinit var mFadeOutResultAnim: Animation
     private lateinit var mFadeInTitleEmptyAnim: Animation
@@ -51,8 +59,9 @@ class BrowseActivity : AppCompatActivity(),
     private lateinit var mContentEmpty: TextView
     private lateinit var mTitleResults: TextView
     private lateinit var mProgressBar: ProgressBar
-    private val mListResultBrowse = arrayListOf<BModel>()
-    private val mDatasetSecondRecyclerView = arrayListOf<ListBModel>()
+    private lateinit var mBrowseResult: BrowseBModel
+    private var mInputBrowseString = String()
+    private var mFirstInit = true
 
     companion object {
         const val ACTIVITY_NAME = "Browse"
@@ -62,18 +71,45 @@ class BrowseActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        fetchAllBooksFromDatabase()
         setContentView(R.layout.activity_browse_structure)
+        mFirstInit = true
 
-        setListenerLibraryButtonFooter()
-        setListenerRecommendedButtonFooter()
-
+        initEmptyBrowseResult()
         initVerticalRecycler()
         initSecondVerticalRecycler()
-        initEditText()
         initRootDrawerLayout()
-        setFadeAnimation()
-        startLaunchAnimation()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (mFirstInit) {
+            setListenerLibraryButtonFooter()
+            setListenerRecommendedButtonFooter()
+
+            initEditText()
+            setFadeAnimation()
+            startLaunchAnimation()
+        }
+        mFirstInit = false
+    }
+
+    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<BrowseBModel> {
+        return BrowseBModelAsynFetchData(this, this)
+    }
+
+    override fun onLoadFinished(p0: Loader<BrowseBModel>, data: BrowseBModel?) {
+        mBrowseResult.booksResultList.clear()
+        mBrowseResult.booksGenreList.clear()
+        mBrowseResult.booksResultList.addAll(data!!.booksResultList)
+        mBrowseResult.booksGenreList.addAll(data.booksGenreList)
+
+        mTitleResults.startAnimation(mFadeInResultAnim)
+        //notifyAllItemInserted(mBrowseResult.booksResultList.size, mBrowseResult.booksGenreList.size) not working ??
+        notifyDataSetChanged()
+    }
+
+    override fun onLoaderReset(p0: Loader<BrowseBModel>) {
     }
 
     override fun onBackPressed() {
@@ -90,23 +126,27 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     override fun bookEraseEventButtonClicked(book: BModel, position: Int) {
-        if (mListResultBrowse.find { it == book } != null) {
-            mListResultBrowse.removeAt(position)
+        if (mBrowseResult.booksResultList.find { it == book } != null) {
+            mBrowseResult.booksResultList.removeAt(position)
             mAdapterBookVertical.notifyItemRemoved(position)
-            if (mListResultBrowse.isEmpty())
+            if (mBrowseResult.booksResultList.isEmpty())
                 mFirstVerticalRecyclerView.visibility = View.GONE
         }
     }
 
     override fun recyclerViewEraseEventButtonClicked(position: Int) {
-        mDatasetSecondRecyclerView.removeAt(position)
+        mBrowseResult.booksGenreList.removeAt(position)
         mAdapterBookSecondVertical.notifyItemRemoved(position)
-        if (mDatasetSecondRecyclerView.isEmpty())
+        if (mBrowseResult.booksGenreList.isEmpty())
             mSecondVerticalRecyclerView.visibility = View.GONE
     }
 
-    private fun fetchAllBooksFromDatabase() {
-        mAllBooksFromDatabase = BModelProvider(this).getAllBooksFromDatabase()
+    override fun getInputBrowseString(): String {
+        return mInputBrowseString
+    }
+
+    private fun initEmptyBrowseResult() {
+        mBrowseResult = BrowseBModelFactory().getEmptyInstance()
     }
 
     private fun setListenerRecommendedButtonFooter() {
@@ -143,10 +183,11 @@ class BrowseActivity : AppCompatActivity(),
 
         buttonCancel.setOnClickListener {
             mEditText.text.clear()
-            firstRecyclerSize = mListResultBrowse.size
-            secondRecyclerSize = mDatasetSecondRecyclerView.size
-            mListResultBrowse.clear()
-            mDatasetSecondRecyclerView.clear()
+            firstRecyclerSize = mBrowseResult.booksResultList.size
+            secondRecyclerSize = mBrowseResult.booksGenreList.size
+            mProgressBar.visibility = View.GONE
+            mBrowseResult.booksResultList.clear()
+            mBrowseResult.booksGenreList.clear()
             setVisibilityTextRemove()
             notifyAllItemRemoved(firstRecyclerSize, secondRecyclerSize)
         }
@@ -175,7 +216,7 @@ class BrowseActivity : AppCompatActivity(),
         mAdapterBookVertical =
             BrowseBRecyclerViewAdapter(
                 this,
-                mListResultBrowse,
+                mBrowseResult.booksResultList,
                 this,
                 this
             )
@@ -196,7 +237,7 @@ class BrowseActivity : AppCompatActivity(),
         mAdapterBookSecondVertical =
             ListEraseBRecyclerViewAdapter(
                 this,
-                mDatasetSecondRecyclerView,
+                mBrowseResult.booksGenreList,
                 this,
                 this
             )
@@ -237,45 +278,21 @@ class BrowseActivity : AppCompatActivity(),
         mContentEmpty.startAnimation(mFadeOutContentEmptyAnim)
     }
 
-    private fun findDatasetSecondRecyclerView() {
-        val genre: GModel = mListResultBrowse.first().genre
-        val list: ArrayList<BModel>
-
-        list = GModelProvider(this).getAllBooksFromGenre(genre)
-        mDatasetSecondRecyclerView.add(ListBModel(("Category: " + genre.name), list))
-    }
-
     private fun browseSearch() {
-        val str = mEditText.text.toString().toLowerCase()
-
+        setVisibilityItemInsert()
         mProgressBar.visibility = View.VISIBLE
         mFirstVerticalRecyclerView.visibility = View.VISIBLE
         mSecondVerticalRecyclerView.visibility = View.VISIBLE
-        clearAllDatasetRecyclerViews(mListResultBrowse.size, mDatasetSecondRecyclerView.size)
-        mListResultBrowse.addAll(
-            mAllBooksFromDatabase.filter {
-                isSearchMatching(it, str)
-            }
-        )
-        if (mListResultBrowse.isNotEmpty()) {
-            findDatasetSecondRecyclerView()
-            setVisibilityItemInsert()
-            notifyAllItemInserted(mListResultBrowse.size, mDatasetSecondRecyclerView.size)
-        }
-    }
+        clearAllDatasetRecyclerViews(mBrowseResult.booksResultList.size, mBrowseResult.booksGenreList.size)
+        mInputBrowseString = mEditText.text.toString().toLowerCase()
 
-    private fun isSearchMatching(book: BModel, str: String): Boolean {
-        return (book.title.toLowerCase().contains(str) ||
-                book.author.name.toLowerCase().contains(str) ||
-                book.country.toLowerCase().contains(str) ||
-                book.genre.name.toLowerCase().contains(str) ||
-                book.publisher.toLowerCase().contains(str))
+        supportLoaderManager.restartLoader(0, null, this).forceLoad() // launch search in async task -> restart loader each time
     }
 
     private fun clearAllDatasetRecyclerViews(firstRecyclerSize: Int, secondRecyclerSize: Int) {
-        if (mListResultBrowse.isNotEmpty() || mDatasetSecondRecyclerView.isNotEmpty()) {
-            mListResultBrowse.clear()
-            mDatasetSecondRecyclerView.clear()
+        if (mBrowseResult.booksResultList.isNotEmpty() || mBrowseResult.booksGenreList.isNotEmpty()) {
+            mBrowseResult.booksResultList.clear()
+            mBrowseResult.booksGenreList.clear()
             setVisibilityTextRemove()
             notifyAllItemRemoved(firstRecyclerSize, secondRecyclerSize)
         }
@@ -296,9 +313,15 @@ class BrowseActivity : AppCompatActivity(),
         mAdapterBookSecondVertical.notifyItemRangeRemoved(0, secondRecyclerSize)
     }
 
+    // not working with async task ???
     private fun notifyAllItemInserted(firstRecyclerSize: Int, secondRecyclerSize: Int) {
         mAdapterBookVertical.notifyItemRangeInserted(0, firstRecyclerSize)
         mAdapterBookSecondVertical.notifyItemRangeInserted(0, secondRecyclerSize)
+    }
+
+    private fun notifyDataSetChanged() {
+        mAdapterBookVertical.notifyDataSetChanged()
+        mAdapterBookSecondVertical.notifyDataSetChanged()
     }
 
     private fun setFadeAnimation() {
@@ -387,7 +410,6 @@ class BrowseActivity : AppCompatActivity(),
 
             override fun onAnimationEnd(animation: Animation?) {
                 mContentEmpty.visibility = View.GONE
-                mTitleResults.startAnimation(mFadeInResultAnim)
             }
 
             override fun onAnimationStart(animation: Animation?) {}

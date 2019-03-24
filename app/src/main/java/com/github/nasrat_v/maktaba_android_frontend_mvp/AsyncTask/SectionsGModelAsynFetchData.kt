@@ -11,6 +11,8 @@ class SectionsGModelAsynFetchData(
     AsyncTaskLoader<ArrayList<GModel>>(context) {
 
     override fun loadInBackground(): ArrayList<GModel>? {
+        //android.os.Debug.waitForDebugger()
+
         return GModelProvider(context).getAllGenres()
     }
 }
