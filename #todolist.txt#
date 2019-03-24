@@ -3,8 +3,6 @@
 * bug quand on click sur un book puis on click encore sur un book
 si on click sur recommended on revient au premier book
 
-* Bug affichage double recyclerview sur emulator
-
 https://developer.android.com/training/basics/supporting-devices/languages
 
 
