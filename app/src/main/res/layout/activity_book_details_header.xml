@@ -9,7 +9,7 @@
         android:paddingBottom="40dp"
         android:background="@android:color/white"
         app:layout_scrollFlags="scroll">
-    
+
     <ProgressBar
             android:id="@+id/progress_bar_book_details"
             android:layout_width="match_parent"

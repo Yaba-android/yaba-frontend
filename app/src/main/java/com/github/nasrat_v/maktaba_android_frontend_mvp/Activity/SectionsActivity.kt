@@ -8,9 +8,11 @@ import android.support.v4.content.Loader
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.SectionsGModelAsynFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ISectionAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
@@ -24,6 +26,7 @@ class SectionsActivity : AppCompatActivity(),
     ISectionAdditionalClickCallback {
 
     private lateinit var mAdapterBookVertical: GSRecyclerViewAdapter
+    private lateinit var mProgressBar: ProgressBar
     private val mGenreList = arrayListOf<GModel>()
     private var mFirstInit = true
 
@@ -36,7 +39,9 @@ class SectionsActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sections)
 
+        mProgressBar = findViewById(R.id.progress_bar_sections)
         mFirstInit = true
+
         initSectionNavVerticalRecycler()
     }
 
@@ -59,6 +64,7 @@ class SectionsActivity : AppCompatActivity(),
         mGenreList.clear()
         mGenreList.addAll(data!!)
         mAdapterBookVertical.notifyDataSetChanged()
+        mProgressBar.visibility = View.GONE
     }
 
     override fun onLoaderReset(p0: Loader<ArrayList<GModel>>) {

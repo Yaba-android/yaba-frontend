@@ -42,6 +42,7 @@ class GroupActivity : AppCompatActivity(),
     private lateinit var mAdapterBookVertical: GroupListBRecyclerViewAdapter
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mFolioReader: FolioReader
+    private lateinit var mProgressBar: ProgressBar
     private val mDataset = arrayListOf<NoTitleListBModel>()
     private var mBooksToAddToDownload = arrayListOf<BModel>()
     private var mFirstInit = true
@@ -53,6 +54,7 @@ class GroupActivity : AppCompatActivity(),
 
         mSelectedGroup = intent.getParcelableExtra(SELECTED_GROUP)
         mDownloadedBooks = intent.getParcelableArrayListExtra(LibraryActivity.DOWNLOADED_BOOKS)
+        mProgressBar = findViewById(R.id.progress_bar_group)
         mFirstInit = true
 
         initRootDrawerLayout()
@@ -82,6 +84,7 @@ class GroupActivity : AppCompatActivity(),
         mDataset.addAll(data!!)
         setGroupDetailsAttributes()
         mAdapterBookVertical.notifyDataSetChanged()
+        mProgressBar.visibility = View.GONE
     }
 
     override fun onLoaderReset(p0: Loader<ArrayList<NoTitleListBModel>>) {

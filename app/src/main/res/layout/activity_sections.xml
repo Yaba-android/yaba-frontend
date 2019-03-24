@@ -17,11 +17,21 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
+
         <include
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 layout="@layout/activity_sections_header"/>
+
+        <ProgressBar
+                android:id="@+id/progress_bar_sections"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="150dp"
+                android:paddingBottom="500dp"
+                android:indeterminate="true"/>
 
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/vertical_recyclerview_section"

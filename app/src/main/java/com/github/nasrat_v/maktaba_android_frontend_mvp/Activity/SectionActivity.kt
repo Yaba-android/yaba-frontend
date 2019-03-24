@@ -11,14 +11,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.view.Gravity
-import android.view.Menu
-import android.view.MenuItem
-import android.view.WindowManager
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.view.*
+import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.SectionNoTitleListBModelAsynFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.BigListBRecyclerViewAdapter
@@ -39,6 +33,7 @@ class SectionActivity : AppCompatActivity(),
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mSelectedSection: GModel
     private lateinit var mAdapterBookVertical: BigListBRecyclerViewAdapter
+    private lateinit var mProgressBar: ProgressBar
     private val mDataset = arrayListOf<NoTitleListBModel>()
     private var mFirstInit = true
 
@@ -52,6 +47,7 @@ class SectionActivity : AppCompatActivity(),
         setContentView(R.layout.activity_section_structure)
 
         mSelectedSection = intent.getParcelableExtra(RecommendedActivity.SELECTED_POPULAR_SPECIES)
+        mProgressBar = findViewById(R.id.progress_bar_section)
         mFirstInit = true
 
         initDrawerLayout()
@@ -80,6 +76,7 @@ class SectionActivity : AppCompatActivity(),
         mDataset.addAll(data!!)
         initTitle()
         mAdapterBookVertical.notifyDataSetChanged()
+        mProgressBar.visibility = View.GONE
     }
 
     override fun onLoaderReset(p0: Loader<ArrayList<NoTitleListBModel>>) {
