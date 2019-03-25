@@ -34,6 +34,7 @@
                 android:text="@string/find_the_books_you_love"
                 android:textSize="16sp"
                 android:textColor="@color/colorTextBlackGroup"
+                android:fontFamily="@font/noto_sans_family"
                 android:visibility="gone"
                 android:gravity="center"/>
 
@@ -47,6 +48,7 @@
                 android:text="@string/search_by"
                 android:textSize="12sp"
                 android:textColor="@color/colorTextGrey"
+                android:fontFamily="@font/noto_sans_family"
                 android:visibility="gone"
                 android:gravity="center"/>
 
@@ -60,6 +62,7 @@
                 android:text="@string/results"
                 android:textSize="14sp"
                 android:textColor="@color/colorTextBlackGroup"
+                android:fontFamily="@font/noto_sans_family"
                 android:textStyle="bold"
                 android:visibility="gone"
                 android:gravity="end"/>

@@ -13,9 +13,10 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class SplashScreenActivity : AppCompatActivity() {
 
-    private lateinit var mFadeInAnim: Animation
-    private lateinit var mFadeOutAnim: Animation
+    private lateinit var mFadeInTitleAnim: Animation
+    private lateinit var mFadeInTitleBisAnim: Animation
     private lateinit var mTitle: TextView
+    private lateinit var mTitleBis: TextView
     private var mDelayHandler: Handler? = null
 
     companion object {
@@ -51,18 +52,20 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun initAnimations() {
         mTitle = findViewById(R.id.title_splash_screen)
-        initFadeInAnimation()
-        initFadeOutAnimation()
-        mTitle.startAnimation(mFadeInAnim)
+        mTitleBis = findViewById(R.id.title_bis_splash_screen)
+
+        initFadeInTitleAnimation()
+        initFadeInTitleBisAnimation()
+        mTitle.startAnimation(mFadeInTitleAnim)
+        mTitleBis.startAnimation(mFadeInTitleBisAnim)
     }
 
-    private fun initFadeInAnimation() {
-        mFadeInAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        mFadeInAnim.setAnimationListener(object : Animation.AnimationListener {
+    private fun initFadeInTitleAnimation() {
+        mFadeInTitleAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in_splash_screen)
+        mFadeInTitleAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
-                mTitle.startAnimation(mFadeOutAnim)
             }
 
             override fun onAnimationStart(animation: Animation?) {
@@ -71,17 +74,17 @@ class SplashScreenActivity : AppCompatActivity() {
         })
     }
 
-    private fun initFadeOutAnimation() {
-        mFadeOutAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out)
-        mFadeOutAnim.setAnimationListener(object : Animation.AnimationListener {
+    private fun initFadeInTitleBisAnimation() {
+        mFadeInTitleBisAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in_splash_screen)
+        mFadeInTitleBisAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
-                mTitle.visibility = View.GONE
-                mTitle.startAnimation(mFadeInAnim)
             }
 
-            override fun onAnimationStart(animation: Animation?) {}
+            override fun onAnimationStart(animation: Animation?) {
+                mTitleBis.visibility = View.VISIBLE
+            }
         })
     }
 }

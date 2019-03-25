@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <TextView
-            android:id="@+id/title_splash_screen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"
-            android:gravity="center"
-            android:text="@string/maktaba"
-            android:textColor="@color/colorTextGrey"
-            android:fontFamily="@font/noto_sans_family"
-            android:textSize="30sp"
-            android:textStyle="italic|bold"/>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            tools:ignore="UselessParent">
 
-</LinearLayout>
+        <TextView
+                android:id="@+id/title_splash_screen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/maktaba"
+                android:fontFamily="@font/noto_sans_family"
+                android:textSize="20sp"
+                android:textColor="@color/colorTextBlackGroup"
+                android:gravity="center"/>
+
+        <TextView
+                android:id="@+id/title_bis_splash_screen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/find_the_books_you_love"
+                android:fontFamily="@font/noto_sans_family"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextGrey"
+                android:gravity="center"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
