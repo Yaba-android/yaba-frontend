@@ -22,6 +22,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import com.folioreader.FolioReader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
@@ -37,6 +38,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.B
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.LibraryBModelAsyncFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
+import org.w3c.dom.Text
 
 /*
     for epub files see:
@@ -71,8 +73,8 @@ class LibraryActivity : AppCompatActivity(),
         const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
         const val DOWNLOADED_BOOKS = "DownloadedBooks"
         const val PATH_TO_EBOOK_EPUB = R.raw.jekyll_and_hyde
-        const val ACTION_BUTTON_TEXT_DOWNLOAD = "Download Book"
-        const val ACTION_BUTTON_TEXT_OPEN = "Open Book"
+        const val ACTION_BUTTON_TEXT_DOWNLOAD = "Download"
+        const val ACTION_BUTTON_TEXT_OPEN = "Open it"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -208,11 +210,16 @@ class LibraryActivity : AppCompatActivity(),
 
         val closeButton = dialog.findViewById<Button>(R.id.button_close_dialog)
         val actionButton = dialog.findViewById<Button>(R.id.button_action_dialog)
+        val title = dialog.findViewById<TextView>(R.id.title_book_dialog)
+        val author = dialog.findViewById<TextView>(R.id.author_book_dialog)
 
+        author.text = book.author.name
+        title.text = book.title
         actionButton.text = ACTION_BUTTON_TEXT_DOWNLOAD
         closeButton.setOnClickListener {
             dialog.hide()
         }
+        actionButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.download_book_dialog, 0, 0, 0) // left
         actionButton.setOnClickListener {
             downloadBook(book)
             dialog.hide()
@@ -227,11 +234,16 @@ class LibraryActivity : AppCompatActivity(),
 
         val closeButton = dialog.findViewById<Button>(R.id.button_close_dialog)
         val actionButton = dialog.findViewById<Button>(R.id.button_action_dialog)
+        val title = dialog.findViewById<TextView>(R.id.title_book_dialog)
+        val author = dialog.findViewById<TextView>(R.id.author_book_dialog)
 
+        author.text = book.author.name
+        title.text = book.title
         actionButton.text = ACTION_BUTTON_TEXT_OPEN
         closeButton.setOnClickListener {
             dialog.hide()
         }
+        actionButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.left_arrow, 0, 0, 0) // left
         actionButton.setOnClickListener {
             Toast.makeText(this, ("Opening " + book.title + " ..."), Toast.LENGTH_SHORT).show()
             dialog.hide()
@@ -247,6 +259,7 @@ class LibraryActivity : AppCompatActivity(),
 
     private fun openBook() {
         openFolioReader()
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     private fun isBookAlreadyDownloaded(book: BModel): Boolean {

@@ -186,11 +186,16 @@ class GroupActivity : AppCompatActivity(),
 
         val closeButton = dialog.findViewById<Button>(R.id.button_close_dialog)
         val actionButton = dialog.findViewById<Button>(R.id.button_action_dialog)
+        val title = dialog.findViewById<TextView>(R.id.title_book_dialog)
+        val author = dialog.findViewById<TextView>(R.id.author_book_dialog)
 
+        author.text = book.author.name
+        title.text = book.title
         actionButton.text = LibraryActivity.ACTION_BUTTON_TEXT_DOWNLOAD
         closeButton.setOnClickListener {
             dialog.hide()
         }
+        actionButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.download_book_dialog, 0, 0, 0) // left
         actionButton.setOnClickListener {
             downloadBook(book)
             dialog.hide()
@@ -205,11 +210,16 @@ class GroupActivity : AppCompatActivity(),
 
         val closeButton = dialog.findViewById<Button>(R.id.button_close_dialog)
         val actionButton = dialog.findViewById<Button>(R.id.button_action_dialog)
+        val title = dialog.findViewById<TextView>(R.id.title_book_dialog)
+        val author = dialog.findViewById<TextView>(R.id.author_book_dialog)
 
+        author.text = book.author.name
+        title.text = book.title
         actionButton.text = LibraryActivity.ACTION_BUTTON_TEXT_OPEN
         closeButton.setOnClickListener {
             dialog.hide()
         }
+        actionButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.left_arrow, 0, 0, 0) // left
         actionButton.setOnClickListener {
             Toast.makeText(this, ("Opening " + book.title + " ..."), Toast.LENGTH_SHORT).show()
             dialog.hide()
@@ -227,6 +237,7 @@ class GroupActivity : AppCompatActivity(),
 
     private fun openBook() {
         openFolioReader()
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     private fun isBookAlreadyDownloaded(book: BModel): Boolean {

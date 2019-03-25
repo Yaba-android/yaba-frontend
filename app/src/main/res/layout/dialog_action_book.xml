@@ -2,7 +2,7 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_height="320dp"
         android:layout_gravity="center"
         android:background="@android:color/white">
 
@@ -10,8 +10,8 @@
             android:id="@+id/button_close_dialog"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentStart="true"
             android:layout_marginTop="5dp"
+            android:layout_alignParentStart="true"
             android:layout_marginStart="10dp"
             android:background="@android:color/transparent"/>
 
@@ -23,16 +23,66 @@
             android:layout_marginStart="26dp"
             android:background="@drawable/cancel"/>
 
+    <TextView
+            android:id="@+id/title_book_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_below="@+id/button_close_dialog"
+            android:gravity="start|center"
+            android:textDirection="rtl"
+            android:fontFamily="@font/noto_sans_semi_bold"
+            android:textSize="16sp"
+            android:textColor="@color/colorTextBlackGroup"/>
+
+    <TextView
+            android:id="@+id/author_book_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_below="@+id/title_book_dialog"
+            android:gravity="start|center"
+            android:textDirection="rtl"
+            android:fontFamily="@font/noto_sans_family"
+            android:textSize="16sp"
+            android:textColor="@color/colorTextGrey"/>
+
+    <LinearLayout
+            android:id="@+id/separator_dialog"
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/author_book_dialog"
+            android:layout_centerInParent="true"
+            android:background="@color/colorSeparatorViewGrey"
+            android:orientation="vertical"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/separator_dialog">
+
     <Button
             android:id="@+id/button_action_dialog"
-            android:layout_width="160dp"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="95dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_centerInParent="true"
             android:gravity="center"
             android:background="@color/colorButtonDownloadBlue"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="12sp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
