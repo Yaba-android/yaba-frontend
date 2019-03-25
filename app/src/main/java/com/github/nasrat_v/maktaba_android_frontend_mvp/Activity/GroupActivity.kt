@@ -232,7 +232,7 @@ class GroupActivity : AppCompatActivity(),
         Toast.makeText(this, ("Downloading " + book.title + " ..."), Toast.LENGTH_SHORT).show()
         addDownloadedBook(book)
         mBooksToAddToDownload.add(book)
-        mAdapterBookVertical.notifyDataSetChangedDownloadList()
+        mAdapterBookVertical.notifyDataSetChanged()
     }
 
     private fun openBook() {

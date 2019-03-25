@@ -77,11 +77,6 @@ class GroupListBRecyclerViewAdapter(
         mDecorationFlag = false
     }
 
-    fun notifyDataSetChangedDownloadList() {
-        mHorizontalRecyclerViewAdapter.notifyDataSetChanged()
-        this.notifyDataSetChanged()
-    }
-
     fun setDisplayMetrics(displayMetrics: DisplayMetrics) {
         mDisplayMetrics = displayMetrics
     }
