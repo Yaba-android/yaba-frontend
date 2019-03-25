@@ -13,8 +13,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:gravity="right"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorTextBlackGroup"
             android:textSize="16sp"
+            android:fontFamily="@font/noto_sans_family"
             android:textStyle="bold"
             android:padding="10dp"
             tools:ignore="RtlHardcoded"/>
@@ -44,6 +45,7 @@
                 android:layout_marginEnd="5dp"
                 android:gravity="right"
                 android:textSize="12sp"
+                android:fontFamily="@font/noto_sans_family"
                 android:textColor="@color/colorTextGrey"
                 tools:ignore="RtlHardcoded"/>
 
@@ -58,8 +60,9 @@
                 android:gravity="end|center"
                 android:text="@string/read_more"
                 android:textSize="12sp"
+                android:fontFamily="@font/noto_sans_family"
                 android:textAllCaps="false"
-                android:textColor="@color/colorTextBlack"
+                android:textColor="@color/colorReviewTextBlack"
                 android:background="@color/colorBookDetailsButtonGrey"
                 android:drawableStart="@drawable/plus"/>
 

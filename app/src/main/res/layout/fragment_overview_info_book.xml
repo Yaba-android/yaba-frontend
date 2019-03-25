@@ -20,6 +20,7 @@
                 android:id="@+id/overview_category_length"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="20dp"
                 layout="@layout/fragment_overview_info_book_textview"/>
 
@@ -27,6 +28,7 @@
                 android:id="@+id/overview_category_file_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="20dp"
                 layout="@layout/fragment_overview_info_book_textview"/>
 
@@ -34,6 +36,7 @@
                 android:id="@+id/overview_category_date_publication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 layout="@layout/fragment_overview_info_book_textview"/>
 
     </LinearLayout>
@@ -50,6 +53,7 @@
                 android:id="@+id/overview_category_genre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="20dp"
                 layout="@layout/fragment_overview_info_book_textview"/>
 
@@ -57,6 +61,7 @@
                 android:id="@+id/overview_category_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="20dp"
                 layout="@layout/fragment_overview_info_book_textview"/>
 
@@ -64,6 +69,7 @@
                 android:id="@+id/overview_category_publisher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 layout="@layout/fragment_overview_info_book_textview"/>
 
     </LinearLayout>

@@ -9,10 +9,11 @@
             android:id="@+id/title_splash_screen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="30dp"
             android:gravity="center"
             android:text="@string/maktaba"
             android:textColor="@color/colorTextGrey"
+            android:fontFamily="@font/noto_sans_family"
             android:textSize="30sp"
             android:textStyle="italic|bold"/>
 

@@ -21,7 +21,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 android:textDirection="rtl"
-                android:textColor="@color/colorTextBlack"
+                android:textColor="@color/colorReviewTextBlack"
+                android:fontFamily="@font/noto_sans_family"
                 android:textSize="14sp"
                 tools:ignore="RtlHardcoded"
                 android:padding="10dp"/>

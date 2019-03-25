@@ -37,7 +37,8 @@
             android:gravity="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/colorTextBlack"
+            android:fontFamily="@font/noto_sans_family"
+            android:textColor="@color/colorTextBlackGroup"
             tools:ignore="RtlHardcoded"/>
 
     <TextView
@@ -49,6 +50,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:textSize="14sp"
+            android:fontFamily="@font/noto_sans_family"
             android:textColor="@color/colorTextGrey"
             tools:ignore="RtlHardcoded"/>
 
@@ -73,7 +75,8 @@
             android:layout_marginTop="8dp"
             android:layout_below="@id/author_book"
             android:layout_toStartOf="@+id/rating_bar_book"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorReviewTextBlack"
+            android:fontFamily="@font/noto_sans_family"
             android:textSize="12sp"
             android:paddingEnd="3dp"
             tools:ignore="RtlSymmetry"/>
@@ -89,6 +92,7 @@
             android:text="@string/add_to_wish_list"
             android:textSize="14sp"
             android:textColor="@color/colorTextGrey"
+            android:fontFamily="@font/noto_sans_family"
             android:textAllCaps="false"
             android:background="?android:selectableItemBackground"
             android:drawableEnd="@drawable/add_wish_list_heart"/>
@@ -124,6 +128,7 @@
                         android:textSize="14sp"
                         android:textAllCaps="false"
                         android:textColor="@color/colorTextGrey"
+                        android:fontFamily="@font/noto_sans_family"
                         android:background="?android:selectableItemBackground"
                         android:drawableEnd="@drawable/try_sample_library"/>
 
@@ -152,6 +157,7 @@
                         android:text="@string/buy"
                         android:textSize="14sp"
                         android:textAllCaps="false"
+                        android:fontFamily="@font/noto_sans_family"
                         android:textColor="@android:color/white"
                         android:background="@color/colorButtonDownloadBlue"/>
 

@@ -35,8 +35,8 @@
             android:layout_below="@+id/cardview_image"
             android:layout_marginStart="@dimen/size_shadow_book"
             android:textColor="@color/colorReviewTextBlack"
-            android:textSize="14sp"
-            android:fontFamily="@font/noto_sans_family"
+            android:textSize="12sp"
+            android:fontFamily="@font/noto_sans_semi_bold"
             android:paddingBottom="2dp"/>
 
     <TextView

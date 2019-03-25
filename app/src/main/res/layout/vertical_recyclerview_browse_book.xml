@@ -48,6 +48,7 @@
             android:paddingBottom="5dp"
             android:textSize="12sp"
             android:textDirection="rtl"
+            android:fontFamily="@font/noto_sans_semi_bold"
             android:textColor="@color/colorReviewTextBlack"/>
 
     <TextView
@@ -61,6 +62,7 @@
             android:paddingBottom="8dp"
             android:textSize="12sp"
             android:textDirection="rtl"
+            android:fontFamily="@font/noto_sans_family"
             android:textColor="@color/colorTextGrey"/>
 
     <RatingBar
@@ -83,6 +85,7 @@
             android:layout_toEndOf="@+id/button_erase_browse_book"
             android:layoutDirection="rtl"
             android:textColor="@color/colorReviewTextBlack"
+            android:fontFamily="@font/noto_sans_family"
             android:textSize="10sp"
             android:paddingEnd="2dp"
             tools:ignore="RtlSymmetry,SmallSp"/>
@@ -97,6 +100,7 @@
             android:layout_marginEnd="10dp"
             android:layoutDirection="rtl"
             android:textColor="@color/colorReviewTextBlack"
+            android:fontFamily="@font/noto_sans_family"
             android:textSize="12sp"/>
 
     <Button

@@ -20,7 +20,9 @@
             android:textSize="14sp"
             android:textColor="@color/colorTextBlack"
             android:textAllCaps="false"
+            android:fontFamily="@font/noto_sans_family"
             android:gravity="end|center"
+            android:drawableStart="@drawable/sign_out"
             android:padding="15dp"
             android:background="@android:color/transparent"/>
 

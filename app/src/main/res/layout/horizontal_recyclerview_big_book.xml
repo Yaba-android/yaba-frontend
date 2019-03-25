@@ -34,9 +34,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_image"
             android:layout_marginStart="@dimen/size_shadow_big_book"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorReviewTextBlack"
+            android:fontFamily="@font/noto_sans_semi_bold"
             android:textSize="14sp"
-            android:textStyle="bold"
             android:paddingBottom="3dp"/>
 
     <TextView
@@ -46,6 +46,7 @@
             android:layout_below="@id/horizontal_title"
             android:layout_marginStart="@dimen/size_shadow_big_book"
             android:textColor="@color/colorTextGrey"
+            android:fontFamily="@font/noto_sans_family"
             android:textSize="12sp"
             android:paddingBottom="6dp"/>
 
@@ -64,7 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/horizontal_author"
             android:layout_toEndOf="@+id/horizontal_rating_bar"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorReviewTextBlack"
+            android:fontFamily="@font/noto_sans_family"
             android:textSize="10sp"
             android:paddingStart="2dp"
             tools:ignore="RtlSymmetry,SmallSp"/>
@@ -75,7 +77,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/horizontal_rating_bar"
             android:layout_marginStart="@dimen/size_shadow_big_book"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorTextBlackGroup"
+            android:fontFamily="@font/noto_sans_family"
             android:textSize="12sp"/>
 
 </RelativeLayout>

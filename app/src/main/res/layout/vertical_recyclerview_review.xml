@@ -27,6 +27,7 @@
             android:layout_toStartOf="@+id/profile_picture_review"
             android:textDirection="rtl"
             android:textSize="14sp"
+            android:fontFamily="@font/noto_sans_family"
             android:textColor="@color/colorReviewTextBlack"
             android:paddingBottom="5dp"
             tools:ignore="RtlHardcoded"/>
@@ -54,6 +55,7 @@
             android:layout_alignEnd="@+id/author_review"
             android:layout_marginTop="14dp"
             android:textDirection="rtl"
+            android:fontFamily="@font/noto_sans_family"
             android:textSize="12sp"
             android:textColor="@color/colorTextGrey"
             tools:ignore="RtlHardcoded"/>

@@ -68,12 +68,15 @@
             android:id="@+id/text_genre_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:layout_below="@+id/cardview_first_group"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:textSize="16sp"
+            android:fontFamily="@font/noto_sans_family"
             android:textColor="@color/colorTextBlackGroup"/>
 
 </RelativeLayout>

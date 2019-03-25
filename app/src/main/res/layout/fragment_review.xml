@@ -37,6 +37,7 @@
                     android:background="@color/colorBookDetailsButtonGrey"
                     android:text="@string/view_all_reviews"
                     android:textSize="12sp"
+                    android:fontFamily="@font/noto_sans_family"
                     android:textAllCaps="false"
                     android:textColor="@color/colorReviewTextBlack"/>
 
