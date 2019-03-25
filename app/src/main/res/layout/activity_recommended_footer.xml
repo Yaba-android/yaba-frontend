@@ -8,14 +8,17 @@
 
     <TextView
             android:id="@+id/first_text_dont_find"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:paddingBottom="5dp"
-            android:gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
             android:text="@string/not_found_what_you_re_looking_for"
-            android:textColor="@color/colorTextBlack"
-            android:textStyle="bold"/>
+            android:textColor="@color/colorTextBlackGroup"
+            android:fontFamily="@font/noto_sans_family"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
 
     <TextView
             android:id="@+id/second_text_dont_find"
@@ -27,6 +30,8 @@
             android:gravity="center"
             android:paddingBottom="30dp"
             android:text="@string/search_or_browse_categories_to_access_your_upcoming_story"
+            android:textSize="12sp"
+            android:fontFamily="@font/noto_sans_family"
             android:textColor="@color/colorTextGrey"/>
 
     <Button
@@ -44,6 +49,7 @@
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="12sp"
+            android:fontFamily="@font/noto_sans_family"
             tools:ignore="RtlSymmetry"/>
 
 </RelativeLayout>

@@ -28,7 +28,8 @@
                     android:gravity="center"
                     android:textSize="16sp"
                     android:textDirection="rtl"
-                    android:textColor="@color/colorTextBlack"
+                    android:fontFamily="@font/noto_sans_family"
+                    android:textColor="@color/colorTextBlackGroup"
                     android:background="@color/colorCarouselGrey"/>
 
         </RelativeLayout>

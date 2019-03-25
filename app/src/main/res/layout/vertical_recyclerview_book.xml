@@ -21,9 +21,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:gravity="end"
-                android:textColor="@color/colorReviewTextBlack"
+                android:textColor="@color/colorTextBlackGroup"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/noto_sans_family"
                 tools:ignore="RtlHardcoded"/>
 
         <Button
@@ -36,6 +37,7 @@
                 android:textAllCaps="false"
                 android:textSize="10sp"
                 android:textColor="@color/colorTextGrey"
+                android:fontFamily="@font/noto_sans_family"
                 android:background="?android:selectableItemBackground"
                 android:drawableStart="@drawable/view_all_arrow"
                 tools:ignore="SmallSp"/>

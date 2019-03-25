@@ -15,8 +15,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/book_store"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorTextBlackGroup"
             android:textStyle="bold"
+            android:fontFamily="@font/noto_sans_family"
             android:textSize="14sp"/>
 
 </android.support.v7.widget.Toolbar>

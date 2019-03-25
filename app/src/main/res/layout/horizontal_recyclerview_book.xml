@@ -34,9 +34,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_image"
             android:layout_marginStart="@dimen/size_shadow_book"
-            android:textColor="@color/colorTextBlack"
-            android:textSize="12sp"
-            android:textStyle="bold"
+            android:textColor="@color/colorReviewTextBlack"
+            android:textSize="14sp"
+            android:fontFamily="@font/noto_sans_family"
             android:paddingBottom="2dp"/>
 
     <TextView
@@ -47,6 +47,7 @@
             android:layout_marginStart="@dimen/size_shadow_book"
             android:textColor="@color/colorTextGrey"
             android:textSize="12sp"
+            android:fontFamily="@font/noto_sans_family"
             android:paddingBottom="10dp"/>
 
     <RatingBar
@@ -64,8 +65,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/horizontal_author"
             android:layout_toEndOf="@+id/horizontal_rating_bar"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorReviewTextBlack"
             android:textSize="10sp"
+            android:fontFamily="@font/noto_sans_family"
             tools:ignore="RtlSymmetry,SmallSp"/>
 
     <TextView
@@ -74,7 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/horizontal_rating_bar"
             android:layout_marginStart="@dimen/size_shadow_book"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorTextBlackGroup"
+            android:fontFamily="@font/noto_sans_family"
             android:textSize="12sp"/>
 
 </RelativeLayout>

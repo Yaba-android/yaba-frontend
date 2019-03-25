@@ -33,7 +33,8 @@
                 android:gravity="end"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="@color/colorTextBlack"/>
+                android:fontFamily="@font/noto_sans_family"
+                android:textColor="@color/colorTextBlackGroup"/>
 
         <TextView
                 android:id="@+id/title_bis_carousel"
@@ -41,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textSize="12sp"
+                android:fontFamily="@font/noto_sans_family"
                 android:textColor="@color/colorTextGrey"
                 android:paddingTop="5dp"/>
 
@@ -80,6 +82,7 @@
                 android:textAllCaps="false"
                 android:textSize="12sp"
                 android:textColor="@color/colorTextGrey"
+                android:fontFamily="@font/noto_sans_family"
                 android:background="?android:selectableItemBackground"
                 android:drawableStart="@drawable/view_all_arrow"/>
 
