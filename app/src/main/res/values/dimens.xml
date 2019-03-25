@@ -7,7 +7,7 @@
 
 
     <dimen name="bottom_small_book_vertical_recycler_view">3dp</dimen>
-    <dimen name="bottom_book_vertical_recycler_view">15dp</dimen>
+    <dimen name="bottom_book_vertical_recycler_view">30dp</dimen>
     <dimen name="bottom_big_book_vertical_recycler_view">-15dp</dimen>
 
     <dimen name="bottom_review_vertical_recycler_view">15dp</dimen>

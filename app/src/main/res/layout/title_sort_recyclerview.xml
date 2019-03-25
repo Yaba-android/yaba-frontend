@@ -13,7 +13,7 @@
             android:id="@+id/vertical_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_toEndOf="@+id/sort_button"
             android:layout_centerVertical="true"
             android:gravity="right"
             android:textColor="@color/colorReviewTextBlack"
@@ -22,6 +22,7 @@
             tools:ignore="RtlHardcoded"/>
 
     <Button
+            android:id="@+id/sort_button"
             android:layout_width="@dimen/button_view_all_sort_width"
             android:layout_height="@dimen/button_view_all_sort_height"
             android:text="@string/sort"

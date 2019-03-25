@@ -8,7 +8,7 @@
 
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/title_recyclerview_height"
+            android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingEnd="10dp"
             android:paddingStart="17dp"
@@ -18,7 +18,7 @@
                 android:id="@+id/vertical_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
+                android:layout_toEndOf="@+id/view_all_button"
                 android:layout_centerVertical="true"
                 android:gravity="end"
                 android:textColor="@color/colorTextBlackGroup"
@@ -28,6 +28,7 @@
                 tools:ignore="RtlHardcoded"/>
 
         <Button
+                android:id="@+id/view_all_button"
                 android:layout_width="@dimen/button_view_all_sort_width"
                 android:layout_height="@dimen/button_view_all_sort_height"
                 android:layout_alignParentStart="true"
@@ -48,6 +49,7 @@
             android:id="@+id/horizontal_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center_vertical"
             android:layoutDirection="rtl"
             android:orientation="horizontal"/>
