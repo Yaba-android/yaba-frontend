@@ -115,6 +115,7 @@ class BookDetailsActivity : AppCompatActivity(),
 
         intent.putExtra(RecommendedActivity.SELECTED_BOOK, book)
         startActivity(intent)
+        finish()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
