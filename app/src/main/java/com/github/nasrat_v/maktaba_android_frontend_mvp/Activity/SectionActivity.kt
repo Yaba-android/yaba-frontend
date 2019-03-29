@@ -117,6 +117,16 @@ class SectionActivity : AppCompatActivity(),
         return true
     }
 
+    private fun returnToHome() {
+        val intent = Intent(this, RecommendedActivity::class.java)
+
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
+        startActivity(intent)
+        finish()
+    }
+
+
     private fun initDrawerLayout() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar_application)
 
@@ -138,7 +148,7 @@ class SectionActivity : AppCompatActivity(),
 
         buttonBrowse.setOnClickListener {
             Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
-            finish()
+            returnToHome()
         }
     }
 
