@@ -46,6 +46,12 @@
                 android:textColor="@color/colorTextGrey"
                 android:paddingTop="5dp"/>
 
+        <Button
+                android:id="@+id/change_language_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Change Language"/>
+
     </LinearLayout>
 
     <RelativeLayout

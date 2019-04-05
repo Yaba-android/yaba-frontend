@@ -20,6 +20,7 @@ import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.RecommendedBRModelAsyncFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.LocaleHelper
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.CarouselBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.LayoutManager.CarouselLinearLayoutManager
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
@@ -68,6 +69,7 @@ class RecommendedActivity() : AppCompatActivity(),
         const val TITLE_SECOND_RECYCLER_VIEW = "Inspired by Your Reading History"
         const val TITLE_SMALL_RECYCLER_VIEW = "Other Books for you"
         const val TITLE_POPULAR_SPECIES_RECYCLER_VIEW = "Popular species"
+        const val LANGUAGE_CODE = "ar"
     }
 
     @SuppressLint("CommitTransaction")
@@ -92,6 +94,7 @@ class RecommendedActivity() : AppCompatActivity(),
             setListenerLibraryButtonFooter()
             setListenerButtonBrowseSection()
             setListenerViewAllSection()
+            setListenerChangeLanguage()
 
             supportLoaderManager.initLoader(0, null, this).forceLoad() // init RecommendedBRModel in async task
         }
@@ -232,6 +235,15 @@ class RecommendedActivity() : AppCompatActivity(),
 
         button.setOnClickListener {
             startSectionActivity()
+        }
+    }
+
+    private fun setListenerChangeLanguage() {
+        val button = findViewById<Button>(R.id.change_language_button)
+
+        button.setOnClickListener {
+            LocaleHelper.setLocale(this, LANGUAGE_CODE)
+            recreate()
         }
     }
 

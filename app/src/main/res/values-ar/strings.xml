@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">Maktaba-android-frontend-mvp</string>
+    <string name="tool_bar_tabbed_activity_text">Book Store</string>
+    <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="tab_text_1">Recommended</string>
+    <string name="tab_text_2">Browse</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="profile_name">Jane Doe</string>
+    <string name="profile_email">jane.doe@gmail.com</string>
+    <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
+    <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
+    <string name="carousel_title_first">Bijour</string>
+    <string name="carousel_title_second">Aurivoir</string>
+    <string name="based_on_your_most_read_books">hehehehe</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="book_store">Book Store</string>
+    <string name="more">+ More</string>
+    <string name="more_reviews">More reviews</string>
+    <string name="about_the_author">About the author</string>
+    <string name="author_description">Enaam Kaghi was born in Baghdad in 1952 and at her university she studied journalism.
+        She worked in the Iraqi press and radio before moving to Paris to complete her PhD thesis at the Sorbonne.
+        She is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah and United Arab Emirates.
+        Inam Kaghi published a book entitled "Lorna" about the British correspondent Lorna Hills, who was married to
+        Iraqi sculptor and painter Major Jawad Salim. She also published a book in French on literature written by women in the years of distress and war.
+    </string>
+    <string name="inam_kaghi">Inam Kaghi</string>
+    <string name="more_books_from_this_author">More Books from this Author</string>
+    <string name="page_length">Page length</string>
+    <string name="publisher">Publisher</string>
+    <string name="isbn">ISBN</string>
+    <string name="buy_now">Buy now</string>
+    <string name="download_sample">Download sample</string>
+    <string name="search">Search</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="select_genre">Select genre</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="price">$9.99</string>
+    <string name="number_rating">(188)</string>
+    <string name="author_review">Author Review</string>
+    <string name="comment_review">Comment Review</string>
+    <string name="open_genre">Open genre</string>
+    <string name="all_books">All Books</string>
+    <string name="store">Store</string>
+    <string name="library">Library</string>
+    <string name="back">Back</string>
+    <string name="browse">Browse</string>
+    <string name="recommended">Recommended</string>
+    <string name="view_all">View all</string>
+    <string name="genre">Genre</string>
+    <string name="not_found_what_you_re_looking_for">Not found what you\'re looking for ?</string>
+    <string name="search_or_browse_categories_to_access_your_upcoming_story">Search or browse categories to access your
+        upcoming story
+    </string>
+    <string name="browse_categories">Browse categories</string>
+    <string name="help">Help</string>
+    <string name="wish_list">Wish list</string>
+    <string name="sections">Sections</string>
+    <string name="section_name">Section name</string>
+    <string name="sort">Sort</string>
+    <string name="add_to_wish_list">Add to Wish list</string>
+    <string name="try_the_sample">Try the sample</string>
+    <string name="buy">Buy</string>
+    <string name="title_category">Title Category</string>
+    <string name="content_category">Content Category</string>
+    <string name="resume_book">The novel "The Prophet" is engraved in the modern history of Iraq,
+        evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+        the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+        of the throne Abdul Ilah.
+    </string>
+    <string name="read_more">Caca</string>
+    <string name="view_all_reviews">Prout</string>
+    <string name="genre_0">Genre (0)</string>
+    <string name="find_the_books_you_love">Find the books you love</string>
+    <string name="search_by">Search by title, author, genre, country, publisher or word</string>
+    <string name="results">Results</string>
+    <string name="art">Art</string>
+    <string name="business">Business</string>
+    <string name="browse_sections">Browse sections</string>
+    <string name="download_book">Download Book</string>
+    <string name="action">Action</string>
+    <string name="maktaba">Maktaba</string>
+</resources>
+
