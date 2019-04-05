@@ -25,7 +25,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.LayoutManager.CarouselLinearLayoutManager
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.NoTitleListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.SmallListBRecyclerViewAdapter
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Horizontal.GPSRecyclerViewAdapter
@@ -33,6 +32,9 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecor
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.RecommendedBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import android.widget.Toast
+import android.content.res.Configuration
+
 
 class RecommendedActivity() : AppCompatActivity(),
     LoaderManager.LoaderCallbacks<RecommendedBRModel>,
@@ -65,7 +67,8 @@ class RecommendedActivity() : AppCompatActivity(),
         const val SELECTED_BOOK = "SelectedBook"
         const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
         const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
-        const val LANGUAGE_CODE = "ar"
+        const val ARABIC_LANGUAGE_CODE = "ar"
+        const val ENGLISH_LANGUAGE_CODE = "en"
     }
 
     @SuppressLint("CommitTransaction")
@@ -91,6 +94,7 @@ class RecommendedActivity() : AppCompatActivity(),
             setListenerButtonBrowseSection()
             setListenerViewAllSection()
             setListenerChangeLanguage()
+            setListenerButtonSignOut()
 
             supportLoaderManager.initLoader(0, null, this).forceLoad() // init RecommendedBRModel in async task
         }
@@ -235,11 +239,29 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun setListenerChangeLanguage() {
-        val button = findViewById<Button>(R.id.change_language_button)
+        val buttonArabic = findViewById<Button>(R.id.button_arabic_language)
+        val buttonEnglish = findViewById<Button>(R.id.button_english_language)
+
+        buttonArabic.setOnClickListener {
+            LocaleHelper.setLocale(this, ARABIC_LANGUAGE_CODE)
+            recreate()
+            Toast.makeText(this, "Arabic", Toast.LENGTH_SHORT).show()
+            onBackPressed()
+        }
+        buttonEnglish.setOnClickListener {
+            LocaleHelper.setLocale(this, ENGLISH_LANGUAGE_CODE)
+            recreate()
+            Toast.makeText(this, "English", Toast.LENGTH_SHORT).show()
+            onBackPressed()
+        }
+    }
+
+    private fun setListenerButtonSignOut() {
+        val button = findViewById<Button>(R.id.button_sign_out)
 
         button.setOnClickListener {
-            LocaleHelper.setLocale(this, LANGUAGE_CODE)
-            recreate()
+            onBackPressed()
+            // sign out
         }
     }
 

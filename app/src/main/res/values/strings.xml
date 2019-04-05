@@ -15,10 +15,8 @@
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
     <string name="carousel_title_first">Recommended\nreading for you</string>
     <string name="carousel_title_second">Based on your purchase history</string>
-    <string name="based_on_your_most_read_books">Based on your most read books</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="book_store">Book Store</string>
     <string name="more">+ More</string>
     <string name="more_reviews">More reviews</string>
@@ -90,5 +88,7 @@
     <string name="title_small_recyclerview">Other Books for you</string>
     <string name="title_popular_species_recyclerview">Popular species</string>
     <string name="title_review_overview_recyclerview">More Books from this Authors</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
 </resources>
 

@@ -13,9 +13,8 @@
     <string name="profile_email">jane.doe@gmail.com</string>
     <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
-    <string name="carousel_title_first">أوصت القراءة</string>
-    <string name="carousel_title_second">بالنسبة لك</string>
-    <string name="based_on_your_most_read_books">استنادًا إلى سجل الشراء</string>
+    <string name="carousel_title_first">أوصت القراءة\nبالنسبة لك</string>
+    <string name="carousel_title_second">استنادًا إلى سجل الشراء</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="book_store">مكتبة لبيع الكتب</string>
@@ -89,5 +88,7 @@
     <string name="title_small_recyclerview">المزيد من القراءة لك</string>
     <string name="title_popular_species_recyclerview">الأنواع الشعبية</string>
     <string name="title_review_overview_recyclerview">المزيد من الخيال</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
 </resources>
 

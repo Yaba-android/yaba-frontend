@@ -1,29 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:orientation="vertical"
         android:background="@color/colorNavFooterGrey">
+
+    <Button
+            android:id="@+id/button_arabic_language"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="15dp"
+            android:layout_alignParentStart="true"
+            android:background="?android:selectableItemBackground"/>
+
+    <ImageView
+            android:id="@+id/image_arabic_language"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="15dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/flag_arabic"/>
+
+    <Button
+            android:id="@+id/button_english_language"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@+id/button_arabic_language"
+            android:background="?android:selectableItemBackground"/>
+
+    <ImageView
+            android:id="@+id/image_english_language"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@+id/button_arabic_language"
+            android:src="@drawable/flag_english"/>
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorSeparatorViewGrey"
-            android:orientation="vertical"/>
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/button_arabic_language"
+            android:orientation="vertical">
 
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/sign_out"
-            android:textSize="14sp"
-            android:textColor="@color/colorTextBlack"
-            android:textAllCaps="false"
-            android:fontFamily="@font/noto_sans_family"
-            android:gravity="end|center"
-            android:drawableStart="@drawable/sign_out"
-            android:padding="15dp"
-            android:background="@android:color/transparent"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorSeparatorViewGrey"
+                android:orientation="vertical"/>
 
-</LinearLayout>
+        <Button
+                android:id="@+id/button_sign_out"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/sign_out"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextBlack"
+                android:textAllCaps="false"
+                android:fontFamily="@font/noto_sans_family"
+                android:gravity="end|center"
+                android:drawableStart="@drawable/sign_out"
+                android:padding="15dp"
+                android:background="@android:color/transparent"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

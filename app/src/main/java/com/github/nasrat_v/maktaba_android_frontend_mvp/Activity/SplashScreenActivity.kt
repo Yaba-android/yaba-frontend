@@ -8,6 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
@@ -65,8 +66,7 @@ class SplashScreenActivity : AppCompatActivity() {
         mFadeInTitleAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
-            override fun onAnimationEnd(animation: Animation?) {
-            }
+            override fun onAnimationEnd(animation: Animation?) {}
 
             override fun onAnimationStart(animation: Animation?) {
                 mTitle.visibility = View.VISIBLE
@@ -79,8 +79,7 @@ class SplashScreenActivity : AppCompatActivity() {
         mFadeInTitleBisAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
 
-            override fun onAnimationEnd(animation: Animation?) {
-            }
+            override fun onAnimationEnd(animation: Animation?) {}
 
             override fun onAnimationStart(animation: Animation?) {
                 mTitleBis.visibility = View.VISIBLE

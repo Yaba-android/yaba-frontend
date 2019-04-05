@@ -30,9 +30,10 @@
                 android:id="@+id/title_carousel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
+                android:gravity="start"
                 android:textSize="28sp"
                 android:textStyle="bold"
+                android:textDirection="rtl"
                 android:fontFamily="@font/noto_sans_family"
                 android:textColor="@color/colorTextBlackGroup"/>
 
@@ -40,17 +41,12 @@
                 android:id="@+id/title_bis_carousel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
+                android:gravity="start"
                 android:textSize="12sp"
+                android:textDirection="rtl"
                 android:fontFamily="@font/noto_sans_family"
                 android:textColor="@color/colorTextGrey"
                 android:paddingTop="5dp"/>
-
-        <Button
-                android:id="@+id/change_language_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Change Language"/>
 
     </LinearLayout>
 
