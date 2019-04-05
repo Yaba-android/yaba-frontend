@@ -9,23 +9,23 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 
 data class RecommendedBRModel(
     var booksCarousel: ArrayList<BModel>,
-    var booksFirstRecyclerView: ArrayList<ListBModel>,
+    var booksFirstRecyclerView: ArrayList<NoTitleListBModel>,
     var popularGenre: ArrayList<GModel>,
-    var booksSecondRecyclerView: ArrayList<ListBModel>,
+    var booksSecondRecyclerView: ArrayList<NoTitleListBModel>,
     var booksSmallRecyclerView: ArrayList<NoTitleListBModel>
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         arrayListOf<BModel>().apply {
             parcel.readList(this, BModel::class.java.classLoader)
         },
-        arrayListOf<ListBModel>().apply {
-            parcel.readList(this, ListBModel::class.java.classLoader)
+        arrayListOf<NoTitleListBModel>().apply {
+            parcel.readList(this, NoTitleListBModel::class.java.classLoader)
         },
         arrayListOf<GModel>().apply {
             parcel.readList(this, GModel::class.java.classLoader)
         },
-        arrayListOf<ListBModel>().apply {
-            parcel.readList(this, ListBModel::class.java.classLoader)
+        arrayListOf<NoTitleListBModel>().apply {
+            parcel.readList(this, NoTitleListBModel::class.java.classLoader)
         },
         arrayListOf<NoTitleListBModel>().apply {
             parcel.readList(this, NoTitleListBModel::class.java.classLoader)

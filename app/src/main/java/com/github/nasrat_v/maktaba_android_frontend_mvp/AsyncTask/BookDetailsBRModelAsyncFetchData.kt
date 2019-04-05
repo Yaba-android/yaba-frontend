@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v4.content.AsyncTaskLoader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
@@ -20,7 +21,7 @@ class BookDetailsBRModelAsyncFetchData(
         //android.os.Debug.waitForDebugger()
 
         val allBooksFromDatabase = fetchAllBooksFromDatabase()
-        val datasetBooks = arrayListOf<ListBModel>()
+        val datasetBooks = arrayListOf<NoTitleListBModel>()
         val datasetReviews = arrayListOf<RModel>()
 
         mockDatasetBook(datasetBooks, allBooksFromDatabase)
@@ -40,10 +41,9 @@ class BookDetailsBRModelAsyncFetchData(
         dataset.addAll(RModelProvider(context).getAllReviews())
     }
 
-    private fun mockDatasetBook(dataset: ArrayList<ListBModel>, allBooksFromDatabase: ArrayList<BModel>) {
+    private fun mockDatasetBook(dataset: ArrayList<NoTitleListBModel>, allBooksFromDatabase: ArrayList<BModel>) {
         dataset.addAll(
-            BModelRandomProvider(context).getRandomsInstancesFromListToListBModel(
-                BookDetailsContainerFragment.RECYCLER_VIEW_TITLE,
+            BModelRandomProvider(context).getRandomsInstancesFromListToNoTitleListBModel(
                 BookDetailsContainerFragment.RECYCLER_VIEW_NB_COLUMNS,
                 BookDetailsContainerFragment.RECYCLER_VIEW_NB_BOOKS_PER_ROW,
                 allBooksFromDatabase

@@ -18,14 +18,24 @@
 
         <include layout="@layout/activity_recommended_carousel"/>
 
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/first_book_vertical_recyclerview_recommended"
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="@dimen/margin_bottom_between_recyclerview_recommended"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:ignore="RtlSymmetry"/>
+                android:orientation="vertical">
+
+            <include android:id="@+id/title_layout_first"
+                     layout="@layout/title_viewall_recyclerview"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/first_book_vertical_recyclerview_recommended"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="@dimen/margin_bottom_between_recyclerview_recommended"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:ignore="RtlSymmetry"/>
+
+        </LinearLayout>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -47,13 +57,23 @@
 
         </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/second_book_vertical_recyclerview_recommended"
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_bottom_between_recyclerview_recommended"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:ignore="RtlSymmetry"/>
+                android:orientation="vertical">
+
+            <include android:id="@+id/title_layout_second"
+                     layout="@layout/title_viewall_recyclerview"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/second_book_vertical_recyclerview_recommended"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_bottom_between_recyclerview_recommended"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:ignore="RtlSymmetry"/>
+
+        </LinearLayout>
 
         <LinearLayout
                 android:layout_width="match_parent"

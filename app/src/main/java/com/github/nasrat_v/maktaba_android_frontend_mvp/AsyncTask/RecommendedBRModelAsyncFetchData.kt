@@ -10,6 +10,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.RecommendedBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Review.Vertical.RModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
@@ -26,9 +27,9 @@ class RecommendedBRModelAsyncFetchData(
 
         val allBooksFromDatabase = fetchAllBooksFromDatabase()
         val datasetCarousel = arrayListOf<BModel>()
-        val datasetFirst = arrayListOf<ListBModel>()
+        val datasetFirst = arrayListOf<NoTitleListBModel>()
         val datasetPopularGenre = arrayListOf<GModel>()
-        val datasetSecond = arrayListOf<ListBModel>()
+        val datasetSecond = arrayListOf<NoTitleListBModel>()
         val datasetSmall = arrayListOf<NoTitleListBModel>()
 
         mockDatasetCarousel(datasetCarousel)
@@ -57,12 +58,11 @@ class RecommendedBRModelAsyncFetchData(
     }
 
     private fun mockDatasetFirstRecyclerView(
-        dataset: ArrayList<ListBModel>,
+        dataset: ArrayList<NoTitleListBModel>,
         allBooksFromDatabase: ArrayList<BModel>
     ) {
         dataset.addAll(
-            BModelRandomProvider(context).getRandomsInstancesFromListToListBModel(
-                RecommendedActivity.TITLE_FIRST_RECYCLER_VIEW,
+            BModelRandomProvider(context).getRandomsInstancesFromListToNoTitleListBModel(
                 RecommendedActivity.FIRST_RECYCLERVIEW_NB_COLUMNS,
                 RecommendedActivity.NB_BOOKS_FIRST_RECYCLERVIEW,
                 allBooksFromDatabase
@@ -75,12 +75,11 @@ class RecommendedBRModelAsyncFetchData(
     }
 
     private fun mockDatasetSecondRecyclerView(
-        dataset: ArrayList<ListBModel>,
+        dataset: ArrayList<NoTitleListBModel>,
         allBooksFromDatabase: ArrayList<BModel>
     ) {
         dataset.addAll(
-            BModelRandomProvider(context).getRandomsInstancesFromListToListBModel(
-                RecommendedActivity.TITLE_SECOND_RECYCLER_VIEW,
+            BModelRandomProvider(context).getRandomsInstancesFromListToNoTitleListBModel(
                 RecommendedActivity.SECOND_RECYCLERVIEW_NB_COLUMNS,
                 RecommendedActivity.NB_BOOKS_SECOND_RECYCLERVIEW,
                 allBooksFromDatabase

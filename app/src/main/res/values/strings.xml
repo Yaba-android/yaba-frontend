@@ -58,7 +58,7 @@
     <string name="search_or_browse_categories_to_access_your_upcoming_story">Search or browse categories to access your
         upcoming story
     </string>
-    <string name="browse_categories">Browse categories</string>
+    <string name="browse_sections">Browse sections</string>
     <string name="help">Help</string>
     <string name="wish_list">Wish list</string>
     <string name="sections">Sections</string>
@@ -82,9 +82,13 @@
     <string name="results">Results</string>
     <string name="art">Art</string>
     <string name="business">Business</string>
-    <string name="browse_sections">Browse sections</string>
     <string name="download_book">Download Book</string>
     <string name="action">Action</string>
     <string name="maktaba">Maktaba</string>
+    <string name="title_first_recyclerview">Recommended Authors</string>
+    <string name="title_second_recyclerview">Inspired by Your Reading History</string>
+    <string name="title_small_recyclerview">Other Books for you</string>
+    <string name="title_popular_species_recyclerview">Popular species</string>
+    <string name="title_review_overview_recyclerview">More Books from this Authors</string>
 </resources>
 

@@ -13,18 +13,17 @@
     <string name="profile_email">jane.doe@gmail.com</string>
     <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
-    <string name="carousel_title_first">Bijour</string>
-    <string name="carousel_title_second">Aurivoir</string>
-    <string name="based_on_your_most_read_books">hehehehe</string>
+    <string name="carousel_title_first">أوصت القراءة</string>
+    <string name="carousel_title_second">بالنسبة لك</string>
+    <string name="based_on_your_most_read_books">استنادًا إلى سجل الشراء</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="book_store">Book Store</string>
+    <string name="book_store">مكتبة لبيع الكتب</string>
     <string name="more">+ More</string>
     <string name="more_reviews">More reviews</string>
     <string name="about_the_author">About the author</string>
     <string name="author_description">Enaam Kaghi was born in Baghdad in 1952 and at her university she studied journalism.
-        She worked in the Iraqi press and radio before moving to Paris to complete her PhD thesis at the Sorbonne.
+        She worked in the Iraqi press and radio before moving to Paris عرض الكلto complete her PhD thesis at the Sorbonne.
         She is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah and United Arab Emirates.
         Inam Kaghi published a book entitled "Lorna" about the British correspondent Lorna Hills, who was married to
         Iraqi sculptor and painter Major Jawad Salim. She also published a book in French on literature written by women in the years of distress and war.
@@ -52,13 +51,13 @@
     <string name="back">Back</string>
     <string name="browse">Browse</string>
     <string name="recommended">Recommended</string>
-    <string name="view_all">View all</string>
+    <string name="view_all">عرض الكل</string>
     <string name="genre">Genre</string>
-    <string name="not_found_what_you_re_looking_for">Not found what you\'re looking for ?</string>
-    <string name="search_or_browse_categories_to_access_your_upcoming_story">Search or browse categories to access your
-        upcoming story
+    <string name="not_found_what_you_re_looking_for">لم يتم العثور على ما تبحث عنه؟</string>
+    <string name="search_or_browse_categories_to_access_your_upcoming_story">
+        ابحث أو تصفح الفئات للوصول إلى قصتك القادمة
     </string>
-    <string name="browse_categories">Browse categories</string>
+    <string name="browse_sections">تصفح الفئات</string>
     <string name="help">Help</string>
     <string name="wish_list">Wish list</string>
     <string name="sections">Sections</string>
@@ -82,9 +81,13 @@
     <string name="results">Results</string>
     <string name="art">Art</string>
     <string name="business">Business</string>
-    <string name="browse_sections">Browse sections</string>
     <string name="download_book">Download Book</string>
     <string name="action">Action</string>
     <string name="maktaba">Maktaba</string>
+    <string name="title_first_recyclerview">مستوحاة من تاريخك</string>
+    <string name="title_second_recyclerview">المزيد من الخيال</string>
+    <string name="title_small_recyclerview">المزيد من القراءة لك</string>
+    <string name="title_popular_species_recyclerview">الأنواع الشعبية</string>
+    <string name="title_review_overview_recyclerview">المزيد من الخيال</string>
 </resources>
 

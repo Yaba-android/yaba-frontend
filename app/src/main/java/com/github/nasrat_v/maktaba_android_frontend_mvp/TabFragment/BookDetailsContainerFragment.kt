@@ -33,7 +33,6 @@ class BookDetailsContainerFragment : Fragment() {
     companion object {
         const val RECYCLER_VIEW_NB_BOOKS_PER_ROW = 6
         const val RECYCLER_VIEW_NB_COLUMNS = 1
-        const val RECYCLER_VIEW_TITLE = "More Books from this Authors"
     }
 
     override fun onAttach(context: Context) {

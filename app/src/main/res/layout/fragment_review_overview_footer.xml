@@ -68,13 +68,23 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/book_vertical_recyclerview_review_overview_footer"
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:paddingBottom="40dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:ignore="RtlSymmetry"/>
+            android:orientation="vertical">
+
+        <include android:id="@+id/title_layout_recyclerview"
+                 layout="@layout/title_viewall_recyclerview"/>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/book_vertical_recyclerview_review_overview_footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:paddingBottom="40dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:ignore="RtlSymmetry"/>
+
+    </LinearLayout>
 
 </LinearLayout>

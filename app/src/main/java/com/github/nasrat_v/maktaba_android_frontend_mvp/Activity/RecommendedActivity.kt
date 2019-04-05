@@ -23,7 +23,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAd
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.LocaleHelper
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.CarouselBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.LayoutManager.CarouselLinearLayoutManager
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.NoTitleListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.SmallListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
@@ -41,15 +41,15 @@ class RecommendedActivity() : AppCompatActivity(),
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mAdapterBookVerticalCarousel: CarouselBRecyclerViewAdapter
-    private lateinit var mAdapterBookVerticalFirstRecyclerView: ListBRecyclerViewAdapter
+    private lateinit var mAdapterBookVerticalFirstRecyclerView: NoTitleListBRecyclerViewAdapter
     private lateinit var mAdapterGenreHorizontal: GPSRecyclerViewAdapter
-    private lateinit var mAdapterBookVerticalSecondRecyclerView: ListBRecyclerViewAdapter
+    private lateinit var mAdapterBookVerticalSecondRecyclerView: NoTitleListBRecyclerViewAdapter
     private lateinit var mAdapterBookVerticalSmallRecyclerView: SmallListBRecyclerViewAdapter
     private lateinit var mProgressBar: ProgressBar
     private val mDatasetCarousel = arrayListOf<BModel>()
-    private val mDatasetFirstRecyclerView = arrayListOf<ListBModel>()
+    private val mDatasetFirstRecyclerView = arrayListOf<NoTitleListBModel>()
     private val mPopularList = arrayListOf<GModel>()
-    private val mDatasetSecondRecyclerView = arrayListOf<ListBModel>()
+    private val mDatasetSecondRecyclerView = arrayListOf<NoTitleListBModel>()
     private val mDatasetSmallRecyclerView = arrayListOf<NoTitleListBModel>()
     private var mFirstInit = true
 
@@ -65,10 +65,6 @@ class RecommendedActivity() : AppCompatActivity(),
         const val SELECTED_BOOK = "SelectedBook"
         const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
         const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
-        const val TITLE_FIRST_RECYCLER_VIEW = "Recommended Authors"
-        const val TITLE_SECOND_RECYCLER_VIEW = "Inspired by Your Reading History"
-        const val TITLE_SMALL_RECYCLER_VIEW = "Other Books for you"
-        const val TITLE_POPULAR_SPECIES_RECYCLER_VIEW = "Popular species"
         const val LANGUAGE_CODE = "ar"
     }
 
@@ -302,15 +298,18 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun initFirstVerticalRecycler() {
+        val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_first)
+        val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.first_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
         mAdapterBookVerticalFirstRecyclerView =
-            ListBRecyclerViewAdapter(
+            NoTitleListBRecyclerViewAdapter(
                 this,
                 mDatasetFirstRecyclerView,
                 this
             )
+        title.text = getString(R.string.title_first_recyclerview)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVerticalFirstRecyclerView
@@ -328,7 +327,7 @@ class RecommendedActivity() : AppCompatActivity(),
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
         mAdapterGenreHorizontal = GPSRecyclerViewAdapter(this, mPopularList, this)
-        title.text = TITLE_POPULAR_SPECIES_RECYCLER_VIEW
+        title.text = getString(R.string.title_popular_species_recyclerview)
         //GravitySnapHelper(Gravity.END).attachToRecyclerView(horizontalRecyclerView)
         horizontalRecyclerView.setHasFixedSize(true)
         horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -344,15 +343,18 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun initSecondVerticalRecycler() {
+        val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_second)
+        val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.second_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
         mAdapterBookVerticalSecondRecyclerView =
-            ListBRecyclerViewAdapter(
+            NoTitleListBRecyclerViewAdapter(
                 this,
                 mDatasetSecondRecyclerView,
                 this
             )
+        title.text = getString(R.string.title_second_recyclerview)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVerticalSecondRecyclerView
@@ -375,7 +377,7 @@ class RecommendedActivity() : AppCompatActivity(),
                 mDatasetSmallRecyclerView,
                 this
             )
-        title.text = TITLE_SMALL_RECYCLER_VIEW
+        title.text = getString(R.string.title_small_recyclerview)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVerticalSmallRecyclerView

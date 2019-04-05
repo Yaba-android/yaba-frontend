@@ -9,21 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.RecommendedActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.ListBRecyclerViewAdapter
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.NoTitleListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
 
 class OverviewFragment : Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mSelectedBook: BModel
-    private lateinit var mAdapterBookVertical: ListBRecyclerViewAdapter
+    private lateinit var mAdapterBookVertical: NoTitleListBRecyclerViewAdapter
     private lateinit var mAuthorTitle: TextView
     private lateinit var mAuthorDesc: TextView
     private lateinit var mAuthorPicture: ImageView
@@ -34,8 +32,7 @@ class OverviewFragment : Fragment() {
     private lateinit var mLayoutGenre: LinearLayout
     private lateinit var mLayoutCountry: LinearLayout
     private lateinit var mLayoutPublisher: LinearLayout
-
-    private val mDataset = arrayListOf<ListBModel>()
+    private val mDataset = arrayListOf<NoTitleListBModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -64,7 +61,7 @@ class OverviewFragment : Fragment() {
         mSelectedBook = book
     }
 
-    fun setBookVerticalRecyclerView(books: ArrayList<ListBModel>) {
+    fun setBookVerticalRecyclerView(books: ArrayList<NoTitleListBModel>) {
         mDataset.clear()
         mDataset.addAll(books)
     }
@@ -104,16 +101,19 @@ class OverviewFragment : Fragment() {
     }
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
+        val layoutTitle = view.findViewById<RelativeLayout>(R.id.title_layout_recyclerview)
+        val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_overview)
         val verticalRecyclerView =
             view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
 
         mAdapterBookVertical =
-            ListBRecyclerViewAdapter(
+            NoTitleListBRecyclerViewAdapter(
                 container.context,
                 mDataset,
                 mBookClickCallback
             )
+        title.text = getString(R.string.title_review_overview_recyclerview)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVertical
