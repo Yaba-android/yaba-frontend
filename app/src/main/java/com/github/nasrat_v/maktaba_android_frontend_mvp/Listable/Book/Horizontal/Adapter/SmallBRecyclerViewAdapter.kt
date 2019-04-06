@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
@@ -34,7 +33,6 @@ class SmallBRecyclerViewAdapter(private var context: Context, private var list: 
 
         holder.mImage.setImageResource(model.image)
         holder.itemView.setOnClickListener {
-            Toast.makeText(context, model.title, Toast.LENGTH_SHORT).show()
             // envoyer le bon livre grace à position
             mBookClickCallback.bookEventButtonClicked(list[position])
         }
