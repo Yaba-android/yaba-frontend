@@ -10,6 +10,9 @@ import java.util.Locale
 object LocaleHelper {
 
     private const val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
+    const val LANGUAGE_CODE = "LanguageCode"
+    const val ARABIC_LANGUAGE_CODE = "ar"
+    const val ENGLISH_LANGUAGE_CODE = "en"
 
     fun onAttach(context: Context): Context {
         val lang = getPersistedData(context, Locale.getDefault().language)
@@ -25,7 +28,7 @@ object LocaleHelper {
         return getPersistedData(context, Locale.getDefault().language)
     }
 
-    @SuppressLint("ObsoleteSdkInt")
+    //@SuppressLint("ObsoleteSdkInt")
     fun setLocale(context: Context, language: String?): Context {
         persist(context, language)
 

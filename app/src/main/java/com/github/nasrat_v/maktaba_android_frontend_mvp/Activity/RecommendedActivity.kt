@@ -32,8 +32,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecor
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.RecommendedBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
-import android.widget.Toast
-import android.content.res.Configuration
+import android.util.Log
 
 
 class RecommendedActivity() : AppCompatActivity(),
@@ -67,9 +66,6 @@ class RecommendedActivity() : AppCompatActivity(),
         const val SELECTED_BOOK = "SelectedBook"
         const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
         const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
-        const val LANGUAGE_CODE = "LanguageCode"
-        const val ARABIC_LANGUAGE_CODE = "ar"
-        const val ENGLISH_LANGUAGE_CODE = "en"
     }
 
     @SuppressLint("CommitTransaction")
@@ -77,6 +73,8 @@ class RecommendedActivity() : AppCompatActivity(),
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recommended_structure)
+
+        pendingTransitionOnNewIntent(intent)
 
         mProgressBar = findViewById(R.id.progress_bar_recommeded)
         mFirstInit = true
@@ -140,19 +138,6 @@ class RecommendedActivity() : AppCompatActivity(),
         }
     }
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        val anim = intent!!.getIntExtra(LEFT_OR_RIGHT_IN_ANIMATION, -1)
-        val languageCode = intent.getStringExtra(LANGUAGE_CODE)
-
-        if (anim == 0) // left
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-        else if (anim == 1) // right
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        LocaleHelper.setLocale(this, languageCode)
-        recreate()
-    }
-
     override fun bookEventButtonClicked(book: BModel) {
         val intent = Intent(this, BookDetailsActivity::class.java)
 
@@ -207,7 +192,6 @@ class RecommendedActivity() : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_browse_footer)
 
         button.setOnClickListener {
-            Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
@@ -218,10 +202,8 @@ class RecommendedActivity() : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
-            Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            intent.putExtra(LANGUAGE_CODE, LocaleHelper.getLanguage(this))
             startActivity(intent)
+            finish()
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
     }
@@ -248,16 +230,12 @@ class RecommendedActivity() : AppCompatActivity(),
         val buttonEnglish = findViewById<Button>(R.id.button_english_language)
 
         buttonArabic.setOnClickListener {
-            LocaleHelper.setLocale(this, ARABIC_LANGUAGE_CODE)
-            recreate()
-            Toast.makeText(this, "Arabic", Toast.LENGTH_SHORT).show()
-            onBackPressed()
+            LocaleHelper.setLocale(this, LocaleHelper.ARABIC_LANGUAGE_CODE)
+            refreshActivity()
         }
         buttonEnglish.setOnClickListener {
-            LocaleHelper.setLocale(this, ENGLISH_LANGUAGE_CODE)
-            recreate()
-            Toast.makeText(this, "English", Toast.LENGTH_SHORT).show()
-            onBackPressed()
+            LocaleHelper.setLocale(this, LocaleHelper.ENGLISH_LANGUAGE_CODE)
+            refreshActivity()
         }
     }
 
@@ -270,10 +248,25 @@ class RecommendedActivity() : AppCompatActivity(),
         }
     }
 
+    private fun refreshActivity() {
+        //recreate()
+        val refresh = Intent(this, RecommendedActivity::class.java)
+        startActivity(refresh)
+        finish()
+    }
+
+    private fun pendingTransitionOnNewIntent(intent: Intent?) {
+        val anim = intent!!.getIntExtra(LEFT_OR_RIGHT_IN_ANIMATION, -1)
+
+        if (anim == 0) // left
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        else if (anim == 1) // right
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
     private fun startSectionActivity() {
         val intent = Intent(this, SectionsActivity::class.java)
 
-        Toast.makeText(this, SectionsActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)

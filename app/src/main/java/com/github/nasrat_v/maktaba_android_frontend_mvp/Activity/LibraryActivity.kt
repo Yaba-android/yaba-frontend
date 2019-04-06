@@ -2,10 +2,8 @@ package com.github.nasrat_v.maktaba_android_frontend_mvp.Activity
 
 import android.app.Activity
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
@@ -18,8 +16,8 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.AttributeSet
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.Window
@@ -38,7 +36,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.LibraryBModelAsyncFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.LocaleHelper
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
@@ -89,6 +86,8 @@ class LibraryActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_library)
+
+        pendingTransitionOnNewIntent(intent)
 
         mFirstInit = true
         mContainerFragment = LibraryContainerFragment()
@@ -141,24 +140,6 @@ class LibraryActivity : AppCompatActivity(),
         }
     }
 
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        val anim = intent!!.getIntExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 1)
-        val languageCode = intent.getStringExtra(RecommendedActivity.LANGUAGE_CODE)
-
-        if (anim == 0) // left
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-        else if (anim == 1) // right
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        LocaleHelper.setLocale(this, languageCode)
-        refreshActivity() // on refresh (pas recreate) car on veut reinitialiser tous les fragments
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if ((requestCode == REQUEST_BOOKS_ADD_DOWNLOAD_LIST) && resultCode == Activity.RESULT_OK) {
             val booksToAddToDownload =
@@ -207,7 +188,6 @@ class LibraryActivity : AppCompatActivity(),
         val buttonRecommended = findViewById<Button>(R.id.button_recommended_footer)
 
         buttonRecommended.setOnClickListener {
-            Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             returnToHome()
         }
     }
@@ -217,7 +197,6 @@ class LibraryActivity : AppCompatActivity(),
         val buttonBrowse = findViewById<Button>(R.id.button_browse_footer)
 
         buttonBrowse.setOnClickListener {
-            Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
@@ -228,14 +207,12 @@ class LibraryActivity : AppCompatActivity(),
         val buttonEnglish = findViewById<Button>(R.id.button_english_language)
 
         buttonArabic.setOnClickListener {
-            LocaleHelper.setLocale(this, RecommendedActivity.ARABIC_LANGUAGE_CODE)
-            Toast.makeText(this, "Arabic", Toast.LENGTH_SHORT).show()
-            refreshActivity() // on refresh (pas recreate) car on veut reinitialiser tous les fragments
+            LocaleHelper.setLocale(this, LocaleHelper.ARABIC_LANGUAGE_CODE)
+            refreshActivity()
         }
         buttonEnglish.setOnClickListener {
-            LocaleHelper.setLocale(this, RecommendedActivity.ENGLISH_LANGUAGE_CODE)
-            Toast.makeText(this, "English", Toast.LENGTH_SHORT).show()
-            refreshActivity() // on refresh (pas recreate) car on veut reinitialiser tous les fragments
+            LocaleHelper.setLocale(this, LocaleHelper.ENGLISH_LANGUAGE_CODE)
+            refreshActivity()
         }
     }
 
@@ -244,6 +221,15 @@ class LibraryActivity : AppCompatActivity(),
         finish()
         val refresh = Intent(this, LibraryActivity::class.java)
         startActivity(refresh)
+    }
+
+    private fun pendingTransitionOnNewIntent(intent: Intent) {
+        val anim = intent.getIntExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, -1)
+
+        if (anim == 0) // left
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        else if (anim == 1) // right
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     private fun requestDownloadBook(book: BModel) {
@@ -348,10 +334,9 @@ class LibraryActivity : AppCompatActivity(),
     private fun returnToHome() {
         val intent = Intent(this, RecommendedActivity::class.java)
 
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
-        intent.putExtra(RecommendedActivity.LANGUAGE_CODE, LocaleHelper.getLanguage(this))
         startActivity(intent)
+        finish()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
