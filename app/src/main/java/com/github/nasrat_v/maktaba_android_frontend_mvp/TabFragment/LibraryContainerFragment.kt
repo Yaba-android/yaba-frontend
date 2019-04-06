@@ -20,8 +20,10 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Book.Li
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.AllBooks.AllBooksFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Download.DownloadFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Groups.GroupsFragment
+import java.io.Serializable
 
-class LibraryContainerFragment : Fragment() {
+class LibraryContainerFragment : Fragment(),
+    Serializable {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mGroupClickCallback: IGroupClickCallback
@@ -49,7 +51,6 @@ class LibraryContainerFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         initEmptyLibraryDataset()
-        initTabFragment()
         initTabNamesList()
     }
 
@@ -60,6 +61,12 @@ class LibraryContainerFragment : Fragment() {
         viewPager.adapter = ItemsPagerAdapter(childFragmentManager, mTabNamesList)
         mTabLayoutSetupCallback.setupTabLayout(viewPager)
         return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        initTabFragment()
     }
 
     fun setBookClickCallback(bookClickCallback: IBookClickCallback) {
@@ -111,6 +118,7 @@ class LibraryContainerFragment : Fragment() {
     }
 
     private fun initTabNamesList() {
+        mTabNamesList.clear()
         mTabNamesList.add(getString(R.string.download_tab))
         mTabNamesList.add(getString(R.string.groups_tab))
         mTabNamesList.add(getString(R.string.allbooks_tab))

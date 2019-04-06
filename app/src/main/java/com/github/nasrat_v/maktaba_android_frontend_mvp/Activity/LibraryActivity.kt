@@ -5,8 +5,11 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
 import android.support.v4.view.GravityCompat
@@ -17,6 +20,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.AttributeSet
 import android.util.DisplayMetrics
+import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -36,6 +40,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.M
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.LibraryBModelAsyncFetchData
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.LocaleHelper
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
 import org.w3c.dom.Text
@@ -60,6 +65,8 @@ class LibraryActivity : AppCompatActivity(),
     private lateinit var mContainerFragment: LibraryContainerFragment
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mDisplayMetrics: DisplayMetrics
+    private lateinit var mFragmentManager: FragmentManager
+    private lateinit var mFragmentTransaction: FragmentTransaction
     private var mFirstInit = true
 
     companion object {
@@ -72,6 +79,7 @@ class LibraryActivity : AppCompatActivity(),
         const val ACTIVITY_NAME = "Library"
         const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
         const val DOWNLOADED_BOOKS = "DownloadedBooks"
+        const val CONTAINER_FRAGMENT = "ContainerFragment"
         const val PATH_TO_EBOOK_EPUB = R.raw.jekyll_and_hyde
         const val ACTION_BUTTON_TEXT_DOWNLOAD = "Download"
         const val ACTION_BUTTON_TEXT_OPEN = "Open it"
@@ -83,8 +91,8 @@ class LibraryActivity : AppCompatActivity(),
         setContentView(R.layout.activity_library)
 
         mFirstInit = true
-        mProgressBar = findViewById(R.id.progress_bar_library)
         mContainerFragment = LibraryContainerFragment()
+        mProgressBar = findViewById(R.id.progress_bar_library)
         mDrawerLayout = findViewById(R.id.drawer_library)
         mToolbar = findViewById(R.id.toolbar_application)
         mTabLayout = findViewById(R.id.tabs)
@@ -105,6 +113,7 @@ class LibraryActivity : AppCompatActivity(),
             setListenerButtonCloseProfile()
             setListenerBrowseButtonFooter()
             setListenerRecommendedButtonFooter()
+            setListenerChangeLanguage()
 
             supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
         }
@@ -122,6 +131,14 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     override fun onLoaderReset(p0: Loader<LibraryBModel>) {
+    }
+
+    override fun onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(Gravity.START))
+            mDrawerLayout.closeDrawer(Gravity.START)
+        else {
+            super.onBackPressed()
+        }
     }
 
     override fun finish() {
@@ -201,6 +218,30 @@ class LibraryActivity : AppCompatActivity(),
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
+    }
+
+    private fun setListenerChangeLanguage() {
+        val buttonArabic = findViewById<Button>(R.id.button_arabic_language)
+        val buttonEnglish = findViewById<Button>(R.id.button_english_language)
+
+        buttonArabic.setOnClickListener {
+            LocaleHelper.setLocale(this, RecommendedActivity.ARABIC_LANGUAGE_CODE)
+            Toast.makeText(this, "Arabic", Toast.LENGTH_SHORT).show()
+            onBackPressed()
+            refreshActivity()
+        }
+        buttonEnglish.setOnClickListener {
+            LocaleHelper.setLocale(this, RecommendedActivity.ENGLISH_LANGUAGE_CODE)
+            Toast.makeText(this, "English", Toast.LENGTH_SHORT).show()
+            onBackPressed()
+            refreshActivity()
+        }
+    }
+
+    private fun refreshActivity() {
+        //recreate()
+        val refresh = Intent(this, LibraryActivity::class.java)
+        startActivity(refresh)
     }
 
     private fun requestDownloadBook(book: BModel) {
@@ -329,13 +370,16 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     private fun initFragmentManager() {
-        val mFragmentManager = supportFragmentManager
-        val mFragmentTransaction = mFragmentManager.beginTransaction()
+        mFragmentManager = supportFragmentManager
+        mFragmentTransaction = mFragmentManager.beginTransaction()
 
         mContainerFragment.setBookClickCallback(this) // permet de gerer les click depuis le fragment
         mContainerFragment.setGroupClickCallback(this)
         mContainerFragment.setDisplayMetrics(mDisplayMetrics)
-        mFragmentTransaction.replace(R.id.fragment_container_library, mContainerFragment).commit()
+        if (mFragmentManager.findFragmentByTag(CONTAINER_FRAGMENT) == null) {
+            mFragmentTransaction.replace(R.id.fragment_container_library, mContainerFragment, CONTAINER_FRAGMENT)
+                .commit()
+        }
     }
 
     private fun initDisplayMetrics() {
