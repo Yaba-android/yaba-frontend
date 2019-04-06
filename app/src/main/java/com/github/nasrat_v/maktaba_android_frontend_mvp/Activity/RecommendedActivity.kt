@@ -67,6 +67,7 @@ class RecommendedActivity() : AppCompatActivity(),
         const val SELECTED_BOOK = "SelectedBook"
         const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
         const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"
+        const val LANGUAGE_CODE = "LanguageCode"
         const val ARABIC_LANGUAGE_CODE = "ar"
         const val ENGLISH_LANGUAGE_CODE = "en"
     }
@@ -142,11 +143,14 @@ class RecommendedActivity() : AppCompatActivity(),
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         val anim = intent!!.getIntExtra(LEFT_OR_RIGHT_IN_ANIMATION, -1)
+        val languageCode = intent.getStringExtra(LANGUAGE_CODE)
 
         if (anim == 0) // left
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         else if (anim == 1) // right
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        LocaleHelper.setLocale(this, languageCode)
+        recreate()
     }
 
     override fun bookEventButtonClicked(book: BModel) {
@@ -216,6 +220,7 @@ class RecommendedActivity() : AppCompatActivity(),
         button.setOnClickListener {
             Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            intent.putExtra(LANGUAGE_CODE, LocaleHelper.getLanguage(this))
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }

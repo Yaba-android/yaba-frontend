@@ -149,11 +149,14 @@ class LibraryActivity : AppCompatActivity(),
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         val anim = intent!!.getIntExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 1)
+        val languageCode = intent.getStringExtra(RecommendedActivity.LANGUAGE_CODE)
 
         if (anim == 0) // left
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         else if (anim == 1) // right
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        LocaleHelper.setLocale(this, languageCode)
+        refreshActivity() // on refresh (pas recreate) car on veut reinitialiser tous les fragments
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -227,19 +230,18 @@ class LibraryActivity : AppCompatActivity(),
         buttonArabic.setOnClickListener {
             LocaleHelper.setLocale(this, RecommendedActivity.ARABIC_LANGUAGE_CODE)
             Toast.makeText(this, "Arabic", Toast.LENGTH_SHORT).show()
-            onBackPressed()
-            refreshActivity()
+            refreshActivity() // on refresh (pas recreate) car on veut reinitialiser tous les fragments
         }
         buttonEnglish.setOnClickListener {
             LocaleHelper.setLocale(this, RecommendedActivity.ENGLISH_LANGUAGE_CODE)
             Toast.makeText(this, "English", Toast.LENGTH_SHORT).show()
-            onBackPressed()
-            refreshActivity()
+            refreshActivity() // on refresh (pas recreate) car on veut reinitialiser tous les fragments
         }
     }
 
     private fun refreshActivity() {
         //recreate()
+        finish()
         val refresh = Intent(this, LibraryActivity::class.java)
         startActivity(refresh)
     }
@@ -348,6 +350,7 @@ class LibraryActivity : AppCompatActivity(),
 
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
+        intent.putExtra(RecommendedActivity.LANGUAGE_CODE, LocaleHelper.getLanguage(this))
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
