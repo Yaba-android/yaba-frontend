@@ -73,7 +73,6 @@ class LibraryActivity : AppCompatActivity(),
         const val ALLBOOKS_NB_BOOK_COLUMNS = 10
         const val GROUPS_NB_GROUP_PER_ROW = 1
         const val REQUEST_BOOKS_ADD_DOWNLOAD_LIST = 0
-        const val ACTIVITY_NAME = "Library"
         const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
         const val DOWNLOADED_BOOKS = "DownloadedBooks"
         const val CONTAINER_FRAGMENT = "ContainerFragment"

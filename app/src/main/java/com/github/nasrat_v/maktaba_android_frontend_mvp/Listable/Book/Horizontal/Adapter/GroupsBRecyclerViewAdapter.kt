@@ -7,9 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
@@ -45,7 +43,6 @@ class GroupsBRecyclerViewAdapter(private var context: Context, private var list:
         holder.mFirstImage.setImageResource(firstBook.image)
         holder.mGenreName.text = (genre.name + " (" + books.size + ")")
         holder.itemView.setOnClickListener {
-            Toast.makeText(context, genre.name, Toast.LENGTH_SHORT).show()
             mGroupClickCallback.groupEventButtonClicked(group)
         }
     }

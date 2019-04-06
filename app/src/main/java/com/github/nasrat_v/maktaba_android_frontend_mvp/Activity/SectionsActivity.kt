@@ -30,10 +30,6 @@ class SectionsActivity : AppCompatActivity(),
     private val mGenreList = arrayListOf<GModel>()
     private var mFirstInit = true
 
-    companion object {
-        const val ACTIVITY_NAME = "Sections"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         super.onCreate(savedInstanceState)

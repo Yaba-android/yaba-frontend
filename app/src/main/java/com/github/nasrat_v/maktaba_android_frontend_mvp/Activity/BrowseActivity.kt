@@ -63,10 +63,6 @@ class BrowseActivity : AppCompatActivity(),
     private var mInputBrowseString = String()
     private var mFirstInit = true
 
-    companion object {
-        const val ACTIVITY_NAME = "Browse"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)

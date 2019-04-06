@@ -32,8 +32,6 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecor
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.RecommendedBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
-import android.util.Log
-
 
 class RecommendedActivity() : AppCompatActivity(),
     LoaderManager.LoaderCallbacks<RecommendedBRModel>,
@@ -62,7 +60,6 @@ class RecommendedActivity() : AppCompatActivity(),
         const val FIRST_RECYCLERVIEW_NB_COLUMNS = 1
         const val SECOND_RECYCLERVIEW_NB_COLUMNS = 1
         const val SMALL_RECYCLERVIEW_NB_COLUMNS = 2
-        const val ACTIVITY_NAME = "Recommended"
         const val SELECTED_BOOK = "SelectedBook"
         const val SELECTED_POPULAR_SPECIES = "SelectedPopularSpecies"
         const val LEFT_OR_RIGHT_IN_ANIMATION = "LeftOrRightInAnimation"

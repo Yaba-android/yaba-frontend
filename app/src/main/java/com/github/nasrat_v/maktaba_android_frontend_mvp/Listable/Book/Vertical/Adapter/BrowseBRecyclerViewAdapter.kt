@@ -40,7 +40,6 @@ class BrowseBRecyclerViewAdapter(
         holder.mNumberRating.text = ("(" + model.numberRating + ")")
         holder.mPrice.text = ("$" + model.price)
         holder.mImage.setOnClickListener {
-            Toast.makeText(context, model.title, Toast.LENGTH_SHORT).show()
             // envoyer le bon livre grace à position
             mBookClickCallback.bookEventButtonClicked(model)
         }
