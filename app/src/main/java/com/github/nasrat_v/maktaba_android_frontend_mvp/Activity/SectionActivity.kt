@@ -86,8 +86,8 @@ class SectionActivity : AppCompatActivity(),
     }
 
     override fun finish() {
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     override fun onBackPressed() {

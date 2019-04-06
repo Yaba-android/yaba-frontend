@@ -106,8 +106,8 @@ class BookDetailsActivity : AppCompatActivity(),
     }
 
     override fun finish() {
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         super.finish()
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     override fun bookEventButtonClicked(book: BModel) {
