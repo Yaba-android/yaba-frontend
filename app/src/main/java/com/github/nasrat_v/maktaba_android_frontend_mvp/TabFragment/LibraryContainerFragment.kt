@@ -111,9 +111,9 @@ class LibraryContainerFragment : Fragment() {
     }
 
     private fun initTabNamesList() {
-        mTabNamesList.add("Download")
-        mTabNamesList.add("Groups")
-        mTabNamesList.add("All Books")
+        mTabNamesList.add(getString(R.string.download_tab))
+        mTabNamesList.add(getString(R.string.groups_tab))
+        mTabNamesList.add(getString(R.string.allbooks_tab))
     }
 
     internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>) :

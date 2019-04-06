@@ -44,7 +44,6 @@
     <string name="author_review">Author Review</string>
     <string name="comment_review">Comment Review</string>
     <string name="open_genre">Open genre</string>
-    <string name="all_books">All Books</string>
     <string name="store">Store</string>
     <string name="library">Library</string>
     <string name="back">Back</string>
@@ -90,5 +89,8 @@
     <string name="title_review_overview_recyclerview">More Books from this Authors</string>
     <string name="arabic">Arabic</string>
     <string name="english">English</string>
+    <string name="download_tab">Download</string>
+    <string name="groups_tab">Groups</string>
+    <string name="allbooks_tab">All Books</string>
 </resources>
 

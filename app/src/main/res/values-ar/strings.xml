@@ -44,7 +44,6 @@
     <string name="author_review">Author Review</string>
     <string name="comment_review">Comment Review</string>
     <string name="open_genre">Open genre</string>
-    <string name="all_books">All Books</string>
     <string name="store">Store</string>
     <string name="library">Library</string>
     <string name="back">Back</string>
@@ -61,7 +60,7 @@
     <string name="wish_list">Wish list</string>
     <string name="sections">Sections</string>
     <string name="section_name">Section name</string>
-    <string name="sort">Sort</string>
+    <string name="sort">فرز</string>
     <string name="add_to_wish_list">Add to Wish list</string>
     <string name="try_the_sample">Try the sample</string>
     <string name="buy">Buy</string>
@@ -90,5 +89,8 @@
     <string name="title_review_overview_recyclerview">المزيد من الخيال</string>
     <string name="arabic">Arabic</string>
     <string name="english">English</string>
+    <string name="download_tab">تحميل</string>
+    <string name="groups_tab">مجموعات</string>
+    <string name="allbooks_tab">كل الكتب</string>
 </resources>
 
