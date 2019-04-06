@@ -106,8 +106,8 @@ class GroupActivity : AppCompatActivity(),
     }
 
     override fun finish() {
-        super.finish()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        super.finish()
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -127,9 +127,7 @@ class GroupActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_recommended_footer)
 
         button.setOnClickListener {
-            Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             returnToHome()
-            finishSendResult()
         }
     }
 
@@ -138,7 +136,6 @@ class GroupActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_browse_footer)
 
         button.setOnClickListener {
-            Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             finishSendResult()
@@ -150,8 +147,6 @@ class GroupActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
-            Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
@@ -173,10 +168,10 @@ class GroupActivity : AppCompatActivity(),
     private fun returnToHome() {
         val intent = Intent(this, RecommendedActivity::class.java)
 
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        finishSendResult()
     }
 
     private fun requestDownloadBook(book: BModel) {

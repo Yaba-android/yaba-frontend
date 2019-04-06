@@ -106,8 +106,8 @@ class BookDetailsActivity : AppCompatActivity(),
     }
 
     override fun finish() {
-        super.finish()
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        super.finish()
     }
 
     override fun bookEventButtonClicked(book: BModel) {
@@ -115,8 +115,8 @@ class BookDetailsActivity : AppCompatActivity(),
 
         intent.putExtra(RecommendedActivity.SELECTED_BOOK, book)
         startActivity(intent)
-        finish()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        finish()
     }
 
     override fun setupTabLayout(viewPager: ViewPager) {
@@ -145,7 +145,6 @@ class BookDetailsActivity : AppCompatActivity(),
         val buttonBrowse = findViewById<Button>(R.id.button_recommended_footer)
 
         buttonBrowse.setOnClickListener {
-            Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
             finish()
         }
     }
@@ -155,8 +154,6 @@ class BookDetailsActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_browse_footer)
 
         button.setOnClickListener {
-            Toast.makeText(this, BrowseActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             finish()
@@ -168,8 +165,6 @@ class BookDetailsActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
-            Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()

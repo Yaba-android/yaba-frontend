@@ -203,8 +203,8 @@ class RecommendedActivity() : AppCompatActivity(),
 
         button.setOnClickListener {
             startActivity(intent)
-            finish()
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            finish()
         }
     }
 
@@ -267,9 +267,9 @@ class RecommendedActivity() : AppCompatActivity(),
     private fun startSectionActivity() {
         val intent = Intent(this, SectionsActivity::class.java)
 
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        finish()
     }
 
     private fun initDrawerLayout() {

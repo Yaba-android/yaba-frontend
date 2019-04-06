@@ -218,9 +218,9 @@ class LibraryActivity : AppCompatActivity(),
 
     private fun refreshActivity() {
         //recreate()
-        finish()
         val refresh = Intent(this, LibraryActivity::class.java)
         startActivity(refresh)
+        finish()
     }
 
     private fun pendingTransitionOnNewIntent(intent: Intent) {
@@ -336,8 +336,8 @@ class LibraryActivity : AppCompatActivity(),
 
         intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
         startActivity(intent)
-        finish()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        finish()
     }
 
     private fun initRootDrawerLayout() {

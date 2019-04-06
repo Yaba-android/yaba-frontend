@@ -113,8 +113,8 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         finish()
+        super.onBackPressed()
     }
 
     override fun bookEventButtonClicked(book: BModel) {
@@ -154,8 +154,6 @@ class BrowseActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_recommended_footer)
 
         button.setOnClickListener {
-            Toast.makeText(this, RecommendedActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 1)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
@@ -168,8 +166,6 @@ class BrowseActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
-            Toast.makeText(this, LibraryActivity.ACTIVITY_NAME, Toast.LENGTH_SHORT).show()
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()

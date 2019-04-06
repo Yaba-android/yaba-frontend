@@ -71,8 +71,8 @@ class SectionsActivity : AppCompatActivity(),
     }
 
     override fun finish() {
-        super.finish()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        super.finish()
     }
 
     override fun onBackPressed() {
@@ -95,10 +95,10 @@ class SectionsActivity : AppCompatActivity(),
     private fun returnToHome() {
         val intent = Intent(this, RecommendedActivity::class.java)
 
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        finish()
     }
 
     private fun setListenerButtonCloseSection() {
