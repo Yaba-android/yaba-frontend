@@ -103,8 +103,8 @@ class BookDetailsContainerFragment : Fragment() {
     }
 
     private fun iniTabNamesList() {
-        mTabNamesList.add("Reviews ($mNumberRating)")
-        mTabNamesList.add("Overview")
+        mTabNamesList.add(getString(R.string.review_tab) + " $mNumberRating")
+        mTabNamesList.add(getString(R.string.overview_tab))
     }
 
     internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>) :

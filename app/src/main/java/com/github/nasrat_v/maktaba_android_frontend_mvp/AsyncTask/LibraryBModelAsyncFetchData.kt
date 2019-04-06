@@ -52,12 +52,6 @@ class LibraryBModelAsyncFetchData(
         )
     }
 
-    private fun removeIndexFromTmpList(selectedIndex: ArrayList<Int>, tmpList: ArrayList<BModel>) {
-        selectedIndex.forEach {
-            tmpList.removeAt(it)
-        }
-    }
-
     private fun mockDatasetGroups(
         allbooksLibrary: ArrayList<NoTitleListBModel>,
         dataset: ArrayList<GroupListBModel>

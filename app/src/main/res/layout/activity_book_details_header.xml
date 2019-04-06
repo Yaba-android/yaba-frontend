@@ -83,19 +83,21 @@
 
     <Button
             android:id="@+id/button_add_wishlist_book"
-            android:layout_width="136dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:layout_below="@+id/rating_bar_book"
             android:layout_centerHorizontal="true"
+            android:layoutDirection="rtl"
             android:gravity="center"
             android:text="@string/add_to_wish_list"
             android:textSize="14sp"
             android:textColor="@color/colorTextGrey"
-            android:fontFamily="@font/noto_sans_family"
+            android:textDirection="rtl"
             android:textAllCaps="false"
+            android:fontFamily="@font/noto_sans_family"
             android:background="?android:selectableItemBackground"
-            android:drawableEnd="@drawable/add_wish_list_heart"/>
+            android:drawableStart="@drawable/add_wish_list_heart"/>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -119,18 +121,20 @@
 
                 <Button
                         android:id="@+id/button_try_sample_book"
-                        android:layout_width="136dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:layoutDirection="rtl"
                         android:gravity="center"
                         android:text="@string/try_the_sample"
+                        android:textDirection="rtl"
                         android:textSize="14sp"
                         android:textAllCaps="false"
                         android:textColor="@color/colorTextGrey"
                         android:fontFamily="@font/noto_sans_family"
                         android:background="?android:selectableItemBackground"
-                        android:drawableEnd="@drawable/try_sample_library"/>
+                        android:drawableStart="@drawable/try_sample_library"/>
 
             </RelativeLayout>
 
@@ -153,9 +157,11 @@
                         android:layout_height="40dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:layoutDirection="rtl"
                         android:gravity="center"
                         android:text="@string/buy"
                         android:textSize="14sp"
+                        android:textDirection="rtl"
                         android:textAllCaps="false"
                         android:fontFamily="@font/noto_sans_family"
                         android:textColor="@android:color/white"
