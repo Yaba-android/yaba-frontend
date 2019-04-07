@@ -47,6 +47,7 @@ class RecommendedActivity() : AppCompatActivity(),
     private lateinit var mAdapterBookVerticalSecondRecyclerView: NoTitleListBRecyclerViewAdapter
     private lateinit var mAdapterBookVerticalSmallRecyclerView: SmallListBRecyclerViewAdapter
     private lateinit var mProgressBar: ProgressBar
+    private lateinit var mNavigationViewProfile: NavigationView
     private val mDatasetCarousel = arrayListOf<BModel>()
     private val mDatasetFirstRecyclerView = arrayListOf<NoTitleListBModel>()
     private val mPopularList = arrayListOf<GModel>()
@@ -185,8 +186,7 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun setListenerButtonCloseProfile() {
-        val nav = findViewById<NavigationView>(R.id.nav_view_profile)
-        val header = nav.getHeaderView(0)
+        val header = mNavigationViewProfile.getHeaderView(0)
         val buttonCloseProfile = header.findViewById<Button>(R.id.button_close_profile)
 
         buttonCloseProfile.setOnClickListener {
@@ -319,9 +319,16 @@ class RecommendedActivity() : AppCompatActivity(),
 
     private fun initNavigationView() {
         val buttonSignOut = findViewById<Button>(R.id.button_sign_out)
+        mNavigationViewProfile = findViewById(R.id.nav_view_profile)
+        val menu = mNavigationViewProfile.menu
 
         buttonSignOut.text =
             getString(StringLocaleResolver(mLanguage).getRes(R.string.sign_out))
+
+        menu.findItem(R.id.nav_profile).setTitle(StringLocaleResolver(mLanguage).getRes(R.string.profile))
+        menu.findItem(R.id.nav_settings).setTitle(StringLocaleResolver(mLanguage).getRes(R.string.settings))
+        menu.findItem(R.id.nav_help).setTitle(StringLocaleResolver(mLanguage).getRes(R.string.help))
+        menu.findItem(R.id.nav_wish_list).setTitle(StringLocaleResolver(mLanguage).getRes(R.string.wish_list))
     }
 
     private fun initCarouselRecycler() {

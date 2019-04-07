@@ -11,6 +11,10 @@ class StringLocaleResolver(private var languageCode: String) {
         const val ENGLISH_LANGUAGE_CODE = "en"
         const val DEFAULT_LANGUAGE_CODE = ENGLISH_LANGUAGE_CODE
         val ARABIC_STRINGS = mapOf(
+            R.string.profile to R.string.profile_arabic,
+            R.string.settings to R.string.settings_arabic,
+            R.string.help to R.string.help_arabic,
+            R.string.wish_list to R.string.wish_list_arabic,
             R.string.sign_out to R.string.sign_out_arabic,
             R.string.downloading to R.string.downloading_arabic,
             R.string.download to R.string.download_arabic,

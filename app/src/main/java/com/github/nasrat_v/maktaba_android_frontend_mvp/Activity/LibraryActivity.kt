@@ -59,6 +59,7 @@ class LibraryActivity : AppCompatActivity(),
     private lateinit var mDisplayMetrics: DisplayMetrics
     private lateinit var mFragmentManager: FragmentManager
     private lateinit var mFragmentTransaction: FragmentTransaction
+    private lateinit var mNavigationViewProfile: NavigationView
     private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
@@ -172,8 +173,7 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     private fun setListenerButtonCloseProfile() {
-        val nav = findViewById<NavigationView>(R.id.nav_view_profile)
-        val header = nav.getHeaderView(0)
+        val header = mNavigationViewProfile.getHeaderView(0)
         val buttonCloseProfile = header.findViewById<Button>(R.id.button_close_profile)
 
         buttonCloseProfile.setOnClickListener {
@@ -366,9 +366,16 @@ class LibraryActivity : AppCompatActivity(),
 
     private fun initNavigationView() {
         val buttonSignOut = findViewById<Button>(R.id.button_sign_out)
+        mNavigationViewProfile = findViewById(R.id.nav_view_profile)
+        val menu = mNavigationViewProfile.menu
 
         buttonSignOut.text =
             getString(StringLocaleResolver(mLanguage).getRes(R.string.sign_out))
+
+        menu.findItem(R.id.nav_profile).setTitle(StringLocaleResolver(mLanguage).getRes(R.string.profile))
+        menu.findItem(R.id.nav_settings).setTitle(StringLocaleResolver(mLanguage).getRes(R.string.settings))
+        menu.findItem(R.id.nav_help).setTitle(StringLocaleResolver(mLanguage).getRes(R.string.help))
+        menu.findItem(R.id.nav_wish_list).setTitle(StringLocaleResolver(mLanguage).getRes(R.string.wish_list))
     }
 
     private fun initRootDrawerLayout() {

@@ -13,7 +13,7 @@
                 android:title="@string/settings"/>
 
         <item
-                android:id="@+id/nav_help_tips"
+                android:id="@+id/nav_help"
                 android:title="@string/help"/>
 
         <item
