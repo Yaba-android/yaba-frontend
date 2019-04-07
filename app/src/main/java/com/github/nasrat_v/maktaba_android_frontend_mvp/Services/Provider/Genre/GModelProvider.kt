@@ -1,6 +1,7 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre
 
 import android.content.Context
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
@@ -15,9 +16,13 @@ class GModelProvider(
 
     fun getAllGenres(): ArrayList<GModel> {
         val hmodels = arrayListOf<GModel>()
-        val genreArray = context.resources.getStringArray(R.array.genres)
         val genreNumberArray = context.resources.getIntArray(R.array.genres_numbers)
         val genrePopularArray = context.resources.getIntArray(R.array.genres_popular)
+        val genreArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+            context.resources.getStringArray(R.array.genres_arabic)
+        } else {
+            context.resources.getStringArray(R.array.genres)
+        }
 
         for (index in 0..(genreArray.size - 1)) {
             hmodels.add(

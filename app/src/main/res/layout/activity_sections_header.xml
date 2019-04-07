@@ -22,13 +22,12 @@
             android:background="@drawable/cancel"/>
 
     <TextView
-            android:id="@+id/nav_genre_title"
+            android:id="@+id/genre_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button_close_section"
             android:layout_alignParentStart="true"
             android:layout_marginStart="32dp"
-            android:text="@string/sections"
             android:textStyle="bold"
             android:textSize="20sp"
             android:fontFamily="@font/noto_sans_family"
@@ -38,7 +37,7 @@
             android:layout_width="232dp"
             android:layout_height="1dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/nav_genre_title"
+            android:layout_below="@+id/genre_title"
             android:layout_marginTop="32dp"
             android:background="@color/colorSeparatorViewGrey"
             android:orientation="vertical"/>

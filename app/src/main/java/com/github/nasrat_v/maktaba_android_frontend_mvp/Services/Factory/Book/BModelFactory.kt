@@ -18,7 +18,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
             getEmptyImage(), "",
             AModelFactory(context, languageCode).getEmptyInstance(), 0f,
             0, 0f,
-            0, GModelFactory().getEmptyInstance(),
+            0, GModelFactory(context, languageCode).getEmptyInstance(),
             "", "",
             "", "", ""
         ))
@@ -91,16 +91,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
     }
 
     private fun getGenre(index: Int): GModel {
-        val genreList = context.resources.getStringArray(R.array.genres_books)
-        val provider = GModelProvider(context, languageCode)
-        val genrePopularList = provider.getPopularGenres()
-        val name = genreList[index]
-        val nb = provider.getNbGenre(name)
-
-        if (genrePopularList.find { it.name == name } != null) {
-            return GModel(name, nb, 1)
-        }
-        return (GModel(genreList[index], nb, 0))
+        return GModelFactory(context, languageCode).getInstance(index)
     }
 
     private fun getFileSize(index: Int): String {
@@ -110,13 +101,21 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
     }
 
     private fun getCountry(index: Int): String {
-        val countryArray = context.resources.getStringArray(R.array.countries_books)
+        val countryArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+            context.resources.getStringArray(R.array.countries_books_arabic)
+        } else {
+            context.resources.getStringArray(R.array.countries_books)
+        }
 
         return countryArray[index]
     }
 
     private fun getDatePublication(index: Int): String {
-        val datePublicationArray = context.resources.getStringArray(R.array.datepublications_books)
+        val datePublicationArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+            context.resources.getStringArray(R.array.datepublications_books_arabic)
+        } else {
+            context.resources.getStringArray(R.array.datepublications_books)
+        }
 
         return datePublicationArray[index]
     }

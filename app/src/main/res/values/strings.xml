@@ -11,17 +11,18 @@
     <string name="help">Help</string>
     <string name="wish_list">Wish list</string>
     <string name="sign_out">Sign Out</string>
-    <string name="sections">Sections</string>
     <string name="find_the_books_you_love">Find the books you love</string>
     <string name="search_by">Search by title, author, genre, country, publisher or word</string>
     <string name="results">Results</string>
     <string name="download_book">Download Book</string>
     <string name="action">Action</string>
     <string name="maktaba">Maktaba</string>
-    <!-- No Translation Strings -->
-
     <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
+    <!-- No Translation Strings -->
+
+    <string name="sections">Sections</string>
+    <string name="sections_arabic">الأقسام</string>
 
     <string name="carousel_title_first">Recommended\nreading for you</string>
     <string name="carousel_title_first_arabic">أوصت القراءة\nبالنسبة لك</string>

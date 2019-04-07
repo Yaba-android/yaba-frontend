@@ -1147,14 +1147,14 @@
         <item>Italy</item>
         <item>Palestine</item>
         <item>Syria</item>
-        <item>United States</item>
+        <item>United States of America</item>
         <item>Kuwait</item>
-        <item>Irland</item>
+        <item>Ireland</item>
         <item>Iran</item>
         <item>Egypt</item>
         <item>Yemen</item>
         <item>Oman</item>
-        <item>Jordany</item>
+        <item>Jordan</item>
         <item>Turkey</item>
         <item>Spain</item>
         <item>Qatar</item>
@@ -1169,12 +1169,12 @@
         <item>Syria</item>
         <item>United States</item>
         <item>Kuwait</item>
-        <item>Irland</item>
+        <item>Ireland</item>
         <item>Iran</item>
         <item>Egypt</item>
         <item>Yemen</item>
         <item>Oman</item>
-        <item>Jordany</item>
+        <item>Jordan</item>
         <item>Turkey</item>
         <item>Spain</item>
         <item>Qatar</item>
@@ -1189,37 +1189,60 @@
         <item>Syria</item>
         <item>United States</item>
         <item>Kuwait</item>
-        <item>Irland</item>
-        <item>Iran</item>
-        <item>Egypt</item>
-        <item>Yemen</item>
-        <item>Oman</item>
-        <item>Jordany</item>
-        <item>Turkey</item>
-        <item>Spain</item>
-        <item>Qatar</item>
-        <item>Algeria</item>
-        <item>Portugal</item>
-        <item>Iraq</item>
-        <item>Lebanon</item>
-        <item>France</item>
-        <item>Morocco</item>
-        <item>Italy</item>
-        <item>Palestine</item>
-        <item>Syria</item>
-        <item>United States</item>
-        <item>Kuwait</item>
-        <item>Irland</item>
-        <item>Iran</item>
-        <item>Egypt</item>
-        <item>Yemen</item>
-        <item>Oman</item>
-        <item>Jordany</item>
-        <item>Turkey</item>
-        <item>Spain</item>
-        <item>Qatar</item>
-        <item>Algeria</item>
-        <item>Portugal</item>
+        <item>Ireland</item>
+    </string-array>
+
+    <string-array name="countries_books_arabic">
+        <item>العراق</item>
+        <item>لبنان</item>
+        <item>فرنسا</item>
+        <item>المغرب</item>
+        <item>إيطاليا</item>
+        <item>فلسطين</item>
+        <item>سوريا</item>
+        <item>الولايات المتحدة الامريكية</item>
+        <item>الكويت</item>
+        <item>أيرلندا</item>
+        <item>إيران</item>
+        <item>مصر</item>
+        <item>اليمن</item>
+        <item>سلطنة عمان</item>
+        <item>الأردن</item>
+        <item>ديك رومي</item>
+        <item>إسبانيا</item>
+        <item>دولة قطر</item>
+        <item>الجزائر</item>
+        <item>البرتغال</item>
+        <item>العراق</item>
+        <item>لبنان</item>
+        <item>فرنسا</item>
+        <item>المغرب</item>
+        <item>إيطاليا</item>
+        <item>فلسطين</item>
+        <item>سوريا</item>
+        <item>الولايات المتحدة الامريكية</item>
+        <item>الكويت</item>
+        <item>أيرلندا</item>
+        <item>إيران</item>
+        <item>مصر</item>
+        <item>اليمن</item>
+        <item>سلطنة عمان</item>
+        <item>الأردن</item>
+        <item>ديك رومي</item>
+        <item>إسبانيا</item>
+        <item>دولة قطر</item>
+        <item>الجزائر</item>
+        <item>البرتغال</item>
+        <item>العراق</item>
+        <item>لبنان</item>
+        <item>فرنسا</item>
+        <item>المغرب</item>
+        <item>إيطاليا</item>
+        <item>فلسطين</item>
+        <item>سوريا</item>
+        <item>الولايات المتحدة الامريكية</item>
+        <item>الكويت</item>
+        <item>أيرلندا</item>
     </string-array>
 
     <string-array name="datepublications_books">
@@ -1273,6 +1296,59 @@
         <item>August 2017</item>
         <item>February 1998</item>
         <item>October 2004</item>
+    </string-array>
+
+    <string-array name="datepublications_books_arabic">
+        <item>مارس 2018</item>
+        <item>أغسطس 2002</item>
+        <item>يوليو 1997</item>
+        <item>كانون الثاني 2019</item>
+        <item>سبتمبر 1999</item>
+        <item>ديسمبر 2006</item>
+        <item>أبريل 2007</item>
+        <item>أغسطس 2017</item>
+        <item>شهر فبراير 1998</item>
+        <item>شهر اكتوبر 2004</item>
+        <item>مارس 2018</item>
+        <item>أغسطس 2002</item>
+        <item>يوليو 1997</item>
+        <item>كانون الثاني 2019</item>
+        <item>سبتمبر 1999</item>
+        <item>ديسمبر 2006</item>
+        <item>أبريل 2007</item>
+        <item>أغسطس 2017</item>
+        <item>شهر فبراير 1998</item>
+        <item>شهر اكتوبر 2004</item>
+        <item>مارس 2018</item>
+        <item>أغسطس 2002</item>
+        <item>يوليو 1997</item>
+        <item>كانون الثاني 2019</item>
+        <item>سبتمبر 1999</item>
+        <item>ديسمبر 2006</item>
+        <item>أبريل 2007</item>
+        <item>أغسطس 2017</item>
+        <item>شهر فبراير 1998</item>
+        <item>شهر اكتوبر 2004</item>
+        <item>مارس 2018</item>
+        <item>أغسطس 2002</item>
+        <item>يوليو 1997</item>
+        <item>كانون الثاني 2019</item>
+        <item>سبتمبر 1999</item>
+        <item>ديسمبر 2006</item>
+        <item>أبريل 2007</item>
+        <item>أغسطس 2017</item>
+        <item>شهر فبراير 1998</item>
+        <item>شهر اكتوبر 2004</item>
+        <item>مارس 2018</item>
+        <item>أغسطس 2002</item>
+        <item>يوليو 1997</item>
+        <item>كانون الثاني 2019</item>
+        <item>سبتمبر 1999</item>
+        <item>ديسمبر 2006</item>
+        <item>أبريل 2007</item>
+        <item>أغسطس 2017</item>
+        <item>شهر فبراير 1998</item>
+        <item>شهر اكتوبر 2004</item>
     </string-array>
 
     <string-array name="publishers_books">
@@ -2087,6 +2163,59 @@
         <item>Crime &amp; Excitement</item>
     </string-array>
 
+    <string-array name="genres_books_arabic">
+        <item>فن</item>
+        <item>اعمال</item>
+        <item>الحوسبة</item>
+        <item>التعليم</item>
+        <item>الصحة</item>
+        <item>المنزل والحديقة</item>
+        <item>الأدب</item>
+        <item>عائلة</item>
+        <item>المهنيين</item>
+        <item>رومانسي</item>
+        <item>الخيال العلمي</item>
+        <item>سيرة ذاتية شخصية</item>
+        <item>كتب الأطفال</item>
+        <item>الجريمة والإثارة</item>
+        <item>طعام شراب</item>
+        <item>التاريخ</item>
+        <item>فكاهة</item>
+        <item>غير الخيالية</item>
+        <item>سياسات</item>
+        <item>دين</item>
+        <item>العلوم والرياضيات</item>
+        <item>تقديم المشورة</item>
+        <item>اعمال</item>
+        <item>اعمال</item>
+        <item>الحوسبة</item>
+        <item>التعليم</item>
+        <item>التعليم</item>
+        <item>المنزل والحديقة</item>
+        <item>الأدب</item>
+        <item>عائلة</item>
+        <item>المهنيين</item>
+        <item>رومانسي</item>
+        <item>الخيال العلمي</item>
+        <item>الخيال العلمي</item>
+        <item>سيرة ذاتية شخصية</item>
+        <item>كتب الأطفال</item>
+        <item>الجريمة والإثارة</item>
+        <item>طعام شراب</item>
+        <item>التاريخ</item>
+        <item>فكاهة</item>
+        <item>غير الخيالية</item>
+        <item>دين</item>
+        <item>العلوم والرياضيات</item>
+        <item>المهنيين</item>
+        <item>المهنيين</item>
+        <item>رومانسي</item>
+        <item>رومانسي</item>
+        <item>رومانسي</item>
+        <item>كتب الأطفال</item>
+        <item>الجريمة والإثارة</item>
+    </string-array>
+
     <integer-array name="numbers_ratings_books">
         <item>12</item>
         <item>675</item>
@@ -2165,6 +2294,31 @@
         <item>Counseling</item>
     </string-array>
 
+    <string-array name="genres_arabic">
+        <item>فن</item>
+        <item>اعمال</item>
+        <item>الحوسبة</item>
+        <item>التعليم</item>
+        <item>الصحة</item>
+        <item>المنزل والحديقة</item>
+        <item>الأدب</item>
+        <item>عائلة</item>
+        <item>المهنيين</item>
+        <item>رومانسي</item>
+        <item>الخيال العلمي</item>
+        <item>سيرة ذاتية شخصية</item>
+        <item>كتب الأطفال</item>
+        <item>الجريمة والإثارة</item>
+        <item>طعام شراب</item>
+        <item>التاريخ</item>
+        <item>فكاهة</item>
+        <item>غير الخيالية</item>
+        <item>سياسات</item>
+        <item>دين</item>
+        <item>العلوم والرياضيات</item>
+        <item>تقديم المشورة</item>
+    </string-array>
+
     <integer-array name="genres_numbers">
         <item>1</item>
         <item>3</item>
@@ -2221,7 +2375,7 @@
     </integer-array>
 
     <string-array name="authors_reviews">
-        <item>Jane Doe</item>
+        <item>Jean-Phillipe Poireau</item>
         <item>Helen Marnie</item>
     </string-array>
 

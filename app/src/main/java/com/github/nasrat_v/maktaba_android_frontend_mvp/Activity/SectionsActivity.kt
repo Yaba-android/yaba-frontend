@@ -13,6 +13,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.SectionsGModelAsynFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ISectionAdditionalClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
@@ -42,6 +43,7 @@ class SectionsActivity : AppCompatActivity(),
         mProgressBar = findViewById(R.id.progress_bar_sections)
         mFirstInit = true
 
+        initTitle()
         initSectionNavVerticalRecycler()
     }
 
@@ -112,6 +114,12 @@ class SectionsActivity : AppCompatActivity(),
     private fun localeOnNewIntent() {
         mLanguage =
             intent.getStringExtra(StringLocaleResolver.LANGUAGE_CODE) ?: StringLocaleResolver.DEFAULT_LANGUAGE_CODE
+    }
+
+    private fun initTitle() {
+        val title = findViewById<TextView>(R.id.genre_title)
+
+        title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.sections))
     }
 
     private fun initSectionNavVerticalRecycler() {
