@@ -91,6 +91,7 @@ class LibraryActivity : AppCompatActivity(),
         mTabLayout = findViewById(R.id.tabs)
 
         initToolbar()
+        initNavigationView()
         initDisplayMetrics()
         initRootDrawerLayout()
         if (savedInstanceState == null) {
@@ -356,6 +357,20 @@ class LibraryActivity : AppCompatActivity(),
         finish()
     }
 
+    private fun initToolbar() {
+        val title = findViewById<TextView>(R.id.toolbar_title)
+
+        title.text =
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.book_store))
+    }
+
+    private fun initNavigationView() {
+        val buttonSignOut = findViewById<Button>(R.id.button_sign_out)
+
+        buttonSignOut.text =
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.sign_out))
+    }
+
     private fun initRootDrawerLayout() {
         setSupportActionBar(mToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
@@ -390,12 +405,5 @@ class LibraryActivity : AppCompatActivity(),
     private fun initDisplayMetrics() {
         mDisplayMetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(mDisplayMetrics)
-    }
-
-    private fun initToolbar() {
-        val title = findViewById<TextView>(R.id.toolbar_title)
-
-        title.text =
-            getString(StringLocaleResolver(mLanguage).getRes(R.string.book_store))
     }
 }

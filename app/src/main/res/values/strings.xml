@@ -10,7 +10,6 @@
     <string name="profile_email">jane.doe@gmail.com</string>
     <string name="help">Help</string>
     <string name="wish_list">Wish list</string>
-    <string name="sign_out">Sign Out</string>
     <string name="find_the_books_you_love">Find the books you love</string>
     <string name="search_by">Search by title, author, genre, country, publisher or word</string>
     <string name="results">Results</string>
@@ -18,7 +17,12 @@
     <string name="maktaba">Maktaba</string>
     <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
+    <string name="english">English</string>
+    <string name="arabic">عربى</string>
     <!-- No Translation Strings -->
+
+    <string name="sign_out">Sign Out</string>
+    <string name="sign_out_arabic">خروج</string>
 
     <string name="downloading">Downloading</string>
     <string name="downloading_arabic">جارى التحميل</string>

@@ -32,6 +32,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecor
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.RecommendedBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import org.w3c.dom.Text
 
 
 class RecommendedActivity() : AppCompatActivity(),
@@ -166,6 +167,7 @@ class RecommendedActivity() : AppCompatActivity(),
 
     private fun initAllViews() {
         initToolbar()
+        initNavigationView()
         initCarouselRecycler()
         initFirstVerticalRecycler()
         initPopularSpeciesHorizontalRecycler()
@@ -313,6 +315,13 @@ class RecommendedActivity() : AppCompatActivity(),
 
         title.text =
             getString(StringLocaleResolver(mLanguage).getRes(R.string.book_store))
+    }
+
+    private fun initNavigationView() {
+        val buttonSignOut = findViewById<Button>(R.id.button_sign_out)
+
+        buttonSignOut.text =
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.sign_out))
     }
 
     private fun initCarouselRecycler() {
