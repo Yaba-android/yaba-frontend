@@ -231,15 +231,15 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun setListenerChangeLanguage() {
-        val buttonArabic = findViewById<Button>(R.id.button_arabic_language)
-        val buttonEnglish = findViewById<Button>(R.id.button_english_language)
+        val switchLanguage = findViewById<Switch>(R.id.switch_language)
 
-        buttonArabic.setOnClickListener {
-            mLanguage = StringLocaleResolver.ARABIC_LANGUAGE_CODE
-            refreshActivity()
-        }
-        buttonEnglish.setOnClickListener {
-            mLanguage = StringLocaleResolver.ENGLISH_LANGUAGE_CODE
+        switchLanguage.isChecked = (mLanguage == StringLocaleResolver.ARABIC_LANGUAGE_CODE)
+        switchLanguage.setOnClickListener {
+            mLanguage = if (switchLanguage.isChecked) {
+                StringLocaleResolver.ARABIC_LANGUAGE_CODE
+            } else {
+                StringLocaleResolver.ENGLISH_LANGUAGE_CODE
+            }
             refreshActivity()
         }
     }

@@ -6,43 +6,41 @@
         android:layout_gravity="bottom"
         android:background="@color/colorNavFooterGrey">
 
-    <Button
-            android:id="@+id/button_arabic_language"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
+    <TextView
+            android:id="@+id/english_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_alignParentStart="true"
-            android:background="?android:selectableItemBackground"/>
+            android:padding="10dp"
+            android:text="English"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="14sp"
+            android:fontFamily="@font/noto_sans_family"/>
 
-    <ImageView
-            android:id="@+id/image_arabic_language"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="15dp"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/flag_arabic"/>
+    <Switch
+            android:id="@+id/switch_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/english_text"
+            android:padding="12dp"/>
 
-    <Button
-            android:id="@+id/button_english_language"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@+id/button_arabic_language"
-            android:background="?android:selectableItemBackground"/>
-
-    <ImageView
-            android:id="@+id/image_english_language"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@+id/button_arabic_language"
-            android:src="@drawable/flag_english"/>
+    <TextView
+            android:id="@+id/arabic_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/switch_language"
+            android:padding="10dp"
+            android:text="Arabic"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="14sp"
+            android:fontFamily="@font/noto_sans_family"/>
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/button_arabic_language"
+            android:layout_below="@+id/switch_language"
             android:orientation="vertical">
 
         <LinearLayout

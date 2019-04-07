@@ -21,10 +21,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.folioreader.FolioReader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
@@ -202,15 +199,15 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     private fun setListenerChangeLanguage() {
-        val buttonArabic = findViewById<Button>(R.id.button_arabic_language)
-        val buttonEnglish = findViewById<Button>(R.id.button_english_language)
+        val switchLanguage = findViewById<Switch>(R.id.switch_language)
 
-        buttonArabic.setOnClickListener {
-            mLanguage = StringLocaleResolver.ARABIC_LANGUAGE_CODE
-            refreshActivity()
-        }
-        buttonEnglish.setOnClickListener {
-            mLanguage = StringLocaleResolver.ENGLISH_LANGUAGE_CODE
+        switchLanguage.isChecked = (mLanguage == StringLocaleResolver.ARABIC_LANGUAGE_CODE)
+        switchLanguage.setOnClickListener {
+            mLanguage = if (switchLanguage.isChecked) {
+                StringLocaleResolver.ARABIC_LANGUAGE_CODE
+            } else {
+                StringLocaleResolver.ENGLISH_LANGUAGE_CODE
+            }
             refreshActivity()
         }
     }
