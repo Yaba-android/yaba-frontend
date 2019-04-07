@@ -18,12 +18,10 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.SectionNoTitle
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.BigListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.ListBModel
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 @SuppressLint("Registered")
@@ -37,6 +35,7 @@ class SectionActivity : AppCompatActivity(),
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mDisplayMetrics: DisplayMetrics
     private val mDataset = arrayListOf<NoTitleListBModel>()
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
     companion object {
@@ -47,6 +46,8 @@ class SectionActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_section_structure)
+
+        localeOnNewIntent()
 
         mSelectedSection = intent.getParcelableExtra(RecommendedActivity.SELECTED_POPULAR_SPECIES)
         mProgressBar = findViewById(R.id.progress_bar_section)
@@ -101,7 +102,7 @@ class SectionActivity : AppCompatActivity(),
         val intent = Intent(this, BookDetailsActivity::class.java)
 
         intent.putExtra(RecommendedActivity.SELECTED_BOOK, book)
-        startActivity(intent)
+        startNewActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
@@ -112,7 +113,7 @@ class SectionActivity : AppCompatActivity(),
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.itemId == R.id.action_back) {
-            finish()
+            returnToHome()
         }
         return true
     }
@@ -130,7 +131,7 @@ class SectionActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_browse_footer)
 
         button.setOnClickListener {
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             finish()
         }
@@ -141,7 +142,7 @@ class SectionActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
@@ -151,8 +152,18 @@ class SectionActivity : AppCompatActivity(),
         val intent = Intent(this, RecommendedActivity::class.java)
 
         intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
-        startActivity(intent)
+        startNewActivity(intent)
         finish()
+    }
+
+    private fun startNewActivity(intent: Intent) {
+        intent.putExtra(StringLocaleResolver.LANGUAGE_CODE, mLanguage)
+        startActivity(intent)
+    }
+
+    private fun localeOnNewIntent() {
+        mLanguage =
+            intent.getStringExtra(StringLocaleResolver.LANGUAGE_CODE) ?: StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     }
 
     private fun initTitle() {
@@ -180,6 +191,7 @@ class SectionActivity : AppCompatActivity(),
     private fun initVerticalRecycler() {
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
+        val sortButton = findViewById<Button>(R.id.sort_button)
 
         mAdapterBookVertical =
             BigListBRecyclerViewAdapter(
@@ -187,6 +199,7 @@ class SectionActivity : AppCompatActivity(),
                 mDataset,
                 this
             )
+        sortButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.sort))
         mAdapterBookVertical.setDisplayMetrics(mDisplayMetrics)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

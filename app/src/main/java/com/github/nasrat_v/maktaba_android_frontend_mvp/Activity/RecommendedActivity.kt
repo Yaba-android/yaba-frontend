@@ -20,7 +20,7 @@ import android.widget.*
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.RecommendedBRModelAsyncFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IRecommendedAdditionalClickCallback
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.LocaleHelper
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter.CarouselBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.LayoutManager.CarouselLinearLayoutManager
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.NoTitleListBRecyclerViewAdapter
@@ -32,6 +32,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.LeftOffsetDecor
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.RecommendedBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.RightOffsetDecoration
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+
 
 class RecommendedActivity() : AppCompatActivity(),
     LoaderManager.LoaderCallbacks<RecommendedBRModel>,
@@ -50,6 +51,7 @@ class RecommendedActivity() : AppCompatActivity(),
     private val mPopularList = arrayListOf<GModel>()
     private val mDatasetSecondRecyclerView = arrayListOf<NoTitleListBModel>()
     private val mDatasetSmallRecyclerView = arrayListOf<NoTitleListBModel>()
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
     companion object {
@@ -71,7 +73,8 @@ class RecommendedActivity() : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recommended_structure)
 
-        pendingTransitionOnNewIntent(intent)
+        pendingTransitionOnNewIntent()
+        localeOnNewIntent()
 
         mProgressBar = findViewById(R.id.progress_bar_recommeded)
         mFirstInit = true
@@ -139,36 +142,41 @@ class RecommendedActivity() : AppCompatActivity(),
         val intent = Intent(this, BookDetailsActivity::class.java)
 
         intent.putExtra(SELECTED_BOOK, book)
-        startActivity(intent)
+        startNewActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        finish()
     }
 
     override fun popularSpeciesEventButtonClicked(pspecies: GModel) {
         val intent = Intent(this, SectionActivity::class.java)
 
         intent.putExtra(SELECTED_POPULAR_SPECIES, pspecies)
-        startActivity(intent)
+        startNewActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        finish()
     }
 
     private fun initTitle() {
         val title = findViewById<TextView>(R.id.title_carousel)
         val titleBis = findViewById<TextView>(R.id.title_bis_carousel)
 
-        title.text = getString(R.string.carousel_title_first)
-        titleBis.text = getString(R.string.carousel_title_second)
+        title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.carousel_title_first))
+        titleBis.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.carousel_title_second))
     }
 
     private fun initAllViews() {
+        initToolbar()
         initCarouselRecycler()
         initFirstVerticalRecycler()
         initPopularSpeciesHorizontalRecycler()
         initSecondVerticalRecycler()
         initSmallVerticalRecycler()
+        initFooter()
     }
 
     private fun killAllActivities() {
         val intent = Intent(this, RecommendedActivity::class.java)
+
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
@@ -189,7 +197,7 @@ class RecommendedActivity() : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_browse_footer)
 
         button.setOnClickListener {
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
     }
@@ -199,7 +207,7 @@ class RecommendedActivity() : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
@@ -227,11 +235,11 @@ class RecommendedActivity() : AppCompatActivity(),
         val buttonEnglish = findViewById<Button>(R.id.button_english_language)
 
         buttonArabic.setOnClickListener {
-            LocaleHelper.setLocale(this, LocaleHelper.ARABIC_LANGUAGE_CODE)
+            mLanguage = StringLocaleResolver.ARABIC_LANGUAGE_CODE
             refreshActivity()
         }
         buttonEnglish.setOnClickListener {
-            LocaleHelper.setLocale(this, LocaleHelper.ENGLISH_LANGUAGE_CODE)
+            mLanguage = StringLocaleResolver.ENGLISH_LANGUAGE_CODE
             refreshActivity()
         }
     }
@@ -245,15 +253,21 @@ class RecommendedActivity() : AppCompatActivity(),
         }
     }
 
+    private fun startNewActivity(intent: Intent) {
+        intent.putExtra(StringLocaleResolver.LANGUAGE_CODE, mLanguage)
+        startActivity(intent)
+    }
+
     private fun refreshActivity() {
         //recreate()
         val refresh = Intent(this, RecommendedActivity::class.java)
-        startActivity(refresh)
+
+        startNewActivity(refresh)
         finish()
     }
 
-    private fun pendingTransitionOnNewIntent(intent: Intent?) {
-        val anim = intent!!.getIntExtra(LEFT_OR_RIGHT_IN_ANIMATION, -1)
+    private fun pendingTransitionOnNewIntent() {
+        val anim = intent.getIntExtra(LEFT_OR_RIGHT_IN_ANIMATION, -1)
 
         if (anim == 0) // left
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
@@ -261,10 +275,15 @@ class RecommendedActivity() : AppCompatActivity(),
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
+    private fun localeOnNewIntent() {
+        mLanguage =
+            intent.getStringExtra(StringLocaleResolver.LANGUAGE_CODE) ?: StringLocaleResolver.DEFAULT_LANGUAGE_CODE
+    }
+
     private fun startSectionActivity() {
         val intent = Intent(this, SectionsActivity::class.java)
 
-        startActivity(intent)
+        startNewActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         finish()
     }
@@ -289,16 +308,25 @@ class RecommendedActivity() : AppCompatActivity(),
         mDrawerLayout.addDrawerListener(mDrawerToggle)
     }
 
+    private fun initToolbar() {
+        val title = findViewById<TextView>(R.id.toolbar_title)
+
+        title.text =
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.book_store))
+    }
+
     private fun initCarouselRecycler() {
         val carouselRecyclerView = findViewById<RecyclerView>(R.id.carousel_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
         val linearManager = CarouselLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val viewAllButton = findViewById<Button>(R.id.view_all_button_carousel)
 
         mAdapterBookVerticalCarousel =
             CarouselBRecyclerViewAdapter(
                 this,
                 mDatasetCarousel
             )
+        viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         mAdapterBookVerticalCarousel.setTabFragmentClickCallback(this)
         GravitySnapHelper(Gravity.START).attachToRecyclerView(carouselRecyclerView)
         carouselRecyclerView.setHasFixedSize(true)
@@ -317,6 +345,7 @@ class RecommendedActivity() : AppCompatActivity(),
     private fun initFirstVerticalRecycler() {
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_first)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
+        val viewAllButton = layoutTitle.findViewById<Button>(R.id.view_all_button)
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.first_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
@@ -326,7 +355,8 @@ class RecommendedActivity() : AppCompatActivity(),
                 mDatasetFirstRecyclerView,
                 this
             )
-        title.text = getString(R.string.title_first_recyclerview)
+        title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_first_recyclerview))
+        viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVerticalFirstRecyclerView
@@ -340,11 +370,13 @@ class RecommendedActivity() : AppCompatActivity(),
     private fun initPopularSpeciesHorizontalRecycler() {
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_genre)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
+        val viewAllButton = layoutTitle.findViewById<Button>(R.id.view_all_button)
         val horizontalRecyclerView = findViewById<RecyclerView>(R.id.genre_horizontal_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
         mAdapterGenreHorizontal = GPSRecyclerViewAdapter(this, mPopularList, this)
-        title.text = getString(R.string.title_popular_species_recyclerview)
+        title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_popular_species_recyclerview))
+        viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         //GravitySnapHelper(Gravity.END).attachToRecyclerView(horizontalRecyclerView)
         horizontalRecyclerView.setHasFixedSize(true)
         horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -362,6 +394,7 @@ class RecommendedActivity() : AppCompatActivity(),
     private fun initSecondVerticalRecycler() {
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_second)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
+        val viewAllButton = layoutTitle.findViewById<Button>(R.id.view_all_button)
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.second_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
@@ -371,7 +404,8 @@ class RecommendedActivity() : AppCompatActivity(),
                 mDatasetSecondRecyclerView,
                 this
             )
-        title.text = getString(R.string.title_second_recyclerview)
+        title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_second_recyclerview))
+        viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVerticalSecondRecyclerView
@@ -385,6 +419,7 @@ class RecommendedActivity() : AppCompatActivity(),
     private fun initSmallVerticalRecycler() {
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_small)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
+        val viewAllButton = layoutTitle.findViewById<Button>(R.id.view_all_button)
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.small_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
@@ -394,7 +429,8 @@ class RecommendedActivity() : AppCompatActivity(),
                 mDatasetSmallRecyclerView,
                 this
             )
-        title.text = getString(R.string.title_small_recyclerview)
+        title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_small_recyclerview))
+        viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVerticalSmallRecyclerView
@@ -403,5 +439,18 @@ class RecommendedActivity() : AppCompatActivity(),
         )
         verticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()
+    }
+
+    private fun initFooter() {
+        val firsText = findViewById<TextView>(R.id.first_text_dont_find)
+        val secondText = findViewById<TextView>(R.id.second_text_dont_find)
+        val button = findViewById<Button>(R.id.button_browse_sections)
+
+        firsText.text =
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.not_found_what_you_re_looking_for))
+        secondText.text =
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.search_or_browse_categories))
+        button.text =
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.browse_sections))
     }
 }

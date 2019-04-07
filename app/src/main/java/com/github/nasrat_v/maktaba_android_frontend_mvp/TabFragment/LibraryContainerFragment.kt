@@ -14,6 +14,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.LibraryActivity
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Book.LibraryBModelFactory
@@ -34,6 +35,7 @@ class LibraryContainerFragment : Fragment(),
     private val mDownloadFrag = DownloadFragment()
     private val mGroupsFrag = GroupsFragment()
     private val mAllBooksFrag = AllBooksFragment()
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -93,6 +95,10 @@ class LibraryContainerFragment : Fragment(),
         mDisplayMetrics = displayMetrics
     }
 
+    fun setLanguageCode(languageCode: String) {
+        mLanguage = languageCode
+    }
+
     private fun initEmptyLibraryDataset() { // on init une library empty en attendant les dataset de l'asynTask
         mLibraryDataset = LibraryBModelFactory().getEmptyInstance()
     }
@@ -111,17 +117,20 @@ class LibraryContainerFragment : Fragment(),
     private fun initTabFragment() {
         mDownloadFrag.setBookClickCallback(mBookClickCallback)
         mDownloadFrag.setDisplayMetrics(mDisplayMetrics)
+        mDownloadFrag.setLanguageCode(mLanguage)
         mGroupsFrag.setBookClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
         mGroupsFrag.setGroupClickCallback(mGroupClickCallback)
+        mGroupsFrag.setLanguageCode(mLanguage)
         mAllBooksFrag.setBookClickCallback(mBookClickCallback)
         mAllBooksFrag.setDisplayMetrics(mDisplayMetrics)
+        mAllBooksFrag.setLanguageCode(mLanguage)
     }
 
     private fun initTabNamesList() {
         mTabNamesList.clear()
-        mTabNamesList.add(getString(R.string.download_tab))
-        mTabNamesList.add(getString(R.string.groups_tab))
-        mTabNamesList.add(getString(R.string.allbooks_tab))
+        mTabNamesList.add(getString(StringLocaleResolver(mLanguage).getRes(R.string.download_tab)))
+        mTabNamesList.add(getString(StringLocaleResolver(mLanguage).getRes(R.string.groups_tab)))
+        mTabNamesList.add(getString(StringLocaleResolver(mLanguage).getRes(R.string.allbooks_tab)))
     }
 
     internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>) :

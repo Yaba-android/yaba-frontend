@@ -14,7 +14,6 @@
             android:paddingBottom="5dp"
             android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:text="@string/not_found_what_you_re_looking_for"
             android:textColor="@color/colorTextBlackGroup"
             android:fontFamily="@font/noto_sans_family"
             android:textStyle="bold"
@@ -29,7 +28,6 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:paddingBottom="30dp"
-            android:text="@string/search_or_browse_categories_to_access_your_upcoming_story"
             android:textSize="12sp"
             android:fontFamily="@font/noto_sans_family"
             android:textColor="@color/colorTextGrey"/>
@@ -45,7 +43,6 @@
             android:gravity="start|center"
             android:background="@color/colorButtonDontFindBlueHolo"
             android:drawableStart="@drawable/left_arrow"
-            android:text="@string/browse_sections"
             android:textAllCaps="false"
             android:textDirection="rtl"
             android:textColor="@android:color/white"

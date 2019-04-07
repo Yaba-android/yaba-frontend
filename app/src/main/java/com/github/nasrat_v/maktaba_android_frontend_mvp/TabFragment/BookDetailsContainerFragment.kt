@@ -14,6 +14,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Activity.BookDetailsActi
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookInfosProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.BookDetailsBRModelFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.Overview.OverviewFragment
@@ -29,6 +30,7 @@ class BookDetailsContainerFragment : Fragment() {
     private val mTabNamesList = arrayListOf<String>()
     private val mReview = ReviewFragment()
     private val mOverview = OverviewFragment()
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
 
     companion object {
         const val RECYCLER_VIEW_NB_BOOKS_PER_ROW = 6
@@ -81,6 +83,10 @@ class BookDetailsContainerFragment : Fragment() {
         resetAllDatasetFragment()
     }
 
+    fun setLanguageCode(languageCode: String) {
+        mLanguage = languageCode
+    }
+
     private fun initEmptyDataset() {
         mBookDetailsBRModel = BookDetailsBRModelFactory().getEmptyInstance()
     }
@@ -99,12 +105,14 @@ class BookDetailsContainerFragment : Fragment() {
 
     private fun initTabFragment() {
         mReview.setTabFragmentClickCallback(mBookClickCallback)
+        mReview.setLanguageCode(mLanguage)
         mOverview.setTabFragmentClickCallback(mBookClickCallback) // on set l'interface qui va permettre au fragment de renvoyer l'event click
+        mOverview.setLanguageCode(mLanguage)
     }
 
     private fun iniTabNamesList() {
-        mTabNamesList.add(getString(R.string.review_tab) + " $mNumberRating")
-        mTabNamesList.add(getString(R.string.overview_tab))
+        mTabNamesList.add(getString(StringLocaleResolver(mLanguage).getRes(R.string.review_tab)) + " ($mNumberRating)")
+        mTabNamesList.add(getString(StringLocaleResolver(mLanguage).getRes(R.string.overview_tab)))
     }
 
     internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>) :

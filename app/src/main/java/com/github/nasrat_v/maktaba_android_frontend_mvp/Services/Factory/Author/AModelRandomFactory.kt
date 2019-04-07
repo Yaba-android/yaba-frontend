@@ -4,36 +4,29 @@ import android.content.Context
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Author.AModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class AModelFactory(private var context: Context) {
+class AModelRandomFactory(private var context: Context) {
 
-    fun getEmptyInstance(): AModel {
+    fun getRandomInstance(): AModel {
         return (AModel(
-            getPicture(),
-            "", ""
+            getRandomPicture(),
+            getRandomName(),
+            getRandomDescription()
         ))
     }
 
-    fun getInstance(index: Int): AModel {
-        return (AModel(
-            getPicture(),
-            getName(index),
-            getDescription(index)
-        ))
-    }
-
-    private fun getPicture(): Int {
+    private fun getRandomPicture(): Int {
         return R.drawable.author_round
     }
 
-    private fun getName(index: Int): String {
+    private fun getRandomName(): String {
         val nameArray = context.resources.getStringArray(R.array.name_authors_books)
 
-        return nameArray[index]
+        return nameArray[(0..(nameArray.size - 1)).random()]
     }
 
-    private fun getDescription(index: Int): String {
+    private fun getRandomDescription(): String {
         val descArray = context.resources.getStringArray(R.array.desc_authors_books)
 
-        return descArray[index]
+        return descArray[(0..(descArray.size - 1)).random()]
     }
 }

@@ -35,7 +35,6 @@
                     android:layout_marginBottom="60dp"
                     android:layout_gravity="center"
                     android:background="@color/colorBookDetailsButtonGrey"
-                    android:text="@string/view_all_reviews"
                     android:textSize="12sp"
                     android:fontFamily="@font/noto_sans_family"
                     android:textAllCaps="false"

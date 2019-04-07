@@ -50,7 +50,7 @@
                 tools:ignore="RtlHardcoded"/>
 
         <Button
-                android:id="@+id/button_more_author_overview"
+                android:id="@+id/button_read_more_author_review_overview"
                 android:layout_width="114dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="12dp"
@@ -58,7 +58,6 @@
                 android:layout_below="@+id/author_desc_review_overview"
                 android:layout_marginBottom="50dp"
                 android:gravity="start|center"
-                android:text="@string/read_more"
                 android:textSize="12sp"
                 android:textDirection="rtl"
                 android:fontFamily="@font/noto_sans_family"
@@ -82,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"
-                android:paddingBottom="40dp"
+                android:paddingBottom="60dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:ignore="RtlSymmetry"/>
 

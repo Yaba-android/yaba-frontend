@@ -6,7 +6,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Author.AModelFactory
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Author.AModelRandomFactory
 
 class BModelRandomFactory(private var context: Context) {
 
@@ -37,11 +37,7 @@ class BModelRandomFactory(private var context: Context) {
     }
 
     private fun getRandomAuthor() : AModel {
-        val authorArray = context.resources.getStringArray(R.array.authors_books)
-        val author = AModelFactory(context).getEmptyInstance()
-
-        author.name = authorArray[(0..(authorArray.size - 1)).random()]
-        return author
+        return AModelRandomFactory(context).getRandomInstance()
     }
 
     private fun getRandomRating() : Float {

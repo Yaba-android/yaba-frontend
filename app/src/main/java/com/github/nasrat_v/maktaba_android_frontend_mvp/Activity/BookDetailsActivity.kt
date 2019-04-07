@@ -20,6 +20,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsC
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookInfosProvider
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ITabLayoutSetupCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
@@ -37,12 +38,15 @@ class BookDetailsActivity : AppCompatActivity(),
     private lateinit var mContainerFragment: BookDetailsContainerFragment
     private lateinit var mBookDetailsBRModel: BookDetailsBRModel
     private lateinit var mProgressBar: ProgressBar
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_book_details)
+
+        localeOnNewIntent()
 
         mFirstInit = true
         mProgressBar = findViewById(R.id.progress_bar_book_details)
@@ -52,6 +56,7 @@ class BookDetailsActivity : AppCompatActivity(),
         mToolbar = findViewById(R.id.toolbar_book_details)
         mTabLayout = findViewById(R.id.tabs)
 
+        initHeader()
         initRootDrawerLayout()
         if (savedInstanceState == null) {
             initFragmentManager()
@@ -93,7 +98,7 @@ class BookDetailsActivity : AppCompatActivity(),
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.itemId == R.id.action_back) {
-            finish()
+            returnToHome()
         }
         return true
     }
@@ -114,7 +119,7 @@ class BookDetailsActivity : AppCompatActivity(),
         val intent = Intent(this, BookDetailsActivity::class.java)
 
         intent.putExtra(RecommendedActivity.SELECTED_BOOK, book)
-        startActivity(intent)
+        startNewActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
@@ -145,7 +150,7 @@ class BookDetailsActivity : AppCompatActivity(),
         val buttonBrowse = findViewById<Button>(R.id.button_recommended_footer)
 
         buttonBrowse.setOnClickListener {
-            finish()
+            returnToHome()
         }
     }
 
@@ -154,7 +159,7 @@ class BookDetailsActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_browse_footer)
 
         button.setOnClickListener {
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             finish()
         }
@@ -165,7 +170,7 @@ class BookDetailsActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
@@ -187,6 +192,35 @@ class BookDetailsActivity : AppCompatActivity(),
         buyButton.text = ("$" + mSelectedBook.price + " " + buyButton.text)
     }
 
+    private fun startNewActivity(intent: Intent) {
+        intent.putExtra(StringLocaleResolver.LANGUAGE_CODE, mLanguage)
+        startActivity(intent)
+    }
+
+    private fun returnToHome() {
+        val intent = Intent(this, RecommendedActivity::class.java)
+
+        intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 1)
+        startNewActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        finish()
+    }
+
+    private fun localeOnNewIntent() {
+        mLanguage =
+            intent.getStringExtra(StringLocaleResolver.LANGUAGE_CODE) ?: StringLocaleResolver.DEFAULT_LANGUAGE_CODE
+    }
+
+    private fun initHeader() {
+        val buttonWishList = findViewById<Button>(R.id.button_add_wishlist_book)
+        val buttonBuy = findViewById<Button>(R.id.button_buy_book)
+        val buttonTrySample = findViewById<Button>(R.id.button_try_sample_book)
+
+        buttonWishList.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.add_to_wish_list))
+        buttonBuy.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.buy))
+        buttonTrySample.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.try_the_sample))
+    }
+
     private fun initRootDrawerLayout() {
         setSupportActionBar(mToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
@@ -203,6 +237,7 @@ class BookDetailsActivity : AppCompatActivity(),
     private fun initFragmentManager() {
         val mFragmentManager = supportFragmentManager
 
+        mContainerFragment.setLanguageCode(mLanguage)
         mContainerFragment.setNumberRatingTabNameReview(mSelectedBook.numberRating)
         mContainerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis le fragment
         mContainerFragment.setBookInfosProvider(this)

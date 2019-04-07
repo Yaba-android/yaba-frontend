@@ -7,9 +7,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IGroupClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.GroupsListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.GroupListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
@@ -21,6 +23,7 @@ class GroupsFragment : Fragment() {
     private lateinit var mGroupClickCallback: IGroupClickCallback
     private lateinit var mAdapterBookVertical: GroupsListBRecyclerViewAdapter
     private var mDataset = arrayListOf<GroupListBModel>()
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -51,9 +54,14 @@ class GroupsFragment : Fragment() {
         mAdapterBookVertical.notifyDataSetChanged()
     }
 
+    fun setLanguageCode(languageCode: String) {
+        mLanguage = languageCode
+    }
+
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
+        val sortButton = view.findViewById<Button>(R.id.sort_button)
 
         mAdapterBookVertical =
             GroupsListBRecyclerViewAdapter(
@@ -62,6 +70,7 @@ class GroupsFragment : Fragment() {
                 mBookClickCallback,
                 mGroupClickCallback
             )
+        sortButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.sort))
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVertical

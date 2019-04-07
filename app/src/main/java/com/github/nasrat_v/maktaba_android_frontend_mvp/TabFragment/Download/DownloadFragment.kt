@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.DownloadListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
@@ -22,6 +23,7 @@ class DownloadFragment : Fragment() {
     private lateinit var mAdapterBookVertical: DownloadListBRecyclerViewAdapter
     private lateinit var mDisplayMetrics: DisplayMetrics
     private var mDataset = arrayListOf<DownloadListBModel>()
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -56,9 +58,14 @@ class DownloadFragment : Fragment() {
         mDisplayMetrics = displayMetrics
     }
 
+    fun setLanguageCode(languageCode: String) {
+        mLanguage = languageCode
+    }
+
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
+        val sortButton = view.findViewById<Button>(R.id.sort_button)
 
         mAdapterBookVertical =
             DownloadListBRecyclerViewAdapter(
@@ -66,6 +73,7 @@ class DownloadFragment : Fragment() {
                 mDataset,
                 mBookClickCallback
             )
+        sortButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.sort))
         mAdapterBookVertical.setDisplayMetrics(mDisplayMetrics)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)

@@ -58,11 +58,7 @@ class BModelFactory(private var context: Context) {
     }
 
     private fun getAuthor(index: Int): AModel {
-        val authorArray = context.resources.getStringArray(R.array.authors_books)
-        val author = AModelFactory(context).getEmptyInstance()
-
-        author.name = authorArray[index]
-        return author
+        return AModelFactory(context).getInstance(index)
     }
 
     private fun getRating(index: Int): Float {

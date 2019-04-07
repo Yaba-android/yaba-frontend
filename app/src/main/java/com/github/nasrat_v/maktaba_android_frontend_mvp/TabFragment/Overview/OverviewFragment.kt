@@ -14,6 +14,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListAdapter.NoTitleListBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
@@ -33,6 +34,7 @@ class OverviewFragment : Fragment() {
     private lateinit var mLayoutCountry: LinearLayout
     private lateinit var mLayoutPublisher: LinearLayout
     private val mDataset = arrayListOf<NoTitleListBModel>()
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,7 @@ class OverviewFragment : Fragment() {
         mLayoutCountry = rootView.findViewById(R.id.overview_category_country)
         mLayoutPublisher = rootView.findViewById(R.id.overview_category_publisher)
 
+        initAuthorButtonText(rootView)
         initVerticalRecyclerView(rootView, container!!)
         return rootView
     }
@@ -75,21 +78,54 @@ class OverviewFragment : Fragment() {
         mAdapterBookVertical.notifyDataSetChanged()
     }
 
+    fun setLanguageCode(languageCode: String) {
+        mLanguage = languageCode
+    }
+
     private fun initAuthorAttributes() {
         mAuthorTitle.text = mSelectedBook.author.name
         mAuthorDesc.text = mSelectedBook.author.desc
         mAuthorPicture.setImageResource(mSelectedBook.author.picture)
     }
 
-    @SuppressLint("SetTextI18n")
+    private fun initAuthorButtonText(view: View) {
+        val button = view.findViewById<Button>(R.id.button_read_more_author_review_overview)
+
+        button.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.read_more))
+    }
+
     private fun initBookDetailsAttributes() { // faire passer le selected book au fragment
         mResumeBook.text = mSelectedBook.resume
-        initBookDetailsInfoAttributes(mLayoutLength, "Length", mSelectedBook.length.toString())
-        initBookDetailsInfoAttributes(mLayoutFileSize, "File size", mSelectedBook.fileSize)
-        initBookDetailsInfoAttributes(mLayoutDatePublication, "Date of publication", mSelectedBook.datePublication)
-        initBookDetailsInfoAttributes(mLayoutGenre, "Genre", mSelectedBook.genre.name)
-        initBookDetailsInfoAttributes(mLayoutCountry, "Country", mSelectedBook.country)
-        initBookDetailsInfoAttributes(mLayoutPublisher, "Publisher", mSelectedBook.publisher)
+        initBookDetailsInfoAttributes(
+            mLayoutLength,
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.length)),
+            mSelectedBook.length.toString()
+        )
+        initBookDetailsInfoAttributes(
+            mLayoutFileSize,
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.file_size)),
+            mSelectedBook.fileSize
+        )
+        initBookDetailsInfoAttributes(
+            mLayoutDatePublication,
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.date_publication)),
+            mSelectedBook.datePublication
+        )
+        initBookDetailsInfoAttributes(
+            mLayoutGenre,
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.genre)),
+            mSelectedBook.genre.name
+        )
+        initBookDetailsInfoAttributes(
+            mLayoutCountry,
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.country)),
+            mSelectedBook.country
+        )
+        initBookDetailsInfoAttributes(
+            mLayoutPublisher,
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.publisher)),
+            mSelectedBook.publisher
+        )
     }
 
     private fun initBookDetailsInfoAttributes(layout: LinearLayout, title: String, content: String) {
@@ -103,6 +139,7 @@ class OverviewFragment : Fragment() {
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val layoutTitle = view.findViewById<RelativeLayout>(R.id.title_layout_recyclerview)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
+        val viewAllButton = layoutTitle.findViewById<Button>(R.id.view_all_button)
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_overview)
         val verticalRecyclerView =
             view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
@@ -113,7 +150,8 @@ class OverviewFragment : Fragment() {
                 mDataset,
                 mBookClickCallback
             )
-        title.text = getString(R.string.title_review_overview_recyclerview)
+        title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_review_overview_recyclerview))
+        viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.adapter = mAdapterBookVertical

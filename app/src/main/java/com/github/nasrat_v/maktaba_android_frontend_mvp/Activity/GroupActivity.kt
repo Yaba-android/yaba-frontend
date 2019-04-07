@@ -19,6 +19,7 @@ import android.widget.*
 import com.folioreader.FolioReader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.GroupNoTitleListBModelAsynFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.DownloadBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.GroupBModel
@@ -47,12 +48,15 @@ class GroupActivity : AppCompatActivity(),
     private lateinit var mDisplayMetrics: DisplayMetrics
     private val mDataset = arrayListOf<NoTitleListBModel>()
     private var mBooksToAddToDownload = arrayListOf<BModel>()
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_group_structure)
+
+        localeOnNewIntent()
 
         mSelectedGroup = intent.getParcelableExtra(SELECTED_GROUP)
         mDownloadedBooks = intent.getParcelableArrayListExtra(LibraryActivity.DOWNLOADED_BOOKS)
@@ -110,11 +114,6 @@ class GroupActivity : AppCompatActivity(),
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-    }
-
     override fun bookEventButtonClicked(book: BModel) {
         if (isBookAlreadyDownloaded(book)) {
             requestOpenBook(book)
@@ -136,7 +135,7 @@ class GroupActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_browse_footer)
 
         button.setOnClickListener {
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             finishSendResult()
         }
@@ -148,7 +147,7 @@ class GroupActivity : AppCompatActivity(),
 
         button.setOnClickListener {
             intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             finishSendResult()
         }
@@ -159,19 +158,30 @@ class GroupActivity : AppCompatActivity(),
             val intent = Intent()
 
             intent.putExtra(LibraryActivity.BOOKS_ADD_DOWNLOAD_LIST, mBooksToAddToDownload)
+            intent.putExtra(StringLocaleResolver.LANGUAGE_CODE, mLanguage)
             setResult(Activity.RESULT_OK, intent)
         }
         finish()
         mBooksToAddToDownload.clear()
     }
 
+    private fun startNewActivity(intent: Intent) {
+        intent.putExtra(StringLocaleResolver.LANGUAGE_CODE, mLanguage)
+        startActivity(intent)
+    }
+
     private fun returnToHome() {
         val intent = Intent(this, RecommendedActivity::class.java)
 
         intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
-        startActivity(intent)
+        startNewActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         finishSendResult()
+    }
+
+    private fun localeOnNewIntent() {
+        mLanguage =
+            intent.getStringExtra(StringLocaleResolver.LANGUAGE_CODE) ?: StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     }
 
     private fun requestDownloadBook(book: BModel) {
@@ -294,6 +304,7 @@ class GroupActivity : AppCompatActivity(),
     private fun initVerticalRecyclerView() {
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
         val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
+        val sortButton = findViewById<Button>(R.id.sort_button)
 
         mAdapterBookVertical =
             GroupListBRecyclerViewAdapter(
@@ -302,6 +313,7 @@ class GroupActivity : AppCompatActivity(),
                 mDownloadedBooks,
                 this
             )
+        sortButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.sort))
         mAdapterBookVertical.setDisplayMetrics(mDisplayMetrics)
         verticalRecyclerView.setHasFixedSize(true)
         verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

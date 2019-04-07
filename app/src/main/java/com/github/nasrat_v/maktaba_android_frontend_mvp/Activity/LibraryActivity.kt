@@ -17,7 +17,6 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.Window
@@ -37,10 +36,9 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.Model.LibraryBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.LibraryBModelAsyncFetchData
-import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.LocaleHelper
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.TabLayoutCustomListener
-import org.w3c.dom.Text
 
 /*
     for epub files see:
@@ -64,6 +62,7 @@ class LibraryActivity : AppCompatActivity(),
     private lateinit var mDisplayMetrics: DisplayMetrics
     private lateinit var mFragmentManager: FragmentManager
     private lateinit var mFragmentTransaction: FragmentTransaction
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
     companion object {
@@ -86,7 +85,8 @@ class LibraryActivity : AppCompatActivity(),
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_library)
 
-        pendingTransitionOnNewIntent(intent)
+        pendingTransitionOnNewIntent()
+        localeOnNewIntent()
 
         mFirstInit = true
         mContainerFragment = LibraryContainerFragment()
@@ -95,6 +95,7 @@ class LibraryActivity : AppCompatActivity(),
         mToolbar = findViewById(R.id.toolbar_application)
         mTabLayout = findViewById(R.id.tabs)
 
+        initToolbar()
         initDisplayMetrics()
         initRootDrawerLayout()
         if (savedInstanceState == null) {
@@ -161,6 +162,7 @@ class LibraryActivity : AppCompatActivity(),
 
         intent.putExtra(GroupActivity.SELECTED_GROUP, group)
         intent.putExtra(DOWNLOADED_BOOKS, mLibraryDataset.downloadBooks)
+        intent.putExtra(StringLocaleResolver.LANGUAGE_CODE, mLanguage)
         startActivityForResult(intent, REQUEST_BOOKS_ADD_DOWNLOAD_LIST)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
@@ -196,7 +198,7 @@ class LibraryActivity : AppCompatActivity(),
         val buttonBrowse = findViewById<Button>(R.id.button_browse_footer)
 
         buttonBrowse.setOnClickListener {
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
     }
@@ -206,29 +208,41 @@ class LibraryActivity : AppCompatActivity(),
         val buttonEnglish = findViewById<Button>(R.id.button_english_language)
 
         buttonArabic.setOnClickListener {
-            LocaleHelper.setLocale(this, LocaleHelper.ARABIC_LANGUAGE_CODE)
+            mLanguage = StringLocaleResolver.ARABIC_LANGUAGE_CODE
             refreshActivity()
         }
         buttonEnglish.setOnClickListener {
-            LocaleHelper.setLocale(this, LocaleHelper.ENGLISH_LANGUAGE_CODE)
+            mLanguage = StringLocaleResolver.ENGLISH_LANGUAGE_CODE
             refreshActivity()
         }
+    }
+
+    private fun startNewActivity(intent: Intent) {
+        intent.putExtra(StringLocaleResolver.LANGUAGE_CODE, mLanguage)
+        startActivity(intent)
     }
 
     private fun refreshActivity() {
         //recreate()
         val refresh = Intent(this, LibraryActivity::class.java)
-        startActivity(refresh)
+
+        refresh.putExtra(StringLocaleResolver.LANGUAGE_CODE, mLanguage)
+        startNewActivity(refresh)
         finish()
     }
 
-    private fun pendingTransitionOnNewIntent(intent: Intent) {
+    private fun pendingTransitionOnNewIntent() {
         val anim = intent.getIntExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, -1)
 
         if (anim == 0) // left
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         else if (anim == 1) // right
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    private fun localeOnNewIntent() {
+        mLanguage =
+            intent.getStringExtra(StringLocaleResolver.LANGUAGE_CODE) ?: StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     }
 
     private fun requestDownloadBook(book: BModel) {
@@ -334,7 +348,7 @@ class LibraryActivity : AppCompatActivity(),
         val intent = Intent(this, RecommendedActivity::class.java)
 
         intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
-        startActivity(intent)
+        startNewActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         finish()
     }
@@ -360,6 +374,7 @@ class LibraryActivity : AppCompatActivity(),
         mFragmentManager = supportFragmentManager
         mFragmentTransaction = mFragmentManager.beginTransaction()
 
+        mContainerFragment.setLanguageCode(mLanguage)
         mContainerFragment.setBookClickCallback(this) // permet de gerer les click depuis le fragment
         mContainerFragment.setGroupClickCallback(this)
         mContainerFragment.setDisplayMetrics(mDisplayMetrics)
@@ -372,5 +387,12 @@ class LibraryActivity : AppCompatActivity(),
     private fun initDisplayMetrics() {
         mDisplayMetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(mDisplayMetrics)
+    }
+
+    private fun initToolbar() {
+        val title = findViewById<TextView>(R.id.toolbar_title)
+
+        title.text =
+            getString(StringLocaleResolver(mLanguage).getRes(R.string.book_store))
     }
 }

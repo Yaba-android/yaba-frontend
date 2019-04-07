@@ -68,7 +68,7 @@
         <item>Everything I Never Told You</item>
         <item>Cloudy with a Chance of Meatballs</item>
         <item>The Perks of Being a Wallflower</item>
-        <item>Fogborn</item>
+        <item>Foghorn</item>
         <item>The Wolfhound and the Poor Basket</item>
         <item>The Exile the Glass Screamed</item>
         <item>The Bus of Well</item>
@@ -93,29 +93,29 @@
         <item>A Player Rode</item>
         <item>Law Secret Pet</item>
         <item>North Edge</item>
-        <item>Engineerborn</item>
+        <item>Engineer born</item>
         <item>Metronome Dreaming</item>
         <item>Unfaithful Moonlight</item>
         <item>The Paladin Was Not Four</item>
         <item>The Eternity</item>
         <item>The Emperor of Da Vinci</item>
         <item>King of Nine Ruler</item>
-        <item>The AbbeyCard</item>
+        <item>The Abbey Card</item>
         <item>Cloven Hoof of Seventh Fire</item>
-        <item>The IdolGun</item>
+        <item>The Idol Gun</item>
         <item>Tower and a Carnival</item>
         <item>Gentleman</item>
         <item>The Alien Apocalypse</item>
         <item>Homeless</item>
         <item>Seal Bloodline</item>
-        <item>The SleepMinute</item>
+        <item>The Sleep Minute</item>
         <item>Worm of the Thunder</item>
         <item>Joan of Arc, the Gear Plan</item>
         <item>Neighbor Haunt</item>
         <item>The Girl Duke</item>
     </string-array>
 
-    <string-array name="authors_books">
+    <string-array name="name_authors_books">
         <item>Taleb Al-Refai</item>
         <item>Marion James</item>
         <item>Celeste Ng</item>
@@ -166,6 +166,359 @@
         <item>Michelle A. Valentine</item>
         <item>A.D. Trosper</item>
         <item>Nicole Edwards</item>
+    </string-array>
+
+    <string-array name="desc_authors_books">
+        <item>
+            He was born in Baghdad in 1952 and at her university she studied journalism.
+            He worked in the Iraqi press and radio before moving to Paris to complete his PhD thesis at the Sorbonne.
+            He is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah
+            and United Arab Emirates. He published a book entitled "Lorna" about the British correspondent Lorna Hills,
+            who was married to Iraqi sculptor and painter Major Jawad Salim. He also published a book
+            in French on literature written by women in the years of distress and war.
+        </item>
+        <item>
+            He wrote literary criticism, poetry, fiction and polemical journalism. He is best known for the allegorical
+            novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949). His non-fiction works,
+            including The Road to Wigan Pier (1937), documenting his experience of working class life in the north of England,
+            and Homage to Catalonia (1938), an account of his experiences on the Republican side in the Spanish Civil War,
+            are widely acclaimed, as are his essays on politics, literature, language and culture. In 2008, T
+            he Times ranked him second on a list of "The 50 greatest British writers since 1945".
+        </item>
+        <item>
+            He was a British writer best known for his detective fiction featuring the character Sherlock Holmes.
+            Originally a physician, in 1887 he published A Study in Scarlet, the first of four novels about
+            Holmes and Dr. Watson. In addition, Doyle wrote over fifty short stories
+            featuring the famous detective. The Sherlock Holmes stories are generally
+            considered milestones in the field of crime fiction.
+        </item>
+        <item>
+            He was an English novelist and short story writer.
+            He was awarded the 1958 James Tait Black Memorial Prize
+            for The Middle Age of Mrs Eliot and later received a knighthood for his services to literature.
+        </item>
+        <item>
+            He was a French philosopher, author, and journalist. His views contributed to the rise of the
+            philosophy known as absurdism. He wrote in his essay The Rebel that his whole life was
+            devoted to opposing the philosophy of nihilism while still delving
+            deeply into individual freedom. He won the Nobel Prize in Literature
+            at the age of 44 in 1957, the second youngest recipient in history.
+        </item>
+        <item>
+            He was born in Baghdad in 1952 and at her university she studied journalism.
+            He worked in the Iraqi press and radio before moving to Paris to complete his PhD thesis at the Sorbonne.
+            He is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah
+            and United Arab Emirates. He published a book entitled "Lorna" about the British correspondent Lorna Hills,
+            who was married to Iraqi sculptor and painter Major Jawad Salim. He also published a book
+            in French on literature written by women in the years of distress and war.
+        </item>
+        <item>
+            He wrote literary criticism, poetry, fiction and polemical journalism. He is best known for the allegorical
+            novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949). His non-fiction works,
+            including The Road to Wigan Pier (1937), documenting his experience of working class life in the north of England,
+            and Homage to Catalonia (1938), an account of his experiences on the Republican side in the Spanish Civil War,
+            are widely acclaimed, as are his essays on politics, literature, language and culture. In 2008, T
+            he Times ranked him second on a list of "The 50 greatest British writers since 1945".
+        </item>
+        <item>
+            He was a British writer best known for his detective fiction featuring the character Sherlock Holmes.
+            Originally a physician, in 1887 he published A Study in Scarlet, the first of four novels about
+            Holmes and Dr. Watson. In addition, Doyle wrote over fifty short stories
+            featuring the famous detective. The Sherlock Holmes stories are generally
+            considered milestones in the field of crime fiction.
+        </item>
+        <item>
+            He was an English novelist and short story writer.
+            He was awarded the 1958 James Tait Black Memorial Prize
+            for The Middle Age of Mrs Eliot and later received a knighthood for his services to literature.
+        </item>
+        <item>
+            He was a French philosopher, author, and journalist. His views contributed to the rise of the
+            philosophy known as absurdism. He wrote in his essay The Rebel that his whole life was
+            devoted to opposing the philosophy of nihilism while still delving
+            deeply into individual freedom. He won the Nobel Prize in Literature
+            at the age of 44 in 1957, the second youngest recipient in history.
+        </item>
+        <item>
+            He was born in Baghdad in 1952 and at her university she studied journalism.
+            He worked in the Iraqi press and radio before moving to Paris to complete his PhD thesis at the Sorbonne.
+            He is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah
+            and United Arab Emirates. He published a book entitled "Lorna" about the British correspondent Lorna Hills,
+            who was married to Iraqi sculptor and painter Major Jawad Salim. He also published a book
+            in French on literature written by women in the years of distress and war.
+        </item>
+        <item>
+            He wrote literary criticism, poetry, fiction and polemical journalism. He is best known for the allegorical
+            novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949). His non-fiction works,
+            including The Road to Wigan Pier (1937), documenting his experience of working class life in the north of England,
+            and Homage to Catalonia (1938), an account of his experiences on the Republican side in the Spanish Civil War,
+            are widely acclaimed, as are his essays on politics, literature, language and culture. In 2008, T
+            he Times ranked him second on a list of "The 50 greatest British writers since 1945".
+        </item>
+        <item>
+            He was a British writer best known for his detective fiction featuring the character Sherlock Holmes.
+            Originally a physician, in 1887 he published A Study in Scarlet, the first of four novels about
+            Holmes and Dr. Watson. In addition, Doyle wrote over fifty short stories
+            featuring the famous detective. The Sherlock Holmes stories are generally
+            considered milestones in the field of crime fiction.
+        </item>
+        <item>
+            He was an English novelist and short story writer.
+            He was awarded the 1958 James Tait Black Memorial Prize
+            for The Middle Age of Mrs Eliot and later received a knighthood for his services to literature.
+        </item>
+        <item>
+            He was a French philosopher, author, and journalist. His views contributed to the rise of the
+            philosophy known as absurdism. He wrote in his essay The Rebel that his whole life was
+            devoted to opposing the philosophy of nihilism while still delving
+            deeply into individual freedom. He won the Nobel Prize in Literature
+            at the age of 44 in 1957, the second youngest recipient in history.
+        </item>
+        <item>
+            He was born in Baghdad in 1952 and at her university she studied journalism.
+            He worked in the Iraqi press and radio before moving to Paris to complete his PhD thesis at the Sorbonne.
+            He is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah
+            and United Arab Emirates. He published a book entitled "Lorna" about the British correspondent Lorna Hills,
+            who was married to Iraqi sculptor and painter Major Jawad Salim. He also published a book
+            in French on literature written by women in the years of distress and war.
+        </item>
+        <item>
+            He wrote literary criticism, poetry, fiction and polemical journalism. He is best known for the allegorical
+            novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949). His non-fiction works,
+            including The Road to Wigan Pier (1937), documenting his experience of working class life in the north of England,
+            and Homage to Catalonia (1938), an account of his experiences on the Republican side in the Spanish Civil War,
+            are widely acclaimed, as are his essays on politics, literature, language and culture. In 2008, T
+            he Times ranked him second on a list of "The 50 greatest British writers since 1945".
+        </item>
+        <item>
+            He was a British writer best known for his detective fiction featuring the character Sherlock Holmes.
+            Originally a physician, in 1887 he published A Study in Scarlet, the first of four novels about
+            Holmes and Dr. Watson. In addition, Doyle wrote over fifty short stories
+            featuring the famous detective. The Sherlock Holmes stories are generally
+            considered milestones in the field of crime fiction.
+        </item>
+        <item>
+            He was an English novelist and short story writer.
+            He was awarded the 1958 James Tait Black Memorial Prize
+            for The Middle Age of Mrs Eliot and later received a knighthood for his services to literature.
+        </item>
+        <item>
+            He was a French philosopher, author, and journalist. His views contributed to the rise of the
+            philosophy known as absurdism. He wrote in his essay The Rebel that his whole life was
+            devoted to opposing the philosophy of nihilism while still delving
+            deeply into individual freedom. He won the Nobel Prize in Literature
+            at the age of 44 in 1957, the second youngest recipient in history.
+        </item>
+        <item>
+            He was born in Baghdad in 1952 and at her university she studied journalism.
+            He worked in the Iraqi press and radio before moving to Paris to complete his PhD thesis at the Sorbonne.
+            He is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah
+            and United Arab Emirates. He published a book entitled "Lorna" about the British correspondent Lorna Hills,
+            who was married to Iraqi sculptor and painter Major Jawad Salim. He also published a book
+            in French on literature written by women in the years of distress and war.
+        </item>
+        <item>
+            He wrote literary criticism, poetry, fiction and polemical journalism. He is best known for the allegorical
+            novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949). His non-fiction works,
+            including The Road to Wigan Pier (1937), documenting his experience of working class life in the north of England,
+            and Homage to Catalonia (1938), an account of his experiences on the Republican side in the Spanish Civil War,
+            are widely acclaimed, as are his essays on politics, literature, language and culture. In 2008, T
+            he Times ranked him second on a list of "The 50 greatest British writers since 1945".
+        </item>
+        <item>
+            He was a British writer best known for his detective fiction featuring the character Sherlock Holmes.
+            Originally a physician, in 1887 he published A Study in Scarlet, the first of four novels about
+            Holmes and Dr. Watson. In addition, Doyle wrote over fifty short stories
+            featuring the famous detective. The Sherlock Holmes stories are generally
+            considered milestones in the field of crime fiction.
+        </item>
+        <item>
+            He was an English novelist and short story writer.
+            He was awarded the 1958 James Tait Black Memorial Prize
+            for The Middle Age of Mrs Eliot and later received a knighthood for his services to literature.
+        </item>
+        <item>
+            He was a French philosopher, author, and journalist. His views contributed to the rise of the
+            philosophy known as absurdism. He wrote in his essay The Rebel that his whole life was
+            devoted to opposing the philosophy of nihilism while still delving
+            deeply into individual freedom. He won the Nobel Prize in Literature
+            at the age of 44 in 1957, the second youngest recipient in history.
+        </item>
+        <item>
+            He was born in Baghdad in 1952 and at her university she studied journalism.
+            He worked in the Iraqi press and radio before moving to Paris to complete his PhD thesis at the Sorbonne.
+            He is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah
+            and United Arab Emirates. He published a book entitled "Lorna" about the British correspondent Lorna Hills,
+            who was married to Iraqi sculptor and painter Major Jawad Salim. He also published a book
+            in French on literature written by women in the years of distress and war.
+        </item>
+        <item>
+            He wrote literary criticism, poetry, fiction and polemical journalism. He is best known for the allegorical
+            novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949). His non-fiction works,
+            including The Road to Wigan Pier (1937), documenting his experience of working class life in the north of England,
+            and Homage to Catalonia (1938), an account of his experiences on the Republican side in the Spanish Civil War,
+            are widely acclaimed, as are his essays on politics, literature, language and culture. In 2008, T
+            he Times ranked him second on a list of "The 50 greatest British writers since 1945".
+        </item>
+        <item>
+            He was a British writer best known for his detective fiction featuring the character Sherlock Holmes.
+            Originally a physician, in 1887 he published A Study in Scarlet, the first of four novels about
+            Holmes and Dr. Watson. In addition, Doyle wrote over fifty short stories
+            featuring the famous detective. The Sherlock Holmes stories are generally
+            considered milestones in the field of crime fiction.
+        </item>
+        <item>
+            He was an English novelist and short story writer.
+            He was awarded the 1958 James Tait Black Memorial Prize
+            for The Middle Age of Mrs Eliot and later received a knighthood for his services to literature.
+        </item>
+        <item>
+            He was a French philosopher, author, and journalist. His views contributed to the rise of the
+            philosophy known as absurdism. He wrote in his essay The Rebel that his whole life was
+            devoted to opposing the philosophy of nihilism while still delving
+            deeply into individual freedom. He won the Nobel Prize in Literature
+            at the age of 44 in 1957, the second youngest recipient in history.
+        </item>
+        <item>
+            He was born in Baghdad in 1952 and at her university she studied journalism.
+            He worked in the Iraqi press and radio before moving to Paris to complete his PhD thesis at the Sorbonne.
+            He is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah
+            and United Arab Emirates. He published a book entitled "Lorna" about the British correspondent Lorna Hills,
+            who was married to Iraqi sculptor and painter Major Jawad Salim. He also published a book
+            in French on literature written by women in the years of distress and war.
+        </item>
+        <item>
+            He wrote literary criticism, poetry, fiction and polemical journalism. He is best known for the allegorical
+            novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949). His non-fiction works,
+            including The Road to Wigan Pier (1937), documenting his experience of working class life in the north of England,
+            and Homage to Catalonia (1938), an account of his experiences on the Republican side in the Spanish Civil War,
+            are widely acclaimed, as are his essays on politics, literature, language and culture. In 2008, T
+            he Times ranked him second on a list of "The 50 greatest British writers since 1945".
+        </item>
+        <item>
+            He was a British writer best known for his detective fiction featuring the character Sherlock Holmes.
+            Originally a physician, in 1887 he published A Study in Scarlet, the first of four novels about
+            Holmes and Dr. Watson. In addition, Doyle wrote over fifty short stories
+            featuring the famous detective. The Sherlock Holmes stories are generally
+            considered milestones in the field of crime fiction.
+        </item>
+        <item>
+            He was an English novelist and short story writer.
+            He was awarded the 1958 James Tait Black Memorial Prize
+            for The Middle Age of Mrs Eliot and later received a knighthood for his services to literature.
+        </item>
+        <item>
+            He was a French philosopher, author, and journalist. His views contributed to the rise of the
+            philosophy known as absurdism. He wrote in his essay The Rebel that his whole life was
+            devoted to opposing the philosophy of nihilism while still delving
+            deeply into individual freedom. He won the Nobel Prize in Literature
+            at the age of 44 in 1957, the second youngest recipient in history.
+        </item>
+        <item>
+            He was born in Baghdad in 1952 and at her university she studied journalism.
+            He worked in the Iraqi press and radio before moving to Paris to complete his PhD thesis at the Sorbonne.
+            He is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah
+            and United Arab Emirates. He published a book entitled "Lorna" about the British correspondent Lorna Hills,
+            who was married to Iraqi sculptor and painter Major Jawad Salim. He also published a book
+            in French on literature written by women in the years of distress and war.
+        </item>
+        <item>
+            He wrote literary criticism, poetry, fiction and polemical journalism. He is best known for the allegorical
+            novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949). His non-fiction works,
+            including The Road to Wigan Pier (1937), documenting his experience of working class life in the north of England,
+            and Homage to Catalonia (1938), an account of his experiences on the Republican side in the Spanish Civil War,
+            are widely acclaimed, as are his essays on politics, literature, language and culture. In 2008, T
+            he Times ranked him second on a list of "The 50 greatest British writers since 1945".
+        </item>
+        <item>
+            He was a British writer best known for his detective fiction featuring the character Sherlock Holmes.
+            Originally a physician, in 1887 he published A Study in Scarlet, the first of four novels about
+            Holmes and Dr. Watson. In addition, Doyle wrote over fifty short stories
+            featuring the famous detective. The Sherlock Holmes stories are generally
+            considered milestones in the field of crime fiction.
+        </item>
+        <item>
+            He was an English novelist and short story writer.
+            He was awarded the 1958 James Tait Black Memorial Prize
+            for The Middle Age of Mrs Eliot and later received a knighthood for his services to literature.
+        </item>
+        <item>
+            He was a French philosopher, author, and journalist. His views contributed to the rise of the
+            philosophy known as absurdism. He wrote in his essay The Rebel that his whole life was
+            devoted to opposing the philosophy of nihilism while still delving
+            deeply into individual freedom. He won the Nobel Prize in Literature
+            at the age of 44 in 1957, the second youngest recipient in history.
+        </item>
+        <item>
+            He was born in Baghdad in 1952 and at her university she studied journalism.
+            He worked in the Iraqi press and radio before moving to Paris to complete his PhD thesis at the Sorbonne.
+            He is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah
+            and United Arab Emirates. He published a book entitled "Lorna" about the British correspondent Lorna Hills,
+            who was married to Iraqi sculptor and painter Major Jawad Salim. He also published a book
+            in French on literature written by women in the years of distress and war.
+        </item>
+        <item>
+            He wrote literary criticism, poetry, fiction and polemical journalism. He is best known for the allegorical
+            novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949). His non-fiction works,
+            including The Road to Wigan Pier (1937), documenting his experience of working class life in the north of England,
+            and Homage to Catalonia (1938), an account of his experiences on the Republican side in the Spanish Civil War,
+            are widely acclaimed, as are his essays on politics, literature, language and culture. In 2008, T
+            he Times ranked him second on a list of "The 50 greatest British writers since 1945".
+        </item>
+        <item>
+            He was a British writer best known for his detective fiction featuring the character Sherlock Holmes.
+            Originally a physician, in 1887 he published A Study in Scarlet, the first of four novels about
+            Holmes and Dr. Watson. In addition, Doyle wrote over fifty short stories
+            featuring the famous detective. The Sherlock Holmes stories are generally
+            considered milestones in the field of crime fiction.
+        </item>
+        <item>
+            He was an English novelist and short story writer.
+            He was awarded the 1958 James Tait Black Memorial Prize
+            for The Middle Age of Mrs Eliot and later received a knighthood for his services to literature.
+        </item>
+        <item>
+            He was a French philosopher, author, and journalist. His views contributed to the rise of the
+            philosophy known as absurdism. He wrote in his essay The Rebel that his whole life was
+            devoted to opposing the philosophy of nihilism while still delving
+            deeply into individual freedom. He won the Nobel Prize in Literature
+            at the age of 44 in 1957, the second youngest recipient in history.
+        </item>
+        <item>
+            He was born in Baghdad in 1952 and at her university she studied journalism.
+            He worked in the Iraqi press and radio before moving to Paris to complete his PhD thesis at the Sorbonne.
+            He is currently a correspondent in Paris for Asharq Al-Awsat in London and the magazine Al-Muhammar in Sharjah
+            and United Arab Emirates. He published a book entitled "Lorna" about the British correspondent Lorna Hills,
+            who was married to Iraqi sculptor and painter Major Jawad Salim. He also published a book
+            in French on literature written by women in the years of distress and war.
+        </item>
+        <item>
+            He wrote literary criticism, poetry, fiction and polemical journalism. He is best known for the allegorical
+            novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949). His non-fiction works,
+            including The Road to Wigan Pier (1937), documenting his experience of working class life in the north of England,
+            and Homage to Catalonia (1938), an account of his experiences on the Republican side in the Spanish Civil War,
+            are widely acclaimed, as are his essays on politics, literature, language and culture. In 2008, T
+            he Times ranked him second on a list of "The 50 greatest British writers since 1945".
+        </item>
+        <item>
+            He was a British writer best known for his detective fiction featuring the character Sherlock Holmes.
+            Originally a physician, in 1887 he published A Study in Scarlet, the first of four novels about
+            Holmes and Dr. Watson. In addition, Doyle wrote over fifty short stories
+            featuring the famous detective. The Sherlock Holmes stories are generally
+            considered milestones in the field of crime fiction.
+        </item>
+        <item>
+            He was an English novelist and short story writer.
+            He was awarded the 1958 James Tait Black Memorial Prize
+            for The Middle Age of Mrs Eliot and later received a knighthood for his services to literature.
+        </item>
+        <item>
+            He was a French philosopher, author, and journalist. His views contributed to the rise of the
+            philosophy known as absurdism. He wrote in his essay The Rebel that his whole life was
+            devoted to opposing the philosophy of nihilism while still delving
+            deeply into individual freedom. He won the Nobel Prize in Literature
+            at the age of 44 in 1957, the second youngest recipient in history.
+        </item>
     </string-array>
 
     <string-array name="ratings_books">
