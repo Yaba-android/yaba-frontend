@@ -23,7 +23,7 @@
             android:textDirection="rtl"
             android:textColor="@color/colorTextBlackGroup"
             android:fontFamily="@font/noto_sans_family"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"/>
 
 </LinearLayout>
