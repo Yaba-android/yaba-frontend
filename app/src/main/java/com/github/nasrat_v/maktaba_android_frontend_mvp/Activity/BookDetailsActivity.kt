@@ -189,7 +189,7 @@ class BookDetailsActivity : AppCompatActivity(),
         author.text = mSelectedBook.author.name
         ratingBar.rating = mSelectedBook.rating
         numberRating.text = ("(" + mSelectedBook.numberRating + ")")
-        buyButton.text = ("$" + mSelectedBook.price + " " + buyButton.text)
+        buyButton.text = (buyButton.text.toString() + " " + mSelectedBook.price + "$")
     }
 
     private fun startNewActivity(intent: Intent) {
