@@ -353,7 +353,8 @@ class RecommendedActivity() : AppCompatActivity(),
             NoTitleListBRecyclerViewAdapter(
                 this,
                 mDatasetFirstRecyclerView,
-                this
+                this,
+                mLanguage
             )
         title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_first_recyclerview))
         viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
@@ -402,7 +403,8 @@ class RecommendedActivity() : AppCompatActivity(),
             NoTitleListBRecyclerViewAdapter(
                 this,
                 mDatasetSecondRecyclerView,
-                this
+                this,
+                mLanguage
             )
         title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_second_recyclerview))
         viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))

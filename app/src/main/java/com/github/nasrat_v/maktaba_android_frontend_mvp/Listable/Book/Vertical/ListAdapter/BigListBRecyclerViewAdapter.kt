@@ -16,7 +16,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
 class BigListBRecyclerViewAdapter(
     private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
-    private var bookClickCallback: IBookClickCallback
+    private var bookClickCallback: IBookClickCallback,
+    private var languageCode: String
 ) : RecyclerView.Adapter<BigListBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mDisplayMetrics: DisplayMetrics
@@ -39,7 +40,7 @@ class BigListBRecyclerViewAdapter(
         val model = listNoTitleListBModel[position]
         val horizontalRecyclerViewAdapter =
             BigBRecyclerViewAdapter(
-                context,
+                languageCode,
                 model.bookModels
             )
 

@@ -197,7 +197,8 @@ class SectionActivity : AppCompatActivity(),
             BigListBRecyclerViewAdapter(
                 this,
                 mDataset,
-                this
+                this,
+                mLanguage
             )
         sortButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.sort))
         mAdapterBookVertical.setDisplayMetrics(mDisplayMetrics)

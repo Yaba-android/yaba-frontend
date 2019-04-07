@@ -245,7 +245,8 @@ class BrowseActivity : AppCompatActivity(),
                 this,
                 mBrowseResult.booksGenreList,
                 this,
-                this
+                this,
+                mLanguage
             )
         mSecondVerticalRecyclerView.setHasFixedSize(true)
         mSecondVerticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

@@ -1,6 +1,5 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Adapter
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +8,11 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class BRecyclerViewAdapter(private var context: Context, private var list: ArrayList<BModel>) :
+class BRecyclerViewAdapter(private var languageCode: String, private var list: ArrayList<BModel>) :
     RecyclerView.Adapter<BRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
@@ -38,7 +38,11 @@ class BRecyclerViewAdapter(private var context: Context, private var list: Array
         holder.mImage.setImageResource(model.image)
         holder.mRating.rating = model.rating
         holder.mNumberRating.text = ("(" + model.numberRating + ")")
-        holder.mPrice.text = ("$" + model.price)
+        if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+            holder.mPrice.text = ("$" + model.price)
+        } else {
+            holder.mPrice.text = (model.price.toString() + "$")
+        }
         holder.itemView.setOnClickListener {
             // envoyer le bon livre grace à position
             mBookClickCallback.bookEventButtonClicked(list[position])

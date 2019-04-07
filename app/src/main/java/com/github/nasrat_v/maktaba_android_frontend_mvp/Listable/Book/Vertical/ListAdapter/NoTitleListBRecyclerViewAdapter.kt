@@ -15,7 +15,8 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
 class NoTitleListBRecyclerViewAdapter(
     private var context: Context, private var list: ArrayList<NoTitleListBModel>,
-    private var bookClickCallback: IBookClickCallback
+    private var bookClickCallback: IBookClickCallback,
+    private var languageCode: String
 ) : RecyclerView.Adapter<NoTitleListBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
@@ -37,7 +38,7 @@ class NoTitleListBRecyclerViewAdapter(
         val model = list[position]
         val horizontalRecyclerViewAdapter =
             BRecyclerViewAdapter(
-                context,
+                languageCode,
                 model.bookModels
             )
 

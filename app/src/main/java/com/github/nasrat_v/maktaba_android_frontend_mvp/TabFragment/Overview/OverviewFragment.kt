@@ -148,7 +148,8 @@ class OverviewFragment : Fragment() {
             NoTitleListBRecyclerViewAdapter(
                 container.context,
                 mDataset,
-                mBookClickCallback
+                mBookClickCallback,
+                mLanguage
             )
         title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_review_overview_recyclerview))
         viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))

@@ -19,7 +19,8 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 class ListEraseBRecyclerViewAdapter(
     private var context: Context, private var list: ArrayList<ListBModel>,
     private var bookClickCallback: IBookClickCallback,
-    private var deleteBrowseBookClickCallback: IDeleteBrowseBookClickCallback
+    private var deleteBrowseBookClickCallback: IDeleteBrowseBookClickCallback,
+    private var languageCode: String
 ) : RecyclerView.Adapter<ListEraseBRecyclerViewAdapter.ViewHolder>() {
 
     private var viewPool = RecyclerView.RecycledViewPool()
@@ -42,7 +43,7 @@ class ListEraseBRecyclerViewAdapter(
         val title = model.title
         val horizontalRecyclerViewAdapter =
             BRecyclerViewAdapter(
-                context,
+                languageCode,
                 model.bookModels
             )
 
