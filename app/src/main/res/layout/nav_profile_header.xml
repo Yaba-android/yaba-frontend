@@ -27,8 +27,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/portrait_profile"
                 android:paddingTop="20dp"
-                android:paddingBottom="10dp"
-                android:contentDescription="@string/profile_picture"/>
+                android:paddingBottom="10dp"/>
 
         <TextView
                 android:layout_width="wrap_content"
