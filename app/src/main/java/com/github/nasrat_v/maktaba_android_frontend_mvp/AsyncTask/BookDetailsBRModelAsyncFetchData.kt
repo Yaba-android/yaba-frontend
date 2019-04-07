@@ -12,7 +12,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Review
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
 
 class BookDetailsBRModelAsyncFetchData(
-    context: Context
+    context: Context,
+    private var languageCode: String
 ) :
     AsyncTaskLoader<BookDetailsBRModel>(context) {
 
@@ -33,7 +34,7 @@ class BookDetailsBRModelAsyncFetchData(
     }
 
     private fun fetchAllBooksFromDatabase(): ArrayList<BModel> {
-        return BModelProvider(context).getAllBooksFromDatabase()
+        return BModelProvider(context, languageCode).getAllBooksFromDatabase()
     }
 
     private fun fetchDatasetReviewVerticalRecyclerView(dataset: ArrayList<RModel>) {
@@ -42,7 +43,7 @@ class BookDetailsBRModelAsyncFetchData(
 
     private fun mockDatasetBook(dataset: ArrayList<NoTitleListBModel>, allBooksFromDatabase: ArrayList<BModel>) {
         dataset.addAll(
-            BModelRandomProvider(context).getRandomsInstancesFromListToNoTitleListBModel(
+            BModelRandomProvider(context, languageCode).getRandomsInstancesFromListToNoTitleListBModel(
                 BookDetailsContainerFragment.RECYCLER_VIEW_NB_COLUMNS,
                 BookDetailsContainerFragment.RECYCLER_VIEW_NB_BOOKS_PER_ROW,
                 allBooksFromDatabase

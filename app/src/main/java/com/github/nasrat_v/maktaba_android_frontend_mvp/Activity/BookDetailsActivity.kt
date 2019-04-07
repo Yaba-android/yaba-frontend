@@ -78,7 +78,7 @@ class BookDetailsActivity : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<BookDetailsBRModel> {
-        return BookDetailsBRModelAsyncFetchData(this)
+        return BookDetailsBRModelAsyncFetchData(this, mLanguage)
     }
 
     override fun onLoadFinished(p0: Loader<BookDetailsBRModel>, data: BookDetailsBRModel?) {

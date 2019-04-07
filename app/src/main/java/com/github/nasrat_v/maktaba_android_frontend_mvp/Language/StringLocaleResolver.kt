@@ -22,7 +22,6 @@ class StringLocaleResolver(private var languageCode: String) {
             R.string.add_to_wish_list to R.string.add_to_wish_list_arabic,
             R.string.try_the_sample to R.string.try_the_sample_arabic,
             R.string.buy to R.string.buy_arabic,
-            R.string.resume_book to R.string.resume_book_arabic,
             R.string.read_more to R.string.read_more_arabic,
             R.string.view_all_reviews to R.string.view_all_reviews_arabic,
             R.string.title_first_recyclerview to R.string.title_first_recyclerview_arabic,

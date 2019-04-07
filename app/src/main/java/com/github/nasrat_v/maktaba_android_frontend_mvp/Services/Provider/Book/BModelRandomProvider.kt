@@ -7,11 +7,20 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import kotlin.collections.ArrayList
 
-class BModelRandomProvider(private var context: Context) {
+class BModelRandomProvider(private var context: Context, private var languageCode: String) {
+
+    fun getRandomsInstancesFromList(
+        nb: Int,
+        books: ArrayList<BModel>
+    ): ArrayList<BModel> {
+        return getRandomsInstancesFromListWithSelectedIndex(
+            nb, books, arrayListOf()
+        )
+    }
 
     fun getRandomsInstances(nb: Int): ArrayList<BModel> {
         val randomFactory =
-            BModelRandomFactory(context)
+            BModelRandomFactory(context, languageCode)
         val listModel = arrayListOf<BModel>()
         var book: BModel
 
@@ -23,26 +32,6 @@ class BModelRandomProvider(private var context: Context) {
             listModel.add(book)
         }
         return listModel
-    }
-
-    fun getRandomsInstancesFromList(
-        nb: Int,
-        books: ArrayList<BModel>,
-        selectedIndex: ArrayList<Int>
-    ): ArrayList<BModel> {
-
-        val selectedBooks = arrayListOf<BModel>()
-        val tmpList = arrayListOf<BModel>()
-        var randomIndex: Int
-
-        tmpList.addAll(books)
-        for (index in 0..(nb - 1)) {
-            randomIndex = (0..(tmpList.size - 1)).random()
-            selectedIndex.add(randomIndex)
-            selectedBooks.add(tmpList[randomIndex])
-            tmpList.removeAt(randomIndex)
-        }
-        return selectedBooks
     }
 
     fun getRandomsInstancesFromListToListBModel(
@@ -62,7 +51,7 @@ class BModelRandomProvider(private var context: Context) {
             dataset.add(
                 ListBModel(
                     title,
-                    getRandomsInstancesFromList(
+                    getRandomsInstancesFromListWithSelectedIndex(
                         nbPerRow,
                         tmpList,
                         selectedIndex
@@ -89,7 +78,7 @@ class BModelRandomProvider(private var context: Context) {
             selectedIndex.clear()
             dataset.add(
                 NoTitleListBModel(
-                    getRandomsInstancesFromList(
+                    getRandomsInstancesFromListWithSelectedIndex(
                         nbPerRow,
                         tmpList,
                         selectedIndex
@@ -99,6 +88,26 @@ class BModelRandomProvider(private var context: Context) {
             removeIndexFromTmpList(selectedIndex, tmpList)
         }
         return dataset
+    }
+
+    private fun getRandomsInstancesFromListWithSelectedIndex(
+        nb: Int,
+        books: ArrayList<BModel>,
+        selectedIndex: ArrayList<Int>
+    ): ArrayList<BModel> {
+
+        val selectedBooks = arrayListOf<BModel>()
+        val tmpList = arrayListOf<BModel>()
+        var randomIndex: Int
+
+        tmpList.addAll(books)
+        for (index in 0..(nb - 1)) {
+            randomIndex = (0..(tmpList.size - 1)).random()
+            selectedIndex.add(randomIndex)
+            selectedBooks.add(tmpList[randomIndex])
+            tmpList.removeAt(randomIndex)
+        }
+        return selectedBooks
     }
 
     private fun removeIndexFromTmpList(selectedIndex: ArrayList<Int>, tmpList: ArrayList<BModel>) {

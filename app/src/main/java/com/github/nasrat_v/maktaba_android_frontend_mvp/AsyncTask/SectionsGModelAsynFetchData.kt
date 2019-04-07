@@ -6,13 +6,14 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.GModelProvider
 
 class SectionsGModelAsynFetchData(
-    context: Context
+    context: Context,
+    private var languageCode: String
 ) :
     AsyncTaskLoader<ArrayList<GModel>>(context) {
 
     override fun loadInBackground(): ArrayList<GModel>? {
         //android.os.Debug.waitForDebugger()
 
-        return GModelProvider(context).getAllGenres()
+        return GModelProvider(context, languageCode).getAllGenres()
     }
 }

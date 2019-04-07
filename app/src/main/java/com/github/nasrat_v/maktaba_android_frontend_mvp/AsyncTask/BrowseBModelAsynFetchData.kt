@@ -16,7 +16,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.
 
 class BrowseBModelAsynFetchData(
     context: Context,
-    private var inputCallback: IInputBrowseCallback
+    private var inputCallback: IInputBrowseCallback,
+    private var languageCode: String
 ) :
     AsyncTaskLoader<BrowseBModel>(context) {
 
@@ -35,7 +36,7 @@ class BrowseBModelAsynFetchData(
     }
 
     private fun fetchAllBooksFromDatabase(): ArrayList<BModel> {
-        return BModelProvider(context).getAllBooksFromDatabase()
+        return BModelProvider(context, languageCode).getAllBooksFromDatabase()
     }
 
     private fun findBooks(result: ArrayList<BModel>, allBooksFromDatabase: ArrayList<BModel>) {
@@ -49,7 +50,7 @@ class BrowseBModelAsynFetchData(
     }
 
     private fun findBooksByGenre(result: ArrayList<ListBModel>, genre: GModel) {
-        val list = GModelProvider(context).getAllBooksFromGenre(genre)
+        val list = GModelProvider(context, languageCode).getAllBooksFromGenre(genre)
 
         result.add(ListBModel(("Category: " + genre.name), list))
     }

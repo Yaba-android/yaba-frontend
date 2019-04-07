@@ -1,6 +1,7 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Book
 
 import android.content.Context
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Author.AModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
@@ -10,12 +11,12 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Author.AModelFactory
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Genre.GModelFactory
 
-class BModelFactory(private var context: Context) {
+class BModelFactory(private var context: Context, private var languageCode: String) {
 
     fun getEmptyInstance(): BModel {
         return (BModel(
             getEmptyImage(), "",
-            AModelFactory(context).getEmptyInstance(), 0f,
+            AModelFactory(context, languageCode).getEmptyInstance(), 0f,
             0, 0f,
             0, GModelFactory().getEmptyInstance(),
             "", "",
@@ -31,7 +32,7 @@ class BModelFactory(private var context: Context) {
             getLength(index), getGenre(index),
             getFileSize(index), getCountry(index),
             getDatePublication(index),
-            getPublisher(index), context.getString(R.string.resume_book)
+            getPublisher(index), getResume(index)
         ))
     }
 
@@ -52,13 +53,17 @@ class BModelFactory(private var context: Context) {
     }
 
     private fun getTitle(index: Int): String {
-        val titleArray = context.resources.getStringArray(R.array.titles_books)
+        val titleArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+             context.resources.getStringArray(R.array.titles_books_arabic)
+        } else {
+            context.resources.getStringArray(R.array.titles_books)
+        }
 
         return titleArray[index]
     }
 
     private fun getAuthor(index: Int): AModel {
-        return AModelFactory(context).getInstance(index)
+        return AModelFactory(context, languageCode).getInstance(index)
     }
 
     private fun getRating(index: Int): Float {
@@ -87,7 +92,7 @@ class BModelFactory(private var context: Context) {
 
     private fun getGenre(index: Int): GModel {
         val genreList = context.resources.getStringArray(R.array.genres_books)
-        val provider = GModelProvider(context)
+        val provider = GModelProvider(context, languageCode)
         val genrePopularList = provider.getPopularGenres()
         val name = genreList[index]
         val nb = provider.getNbGenre(name)
@@ -120,5 +125,15 @@ class BModelFactory(private var context: Context) {
         val datePublicationArray = context.resources.getStringArray(R.array.publishers_books)
 
         return datePublicationArray[index]
+    }
+
+    private fun getResume(index: Int): String {
+        val resumeArray =  if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+            context.resources.getStringArray(R.array.resume_books_arabic)
+        } else {
+            context.resources.getStringArray(R.array.resume_books)
+        }
+
+        return resumeArray[index]
     }
 }

@@ -31,6 +31,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.BrowseBModelAsynFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IInputBrowseCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Model.BrowseBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Book.BrowseBModelFactory
@@ -61,13 +62,16 @@ class BrowseActivity : AppCompatActivity(),
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mBrowseResult: BrowseBModel
     private var mInputBrowseString = String()
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
         setContentView(R.layout.activity_browse_structure)
+
+        localeOnNewIntent()
+
         mFirstInit = true
 
         initEmptyBrowseResult()
@@ -91,7 +95,7 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<BrowseBModel> {
-        return BrowseBModelAsynFetchData(this, this)
+        return BrowseBModelAsynFetchData(this, this, mLanguage)
     }
 
     override fun onLoadFinished(p0: Loader<BrowseBModel>, data: BrowseBModel?) {
@@ -117,7 +121,7 @@ class BrowseActivity : AppCompatActivity(),
         val intent = Intent(this, BookDetailsActivity::class.java)
 
         intent.putExtra(RecommendedActivity.SELECTED_BOOK, book)
-        startActivity(intent)
+        startNewActivity(intent)
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
@@ -151,7 +155,7 @@ class BrowseActivity : AppCompatActivity(),
 
         button.setOnClickListener {
             intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 1)
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
@@ -162,7 +166,7 @@ class BrowseActivity : AppCompatActivity(),
         val button = findViewById<Button>(R.id.button_library_footer)
 
         button.setOnClickListener {
-            startActivity(intent)
+            startNewActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
@@ -183,6 +187,16 @@ class BrowseActivity : AppCompatActivity(),
             setVisibilityTextRemove()
             notifyAllItemRemoved(firstRecyclerSize, secondRecyclerSize)
         }
+    }
+
+    private fun startNewActivity(intent: Intent) {
+        intent.putExtra(StringLocaleResolver.LANGUAGE_CODE, mLanguage)
+        startActivity(intent)
+    }
+
+    private fun localeOnNewIntent() {
+        mLanguage =
+            intent.getStringExtra(StringLocaleResolver.LANGUAGE_CODE) ?: StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     }
 
     private fun initRootDrawerLayout() {

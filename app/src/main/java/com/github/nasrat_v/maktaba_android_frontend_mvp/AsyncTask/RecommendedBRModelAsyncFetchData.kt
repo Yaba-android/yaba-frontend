@@ -18,7 +18,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Review
 import com.github.nasrat_v.maktaba_android_frontend_mvp.TabFragment.BookDetailsContainerFragment
 
 class RecommendedBRModelAsyncFetchData(
-    context: Context
+    context: Context,
+    private var languageCode: String
 ) :
     AsyncTaskLoader<RecommendedBRModel>(context) {
 
@@ -32,7 +33,7 @@ class RecommendedBRModelAsyncFetchData(
         val datasetSecond = arrayListOf<NoTitleListBModel>()
         val datasetSmall = arrayListOf<NoTitleListBModel>()
 
-        mockDatasetCarousel(datasetCarousel)
+        mockDatasetCarousel(datasetCarousel, allBooksFromDatabase)
         mockDatasetFirstRecyclerView(datasetFirst, allBooksFromDatabase)
         mockDatasetPopularGenre(datasetPopularGenre)
         mockDatasetSecondRecyclerView(datasetSecond, allBooksFromDatabase)
@@ -46,13 +47,17 @@ class RecommendedBRModelAsyncFetchData(
     }
 
     private fun fetchAllBooksFromDatabase(): ArrayList<BModel> {
-        return BModelProvider(context).getAllBooksFromDatabase()
+        return BModelProvider(context, languageCode).getAllBooksFromDatabase()
     }
 
-    private fun mockDatasetCarousel(dataset: ArrayList<BModel>) {
+    private fun mockDatasetCarousel(
+        dataset: ArrayList<BModel>,
+        allBooksFromDatabase: ArrayList<BModel>
+    ) {
         dataset.addAll(
-            BModelRandomProvider(context).getRandomsInstances(
-                RecommendedActivity.NB_BOOKS_CAROUSEL
+            BModelRandomProvider(context, languageCode).getRandomsInstancesFromList(
+                RecommendedActivity.NB_BOOKS_CAROUSEL,
+                allBooksFromDatabase
             )
         )
     }
@@ -62,7 +67,7 @@ class RecommendedBRModelAsyncFetchData(
         allBooksFromDatabase: ArrayList<BModel>
     ) {
         dataset.addAll(
-            BModelRandomProvider(context).getRandomsInstancesFromListToNoTitleListBModel(
+            BModelRandomProvider(context, languageCode).getRandomsInstancesFromListToNoTitleListBModel(
                 RecommendedActivity.FIRST_RECYCLERVIEW_NB_COLUMNS,
                 RecommendedActivity.NB_BOOKS_FIRST_RECYCLERVIEW,
                 allBooksFromDatabase
@@ -71,7 +76,7 @@ class RecommendedBRModelAsyncFetchData(
     }
 
     private fun mockDatasetPopularGenre(dataset: ArrayList<GModel>) {
-        dataset.addAll(GModelProvider(context).getPopularGenres())
+        dataset.addAll(GModelProvider(context, languageCode).getPopularGenres())
     }
 
     private fun mockDatasetSecondRecyclerView(
@@ -79,7 +84,7 @@ class RecommendedBRModelAsyncFetchData(
         allBooksFromDatabase: ArrayList<BModel>
     ) {
         dataset.addAll(
-            BModelRandomProvider(context).getRandomsInstancesFromListToNoTitleListBModel(
+            BModelRandomProvider(context, languageCode).getRandomsInstancesFromListToNoTitleListBModel(
                 RecommendedActivity.SECOND_RECYCLERVIEW_NB_COLUMNS,
                 RecommendedActivity.NB_BOOKS_SECOND_RECYCLERVIEW,
                 allBooksFromDatabase
@@ -92,7 +97,7 @@ class RecommendedBRModelAsyncFetchData(
         allBooksFromDatabase: ArrayList<BModel>
     ) {
         dataset.addAll(
-            BModelRandomProvider(context).getRandomsInstancesFromListToNoTitleListBModel(
+            BModelRandomProvider(context, languageCode).getRandomsInstancesFromListToNoTitleListBModel(
                 RecommendedActivity.SMALL_RECYCLERVIEW_NB_COLUMNS,
                 RecommendedActivity.NB_BOOKS_SMALL_RECYCLERVIEW,
                 allBooksFromDatabase

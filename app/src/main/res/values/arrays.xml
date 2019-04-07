@@ -115,6 +115,59 @@
         <item>The Girl Duke</item>
     </string-array>
 
+    <string-array name="titles_books_arabic">
+        <item>هنا</item>
+        <item>النمر الأسود الذئب الأحمر</item>
+        <item>كل شيء لم أخبرك به أبداً</item>
+        <item>غائم مع فرصة من اللحم</item>
+        <item>تغطرست وتجملت كونها زهرة الجدران</item>
+        <item>صفارة ضبابية</item>
+        <item>وولفهوند وسلة الفقراء</item>
+        <item>نفي الزجاج صرخ</item>
+        <item>حافلة البئر</item>
+        <item>لعنة وامرأة</item>
+        <item>تريل الطاعون</item>
+        <item>الكناري المختومة</item>
+        <item>المنتقم من الغريب</item>
+        <item>محاسب من غراي هيرو</item>
+        <item>تريل والجرار</item>
+        <item>الضباب بعد التصحيح</item>
+        <item>بكى أتلانتس</item>
+        <item>هرمجدون مغامرة كلفانية</item>
+        <item>أرنب المغامرة الجنوبية</item>
+        <item>الفتاة في</item>
+        <item>المخاوف الباردة</item>
+        <item>شكسبير ، طفولة الصحراء</item>
+        <item>المرأة الجنوبية</item>
+        <item>نوتيلوس الذري</item>
+        <item>الخلاصة والقاتل الميت</item>
+        <item>عشرة هوليود</item>
+        <item>المخبر من الطابق</item>
+        <item>ركب لاعب</item>
+        <item>سر قانون الحيوانات الأليفة</item>
+        <item>الحافة الشمالية</item>
+        <item>مهندس ولد</item>
+        <item>المسرع الحلم</item>
+        <item>غير مخلص ضوء القمر</item>
+        <item>لم يكن بالادين أربعة</item>
+        <item>الخلود</item>
+        <item>إمبراطور دا فينشي</item>
+        <item>ملك تسعة حاكم</item>
+        <item>بطاقة الدير</item>
+        <item>حنفية القرنفل من النار السابعة</item>
+        <item>بندقية المعبود</item>
+        <item>برج وكرنفال</item>
+        <item>انسان محترم</item>
+        <item>نهاية العالم الغريبة</item>
+        <item>بلا مأوى</item>
+        <item>ختم الدم</item>
+        <item>النوم دقيقة</item>
+        <item>دودة الرعد</item>
+        <item>جوان آرك ، خطة جير</item>
+        <item>الجار تطارد</item>
+        <item>الفتاة الدوق</item>
+    </string-array>
+
     <string-array name="name_authors_books">
         <item>Taleb Al-Refai</item>
         <item>Marion James</item>
@@ -521,6 +574,359 @@
         </item>
     </string-array>
 
+    <string-array name="desc_authors_books_arabic">
+        <item>
+            وُلدت في بغداد عام 1952 ، وفي جامعتها درست الصحافة.
+            كان يعمل في الصحافة والإذاعة العراقية قبل الانتقال إلى باريس لاستكمال أطروحة الدكتوراه في جامعة السوربون.
+            يعمل حالياً مراسلاً في باريس لـ "الشرق الأوسط" في لندن ومجلة "المحمر" في الشارقة
+            والإمارات العربية المتحدة. نشر كتابًا بعنوان "لورنا" حول المراسل البريطاني لورنا هيلز ،
+            الذي كان متزوجا من النحات والرسام العراقي الرائد جواد سالم. كما نشر كتابا
+            باللغة الفرنسية عن الأدب الذي كتبته النساء في سنوات الضيق والحرب.
+        </item>
+        <item>
+            كتب النقد الأدبي والشعر والخيال والصحافة الجدلية. يشتهر بالمجاز
+            novella Animal Farm (1945) ، والرواية الدستوبانية (Nineteen Eighty-Four) (1949). أعماله غير الخيالية ،
+            بما في ذلك الطريق إلى ويجان بيير (1937) ، الذي يوثق تجربته في حياة الطبقة العاملة في شمال إنجلترا ،
+            وتكريما لكاتالونيا (1938) ، سرد لتجاربه على الجانب الجمهوري في الحرب الأهلية الإسبانية ،
+            نالت استحسانا واسع النطاق ، وكذلك مقالاته عن السياسة والأدب واللغة والثقافة. في عام 2008 ، تي
+            وصنفه تايمز في المرتبة الثانية على قائمة "أعظم 50 كاتبا بريطانيا منذ عام 1945".
+        </item>
+        <item>
+            كان كاتبًا بريطانيًا اشتهر بتصويره المباحث الذي يعرض شخصية شرلوك هولمز.
+            في الأصل طبيب ، في عام 1887 نشر دراسة في سكارليت ، أول أربع روايات عنها
+            هولمز والدكتور واتسون. بالإضافة إلى ذلك ، كتب دويل أكثر من خمسين قصة قصيرة
+            يضم المخبر الشهير. قصص شرلوك هولمز عموما
+            تعتبر معالم بارزة في مجال خيال الجريمة.
+        </item>
+        <item>
+            كان روائيًا إنجليزيًا وكاتبًا للقصة القصيرة.
+            حصل على جائزة جيمس تيت بلاك ميموريال لعام 1958
+            لفئة منتصف العمر للسيدة إليوت وحصل لاحقًا على لقب فارس بسبب خدماته للأدب.
+        </item>
+        <item>
+            وكان الفيلسوف الفرنسي ، مؤلف ، وصحفي. وجهات نظره ساهمت في صعود
+            الفلسفة المعروفة باسم العبثية. لقد كتب في مقاله The Rebel أن حياته كلها كانت
+            المكرسة لمعارضة فلسفة العدمية بينما لا يزال الخوض
+            في عمق الحرية الفردية. فاز بجائزة نوبل في الأدب
+            عن عمر يناهز 44 عام 1957 ، ثاني أصغر متلق في التاريخ.
+        </item>
+        <item>
+            وُلدت في بغداد عام 1952 ، وفي جامعتها درست الصحافة.
+            كان يعمل في الصحافة والإذاعة العراقية قبل الانتقال إلى باريس لاستكمال أطروحة الدكتوراه في جامعة السوربون.
+            يعمل حالياً مراسلاً في باريس لـ "الشرق الأوسط" في لندن ومجلة "المحمر" في الشارقة
+            والإمارات العربية المتحدة. نشر كتابًا بعنوان "لورنا" حول المراسل البريطاني لورنا هيلز ،
+            الذي كان متزوجا من النحات والرسام العراقي الرائد جواد سالم. كما نشر كتابا
+            باللغة الفرنسية عن الأدب الذي كتبته النساء في سنوات الضيق والحرب.
+        </item>
+        <item>
+            كتب النقد الأدبي والشعر والخيال والصحافة الجدلية. يشتهر بالمجاز
+            novella Animal Farm (1945) ، والرواية الدستوبانية (Nineteen Eighty-Four) (1949). أعماله غير الخيالية ،
+            بما في ذلك الطريق إلى ويجان بيير (1937) ، الذي يوثق تجربته في حياة الطبقة العاملة في شمال إنجلترا ،
+            وتكريما لكاتالونيا (1938) ، سرد لتجاربه على الجانب الجمهوري في الحرب الأهلية الإسبانية ،
+            نالت استحسانا واسع النطاق ، وكذلك مقالاته عن السياسة والأدب واللغة والثقافة. في عام 2008 ، تي
+            وصنفه تايمز في المرتبة الثانية على قائمة "أعظم 50 كاتبا بريطانيا منذ عام 1945".
+        </item>
+        <item>
+            كان كاتبًا بريطانيًا اشتهر بتصويره المباحث الذي يعرض شخصية شرلوك هولمز.
+            في الأصل طبيب ، في عام 1887 نشر دراسة في سكارليت ، أول أربع روايات عنها
+            هولمز والدكتور واتسون. بالإضافة إلى ذلك ، كتب دويل أكثر من خمسين قصة قصيرة
+            يضم المخبر الشهير. قصص شرلوك هولمز عموما
+            تعتبر معالم بارزة في مجال خيال الجريمة.
+        </item>
+        <item>
+            كان روائيًا إنجليزيًا وكاتبًا للقصة القصيرة.
+            حصل على جائزة جيمس تيت بلاك ميموريال لعام 1958
+            لفئة منتصف العمر للسيدة إليوت وحصل لاحقًا على لقب فارس بسبب خدماته للأدب.
+        </item>
+        <item>
+            وكان الفيلسوف الفرنسي ، مؤلف ، وصحفي. وجهات نظره ساهمت في صعود
+            الفلسفة المعروفة باسم العبثية. لقد كتب في مقاله The Rebel أن حياته كلها كانت
+            المكرسة لمعارضة فلسفة العدمية بينما لا يزال الخوض
+            في عمق الحرية الفردية. فاز بجائزة نوبل في الأدب
+            عن عمر يناهز 44 عام 1957 ، ثاني أصغر متلق في التاريخ.
+        </item>
+        <item>
+            وُلدت في بغداد عام 1952 ، وفي جامعتها درست الصحافة.
+            كان يعمل في الصحافة والإذاعة العراقية قبل الانتقال إلى باريس لاستكمال أطروحة الدكتوراه في جامعة السوربون.
+            يعمل حالياً مراسلاً في باريس لـ "الشرق الأوسط" في لندن ومجلة "المحمر" في الشارقة
+            والإمارات العربية المتحدة. نشر كتابًا بعنوان "لورنا" حول المراسل البريطاني لورنا هيلز ،
+            الذي كان متزوجا من النحات والرسام العراقي الرائد جواد سالم. كما نشر كتابا
+            باللغة الفرنسية عن الأدب الذي كتبته النساء في سنوات الضيق والحرب.
+        </item>
+        <item>
+            كتب النقد الأدبي والشعر والخيال والصحافة الجدلية. يشتهر بالمجاز
+            novella Animal Farm (1945) ، والرواية الدستوبانية (Nineteen Eighty-Four) (1949). أعماله غير الخيالية ،
+            بما في ذلك الطريق إلى ويجان بيير (1937) ، الذي يوثق تجربته في حياة الطبقة العاملة في شمال إنجلترا ،
+            وتكريما لكاتالونيا (1938) ، سرد لتجاربه على الجانب الجمهوري في الحرب الأهلية الإسبانية ،
+            نالت استحسانا واسع النطاق ، وكذلك مقالاته عن السياسة والأدب واللغة والثقافة. في عام 2008 ، تي
+            وصنفه تايمز في المرتبة الثانية على قائمة "أعظم 50 كاتبا بريطانيا منذ عام 1945".
+        </item>
+        <item>
+            كان كاتبًا بريطانيًا اشتهر بتصويره المباحث الذي يعرض شخصية شرلوك هولمز.
+            في الأصل طبيب ، في عام 1887 نشر دراسة في سكارليت ، أول أربع روايات عنها
+            هولمز والدكتور واتسون. بالإضافة إلى ذلك ، كتب دويل أكثر من خمسين قصة قصيرة
+            يضم المخبر الشهير. قصص شرلوك هولمز عموما
+            تعتبر معالم بارزة في مجال خيال الجريمة.
+        </item>
+        <item>
+            كان روائيًا إنجليزيًا وكاتبًا للقصة القصيرة.
+            حصل على جائزة جيمس تيت بلاك ميموريال لعام 1958
+            لفئة منتصف العمر للسيدة إليوت وحصل لاحقًا على لقب فارس بسبب خدماته للأدب.
+        </item>
+        <item>
+            وكان الفيلسوف الفرنسي ، مؤلف ، وصحفي. وجهات نظره ساهمت في صعود
+            الفلسفة المعروفة باسم العبثية. لقد كتب في مقاله The Rebel أن حياته كلها كانت
+            المكرسة لمعارضة فلسفة العدمية بينما لا يزال الخوض
+            في عمق الحرية الفردية. فاز بجائزة نوبل في الأدب
+            عن عمر يناهز 44 عام 1957 ، ثاني أصغر متلق في التاريخ.
+        </item>
+        <item>
+            وُلدت في بغداد عام 1952 ، وفي جامعتها درست الصحافة.
+            كان يعمل في الصحافة والإذاعة العراقية قبل الانتقال إلى باريس لاستكمال أطروحة الدكتوراه في جامعة السوربون.
+            يعمل حالياً مراسلاً في باريس لـ "الشرق الأوسط" في لندن ومجلة "المحمر" في الشارقة
+            والإمارات العربية المتحدة. نشر كتابًا بعنوان "لورنا" حول المراسل البريطاني لورنا هيلز ،
+            الذي كان متزوجا من النحات والرسام العراقي الرائد جواد سالم. كما نشر كتابا
+            باللغة الفرنسية عن الأدب الذي كتبته النساء في سنوات الضيق والحرب.
+        </item>
+        <item>
+            كتب النقد الأدبي والشعر والخيال والصحافة الجدلية. يشتهر بالمجاز
+            novella Animal Farm (1945) ، والرواية الدستوبانية (Nineteen Eighty-Four) (1949). أعماله غير الخيالية ،
+            بما في ذلك الطريق إلى ويجان بيير (1937) ، الذي يوثق تجربته في حياة الطبقة العاملة في شمال إنجلترا ،
+            وتكريما لكاتالونيا (1938) ، سرد لتجاربه على الجانب الجمهوري في الحرب الأهلية الإسبانية ،
+            نالت استحسانا واسع النطاق ، وكذلك مقالاته عن السياسة والأدب واللغة والثقافة. في عام 2008 ، تي
+            وصنفه تايمز في المرتبة الثانية على قائمة "أعظم 50 كاتبا بريطانيا منذ عام 1945".
+        </item>
+        <item>
+            كان كاتبًا بريطانيًا اشتهر بتصويره المباحث الذي يعرض شخصية شرلوك هولمز.
+            في الأصل طبيب ، في عام 1887 نشر دراسة في سكارليت ، أول أربع روايات عنها
+            هولمز والدكتور واتسون. بالإضافة إلى ذلك ، كتب دويل أكثر من خمسين قصة قصيرة
+            يضم المخبر الشهير. قصص شرلوك هولمز عموما
+            تعتبر معالم بارزة في مجال خيال الجريمة.
+        </item>
+        <item>
+            كان روائيًا إنجليزيًا وكاتبًا للقصة القصيرة.
+            حصل على جائزة جيمس تيت بلاك ميموريال لعام 1958
+            لفئة منتصف العمر للسيدة إليوت وحصل لاحقًا على لقب فارس بسبب خدماته للأدب.
+        </item>
+        <item>
+            وكان الفيلسوف الفرنسي ، مؤلف ، وصحفي. وجهات نظره ساهمت في صعود
+            الفلسفة المعروفة باسم العبثية. لقد كتب في مقاله The Rebel أن حياته كلها كانت
+            المكرسة لمعارضة فلسفة العدمية بينما لا يزال الخوض
+            في عمق الحرية الفردية. فاز بجائزة نوبل في الأدب
+            عن عمر يناهز 44 عام 1957 ، ثاني أصغر متلق في التاريخ.
+        </item>
+        <item>
+            وُلدت في بغداد عام 1952 ، وفي جامعتها درست الصحافة.
+            كان يعمل في الصحافة والإذاعة العراقية قبل الانتقال إلى باريس لاستكمال أطروحة الدكتوراه في جامعة السوربون.
+            يعمل حالياً مراسلاً في باريس لـ "الشرق الأوسط" في لندن ومجلة "المحمر" في الشارقة
+            والإمارات العربية المتحدة. نشر كتابًا بعنوان "لورنا" حول المراسل البريطاني لورنا هيلز ،
+            الذي كان متزوجا من النحات والرسام العراقي الرائد جواد سالم. كما نشر كتابا
+            باللغة الفرنسية عن الأدب الذي كتبته النساء في سنوات الضيق والحرب.
+        </item>
+        <item>
+            كتب النقد الأدبي والشعر والخيال والصحافة الجدلية. يشتهر بالمجاز
+            novella Animal Farm (1945) ، والرواية الدستوبانية (Nineteen Eighty-Four) (1949). أعماله غير الخيالية ،
+            بما في ذلك الطريق إلى ويجان بيير (1937) ، الذي يوثق تجربته في حياة الطبقة العاملة في شمال إنجلترا ،
+            وتكريما لكاتالونيا (1938) ، سرد لتجاربه على الجانب الجمهوري في الحرب الأهلية الإسبانية ،
+            نالت استحسانا واسع النطاق ، وكذلك مقالاته عن السياسة والأدب واللغة والثقافة. في عام 2008 ، تي
+            وصنفه تايمز في المرتبة الثانية على قائمة "أعظم 50 كاتبا بريطانيا منذ عام 1945".
+        </item>
+        <item>
+            كان كاتبًا بريطانيًا اشتهر بتصويره المباحث الذي يعرض شخصية شرلوك هولمز.
+            في الأصل طبيب ، في عام 1887 نشر دراسة في سكارليت ، أول أربع روايات عنها
+            هولمز والدكتور واتسون. بالإضافة إلى ذلك ، كتب دويل أكثر من خمسين قصة قصيرة
+            يضم المخبر الشهير. قصص شرلوك هولمز عموما
+            تعتبر معالم بارزة في مجال خيال الجريمة.
+        </item>
+        <item>
+            كان روائيًا إنجليزيًا وكاتبًا للقصة القصيرة.
+            حصل على جائزة جيمس تيت بلاك ميموريال لعام 1958
+            لفئة منتصف العمر للسيدة إليوت وحصل لاحقًا على لقب فارس بسبب خدماته للأدب.
+        </item>
+        <item>
+            وكان الفيلسوف الفرنسي ، مؤلف ، وصحفي. وجهات نظره ساهمت في صعود
+            الفلسفة المعروفة باسم العبثية. لقد كتب في مقاله The Rebel أن حياته كلها كانت
+            المكرسة لمعارضة فلسفة العدمية بينما لا يزال الخوض
+            في عمق الحرية الفردية. فاز بجائزة نوبل في الأدب
+            عن عمر يناهز 44 عام 1957 ، ثاني أصغر متلق في التاريخ.
+        </item>
+        <item>
+            وُلدت في بغداد عام 1952 ، وفي جامعتها درست الصحافة.
+            كان يعمل في الصحافة والإذاعة العراقية قبل الانتقال إلى باريس لاستكمال أطروحة الدكتوراه في جامعة السوربون.
+            يعمل حالياً مراسلاً في باريس لـ "الشرق الأوسط" في لندن ومجلة "المحمر" في الشارقة
+            والإمارات العربية المتحدة. نشر كتابًا بعنوان "لورنا" حول المراسل البريطاني لورنا هيلز ،
+            الذي كان متزوجا من النحات والرسام العراقي الرائد جواد سالم. كما نشر كتابا
+            باللغة الفرنسية عن الأدب الذي كتبته النساء في سنوات الضيق والحرب.
+        </item>
+        <item>
+            كتب النقد الأدبي والشعر والخيال والصحافة الجدلية. يشتهر بالمجاز
+            novella Animal Farm (1945) ، والرواية الدستوبانية (Nineteen Eighty-Four) (1949). أعماله غير الخيالية ،
+            بما في ذلك الطريق إلى ويجان بيير (1937) ، الذي يوثق تجربته في حياة الطبقة العاملة في شمال إنجلترا ،
+            وتكريما لكاتالونيا (1938) ، سرد لتجاربه على الجانب الجمهوري في الحرب الأهلية الإسبانية ،
+            نالت استحسانا واسع النطاق ، وكذلك مقالاته عن السياسة والأدب واللغة والثقافة. في عام 2008 ، تي
+            وصنفه تايمز في المرتبة الثانية على قائمة "أعظم 50 كاتبا بريطانيا منذ عام 1945".
+        </item>
+        <item>
+            كان كاتبًا بريطانيًا اشتهر بتصويره المباحث الذي يعرض شخصية شرلوك هولمز.
+            في الأصل طبيب ، في عام 1887 نشر دراسة في سكارليت ، أول أربع روايات عنها
+            هولمز والدكتور واتسون. بالإضافة إلى ذلك ، كتب دويل أكثر من خمسين قصة قصيرة
+            يضم المخبر الشهير. قصص شرلوك هولمز عموما
+            تعتبر معالم بارزة في مجال خيال الجريمة.
+        </item>
+        <item>
+            كان روائيًا إنجليزيًا وكاتبًا للقصة القصيرة.
+            حصل على جائزة جيمس تيت بلاك ميموريال لعام 1958
+            لفئة منتصف العمر للسيدة إليوت وحصل لاحقًا على لقب فارس بسبب خدماته للأدب.
+        </item>
+        <item>
+            وكان الفيلسوف الفرنسي ، مؤلف ، وصحفي. وجهات نظره ساهمت في صعود
+            الفلسفة المعروفة باسم العبثية. لقد كتب في مقاله The Rebel أن حياته كلها كانت
+            المكرسة لمعارضة فلسفة العدمية بينما لا يزال الخوض
+            في عمق الحرية الفردية. فاز بجائزة نوبل في الأدب
+            عن عمر يناهز 44 عام 1957 ، ثاني أصغر متلق في التاريخ.
+        </item>
+        <item>
+            وُلدت في بغداد عام 1952 ، وفي جامعتها درست الصحافة.
+            كان يعمل في الصحافة والإذاعة العراقية قبل الانتقال إلى باريس لاستكمال أطروحة الدكتوراه في جامعة السوربون.
+            يعمل حالياً مراسلاً في باريس لـ "الشرق الأوسط" في لندن ومجلة "المحمر" في الشارقة
+            والإمارات العربية المتحدة. نشر كتابًا بعنوان "لورنا" حول المراسل البريطاني لورنا هيلز ،
+            الذي كان متزوجا من النحات والرسام العراقي الرائد جواد سالم. كما نشر كتابا
+            باللغة الفرنسية عن الأدب الذي كتبته النساء في سنوات الضيق والحرب.
+        </item>
+        <item>
+            كتب النقد الأدبي والشعر والخيال والصحافة الجدلية. يشتهر بالمجاز
+            novella Animal Farm (1945) ، والرواية الدستوبانية (Nineteen Eighty-Four) (1949). أعماله غير الخيالية ،
+            بما في ذلك الطريق إلى ويجان بيير (1937) ، الذي يوثق تجربته في حياة الطبقة العاملة في شمال إنجلترا ،
+            وتكريما لكاتالونيا (1938) ، سرد لتجاربه على الجانب الجمهوري في الحرب الأهلية الإسبانية ،
+            نالت استحسانا واسع النطاق ، وكذلك مقالاته عن السياسة والأدب واللغة والثقافة. في عام 2008 ، تي
+            وصنفه تايمز في المرتبة الثانية على قائمة "أعظم 50 كاتبا بريطانيا منذ عام 1945".
+        </item>
+        <item>
+            كان كاتبًا بريطانيًا اشتهر بتصويره المباحث الذي يعرض شخصية شرلوك هولمز.
+            في الأصل طبيب ، في عام 1887 نشر دراسة في سكارليت ، أول أربع روايات عنها
+            هولمز والدكتور واتسون. بالإضافة إلى ذلك ، كتب دويل أكثر من خمسين قصة قصيرة
+            يضم المخبر الشهير. قصص شرلوك هولمز عموما
+            تعتبر معالم بارزة في مجال خيال الجريمة.
+        </item>
+        <item>
+            كان روائيًا إنجليزيًا وكاتبًا للقصة القصيرة.
+            حصل على جائزة جيمس تيت بلاك ميموريال لعام 1958
+            لفئة منتصف العمر للسيدة إليوت وحصل لاحقًا على لقب فارس بسبب خدماته للأدب.
+        </item>
+        <item>
+            وكان الفيلسوف الفرنسي ، مؤلف ، وصحفي. وجهات نظره ساهمت في صعود
+            الفلسفة المعروفة باسم العبثية. لقد كتب في مقاله The Rebel أن حياته كلها كانت
+            المكرسة لمعارضة فلسفة العدمية بينما لا يزال الخوض
+            في عمق الحرية الفردية. فاز بجائزة نوبل في الأدب
+            عن عمر يناهز 44 عام 1957 ، ثاني أصغر متلق في التاريخ.
+        </item>
+        <item>
+            وُلدت في بغداد عام 1952 ، وفي جامعتها درست الصحافة.
+            كان يعمل في الصحافة والإذاعة العراقية قبل الانتقال إلى باريس لاستكمال أطروحة الدكتوراه في جامعة السوربون.
+            يعمل حالياً مراسلاً في باريس لـ "الشرق الأوسط" في لندن ومجلة "المحمر" في الشارقة
+            والإمارات العربية المتحدة. نشر كتابًا بعنوان "لورنا" حول المراسل البريطاني لورنا هيلز ،
+            الذي كان متزوجا من النحات والرسام العراقي الرائد جواد سالم. كما نشر كتابا
+            باللغة الفرنسية عن الأدب الذي كتبته النساء في سنوات الضيق والحرب.
+        </item>
+        <item>
+            كتب النقد الأدبي والشعر والخيال والصحافة الجدلية. يشتهر بالمجاز
+            novella Animal Farm (1945) ، والرواية الدستوبانية (Nineteen Eighty-Four) (1949). أعماله غير الخيالية ،
+            بما في ذلك الطريق إلى ويجان بيير (1937) ، الذي يوثق تجربته في حياة الطبقة العاملة في شمال إنجلترا ،
+            وتكريما لكاتالونيا (1938) ، سرد لتجاربه على الجانب الجمهوري في الحرب الأهلية الإسبانية ،
+            نالت استحسانا واسع النطاق ، وكذلك مقالاته عن السياسة والأدب واللغة والثقافة. في عام 2008 ، تي
+            وصنفه تايمز في المرتبة الثانية على قائمة "أعظم 50 كاتبا بريطانيا منذ عام 1945".
+        </item>
+        <item>
+            كان كاتبًا بريطانيًا اشتهر بتصويره المباحث الذي يعرض شخصية شرلوك هولمز.
+            في الأصل طبيب ، في عام 1887 نشر دراسة في سكارليت ، أول أربع روايات عنها
+            هولمز والدكتور واتسون. بالإضافة إلى ذلك ، كتب دويل أكثر من خمسين قصة قصيرة
+            يضم المخبر الشهير. قصص شرلوك هولمز عموما
+            تعتبر معالم بارزة في مجال خيال الجريمة.
+        </item>
+        <item>
+            كان روائيًا إنجليزيًا وكاتبًا للقصة القصيرة.
+            حصل على جائزة جيمس تيت بلاك ميموريال لعام 1958
+            لفئة منتصف العمر للسيدة إليوت وحصل لاحقًا على لقب فارس بسبب خدماته للأدب.
+        </item>
+        <item>
+            وكان الفيلسوف الفرنسي ، مؤلف ، وصحفي. وجهات نظره ساهمت في صعود
+            الفلسفة المعروفة باسم العبثية. لقد كتب في مقاله The Rebel أن حياته كلها كانت
+            المكرسة لمعارضة فلسفة العدمية بينما لا يزال الخوض
+            في عمق الحرية الفردية. فاز بجائزة نوبل في الأدب
+            عن عمر يناهز 44 عام 1957 ، ثاني أصغر متلق في التاريخ.
+        </item>
+        <item>
+            وُلدت في بغداد عام 1952 ، وفي جامعتها درست الصحافة.
+            كان يعمل في الصحافة والإذاعة العراقية قبل الانتقال إلى باريس لاستكمال أطروحة الدكتوراه في جامعة السوربون.
+            يعمل حالياً مراسلاً في باريس لـ "الشرق الأوسط" في لندن ومجلة "المحمر" في الشارقة
+            والإمارات العربية المتحدة. نشر كتابًا بعنوان "لورنا" حول المراسل البريطاني لورنا هيلز ،
+            الذي كان متزوجا من النحات والرسام العراقي الرائد جواد سالم. كما نشر كتابا
+            باللغة الفرنسية عن الأدب الذي كتبته النساء في سنوات الضيق والحرب.
+        </item>
+        <item>
+            كتب النقد الأدبي والشعر والخيال والصحافة الجدلية. يشتهر بالمجاز
+            novella Animal Farm (1945) ، والرواية الدستوبانية (Nineteen Eighty-Four) (1949). أعماله غير الخيالية ،
+            بما في ذلك الطريق إلى ويجان بيير (1937) ، الذي يوثق تجربته في حياة الطبقة العاملة في شمال إنجلترا ،
+            وتكريما لكاتالونيا (1938) ، سرد لتجاربه على الجانب الجمهوري في الحرب الأهلية الإسبانية ،
+            نالت استحسانا واسع النطاق ، وكذلك مقالاته عن السياسة والأدب واللغة والثقافة. في عام 2008 ، تي
+            وصنفه تايمز في المرتبة الثانية على قائمة "أعظم 50 كاتبا بريطانيا منذ عام 1945".
+        </item>
+        <item>
+            كان كاتبًا بريطانيًا اشتهر بتصويره المباحث الذي يعرض شخصية شرلوك هولمز.
+            في الأصل طبيب ، في عام 1887 نشر دراسة في سكارليت ، أول أربع روايات عنها
+            هولمز والدكتور واتسون. بالإضافة إلى ذلك ، كتب دويل أكثر من خمسين قصة قصيرة
+            يضم المخبر الشهير. قصص شرلوك هولمز عموما
+            تعتبر معالم بارزة في مجال خيال الجريمة.
+        </item>
+        <item>
+            كان روائيًا إنجليزيًا وكاتبًا للقصة القصيرة.
+            حصل على جائزة جيمس تيت بلاك ميموريال لعام 1958
+            لفئة منتصف العمر للسيدة إليوت وحصل لاحقًا على لقب فارس بسبب خدماته للأدب.
+        </item>
+        <item>
+            وكان الفيلسوف الفرنسي ، مؤلف ، وصحفي. وجهات نظره ساهمت في صعود
+            الفلسفة المعروفة باسم العبثية. لقد كتب في مقاله The Rebel أن حياته كلها كانت
+            المكرسة لمعارضة فلسفة العدمية بينما لا يزال الخوض
+            في عمق الحرية الفردية. فاز بجائزة نوبل في الأدب
+            عن عمر يناهز 44 عام 1957 ، ثاني أصغر متلق في التاريخ.
+        </item>
+        <item>
+            وُلدت في بغداد عام 1952 ، وفي جامعتها درست الصحافة.
+            كان يعمل في الصحافة والإذاعة العراقية قبل الانتقال إلى باريس لاستكمال أطروحة الدكتوراه في جامعة السوربون.
+            يعمل حالياً مراسلاً في باريس لـ "الشرق الأوسط" في لندن ومجلة "المحمر" في الشارقة
+            والإمارات العربية المتحدة. نشر كتابًا بعنوان "لورنا" حول المراسل البريطاني لورنا هيلز ،
+            الذي كان متزوجا من النحات والرسام العراقي الرائد جواد سالم. كما نشر كتابا
+            باللغة الفرنسية عن الأدب الذي كتبته النساء في سنوات الضيق والحرب.
+        </item>
+        <item>
+            كتب النقد الأدبي والشعر والخيال والصحافة الجدلية. يشتهر بالمجاز
+            novella Animal Farm (1945) ، والرواية الدستوبانية (Nineteen Eighty-Four) (1949). أعماله غير الخيالية ،
+            بما في ذلك الطريق إلى ويجان بيير (1937) ، الذي يوثق تجربته في حياة الطبقة العاملة في شمال إنجلترا ،
+            وتكريما لكاتالونيا (1938) ، سرد لتجاربه على الجانب الجمهوري في الحرب الأهلية الإسبانية ،
+            نالت استحسانا واسع النطاق ، وكذلك مقالاته عن السياسة والأدب واللغة والثقافة. في عام 2008 ، تي
+            وصنفه تايمز في المرتبة الثانية على قائمة "أعظم 50 كاتبا بريطانيا منذ عام 1945".
+        </item>
+        <item>
+            كان كاتبًا بريطانيًا اشتهر بتصويره المباحث الذي يعرض شخصية شرلوك هولمز.
+            في الأصل طبيب ، في عام 1887 نشر دراسة في سكارليت ، أول أربع روايات عنها
+            هولمز والدكتور واتسون. بالإضافة إلى ذلك ، كتب دويل أكثر من خمسين قصة قصيرة
+            يضم المخبر الشهير. قصص شرلوك هولمز عموما
+            تعتبر معالم بارزة في مجال خيال الجريمة.
+        </item>
+        <item>
+            كان روائيًا إنجليزيًا وكاتبًا للقصة القصيرة.
+            حصل على جائزة جيمس تيت بلاك ميموريال لعام 1958
+            لفئة منتصف العمر للسيدة إليوت وحصل لاحقًا على لقب فارس بسبب خدماته للأدب.
+        </item>
+        <item>
+            وكان الفيلسوف الفرنسي ، مؤلف ، وصحفي. وجهات نظره ساهمت في صعود
+            الفلسفة المعروفة باسم العبثية. لقد كتب في مقاله The Rebel أن حياته كلها كانت
+            المكرسة لمعارضة فلسفة العدمية بينما لا يزال الخوض
+            في عمق الحرية الفردية. فاز بجائزة نوبل في الأدب
+            عن عمر يناهز 44 عام 1957 ، ثاني أصغر متلق في التاريخ.
+        </item>
+    </string-array>
+
     <string-array name="ratings_books">
         <item>3f</item>
         <item>3.5f</item>
@@ -920,6 +1326,712 @@
         <item>Sourcebooks</item>
         <item>Penguin Books</item>
         <item>Lulu</item>
+    </string-array>
+
+    <string-array name="resume_books">
+        <item>
+            The novel "The Prophet" is engraved in the modern history of Iraq,
+            evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+            the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+            of the throne Abdul Ilah.
+        </item>
+        <item>
+            Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting
+            as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist
+            George Orwell nightmarish vision of a totalitarian, bureaucratic world and one poor stiff attempt
+            to find individuality. The brilliance of the novel is Orwell prescience of modern life—the ubiquity
+            of television, the distortion of the language and his ability to construct such a thorough version
+            of hell. Required reading for students since it was published, it ranks among the most terrifying novels
+            ever written.
+        </item>
+        <item>
+            After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead,
+            Mark finds himself stranded and completely alone with no way to even signal Earth that he is alive and
+            even if he could get word out, his supplies would be gone long before a rescue could arrive.
+            Chances are, though, he wont have time to starve to death. The damaged machinery, unforgiving
+            environment, or plain-old “human error” are much more likely to kill him first
+        </item>
+        <item>
+            Find out what employers look for in the hiring process, what elements set your resume apart from
+            the rest, and how to tailor your qualifications to the requirements of the position you seek.
+            This updated new edition features comprehensive coverage of what you need to know now to make
+            that dream job yours. Here is where you will find today hottest job markets - both domestic and
+            abroad - and why they might be right for you; newly updated resume formats.
+        </item>
+        <item>
+            Yana Parker has helped hundreds of thousands of job seekers write and refine their resumes to
+            damn near perfection. Her resume guides have been praised for their user-friendly style and savvy
+            advice and, rightly so, have become staples in libraries,
+            career centers, and employment offices nationwide.
+        </item>
+        <item>
+            The novel "The Prophet" is engraved in the modern history of Iraq,
+            evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+            the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+            of the throne Abdul Ilah.
+        </item>
+        <item>
+            Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting
+            as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist
+            George Orwell nightmarish vision of a totalitarian, bureaucratic world and one poor stiff attempt
+            to find individuality. The brilliance of the novel is Orwell prescience of modern life—the ubiquity
+            of television, the distortion of the language and his ability to construct such a thorough version
+            of hell. Required reading for students since it was published, it ranks among the most terrifying novels
+            ever written.
+        </item>
+        <item>
+            After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead,
+            Mark finds himself stranded and completely alone with no way to even signal Earth that he is alive and
+            even if he could get word out, his supplies would be gone long before a rescue could arrive.
+            Chances are, though, he wont have time to starve to death. The damaged machinery, unforgiving
+            environment, or plain-old “human error” are much more likely to kill him first
+        </item>
+        <item>
+            Find out what employers look for in the hiring process, what elements set your resume apart from
+            the rest, and how to tailor your qualifications to the requirements of the position you seek.
+            This updated new edition features comprehensive coverage of what you need to know now to make
+            that dream job yours. Here is where you will find today hottest job markets - both domestic and
+            abroad - and why they might be right for you; newly updated resume formats.
+        </item>
+        <item>
+            Yana Parker has helped hundreds of thousands of job seekers write and refine their resumes to
+            damn near perfection. Her resume guides have been praised for their user-friendly style and savvy
+            advice and, rightly so, have become staples in libraries,
+            career centers, and employment offices nationwide.
+        </item>
+        <item>
+            The novel "The Prophet" is engraved in the modern history of Iraq,
+            evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+            the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+            of the throne Abdul Ilah.
+        </item>
+        <item>
+            Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting
+            as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist
+            George Orwell nightmarish vision of a totalitarian, bureaucratic world and one poor stiff attempt
+            to find individuality. The brilliance of the novel is Orwell prescience of modern life—the ubiquity
+            of television, the distortion of the language and his ability to construct such a thorough version
+            of hell. Required reading for students since it was published, it ranks among the most terrifying novels
+            ever written.
+        </item>
+        <item>
+            After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead,
+            Mark finds himself stranded and completely alone with no way to even signal Earth that he is alive and
+            even if he could get word out, his supplies would be gone long before a rescue could arrive.
+            Chances are, though, he wont have time to starve to death. The damaged machinery, unforgiving
+            environment, or plain-old “human error” are much more likely to kill him first
+        </item>
+        <item>
+            Find out what employers look for in the hiring process, what elements set your resume apart from
+            the rest, and how to tailor your qualifications to the requirements of the position you seek.
+            This updated new edition features comprehensive coverage of what you need to know now to make
+            that dream job yours. Here is where you will find today hottest job markets - both domestic and
+            abroad - and why they might be right for you; newly updated resume formats.
+        </item>
+        <item>
+            Yana Parker has helped hundreds of thousands of job seekers write and refine their resumes to
+            damn near perfection. Her resume guides have been praised for their user-friendly style and savvy
+            advice and, rightly so, have become staples in libraries,
+            career centers, and employment offices nationwide.
+        </item>
+        <item>
+            The novel "The Prophet" is engraved in the modern history of Iraq,
+            evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+            the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+            of the throne Abdul Ilah.
+        </item>
+        <item>
+            Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting
+            as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist
+            George Orwell nightmarish vision of a totalitarian, bureaucratic world and one poor stiff attempt
+            to find individuality. The brilliance of the novel is Orwell prescience of modern life—the ubiquity
+            of television, the distortion of the language and his ability to construct such a thorough version
+            of hell. Required reading for students since it was published, it ranks among the most terrifying novels
+            ever written.
+        </item>
+        <item>
+            After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead,
+            Mark finds himself stranded and completely alone with no way to even signal Earth that he is alive and
+            even if he could get word out, his supplies would be gone long before a rescue could arrive.
+            Chances are, though, he wont have time to starve to death. The damaged machinery, unforgiving
+            environment, or plain-old “human error” are much more likely to kill him first
+        </item>
+        <item>
+            Find out what employers look for in the hiring process, what elements set your resume apart from
+            the rest, and how to tailor your qualifications to the requirements of the position you seek.
+            This updated new edition features comprehensive coverage of what you need to know now to make
+            that dream job yours. Here is where you will find today hottest job markets - both domestic and
+            abroad - and why they might be right for you; newly updated resume formats.
+        </item>
+        <item>
+            Yana Parker has helped hundreds of thousands of job seekers write and refine their resumes to
+            damn near perfection. Her resume guides have been praised for their user-friendly style and savvy
+            advice and, rightly so, have become staples in libraries,
+            career centers, and employment offices nationwide.
+        </item>
+        <item>
+            The novel "The Prophet" is engraved in the modern history of Iraq,
+            evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+            the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+            of the throne Abdul Ilah.
+        </item>
+        <item>
+            Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting
+            as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist
+            George Orwell nightmarish vision of a totalitarian, bureaucratic world and one poor stiff attempt
+            to find individuality. The brilliance of the novel is Orwell prescience of modern life—the ubiquity
+            of television, the distortion of the language and his ability to construct such a thorough version
+            of hell. Required reading for students since it was published, it ranks among the most terrifying novels
+            ever written.
+        </item>
+        <item>
+            After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead,
+            Mark finds himself stranded and completely alone with no way to even signal Earth that he is alive and
+            even if he could get word out, his supplies would be gone long before a rescue could arrive.
+            Chances are, though, he wont have time to starve to death. The damaged machinery, unforgiving
+            environment, or plain-old “human error” are much more likely to kill him first
+        </item>
+        <item>
+            Find out what employers look for in the hiring process, what elements set your resume apart from
+            the rest, and how to tailor your qualifications to the requirements of the position you seek.
+            This updated new edition features comprehensive coverage of what you need to know now to make
+            that dream job yours. Here is where you will find today hottest job markets - both domestic and
+            abroad - and why they might be right for you; newly updated resume formats.
+        </item>
+        <item>
+            Yana Parker has helped hundreds of thousands of job seekers write and refine their resumes to
+            damn near perfection. Her resume guides have been praised for their user-friendly style and savvy
+            advice and, rightly so, have become staples in libraries,
+            career centers, and employment offices nationwide.
+        </item>
+        <item>
+            The novel "The Prophet" is engraved in the modern history of Iraq,
+            evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+            the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+            of the throne Abdul Ilah.
+        </item>
+        <item>
+            Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting
+            as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist
+            George Orwell nightmarish vision of a totalitarian, bureaucratic world and one poor stiff attempt
+            to find individuality. The brilliance of the novel is Orwell prescience of modern life—the ubiquity
+            of television, the distortion of the language and his ability to construct such a thorough version
+            of hell. Required reading for students since it was published, it ranks among the most terrifying novels
+            ever written.
+        </item>
+        <item>
+            After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead,
+            Mark finds himself stranded and completely alone with no way to even signal Earth that he is alive and
+            even if he could get word out, his supplies would be gone long before a rescue could arrive.
+            Chances are, though, he wont have time to starve to death. The damaged machinery, unforgiving
+            environment, or plain-old “human error” are much more likely to kill him first
+        </item>
+        <item>
+            Find out what employers look for in the hiring process, what elements set your resume apart from
+            the rest, and how to tailor your qualifications to the requirements of the position you seek.
+            This updated new edition features comprehensive coverage of what you need to know now to make
+            that dream job yours. Here is where you will find today hottest job markets - both domestic and
+            abroad - and why they might be right for you; newly updated resume formats.
+        </item>
+        <item>
+            Yana Parker has helped hundreds of thousands of job seekers write and refine their resumes to
+            damn near perfection. Her resume guides have been praised for their user-friendly style and savvy
+            advice and, rightly so, have become staples in libraries,
+            career centers, and employment offices nationwide.
+        </item>
+        <item>
+            The novel "The Prophet" is engraved in the modern history of Iraq,
+            evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+            the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+            of the throne Abdul Ilah.
+        </item>
+        <item>
+            Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting
+            as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist
+            George Orwell nightmarish vision of a totalitarian, bureaucratic world and one poor stiff attempt
+            to find individuality. The brilliance of the novel is Orwell prescience of modern life—the ubiquity
+            of television, the distortion of the language and his ability to construct such a thorough version
+            of hell. Required reading for students since it was published, it ranks among the most terrifying novels
+            ever written.
+        </item>
+        <item>
+            After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead,
+            Mark finds himself stranded and completely alone with no way to even signal Earth that he is alive and
+            even if he could get word out, his supplies would be gone long before a rescue could arrive.
+            Chances are, though, he wont have time to starve to death. The damaged machinery, unforgiving
+            environment, or plain-old “human error” are much more likely to kill him first
+        </item>
+        <item>
+            Find out what employers look for in the hiring process, what elements set your resume apart from
+            the rest, and how to tailor your qualifications to the requirements of the position you seek.
+            This updated new edition features comprehensive coverage of what you need to know now to make
+            that dream job yours. Here is where you will find today hottest job markets - both domestic and
+            abroad - and why they might be right for you; newly updated resume formats.
+        </item>
+        <item>
+            Yana Parker has helped hundreds of thousands of job seekers write and refine their resumes to
+            damn near perfection. Her resume guides have been praised for their user-friendly style and savvy
+            advice and, rightly so, have become staples in libraries,
+            career centers, and employment offices nationwide.
+        </item>
+        <item>
+            The novel "The Prophet" is engraved in the modern history of Iraq,
+            evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+            the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+            of the throne Abdul Ilah.
+        </item>
+        <item>
+            Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting
+            as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist
+            George Orwell nightmarish vision of a totalitarian, bureaucratic world and one poor stiff attempt
+            to find individuality. The brilliance of the novel is Orwell prescience of modern life—the ubiquity
+            of television, the distortion of the language and his ability to construct such a thorough version
+            of hell. Required reading for students since it was published, it ranks among the most terrifying novels
+            ever written.
+        </item>
+        <item>
+            After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead,
+            Mark finds himself stranded and completely alone with no way to even signal Earth that he is alive and
+            even if he could get word out, his supplies would be gone long before a rescue could arrive.
+            Chances are, though, he wont have time to starve to death. The damaged machinery, unforgiving
+            environment, or plain-old “human error” are much more likely to kill him first
+        </item>
+        <item>
+            Find out what employers look for in the hiring process, what elements set your resume apart from
+            the rest, and how to tailor your qualifications to the requirements of the position you seek.
+            This updated new edition features comprehensive coverage of what you need to know now to make
+            that dream job yours. Here is where you will find today hottest job markets - both domestic and
+            abroad - and why they might be right for you; newly updated resume formats.
+        </item>
+        <item>
+            Yana Parker has helped hundreds of thousands of job seekers write and refine their resumes to
+            damn near perfection. Her resume guides have been praised for their user-friendly style and savvy
+            advice and, rightly so, have become staples in libraries,
+            career centers, and employment offices nationwide.
+        </item>
+        <item>
+            The novel "The Prophet" is engraved in the modern history of Iraq,
+            evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+            the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+            of the throne Abdul Ilah.
+        </item>
+        <item>
+            Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting
+            as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist
+            George Orwell nightmarish vision of a totalitarian, bureaucratic world and one poor stiff attempt
+            to find individuality. The brilliance of the novel is Orwell prescience of modern life—the ubiquity
+            of television, the distortion of the language and his ability to construct such a thorough version
+            of hell. Required reading for students since it was published, it ranks among the most terrifying novels
+            ever written.
+        </item>
+        <item>
+            After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead,
+            Mark finds himself stranded and completely alone with no way to even signal Earth that he is alive and
+            even if he could get word out, his supplies would be gone long before a rescue could arrive.
+            Chances are, though, he wont have time to starve to death. The damaged machinery, unforgiving
+            environment, or plain-old “human error” are much more likely to kill him first
+        </item>
+        <item>
+            Find out what employers look for in the hiring process, what elements set your resume apart from
+            the rest, and how to tailor your qualifications to the requirements of the position you seek.
+            This updated new edition features comprehensive coverage of what you need to know now to make
+            that dream job yours. Here is where you will find today hottest job markets - both domestic and
+            abroad - and why they might be right for you; newly updated resume formats.
+        </item>
+        <item>
+            Yana Parker has helped hundreds of thousands of job seekers write and refine their resumes to
+            damn near perfection. Her resume guides have been praised for their user-friendly style and savvy
+            advice and, rightly so, have become staples in libraries,
+            career centers, and employment offices nationwide.
+        </item>
+        <item>
+            The novel "The Prophet" is engraved in the modern history of Iraq,
+            evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
+            the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
+            of the throne Abdul Ilah.
+        </item>
+        <item>
+            Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting
+            as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist
+            George Orwell nightmarish vision of a totalitarian, bureaucratic world and one poor stiff attempt
+            to find individuality. The brilliance of the novel is Orwell prescience of modern life—the ubiquity
+            of television, the distortion of the language and his ability to construct such a thorough version
+            of hell. Required reading for students since it was published, it ranks among the most terrifying novels
+            ever written.
+        </item>
+        <item>
+            After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead,
+            Mark finds himself stranded and completely alone with no way to even signal Earth that he is alive and
+            even if he could get word out, his supplies would be gone long before a rescue could arrive.
+            Chances are, though, he wont have time to starve to death. The damaged machinery, unforgiving
+            environment, or plain-old “human error” are much more likely to kill him first
+        </item>
+        <item>
+            Find out what employers look for in the hiring process, what elements set your resume apart from
+            the rest, and how to tailor your qualifications to the requirements of the position you seek.
+            This updated new edition features comprehensive coverage of what you need to know now to make
+            that dream job yours. Here is where you will find today hottest job markets - both domestic and
+            abroad - and why they might be right for you; newly updated resume formats.
+        </item>
+        <item>
+            Yana Parker has helped hundreds of thousands of job seekers write and refine their resumes to
+            damn near perfection. Her resume guides have been praised for their user-friendly style and savvy
+            advice and, rightly so, have become staples in libraries,
+            career centers, and employment offices nationwide.
+        </item>
+    </string-array>
+
+    <string-array name="resume_books_arabic">
+        <item>
+            رواية "النبي" محفورة في التاريخ الحديث للعراق ،
+            تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
+            المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
+            العرش عبد الإله.
+        </item>
+        <item>
+            من بين النصوص الأساسية للقرن العشرين ، يعد تسعة عشر أربعة وثمانون عملاً نادرًا ينمو بشكل أكبر
+            كما يصبح المطهر المستقبلي أكثر واقعية. نشر في عام 1949 ، يقدم الكتاب هجاء سياسي
+            رؤية جورج أورويل الكابوسية لعالم شمولي وبيروقراطي ومحاولة شديدة قاسية
+            لإيجاد الفردية. تألق الرواية هو وصف أورويل للحياة الحديثة - في كل مكان
+            التلفزيون ، وتشويه اللغة وقدرته على بناء مثل هذه النسخة الشاملة
+            من الجحيم. القراءة المطلوبة للطلاب منذ نشرها ، وهي تصنف بين أكثر الروايات رعبا
+            من أي وقت مضى مكتوبة.
+        </item>
+        <item>
+            بعد عاصفة ترابية تقتله تقريبًا وتُجبر طاقمه على الإخلاء بينما يعتقد أنه ميت ،
+            يجد مارك نفسه عالقًا ووحيدًا تمامًا دون أي وسيلة للإشارة إلى الأرض على قيد الحياة
+            حتى لو تمكن من الخروج ، فإن لوازمه ستزول قبل وصول عملية الإنقاذ.
+            هناك احتمالات ، على الرغم من أنه ليس لديه وقت حتى يتضور جوعًا حتى الموت. الآلات التالفة ، لا ترحم
+            البيئة ، أو "خطأ بشري" عادي في أغلب الظن لقتله أولاً
+        </item>
+        <item>
+            تعرف على ما يبحث عنه أصحاب العمل في عملية التوظيف ، وعن العناصر التي تميز سيرتك الذاتية عن بعضها
+            الباقي ، وكيفية تكييف مؤهلاتك لمتطلبات الوظيفة التي تبحث عنها.
+            تتميز هذه النسخة الجديدة المحدثة بتغطية شاملة لما تحتاج إلى معرفته الآن
+            هذا الحلم وظيفة لك. ستجد هنا أهم أسواق العمل اليوم - سواء المحلية أو
+            في الخارج - ولماذا قد يكونون مناسبين لك ؛ صيغ استئناف محدثة حديثا.
+        </item>
+        <item>
+            ساعدت Yana Parker مئات الآلاف من الباحثين عن عمل على كتابة وصقل سيرهم الذاتية
+            لعنة بالقرب من الكمال. وقد تم الثناء على أدلة سيرتها الذاتية لأسلوبهم سهل الاستخدام والدهاء
+            أصبحت المشورة ، وهي محقة في ذلك ، من المواد الغذائية الأساسية في المكتبات ،
+            مراكز التوظيف ، ومكاتب التوظيف على الصعيد الوطني.
+        </item>
+        <item>
+            رواية "النبي" محفورة في التاريخ الحديث للعراق ،
+            تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
+            المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
+            العرش عبد الإله.
+        </item>
+        <item>
+            من بين النصوص الأساسية للقرن العشرين ، يعد تسعة عشر أربعة وثمانون عملاً نادرًا ينمو بشكل أكبر
+            كما يصبح المطهر المستقبلي أكثر واقعية. نشر في عام 1949 ، يقدم الكتاب هجاء سياسي
+            رؤية جورج أورويل الكابوسية لعالم شمولي وبيروقراطي ومحاولة شديدة قاسية
+            لإيجاد الفردية. تألق الرواية هو وصف أورويل للحياة الحديثة - في كل مكان
+            التلفزيون ، وتشويه اللغة وقدرته على بناء مثل هذه النسخة الشاملة
+            من الجحيم. القراءة المطلوبة للطلاب منذ نشرها ، وهي تصنف بين أكثر الروايات رعبا
+            من أي وقت مضى مكتوبة.
+        </item>
+        <item>
+            بعد عاصفة ترابية تقتله تقريبًا وتُجبر طاقمه على الإخلاء بينما يعتقد أنه ميت ،
+            يجد مارك نفسه عالقًا ووحيدًا تمامًا دون أي وسيلة للإشارة إلى الأرض على قيد الحياة
+            حتى لو تمكن من الخروج ، فإن لوازمه ستزول قبل وصول عملية الإنقاذ.
+            هناك احتمالات ، على الرغم من أنه ليس لديه وقت حتى يتضور جوعًا حتى الموت. الآلات التالفة ، لا ترحم
+            البيئة ، أو "خطأ بشري" عادي في أغلب الظن لقتله أولاً
+        </item>
+        <item>
+            تعرف على ما يبحث عنه أصحاب العمل في عملية التوظيف ، وعن العناصر التي تميز سيرتك الذاتية عن بعضها
+            الباقي ، وكيفية تكييف مؤهلاتك لمتطلبات الوظيفة التي تبحث عنها.
+            تتميز هذه النسخة الجديدة المحدثة بتغطية شاملة لما تحتاج إلى معرفته الآن
+            هذا الحلم وظيفة لك. ستجد هنا أهم أسواق العمل اليوم - سواء المحلية أو
+            في الخارج - ولماذا قد يكونون مناسبين لك ؛ صيغ استئناف محدثة حديثا.
+        </item>
+        <item>
+            ساعدت Yana Parker مئات الآلاف من الباحثين عن عمل على كتابة وصقل سيرهم الذاتية
+            لعنة بالقرب من الكمال. وقد تم الثناء على أدلة سيرتها الذاتية لأسلوبهم سهل الاستخدام والدهاء
+            أصبحت المشورة ، وهي محقة في ذلك ، من المواد الغذائية الأساسية في المكتبات ،
+            مراكز التوظيف ، ومكاتب التوظيف على الصعيد الوطني.
+        </item>
+        <item>
+            رواية "النبي" محفورة في التاريخ الحديث للعراق ،
+            تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
+            المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
+            العرش عبد الإله.
+        </item>
+        <item>
+            من بين النصوص الأساسية للقرن العشرين ، يعد تسعة عشر أربعة وثمانون عملاً نادرًا ينمو بشكل أكبر
+            كما يصبح المطهر المستقبلي أكثر واقعية. نشر في عام 1949 ، يقدم الكتاب هجاء سياسي
+            رؤية جورج أورويل الكابوسية لعالم شمولي وبيروقراطي ومحاولة شديدة قاسية
+            لإيجاد الفردية. تألق الرواية هو وصف أورويل للحياة الحديثة - في كل مكان
+            التلفزيون ، وتشويه اللغة وقدرته على بناء مثل هذه النسخة الشاملة
+            من الجحيم. القراءة المطلوبة للطلاب منذ نشرها ، وهي تصنف بين أكثر الروايات رعبا
+            من أي وقت مضى مكتوبة.
+        </item>
+        <item>
+            بعد عاصفة ترابية تقتله تقريبًا وتُجبر طاقمه على الإخلاء بينما يعتقد أنه ميت ،
+            يجد مارك نفسه عالقًا ووحيدًا تمامًا دون أي وسيلة للإشارة إلى الأرض على قيد الحياة
+            حتى لو تمكن من الخروج ، فإن لوازمه ستزول قبل وصول عملية الإنقاذ.
+            هناك احتمالات ، على الرغم من أنه ليس لديه وقت حتى يتضور جوعًا حتى الموت. الآلات التالفة ، لا ترحم
+            البيئة ، أو "خطأ بشري" عادي في أغلب الظن لقتله أولاً
+        </item>
+        <item>
+            تعرف على ما يبحث عنه أصحاب العمل في عملية التوظيف ، وعن العناصر التي تميز سيرتك الذاتية عن بعضها
+            الباقي ، وكيفية تكييف مؤهلاتك لمتطلبات الوظيفة التي تبحث عنها.
+            تتميز هذه النسخة الجديدة المحدثة بتغطية شاملة لما تحتاج إلى معرفته الآن
+            هذا الحلم وظيفة لك. ستجد هنا أهم أسواق العمل اليوم - سواء المحلية أو
+            في الخارج - ولماذا قد يكونون مناسبين لك ؛ صيغ استئناف محدثة حديثا.
+        </item>
+        <item>
+            ساعدت Yana Parker مئات الآلاف من الباحثين عن عمل على كتابة وصقل سيرهم الذاتية
+            لعنة بالقرب من الكمال. وقد تم الثناء على أدلة سيرتها الذاتية لأسلوبهم سهل الاستخدام والدهاء
+            أصبحت المشورة ، وهي محقة في ذلك ، من المواد الغذائية الأساسية في المكتبات ،
+            مراكز التوظيف ، ومكاتب التوظيف على الصعيد الوطني.
+        </item>
+        <item>
+            رواية "النبي" محفورة في التاريخ الحديث للعراق ،
+            تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
+            المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
+            العرش عبد الإله.
+        </item>
+        <item>
+            من بين النصوص الأساسية للقرن العشرين ، يعد تسعة عشر أربعة وثمانون عملاً نادرًا ينمو بشكل أكبر
+            كما يصبح المطهر المستقبلي أكثر واقعية. نشر في عام 1949 ، يقدم الكتاب هجاء سياسي
+            رؤية جورج أورويل الكابوسية لعالم شمولي وبيروقراطي ومحاولة شديدة قاسية
+            لإيجاد الفردية. تألق الرواية هو وصف أورويل للحياة الحديثة - في كل مكان
+            التلفزيون ، وتشويه اللغة وقدرته على بناء مثل هذه النسخة الشاملة
+            من الجحيم. القراءة المطلوبة للطلاب منذ نشرها ، وهي تصنف بين أكثر الروايات رعبا
+            من أي وقت مضى مكتوبة.
+        </item>
+        <item>
+            بعد عاصفة ترابية تقتله تقريبًا وتُجبر طاقمه على الإخلاء بينما يعتقد أنه ميت ،
+            يجد مارك نفسه عالقًا ووحيدًا تمامًا دون أي وسيلة للإشارة إلى الأرض على قيد الحياة
+            حتى لو تمكن من الخروج ، فإن لوازمه ستزول قبل وصول عملية الإنقاذ.
+            هناك احتمالات ، على الرغم من أنه ليس لديه وقت حتى يتضور جوعًا حتى الموت. الآلات التالفة ، لا ترحم
+            البيئة ، أو "خطأ بشري" عادي في أغلب الظن لقتله أولاً
+        </item>
+        <item>
+            تعرف على ما يبحث عنه أصحاب العمل في عملية التوظيف ، وعن العناصر التي تميز سيرتك الذاتية عن بعضها
+            الباقي ، وكيفية تكييف مؤهلاتك لمتطلبات الوظيفة التي تبحث عنها.
+            تتميز هذه النسخة الجديدة المحدثة بتغطية شاملة لما تحتاج إلى معرفته الآن
+            هذا الحلم وظيفة لك. ستجد هنا أهم أسواق العمل اليوم - سواء المحلية أو
+            في الخارج - ولماذا قد يكونون مناسبين لك ؛ صيغ استئناف محدثة حديثا.
+        </item>
+        <item>
+            ساعدت Yana Parker مئات الآلاف من الباحثين عن عمل على كتابة وصقل سيرهم الذاتية
+            لعنة بالقرب من الكمال. وقد تم الثناء على أدلة سيرتها الذاتية لأسلوبهم سهل الاستخدام والدهاء
+            أصبحت المشورة ، وهي محقة في ذلك ، من المواد الغذائية الأساسية في المكتبات ،
+            مراكز التوظيف ، ومكاتب التوظيف على الصعيد الوطني.
+        </item>
+        <item>
+            رواية "النبي" محفورة في التاريخ الحديث للعراق ،
+            تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
+            المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
+            العرش عبد الإله.
+        </item>
+        <item>
+            من بين النصوص الأساسية للقرن العشرين ، يعد تسعة عشر أربعة وثمانون عملاً نادرًا ينمو بشكل أكبر
+            كما يصبح المطهر المستقبلي أكثر واقعية. نشر في عام 1949 ، يقدم الكتاب هجاء سياسي
+            رؤية جورج أورويل الكابوسية لعالم شمولي وبيروقراطي ومحاولة شديدة قاسية
+            لإيجاد الفردية. تألق الرواية هو وصف أورويل للحياة الحديثة - في كل مكان
+            التلفزيون ، وتشويه اللغة وقدرته على بناء مثل هذه النسخة الشاملة
+            من الجحيم. القراءة المطلوبة للطلاب منذ نشرها ، وهي تصنف بين أكثر الروايات رعبا
+            من أي وقت مضى مكتوبة.
+        </item>
+        <item>
+            بعد عاصفة ترابية تقتله تقريبًا وتُجبر طاقمه على الإخلاء بينما يعتقد أنه ميت ،
+            يجد مارك نفسه عالقًا ووحيدًا تمامًا دون أي وسيلة للإشارة إلى الأرض على قيد الحياة
+            حتى لو تمكن من الخروج ، فإن لوازمه ستزول قبل وصول عملية الإنقاذ.
+            هناك احتمالات ، على الرغم من أنه ليس لديه وقت حتى يتضور جوعًا حتى الموت. الآلات التالفة ، لا ترحم
+            البيئة ، أو "خطأ بشري" عادي في أغلب الظن لقتله أولاً
+        </item>
+        <item>
+            تعرف على ما يبحث عنه أصحاب العمل في عملية التوظيف ، وعن العناصر التي تميز سيرتك الذاتية عن بعضها
+            الباقي ، وكيفية تكييف مؤهلاتك لمتطلبات الوظيفة التي تبحث عنها.
+            تتميز هذه النسخة الجديدة المحدثة بتغطية شاملة لما تحتاج إلى معرفته الآن
+            هذا الحلم وظيفة لك. ستجد هنا أهم أسواق العمل اليوم - سواء المحلية أو
+            في الخارج - ولماذا قد يكونون مناسبين لك ؛ صيغ استئناف محدثة حديثا.
+        </item>
+        <item>
+            ساعدت Yana Parker مئات الآلاف من الباحثين عن عمل على كتابة وصقل سيرهم الذاتية
+            لعنة بالقرب من الكمال. وقد تم الثناء على أدلة سيرتها الذاتية لأسلوبهم سهل الاستخدام والدهاء
+            أصبحت المشورة ، وهي محقة في ذلك ، من المواد الغذائية الأساسية في المكتبات ،
+            مراكز التوظيف ، ومكاتب التوظيف على الصعيد الوطني.
+        </item>
+        <item>
+            رواية "النبي" محفورة في التاريخ الحديث للعراق ،
+            تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
+            المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
+            العرش عبد الإله.
+        </item>
+        <item>
+            من بين النصوص الأساسية للقرن العشرين ، يعد تسعة عشر أربعة وثمانون عملاً نادرًا ينمو بشكل أكبر
+            كما يصبح المطهر المستقبلي أكثر واقعية. نشر في عام 1949 ، يقدم الكتاب هجاء سياسي
+            رؤية جورج أورويل الكابوسية لعالم شمولي وبيروقراطي ومحاولة شديدة قاسية
+            لإيجاد الفردية. تألق الرواية هو وصف أورويل للحياة الحديثة - في كل مكان
+            التلفزيون ، وتشويه اللغة وقدرته على بناء مثل هذه النسخة الشاملة
+            من الجحيم. القراءة المطلوبة للطلاب منذ نشرها ، وهي تصنف بين أكثر الروايات رعبا
+            من أي وقت مضى مكتوبة.
+        </item>
+        <item>
+            بعد عاصفة ترابية تقتله تقريبًا وتُجبر طاقمه على الإخلاء بينما يعتقد أنه ميت ،
+            يجد مارك نفسه عالقًا ووحيدًا تمامًا دون أي وسيلة للإشارة إلى الأرض على قيد الحياة
+            حتى لو تمكن من الخروج ، فإن لوازمه ستزول قبل وصول عملية الإنقاذ.
+            هناك احتمالات ، على الرغم من أنه ليس لديه وقت حتى يتضور جوعًا حتى الموت. الآلات التالفة ، لا ترحم
+            البيئة ، أو "خطأ بشري" عادي في أغلب الظن لقتله أولاً
+        </item>
+        <item>
+            تعرف على ما يبحث عنه أصحاب العمل في عملية التوظيف ، وعن العناصر التي تميز سيرتك الذاتية عن بعضها
+            الباقي ، وكيفية تكييف مؤهلاتك لمتطلبات الوظيفة التي تبحث عنها.
+            تتميز هذه النسخة الجديدة المحدثة بتغطية شاملة لما تحتاج إلى معرفته الآن
+            هذا الحلم وظيفة لك. ستجد هنا أهم أسواق العمل اليوم - سواء المحلية أو
+            في الخارج - ولماذا قد يكونون مناسبين لك ؛ صيغ استئناف محدثة حديثا.
+        </item>
+        <item>
+            ساعدت Yana Parker مئات الآلاف من الباحثين عن عمل على كتابة وصقل سيرهم الذاتية
+            لعنة بالقرب من الكمال. وقد تم الثناء على أدلة سيرتها الذاتية لأسلوبهم سهل الاستخدام والدهاء
+            أصبحت المشورة ، وهي محقة في ذلك ، من المواد الغذائية الأساسية في المكتبات ،
+            مراكز التوظيف ، ومكاتب التوظيف على الصعيد الوطني.
+        </item>
+        <item>
+            رواية "النبي" محفورة في التاريخ الحديث للعراق ،
+            تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
+            المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
+            العرش عبد الإله.
+        </item>
+        <item>
+            من بين النصوص الأساسية للقرن العشرين ، يعد تسعة عشر أربعة وثمانون عملاً نادرًا ينمو بشكل أكبر
+            كما يصبح المطهر المستقبلي أكثر واقعية. نشر في عام 1949 ، يقدم الكتاب هجاء سياسي
+            رؤية جورج أورويل الكابوسية لعالم شمولي وبيروقراطي ومحاولة شديدة قاسية
+            لإيجاد الفردية. تألق الرواية هو وصف أورويل للحياة الحديثة - في كل مكان
+            التلفزيون ، وتشويه اللغة وقدرته على بناء مثل هذه النسخة الشاملة
+            من الجحيم. القراءة المطلوبة للطلاب منذ نشرها ، وهي تصنف بين أكثر الروايات رعبا
+            من أي وقت مضى مكتوبة.
+        </item>
+        <item>
+            بعد عاصفة ترابية تقتله تقريبًا وتُجبر طاقمه على الإخلاء بينما يعتقد أنه ميت ،
+            يجد مارك نفسه عالقًا ووحيدًا تمامًا دون أي وسيلة للإشارة إلى الأرض على قيد الحياة
+            حتى لو تمكن من الخروج ، فإن لوازمه ستزول قبل وصول عملية الإنقاذ.
+            هناك احتمالات ، على الرغم من أنه ليس لديه وقت حتى يتضور جوعًا حتى الموت. الآلات التالفة ، لا ترحم
+            البيئة ، أو "خطأ بشري" عادي في أغلب الظن لقتله أولاً
+        </item>
+        <item>
+            تعرف على ما يبحث عنه أصحاب العمل في عملية التوظيف ، وعن العناصر التي تميز سيرتك الذاتية عن بعضها
+            الباقي ، وكيفية تكييف مؤهلاتك لمتطلبات الوظيفة التي تبحث عنها.
+            تتميز هذه النسخة الجديدة المحدثة بتغطية شاملة لما تحتاج إلى معرفته الآن
+            هذا الحلم وظيفة لك. ستجد هنا أهم أسواق العمل اليوم - سواء المحلية أو
+            في الخارج - ولماذا قد يكونون مناسبين لك ؛ صيغ استئناف محدثة حديثا.
+        </item>
+        <item>
+            ساعدت Yana Parker مئات الآلاف من الباحثين عن عمل على كتابة وصقل سيرهم الذاتية
+            لعنة بالقرب من الكمال. وقد تم الثناء على أدلة سيرتها الذاتية لأسلوبهم سهل الاستخدام والدهاء
+            أصبحت المشورة ، وهي محقة في ذلك ، من المواد الغذائية الأساسية في المكتبات ،
+            مراكز التوظيف ، ومكاتب التوظيف على الصعيد الوطني.
+        </item>
+        <item>
+            رواية "النبي" محفورة في التاريخ الحديث للعراق ،
+            تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
+            المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
+            العرش عبد الإله.
+        </item>
+        <item>
+            من بين النصوص الأساسية للقرن العشرين ، يعد تسعة عشر أربعة وثمانون عملاً نادرًا ينمو بشكل أكبر
+            كما يصبح المطهر المستقبلي أكثر واقعية. نشر في عام 1949 ، يقدم الكتاب هجاء سياسي
+            رؤية جورج أورويل الكابوسية لعالم شمولي وبيروقراطي ومحاولة شديدة قاسية
+            لإيجاد الفردية. تألق الرواية هو وصف أورويل للحياة الحديثة - في كل مكان
+            التلفزيون ، وتشويه اللغة وقدرته على بناء مثل هذه النسخة الشاملة
+            من الجحيم. القراءة المطلوبة للطلاب منذ نشرها ، وهي تصنف بين أكثر الروايات رعبا
+            من أي وقت مضى مكتوبة.
+        </item>
+        <item>
+            بعد عاصفة ترابية تقتله تقريبًا وتُجبر طاقمه على الإخلاء بينما يعتقد أنه ميت ،
+            يجد مارك نفسه عالقًا ووحيدًا تمامًا دون أي وسيلة للإشارة إلى الأرض على قيد الحياة
+            حتى لو تمكن من الخروج ، فإن لوازمه ستزول قبل وصول عملية الإنقاذ.
+            هناك احتمالات ، على الرغم من أنه ليس لديه وقت حتى يتضور جوعًا حتى الموت. الآلات التالفة ، لا ترحم
+            البيئة ، أو "خطأ بشري" عادي في أغلب الظن لقتله أولاً
+        </item>
+        <item>
+            تعرف على ما يبحث عنه أصحاب العمل في عملية التوظيف ، وعن العناصر التي تميز سيرتك الذاتية عن بعضها
+            الباقي ، وكيفية تكييف مؤهلاتك لمتطلبات الوظيفة التي تبحث عنها.
+            تتميز هذه النسخة الجديدة المحدثة بتغطية شاملة لما تحتاج إلى معرفته الآن
+            هذا الحلم وظيفة لك. ستجد هنا أهم أسواق العمل اليوم - سواء المحلية أو
+            في الخارج - ولماذا قد يكونون مناسبين لك ؛ صيغ استئناف محدثة حديثا.
+        </item>
+        <item>
+            ساعدت Yana Parker مئات الآلاف من الباحثين عن عمل على كتابة وصقل سيرهم الذاتية
+            لعنة بالقرب من الكمال. وقد تم الثناء على أدلة سيرتها الذاتية لأسلوبهم سهل الاستخدام والدهاء
+            أصبحت المشورة ، وهي محقة في ذلك ، من المواد الغذائية الأساسية في المكتبات ،
+            مراكز التوظيف ، ومكاتب التوظيف على الصعيد الوطني.
+        </item>
+        <item>
+            رواية "النبي" محفورة في التاريخ الحديث للعراق ،
+            تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
+            المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
+            العرش عبد الإله.
+        </item>
+        <item>
+            من بين النصوص الأساسية للقرن العشرين ، يعد تسعة عشر أربعة وثمانون عملاً نادرًا ينمو بشكل أكبر
+            كما يصبح المطهر المستقبلي أكثر واقعية. نشر في عام 1949 ، يقدم الكتاب هجاء سياسي
+            رؤية جورج أورويل الكابوسية لعالم شمولي وبيروقراطي ومحاولة شديدة قاسية
+            لإيجاد الفردية. تألق الرواية هو وصف أورويل للحياة الحديثة - في كل مكان
+            التلفزيون ، وتشويه اللغة وقدرته على بناء مثل هذه النسخة الشاملة
+            من الجحيم. القراءة المطلوبة للطلاب منذ نشرها ، وهي تصنف بين أكثر الروايات رعبا
+            من أي وقت مضى مكتوبة.
+        </item>
+        <item>
+            بعد عاصفة ترابية تقتله تقريبًا وتُجبر طاقمه على الإخلاء بينما يعتقد أنه ميت ،
+            يجد مارك نفسه عالقًا ووحيدًا تمامًا دون أي وسيلة للإشارة إلى الأرض على قيد الحياة
+            حتى لو تمكن من الخروج ، فإن لوازمه ستزول قبل وصول عملية الإنقاذ.
+            هناك احتمالات ، على الرغم من أنه ليس لديه وقت حتى يتضور جوعًا حتى الموت. الآلات التالفة ، لا ترحم
+            البيئة ، أو "خطأ بشري" عادي في أغلب الظن لقتله أولاً
+        </item>
+        <item>
+            تعرف على ما يبحث عنه أصحاب العمل في عملية التوظيف ، وعن العناصر التي تميز سيرتك الذاتية عن بعضها
+            الباقي ، وكيفية تكييف مؤهلاتك لمتطلبات الوظيفة التي تبحث عنها.
+            تتميز هذه النسخة الجديدة المحدثة بتغطية شاملة لما تحتاج إلى معرفته الآن
+            هذا الحلم وظيفة لك. ستجد هنا أهم أسواق العمل اليوم - سواء المحلية أو
+            في الخارج - ولماذا قد يكونون مناسبين لك ؛ صيغ استئناف محدثة حديثا.
+        </item>
+        <item>
+            ساعدت Yana Parker مئات الآلاف من الباحثين عن عمل على كتابة وصقل سيرهم الذاتية
+            لعنة بالقرب من الكمال. وقد تم الثناء على أدلة سيرتها الذاتية لأسلوبهم سهل الاستخدام والدهاء
+            أصبحت المشورة ، وهي محقة في ذلك ، من المواد الغذائية الأساسية في المكتبات ،
+            مراكز التوظيف ، ومكاتب التوظيف على الصعيد الوطني.
+        </item>
+        <item>
+            رواية "النبي" محفورة في التاريخ الحديث للعراق ،
+            تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
+            المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
+            العرش عبد الإله.
+        </item>
+        <item>
+            من بين النصوص الأساسية للقرن العشرين ، يعد تسعة عشر أربعة وثمانون عملاً نادرًا ينمو بشكل أكبر
+            كما يصبح المطهر المستقبلي أكثر واقعية. نشر في عام 1949 ، يقدم الكتاب هجاء سياسي
+            رؤية جورج أورويل الكابوسية لعالم شمولي وبيروقراطي ومحاولة شديدة قاسية
+            لإيجاد الفردية. تألق الرواية هو وصف أورويل للحياة الحديثة - في كل مكان
+            التلفزيون ، وتشويه اللغة وقدرته على بناء مثل هذه النسخة الشاملة
+            من الجحيم. القراءة المطلوبة للطلاب منذ نشرها ، وهي تصنف بين أكثر الروايات رعبا
+            من أي وقت مضى مكتوبة.
+        </item>
+        <item>
+            بعد عاصفة ترابية تقتله تقريبًا وتُجبر طاقمه على الإخلاء بينما يعتقد أنه ميت ،
+            يجد مارك نفسه عالقًا ووحيدًا تمامًا دون أي وسيلة للإشارة إلى الأرض على قيد الحياة
+            حتى لو تمكن من الخروج ، فإن لوازمه ستزول قبل وصول عملية الإنقاذ.
+            هناك احتمالات ، على الرغم من أنه ليس لديه وقت حتى يتضور جوعًا حتى الموت. الآلات التالفة ، لا ترحم
+            البيئة ، أو "خطأ بشري" عادي في أغلب الظن لقتله أولاً
+        </item>
+        <item>
+            تعرف على ما يبحث عنه أصحاب العمل في عملية التوظيف ، وعن العناصر التي تميز سيرتك الذاتية عن بعضها
+            الباقي ، وكيفية تكييف مؤهلاتك لمتطلبات الوظيفة التي تبحث عنها.
+            تتميز هذه النسخة الجديدة المحدثة بتغطية شاملة لما تحتاج إلى معرفته الآن
+            هذا الحلم وظيفة لك. ستجد هنا أهم أسواق العمل اليوم - سواء المحلية أو
+            في الخارج - ولماذا قد يكونون مناسبين لك ؛ صيغ استئناف محدثة حديثا.
+        </item>
+        <item>
+            ساعدت Yana Parker مئات الآلاف من الباحثين عن عمل على كتابة وصقل سيرهم الذاتية
+            لعنة بالقرب من الكمال. وقد تم الثناء على أدلة سيرتها الذاتية لأسلوبهم سهل الاستخدام والدهاء
+            أصبحت المشورة ، وهي محقة في ذلك ، من المواد الغذائية الأساسية في المكتبات ،
+            مراكز التوظيف ، ومكاتب التوظيف على الصعيد الوطني.
+        </item>
     </string-array>
 
     <string-array name="genres_books">

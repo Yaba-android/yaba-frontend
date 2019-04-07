@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.SectionsGModelAsynFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.ISectionAdditionalClickCallback
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.Vertical.GSRecyclerViewAdapter
@@ -28,12 +29,15 @@ class SectionsActivity : AppCompatActivity(),
     private lateinit var mAdapterBookVertical: GSRecyclerViewAdapter
     private lateinit var mProgressBar: ProgressBar
     private val mGenreList = arrayListOf<GModel>()
+    private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sections)
+
+        localeOnNewIntent()
 
         mProgressBar = findViewById(R.id.progress_bar_sections)
         mFirstInit = true
@@ -53,7 +57,7 @@ class SectionsActivity : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<ArrayList<GModel>> {
-        return SectionsGModelAsynFetchData(this)
+        return SectionsGModelAsynFetchData(this, mLanguage)
     }
 
     override fun onLoadFinished(p0: Loader<ArrayList<GModel>>, data: ArrayList<GModel>?) {
@@ -75,26 +79,12 @@ class SectionsActivity : AppCompatActivity(),
        returnToHome()
     }
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-    }
-
     override fun sectionEventButtonClicked(genre: GModel) {
         val intent = Intent(this, SectionActivity::class.java)
 
         intent.putExtra(RecommendedActivity.SELECTED_POPULAR_SPECIES, genre)
-        startActivity(intent)
+        startNewActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-    }
-
-    private fun returnToHome() {
-        val intent = Intent(this, RecommendedActivity::class.java)
-
-        intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
-        startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-        finish()
     }
 
     private fun setListenerButtonCloseSection() {
@@ -103,6 +93,25 @@ class SectionsActivity : AppCompatActivity(),
         button.setOnClickListener {
             returnToHome()
         }
+    }
+
+    private fun startNewActivity(intent: Intent) {
+        intent.putExtra(StringLocaleResolver.LANGUAGE_CODE, mLanguage)
+        startActivity(intent)
+    }
+
+    private fun returnToHome() {
+        val intent = Intent(this, RecommendedActivity::class.java)
+
+        intent.putExtra(RecommendedActivity.LEFT_OR_RIGHT_IN_ANIMATION, 0)
+        startNewActivity(intent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        finish()
+    }
+
+    private fun localeOnNewIntent() {
+        mLanguage =
+            intent.getStringExtra(StringLocaleResolver.LANGUAGE_CODE) ?: StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     }
 
     private fun initSectionNavVerticalRecycler() {

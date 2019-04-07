@@ -14,7 +14,8 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.L
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.LibraryBModelRandomProvider
 
 class LibraryBModelAsyncFetchData(
-    context: Context
+    context: Context,
+    private var languageCode: String
 ) :
     AsyncTaskLoader<LibraryBModel>(context) {
 
@@ -38,13 +39,13 @@ class LibraryBModelAsyncFetchData(
     }
 
     private fun fetchAllBooksFromDatabase(): ArrayList<BModel> {
-        return BModelProvider(context).getAllBooksFromDatabase()
+        return BModelProvider(context, languageCode).getAllBooksFromDatabase()
     }
 
 
     private fun mockDatasetAllBooks(dataset: ArrayList<NoTitleListBModel>, allBooksFromDatabase: ArrayList<BModel>) {
         dataset.addAll(
-            BModelRandomProvider(context).getRandomsInstancesFromListToNoTitleListBModel(
+            BModelRandomProvider(context, languageCode).getRandomsInstancesFromListToNoTitleListBModel(
                 LibraryActivity.ALLBOOKS_NB_BOOK_COLUMNS,
                 LibraryActivity.ALLBOOKS_NB_BOOK_PER_ROW,
                 allBooksFromDatabase

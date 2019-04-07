@@ -9,14 +9,15 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.
 
 class SectionNoTitleListBModelAsynFetchData(
     context: Context,
-    private var selectedSection: GModel
+    private var selectedSection: GModel,
+    private var languageCode: String
 ) :
     AsyncTaskLoader<ArrayList<NoTitleListBModel>>(context) {
 
     override fun loadInBackground(): ArrayList<NoTitleListBModel>? {
         //android.os.Debug.waitForDebugger()
 
-        return GModelProvider(context).getListAllBooksFromGenre(
+        return GModelProvider(context, languageCode).getListAllBooksFromGenre(
             SectionActivity.NB_BOOKS_PER_ROW, selectedSection
         )
     }

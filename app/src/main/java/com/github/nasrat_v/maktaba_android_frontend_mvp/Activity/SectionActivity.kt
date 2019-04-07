@@ -72,7 +72,7 @@ class SectionActivity : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<ArrayList<NoTitleListBModel>> {
-        return SectionNoTitleListBModelAsynFetchData(this, mSelectedSection)
+        return SectionNoTitleListBModelAsynFetchData(this, mSelectedSection, mLanguage)
     }
 
     override fun onLoadFinished(p0: Loader<ArrayList<NoTitleListBModel>>, data: ArrayList<NoTitleListBModel>?) {

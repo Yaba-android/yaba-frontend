@@ -8,7 +8,10 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Book.BModelProvider
 import kotlin.collections.ArrayList
 
-class GModelProvider(var context: Context) {
+class GModelProvider(
+    var context: Context,
+    private var languageCode: String
+) {
 
     fun getAllGenres(): ArrayList<GModel> {
         val hmodels = arrayListOf<GModel>()
@@ -52,7 +55,7 @@ class GModelProvider(var context: Context) {
     }
 
     fun getAllBooksFromGenre(genre: GModel): ArrayList<BModel> {
-        val allbooks = BModelProvider(context).getAllBooksFromDatabase()
+        val allbooks = BModelProvider(context, languageCode).getAllBooksFromDatabase()
 
         return ArrayList(
             allbooks.filter {

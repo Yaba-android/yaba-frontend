@@ -63,17 +63,6 @@
     <string name="title_category">Title Category</string>
     <string name="content_category">Content Category</string>
 
-    <string name="resume_book">The novel "The Prophet" is engraved in the modern history of Iraq,
-        evoking a glowing time lived by the journalist Taj Majol Abdul Majeed in the era of the monarchy,
-        the first magazine in Baghdad, and has ties with Prime Minister Nouri al-Saeed and with the guardian
-        of the throne Abdul Ilah.
-    </string>
-    <string name="resume_book_arabic">رواية "النبي" محفورة في التاريخ الحديث للعراق ،
-        تستحضر وقتًا متوهجًا يعيشه الصحفي تاج مجول عبد المجيد في عهد الملكية ،
-        المجلة الأولى في بغداد ، ولها علاقات مع رئيس الوزراء نوري السعيد ومع الوصي
-        العرش عبد الإله.
-    </string>
-
     <string name="read_more">Read More</string>
     <string name="read_more_arabic">اقرأ المزيد</string>
 

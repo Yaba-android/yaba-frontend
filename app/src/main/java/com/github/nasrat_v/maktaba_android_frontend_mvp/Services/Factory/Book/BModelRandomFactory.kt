@@ -1,6 +1,7 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Book
 
 import android.content.Context
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Author.AModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Genre.GModel
@@ -8,7 +9,7 @@ import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Provider.Genre.
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Author.AModelRandomFactory
 
-class BModelRandomFactory(private var context: Context) {
+class BModelRandomFactory(private var context: Context, private var languageCode: String) {
 
     fun getRandomInstance() : BModel {
         return (BModel(
@@ -18,7 +19,7 @@ class BModelRandomFactory(private var context: Context) {
             getRandomLength(), getRandomGenre(),
             getRandomFileSize(), getRandomCountry(),
             getRandomDatePublication(),
-            getRandomPublisher(), context.getString(R.string.resume_book)
+            getRandomPublisher(), getRandomResume()
         ))
     }
 
@@ -63,7 +64,7 @@ class BModelRandomFactory(private var context: Context) {
     }
 
     private fun getRandomGenre() : GModel {
-        val genreList = GModelProvider(context).getAllGenres()
+        val genreList = GModelProvider(context, languageCode).getAllGenres()
 
         return genreList[(0..(genreList.size - 1)).random()]
     }
@@ -90,5 +91,15 @@ class BModelRandomFactory(private var context: Context) {
         val datePublicationArray = context.resources.getStringArray(R.array.publishers_books)
 
         return datePublicationArray[(0..(datePublicationArray.size - 1)).random()]
+    }
+
+    private fun getRandomResume(): String {
+        val resumeArray =  if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+            context.resources.getStringArray(R.array.resume_books_arabic)
+        } else {
+            context.resources.getStringArray(R.array.resume_books)
+        }
+
+        return resumeArray[(0..(resumeArray.size - 1)).random()]
     }
 }

@@ -101,7 +101,7 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<RecommendedBRModel> {
-        return RecommendedBRModelAsyncFetchData(this)
+        return RecommendedBRModelAsyncFetchData(this, mLanguage)
     }
 
     override fun onLoadFinished(p0: Loader<RecommendedBRModel>, data: RecommendedBRModel?) {

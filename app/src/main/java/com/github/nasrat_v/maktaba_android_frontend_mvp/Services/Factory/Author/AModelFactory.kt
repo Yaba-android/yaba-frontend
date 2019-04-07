@@ -1,10 +1,11 @@
 package com.github.nasrat_v.maktaba_android_frontend_mvp.Services.Factory.Author
 
 import android.content.Context
+import com.github.nasrat_v.maktaba_android_frontend_mvp.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Author.AModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
 
-class AModelFactory(private var context: Context) {
+class AModelFactory(private var context: Context, private var languageCode: String) {
 
     fun getEmptyInstance(): AModel {
         return (AModel(
@@ -32,7 +33,11 @@ class AModelFactory(private var context: Context) {
     }
 
     private fun getDescription(index: Int): String {
-        val descArray = context.resources.getStringArray(R.array.desc_authors_books)
+        val descArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+            context.resources.getStringArray(R.array.desc_authors_books_arabic)
+        } else {
+            context.resources.getStringArray(R.array.desc_authors_books)
+        }
 
         return descArray[index]
     }

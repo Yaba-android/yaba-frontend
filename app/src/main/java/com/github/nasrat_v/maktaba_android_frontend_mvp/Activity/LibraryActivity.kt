@@ -120,7 +120,7 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<LibraryBModel> {
-        return LibraryBModelAsyncFetchData(this)
+        return LibraryBModelAsyncFetchData(this, mLanguage)
     }
 
     override fun onLoadFinished(p0: Loader<LibraryBModel>, data: LibraryBModel?) {
