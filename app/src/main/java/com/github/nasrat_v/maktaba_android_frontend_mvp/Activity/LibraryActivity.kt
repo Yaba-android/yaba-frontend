@@ -76,8 +76,6 @@ class LibraryActivity : AppCompatActivity(),
         const val DOWNLOADED_BOOKS = "DownloadedBooks"
         const val CONTAINER_FRAGMENT = "ContainerFragment"
         const val PATH_TO_EBOOK_EPUB = R.raw.jekyll_and_hyde
-        const val ACTION_BUTTON_TEXT_DOWNLOAD = "Download"
-        const val ACTION_BUTTON_TEXT_OPEN = "Open it"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -257,7 +255,7 @@ class LibraryActivity : AppCompatActivity(),
 
         author.text = book.author.name
         title.text = book.title
-        actionButton.text = ACTION_BUTTON_TEXT_DOWNLOAD
+        actionButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.download))
         closeButton.setOnClickListener {
             dialog.hide()
         }
@@ -281,13 +279,17 @@ class LibraryActivity : AppCompatActivity(),
 
         author.text = book.author.name
         title.text = book.title
-        actionButton.text = ACTION_BUTTON_TEXT_OPEN
+        actionButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.open_it))
         closeButton.setOnClickListener {
             dialog.hide()
         }
         actionButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.left_arrow, 0, 0, 0) // left
         actionButton.setOnClickListener {
-            Toast.makeText(this, ("Opening " + book.title + " ..."), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                (getString(StringLocaleResolver(mLanguage).getRes(R.string.opening)) + ' ' + book.title + " ..."),
+                Toast.LENGTH_SHORT
+            ).show()
             dialog.hide()
             openBook()
         }
@@ -295,7 +297,11 @@ class LibraryActivity : AppCompatActivity(),
     }
 
     private fun downloadBook(book: BModel) {
-        Toast.makeText(this, ("Downloading " + book.title + " ..."), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this,
+            (getString(StringLocaleResolver(mLanguage).getRes(R.string.downloading)) + ' ' + book.title + " ..."),
+            Toast.LENGTH_SHORT
+        ).show()
         addDownloadedBook(book)
     }
 

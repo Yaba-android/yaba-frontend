@@ -196,7 +196,7 @@ class GroupActivity : AppCompatActivity(),
 
         author.text = book.author.name
         title.text = book.title
-        actionButton.text = LibraryActivity.ACTION_BUTTON_TEXT_DOWNLOAD
+        actionButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.download))
         closeButton.setOnClickListener {
             dialog.hide()
         }
@@ -220,13 +220,17 @@ class GroupActivity : AppCompatActivity(),
 
         author.text = book.author.name
         title.text = book.title
-        actionButton.text = LibraryActivity.ACTION_BUTTON_TEXT_OPEN
+        actionButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.open_it))
         closeButton.setOnClickListener {
             dialog.hide()
         }
         actionButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.left_arrow, 0, 0, 0) // left
         actionButton.setOnClickListener {
-            Toast.makeText(this, ("Opening " + book.title + " ..."), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                (getString(StringLocaleResolver(mLanguage).getRes(R.string.opening)) + ' ' + book.title + " ..."),
+                Toast.LENGTH_SHORT
+            ).show()
             dialog.hide()
             openBook()
         }
@@ -234,7 +238,11 @@ class GroupActivity : AppCompatActivity(),
     }
 
     private fun downloadBook(book: BModel) {
-        Toast.makeText(this, ("Downloading " + book.title + " ..."), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this,
+            (getString(StringLocaleResolver(mLanguage).getRes(R.string.downloading)) + ' ' + book.title + " ..."),
+            Toast.LENGTH_SHORT
+        ).show()
         addDownloadedBook(book)
         mBooksToAddToDownload.add(book)
         mAdapterBookVertical.notifyDataSetChanged()

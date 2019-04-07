@@ -14,12 +14,23 @@
     <string name="find_the_books_you_love">Find the books you love</string>
     <string name="search_by">Search by title, author, genre, country, publisher or word</string>
     <string name="results">Results</string>
-    <string name="download_book">Download Book</string>
     <string name="action">Action</string>
     <string name="maktaba">Maktaba</string>
     <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
     <!-- No Translation Strings -->
+
+    <string name="downloading">Downloading</string>
+    <string name="downloading_arabic">جارى التحميل</string>
+
+    <string name="download">Download</string>
+    <string name="download_arabic">تحميل</string>
+
+    <string name="opening">Opening</string>
+    <string name="opening_arabic">افتتاح</string>
+
+    <string name="open_it">Open it</string>
+    <string name="open_it_arabic">افتحه</string>
 
     <string name="sections">Sections</string>
     <string name="sections_arabic">الأقسام</string>
