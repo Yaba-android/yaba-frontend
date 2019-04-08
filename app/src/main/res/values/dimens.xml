@@ -69,5 +69,7 @@
     <dimen name="button_download_library_height">25dp</dimen>
     <dimen name="button_browse_width">50dp</dimen>
     <dimen name="button_browse_height">30dp</dimen>
+    <dimen name="button_read_more_author_width">114dp</dimen>
+    <dimen name="button_read_more_author_height">28dp</dimen>
 
 </resources>

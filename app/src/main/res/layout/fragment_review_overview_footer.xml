@@ -51,20 +51,34 @@
 
         <Button
                 android:id="@+id/button_read_more_author_review_overview"
-                android:layout_width="114dp"
-                android:layout_height="28dp"
+                android:layout_width="@dimen/button_read_more_author_width"
+                android:layout_height="@dimen/button_read_more_author_height"
                 android:layout_marginTop="12dp"
-                android:layout_toStartOf="@id/author_picture_review_overview"
-                android:layout_below="@+id/author_desc_review_overview"
                 android:layout_marginBottom="50dp"
+                android:layout_below="@+id/author_desc_review_overview"
+                android:layout_toStartOf="@id/author_picture_review_overview"
                 android:gravity="start|center"
                 android:textSize="12sp"
                 android:textDirection="rtl"
                 android:fontFamily="@font/noto_sans_family"
                 android:textAllCaps="false"
                 android:textColor="@color/colorReviewTextBlack"
-                android:background="@color/colorBookDetailsButtonGrey"
-                android:drawableStart="@drawable/plus"/>
+                android:background="@color/colorBookDetailsButtonGrey"/>
+
+        <TextView
+                android:layout_width="@dimen/button_read_more_author_width"
+                android:layout_height="@dimen/button_read_more_author_height"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="50dp"
+                android:layout_below="@+id/author_desc_review_overview"
+                android:layout_toStartOf="@id/author_picture_review_overview"
+                android:gravity="start|center"
+                android:paddingStart="6dp"
+                android:text="@string/plus"
+                android:textSize="16sp"
+                android:fontFamily="@font/noto_sans_family"
+                android:textColor="@color/colorReviewTextBlack"
+                android:elevation="10dp"/>
 
     </RelativeLayout>
 
