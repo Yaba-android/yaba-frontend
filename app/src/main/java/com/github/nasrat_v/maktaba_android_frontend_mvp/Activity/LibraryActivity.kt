@@ -22,6 +22,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.*
+import com.folioreader.Config
 import com.folioreader.FolioReader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
@@ -104,7 +105,7 @@ class LibraryActivity : AppCompatActivity(),
         super.onStart()
 
         if (mFirstInit) {
-            mFolioReader = FolioReader.get()
+            initFolioReader()
 
             setListenerButtonCloseProfile()
             setListenerBrowseButtonFooter()
@@ -372,6 +373,15 @@ class LibraryActivity : AppCompatActivity(),
 
         title.text =
             getString(StringLocaleResolver(mLanguage).getRes(R.string.book_store))
+    }
+
+    private fun initFolioReader() {
+        val config = Config()
+            .setDirection(Config.Direction.VERTICAL)
+            .setFont(R.font.noto_sans_family)
+            .setThemeColorRes(R.color.colorAppBlueHolo)
+
+        mFolioReader = FolioReader.get().setConfig(config, true)
     }
 
     private fun initNavigationView() {

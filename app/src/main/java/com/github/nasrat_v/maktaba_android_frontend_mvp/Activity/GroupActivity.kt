@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar
 import android.util.DisplayMetrics
 import android.view.*
 import android.widget.*
+import com.folioreader.Config
 import com.folioreader.FolioReader
 import com.github.nasrat_v.maktaba_android_frontend_mvp.AsyncTask.GroupNoTitleListBModelAsynFetchData
 import com.github.nasrat_v.maktaba_android_frontend_mvp.ICallback.IBookClickCallback
@@ -72,7 +73,8 @@ class GroupActivity : AppCompatActivity(),
         super.onStart()
 
         if (mFirstInit) {
-            mFolioReader = FolioReader.get()
+            initFolioReader()
+
             setListenerBrowseButtonFooter()
             setListenerLibraryButtonFooter()
             setListenerRecommendedButtonFooter()
@@ -290,6 +292,15 @@ class GroupActivity : AppCompatActivity(),
         val title = findViewById<TextView>(R.id.toolbar_title)
 
         title.text = mSelectedGroup.genre.name
+    }
+
+    private fun initFolioReader() {
+        val config = Config()
+            .setDirection(Config.Direction.VERTICAL)
+            .setFont(R.font.noto_sans_family)
+            .setThemeColorRes(R.color.colorAppBlueHolo)
+
+        mFolioReader = FolioReader.get().setConfig(config, true)
     }
 
     private fun initRootDrawerLayout() {
