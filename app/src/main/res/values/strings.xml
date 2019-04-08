@@ -6,10 +6,6 @@
     <string name="search">Search</string>
     <string name="profile_name">Jane Doe</string>
     <string name="profile_email">jane.doe@gmail.com</string>
-
-    <string name="find_the_books_you_love">Find the books you love</string>
-    <string name="search_by">Search by title, author, genre, country, publisher or word</string>
-    <string name="results">Results</string>
     <string name="action">Action</string>
     <string name="maktaba">Maktaba</string>
     <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
@@ -17,6 +13,15 @@
     <string name="english">English</string>
     <string name="arabic">عربى</string>
     <!-- No Translation Strings -->
+
+    <string name="results">Results</string>
+    <string name="results_arabic">النتائج</string>
+
+    <string name="find_the_books_you_love">Find the books you love</string>
+    <string name="find_the_books_you_love_arabic">ابحث عن الكتب التي تحبها</string>
+
+    <string name="search_by">Search by title, author, genre, country, publisher or word</string>
+    <string name="search_by_arabic">البحث حسب العنوان أو المؤلف أو النوع أو البلد أو الناشر أو الكلمة</string>
 
     <string name="profile">Profile</string>
     <string name="profile_arabic">الملف الشخصي</string>

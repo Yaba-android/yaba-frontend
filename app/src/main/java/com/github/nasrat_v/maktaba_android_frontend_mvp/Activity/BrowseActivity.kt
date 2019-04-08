@@ -74,6 +74,7 @@ class BrowseActivity : AppCompatActivity(),
 
         mFirstInit = true
 
+        initTitle()
         initEmptyBrowseResult()
         initVerticalRecycler()
         initSecondVerticalRecycler()
@@ -145,10 +146,6 @@ class BrowseActivity : AppCompatActivity(),
         return mInputBrowseString
     }
 
-    private fun initEmptyBrowseResult() {
-        mBrowseResult = BrowseBModelFactory().getEmptyInstance()
-    }
-
     private fun setListenerRecommendedButtonFooter() {
         val intent = Intent(this, RecommendedActivity::class.java)
         val button = findViewById<Button>(R.id.button_recommended_footer)
@@ -197,6 +194,20 @@ class BrowseActivity : AppCompatActivity(),
     private fun localeOnNewIntent() {
         mLanguage =
             intent.getStringExtra(StringLocaleResolver.LANGUAGE_CODE) ?: StringLocaleResolver.DEFAULT_LANGUAGE_CODE
+    }
+
+    private fun initTitle() {
+        val titleEmpty = findViewById<TextView>(R.id.title_browse_empty)
+        val contentEmpty = findViewById<TextView>(R.id.content_browse_empty)
+        val titleResults = findViewById<TextView>(R.id.title_browse_results)
+
+        titleEmpty.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.find_the_books_you_love))
+        contentEmpty.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.search_by))
+        titleResults.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.results))
+    }
+
+    private fun initEmptyBrowseResult() {
+        mBrowseResult = BrowseBModelFactory().getEmptyInstance()
     }
 
     private fun initRootDrawerLayout() {
