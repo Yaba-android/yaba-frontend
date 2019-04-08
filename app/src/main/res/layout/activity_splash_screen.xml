@@ -7,17 +7,26 @@
 
     <LinearLayout
             android:id="@+id/layout_splash_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="vertical"
             android:layout_centerInParent="true"
             tools:ignore="UselessParent">
+
+        <ImageView
+                android:id="@+id/logo_splash_screen"
+                android:layout_width="@dimen/width_logo_splash_screen"
+                android:layout_height="@dimen/height_logo_splash_screen"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/maktaba_logo"/>
 
         <TextView
                 android:id="@+id/title_splash_screen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/maktaba"
+                android:text="@string/app_name"
                 android:fontFamily="@font/noto_sans_family"
                 android:textSize="20sp"
                 android:textColor="@color/colorTextBlackGroup"

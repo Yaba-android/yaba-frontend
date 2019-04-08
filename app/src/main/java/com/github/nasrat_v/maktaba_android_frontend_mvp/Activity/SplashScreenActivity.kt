@@ -11,11 +11,14 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.nasrat_v.maktaba_android_frontend_mvp.R
+import com.mcxiaoke.koi.ext.find
 
 class SplashScreenActivity : AppCompatActivity() {
 
+    private lateinit var mFadeInLogoAnim: Animation
     private lateinit var mFadeInTitleAnim: Animation
     private lateinit var mFadeInTitleBisAnim: Animation
+    private lateinit var mLogo: ImageView
     private lateinit var mTitle: TextView
     private lateinit var mTitleBis: TextView
     private var mDelayHandler: Handler? = null
@@ -52,13 +55,29 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun initAnimations() {
+        mLogo = findViewById(R.id.logo_splash_screen)
         mTitle = findViewById(R.id.title_splash_screen)
         mTitleBis = findViewById(R.id.title_bis_splash_screen)
 
+        initFadeInLogoAnimation()
         initFadeInTitleAnimation()
         initFadeInTitleBisAnimation()
+        mLogo.startAnimation(mFadeInLogoAnim)
         mTitle.startAnimation(mFadeInTitleAnim)
         mTitleBis.startAnimation(mFadeInTitleBisAnim)
+    }
+
+    private fun initFadeInLogoAnimation() {
+        mFadeInLogoAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in_splash_screen)
+        mFadeInLogoAnim.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {}
+
+            override fun onAnimationEnd(animation: Animation?) {}
+
+            override fun onAnimationStart(animation: Animation?) {
+                mLogo.visibility = View.VISIBLE
+            }
+        })
     }
 
     private fun initFadeInTitleAnimation() {

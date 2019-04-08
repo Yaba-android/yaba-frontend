@@ -50,6 +50,9 @@
     <dimen name="width_image_book_details">166dp</dimen>
     <dimen name="height_image_book_details">256dp</dimen>
 
+    <dimen name="width_logo_splash_screen">100dp</dimen>
+    <dimen name="height_logo_splash_screen">100dp</dimen>
+
     <dimen name="size_shadow_small_book">2dp</dimen>
     <dimen name="size_shadow_browse_book">3dp</dimen>
     <dimen name="size_shadow_book">4dp</dimen>

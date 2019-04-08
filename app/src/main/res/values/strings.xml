@@ -1,13 +1,12 @@
 <resources>
 
     <!-- No Translation Strings -->
-    <string name="app_name">Maktaba-android-frontend-mvp</string>
+    <string name="app_name">Maktaba</string>
     <string name="back">Back</string>
     <string name="search">Search</string>
     <string name="profile_name">Jane Doe</string>
     <string name="profile_email">jane.doe@gmail.com</string>
     <string name="action">Action</string>
-    <string name="maktaba">Maktaba</string>
     <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
     <string name="english">English</string>
