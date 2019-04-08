@@ -2370,13 +2370,13 @@
     </integer-array>
 
     <integer-array name="images_reviews">
-        <item>@drawable/image_review2</item>
         <item>@drawable/image_review1</item>
+        <item>@drawable/image_review2</item>
     </integer-array>
 
     <string-array name="authors_reviews">
-        <item>Jean-Phillipe Poireau</item>
-        <item>Helen Marnie</item>
+        <item>Nina Martini</item>
+        <item>Hugo Luis</item>
     </string-array>
 
     <string-array name="comments_reviews">
@@ -2392,7 +2392,7 @@
 
     <string-array name="ratings_reviews">
         <item>5f</item>
-        <item>4.5f</item>
+        <item>4f</item>
     </string-array>
 
 </resources>

@@ -10,8 +10,8 @@
 
     <ImageView
             android:id="@+id/profile_picture_review"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/width_picture_review"
+            android:layout_height="@dimen/height_picture_review"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_alignParentEnd="true"
