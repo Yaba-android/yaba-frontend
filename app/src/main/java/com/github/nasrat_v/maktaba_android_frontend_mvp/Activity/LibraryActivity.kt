@@ -110,6 +110,7 @@ class LibraryActivity : AppCompatActivity(),
             setListenerBrowseButtonFooter()
             setListenerRecommendedButtonFooter()
             setListenerChangeLanguage()
+            setListenerButtonSignOut()
 
             supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
         }
@@ -210,6 +211,15 @@ class LibraryActivity : AppCompatActivity(),
                 StringLocaleResolver.ENGLISH_LANGUAGE_CODE
             }
             refreshActivity()
+        }
+    }
+
+    private fun setListenerButtonSignOut() {
+        val button = findViewById<Button>(R.id.button_sign_out)
+
+        button.setOnClickListener {
+            onBackPressed()
+            finishAndRemoveTask()
         }
     }
 
