@@ -9,6 +9,9 @@
     </style>
 
     <style name="AppTheme.NoActionBar">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">@color/colorTextGrey</item>
+        <item name="colorAccent">@color/colorAppBlueHolo</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/white</item>
