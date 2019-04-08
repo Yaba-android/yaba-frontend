@@ -67,7 +67,6 @@ class BookDetailsActivity : AppCompatActivity(),
         super.onStart()
 
         if (mFirstInit) {
-            setListenerButtonCloseProfile()
             setListenerBrowseButtonFooter()
             setListenerRecommendedButtonFooter()
             setListenerLibraryButtonFooter()
@@ -134,16 +133,6 @@ class BookDetailsActivity : AppCompatActivity(),
 
     override fun getSelectedBook(): BModel {
         return mSelectedBook
-    }
-
-    private fun setListenerButtonCloseProfile() {
-        val nav = findViewById<NavigationView>(R.id.nav_view_profile)
-        val header = nav.getHeaderView(0)
-        val buttonCloseProfile = header.findViewById<Button>(R.id.button_close_profile)
-
-        buttonCloseProfile.setOnClickListener {
-            onBackPressed()
-        }
     }
 
     private fun setListenerRecommendedButtonFooter() {

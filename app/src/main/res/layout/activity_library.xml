@@ -46,7 +46,19 @@
             android:orientation="vertical"
             android:gravity="bottom">
 
-        <include layout="@layout/change_activity_footer"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:elevation="4dp"
+                android:outlineProvider="bounds"
+                android:paddingTop="4dp"
+                android:layout_marginTop="-4dp"
+                tools:ignore="UselessParent">
+
+            <include layout="@layout/change_activity_footer"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
