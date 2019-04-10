@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.github.nasrat_v.maktaba_android_frontend_mvp">
+          package="com.github.nasrat_v.maktaba_demo">
 
     <application
             android:icon="@mipmap/ic_launcher"
@@ -11,7 +11,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".Activity.SplashScreenActivity"
+                android:name="com.github.nasrat_v.maktaba_demo.Activity.SplashScreenActivity"
                 tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -19,31 +19,31 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".Activity.RecommendedActivity"
+                android:name="com.github.nasrat_v.maktaba_demo.Activity.RecommendedActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-                android:name=".Activity.BrowseActivity"
+                android:name="com.github.nasrat_v.maktaba_demo.Activity.BrowseActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-                android:name=".Activity.LibraryActivity"
+                android:name="com.github.nasrat_v.maktaba_demo.Activity.LibraryActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-                android:name=".Activity.BookDetailsActivity"
+                android:name="com.github.nasrat_v.maktaba_demo.Activity.BookDetailsActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-                android:name=".Activity.SectionActivity"
+                android:name="com.github.nasrat_v.maktaba_demo.Activity.SectionActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-                android:name=".Activity.GroupActivity"
+                android:name="com.github.nasrat_v.maktaba_demo.Activity.GroupActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-                android:name=".Activity.SectionsActivity"
+                android:name="com.github.nasrat_v.maktaba_demo.Activity.SectionsActivity"
                 tools:ignore="InnerclassSeparator">
         </activity>
     </application>
