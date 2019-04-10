@@ -1,16 +1,16 @@
 package com.github.nasrat_v.maktaba_demo.Activity
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.LoaderManager
-import android.support.v4.content.Loader
-import android.support.v4.view.ViewPager
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.Toolbar
+import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.FragmentManager
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.viewpager.widget.ViewPager
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
 import android.view.*
 import android.widget.*
 import com.github.nasrat_v.maktaba_demo.AsyncTask.BookDetailsBRModelAsyncFetchData
@@ -25,13 +25,13 @@ import com.github.nasrat_v.maktaba_demo.R
 import com.github.nasrat_v.maktaba_demo.TabFragment.TabLayoutCustomListener
 
 class BookDetailsActivity : AppCompatActivity(),
-    LoaderManager.LoaderCallbacks<BookDetailsBRModel>,
+    androidx.loader.app.LoaderManager.LoaderCallbacks<BookDetailsBRModel>,
     IBookClickCallback,
     ITabLayoutSetupCallback,
     IBookInfosProvider {
 
     private lateinit var mSelectedBook: BModel
-    private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mDrawerLayout: androidx.drawerlayout.widget.DrawerLayout
     private lateinit var mTabLayout: TabLayout
     private lateinit var mToolbar: Toolbar
     private lateinit var mContainerFragment: BookDetailsContainerFragment
@@ -75,18 +75,18 @@ class BookDetailsActivity : AppCompatActivity(),
         mFirstInit = false
     }
 
-    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<BookDetailsBRModel> {
+    override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<BookDetailsBRModel> {
         return BookDetailsBRModelAsyncFetchData(this, mLanguage)
     }
 
-    override fun onLoadFinished(p0: Loader<BookDetailsBRModel>, data: BookDetailsBRModel?) {
+    override fun onLoadFinished(p0: androidx.loader.content.Loader<BookDetailsBRModel>, data: BookDetailsBRModel?) {
         mBookDetailsBRModel = data!!
         setBookDetailsAttributes()
         mContainerFragment.setBookDetailBRModelDataset(mBookDetailsBRModel)
         mProgressBar.visibility = View.GONE
     }
 
-    override fun onLoaderReset(p0: Loader<BookDetailsBRModel>) {
+    override fun onLoaderReset(p0: androidx.loader.content.Loader<BookDetailsBRModel>) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -122,7 +122,7 @@ class BookDetailsActivity : AppCompatActivity(),
         finish()
     }
 
-    override fun setupTabLayout(viewPager: ViewPager) {
+    override fun setupTabLayout(viewPager: androidx.viewpager.widget.ViewPager) {
         val customListener = TabLayoutCustomListener(this)
 
         mTabLayout.setupWithViewPager(viewPager)
@@ -229,7 +229,7 @@ class BookDetailsActivity : AppCompatActivity(),
         mContainerFragment.setNumberRatingTabNameReview(mSelectedBook.numberRating)
         mContainerFragment.setTabFragmentClickCallback(this) // permet de gerer les click depuis le fragment
         mContainerFragment.setBookInfosProvider(this)
-        mFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        mFragmentManager.popBackStackImmediate(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
         val mFragmentTransaction = mFragmentManager.beginTransaction()
         mFragmentTransaction.replace(R.id.fragment_container_book_details, mContainerFragment).commit()
     }

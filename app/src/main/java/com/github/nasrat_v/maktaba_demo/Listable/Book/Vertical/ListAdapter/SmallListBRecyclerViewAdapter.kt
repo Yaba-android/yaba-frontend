@@ -1,8 +1,8 @@
 package com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.ListAdapter
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -16,9 +16,9 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 class SmallListBRecyclerViewAdapter(
     private var context: Context, private var listNoTitleListBModel: ArrayList<NoTitleListBModel>,
     private var bookClickCallback: IBookClickCallback
-) : RecyclerView.Adapter<SmallListBRecyclerViewAdapter.ViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<SmallListBRecyclerViewAdapter.ViewHolder>() {
 
-    private var viewPool = RecyclerView.RecycledViewPool()
+    private var viewPool = androidx.recyclerview.widget.RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
@@ -45,7 +45,11 @@ class SmallListBRecyclerViewAdapter(
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            androidx.recyclerview.widget.LinearLayoutManager(
+                context,
+                androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                false
+            )
         holder.horizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
         GravitySnapHelper(Gravity.END).attachToRecyclerView(holder.horizontalRecyclerView)
         /*holder.horizontalRecyclerView.addItemDecoration(
@@ -56,7 +60,7 @@ class SmallListBRecyclerViewAdapter(
         )*/
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var horizontalRecyclerView = itemView.findViewById<RecyclerView>(R.id.horizontal_recyclerview)!!
+    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+        var horizontalRecyclerView = itemView.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.horizontal_recyclerview)!!
     }
 }

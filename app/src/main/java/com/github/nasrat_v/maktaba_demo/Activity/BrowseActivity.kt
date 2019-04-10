@@ -3,12 +3,12 @@ package com.github.nasrat_v.maktaba_demo.Activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.widget.Toolbar
 import android.view.WindowManager
 import com.github.nasrat_v.maktaba_demo.R
 import android.widget.*
@@ -18,8 +18,8 @@ import com.github.nasrat_v.maktaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.Adapter.BrowseBRecyclerViewAdapter
 import com.github.nasrat_v.maktaba_demo.Listable.BottomOffsetDecoration
 import android.app.Activity
-import android.support.v4.app.LoaderManager
-import android.support.v4.content.Loader
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -34,17 +34,17 @@ import com.github.nasrat_v.maktaba_demo.Services.Factory.Book.BrowseBModelFactor
 
 @SuppressLint("Registered")
 class BrowseActivity : AppCompatActivity(),
-    LoaderManager.LoaderCallbacks<BrowseBModel>,
+    androidx.loader.app.LoaderManager.LoaderCallbacks<BrowseBModel>,
     IBookClickCallback,
     IDeleteBrowseBookClickCallback,
     IInputBrowseCallback {
 
-    private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mDrawerLayout: androidx.drawerlayout.widget.DrawerLayout
     private lateinit var mAdapterBookVertical: BrowseBRecyclerViewAdapter
     private lateinit var mAdapterBookSecondVertical: ListEraseBRecyclerViewAdapter
     private lateinit var mEditText: EditText
-    private lateinit var mFirstVerticalRecyclerView: RecyclerView
-    private lateinit var mSecondVerticalRecyclerView: RecyclerView
+    private lateinit var mFirstVerticalRecyclerView: androidx.recyclerview.widget.RecyclerView
+    private lateinit var mSecondVerticalRecyclerView: androidx.recyclerview.widget.RecyclerView
     private lateinit var mFadeInResultAnim: Animation
     private lateinit var mFadeOutResultAnim: Animation
     private lateinit var mFadeInTitleEmptyAnim: Animation
@@ -90,11 +90,11 @@ class BrowseActivity : AppCompatActivity(),
         mFirstInit = false
     }
 
-    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<BrowseBModel> {
+    override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<BrowseBModel> {
         return BrowseBModelAsynFetchData(this, this, mLanguage)
     }
 
-    override fun onLoadFinished(p0: Loader<BrowseBModel>, data: BrowseBModel?) {
+    override fun onLoadFinished(p0: androidx.loader.content.Loader<BrowseBModel>, data: BrowseBModel?) {
         mBrowseResult.booksResultList.clear()
         mBrowseResult.booksGenreList.clear()
         mBrowseResult.booksResultList.addAll(data!!.booksResultList)
@@ -105,7 +105,7 @@ class BrowseActivity : AppCompatActivity(),
         notifyDataSetChanged()
     }
 
-    override fun onLoaderReset(p0: Loader<BrowseBModel>) {
+    override fun onLoaderReset(p0: androidx.loader.content.Loader<BrowseBModel>) {
     }
 
     override fun onBackPressed() {
@@ -233,7 +233,11 @@ class BrowseActivity : AppCompatActivity(),
                 this
             )
         mFirstVerticalRecyclerView.setHasFixedSize(true)
-        mFirstVerticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        mFirstVerticalRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         mFirstVerticalRecyclerView.adapter = mAdapterBookVertical
         mFirstVerticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_browse_book_vertical_recycler_view)
@@ -255,7 +259,11 @@ class BrowseActivity : AppCompatActivity(),
                 mLanguage
             )
         mSecondVerticalRecyclerView.setHasFixedSize(true)
-        mSecondVerticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        mSecondVerticalRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         mSecondVerticalRecyclerView.adapter = mAdapterBookSecondVertical
         mSecondVerticalRecyclerView.isFocusable = false
         linearLayout.requestFocus()

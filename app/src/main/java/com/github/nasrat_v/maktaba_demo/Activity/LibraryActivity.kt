@@ -4,18 +4,18 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.design.widget.TabLayout
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
-import android.support.v4.app.LoaderManager
-import android.support.v4.content.Loader
-import android.support.v4.view.GravityCompat
-import android.support.v4.view.ViewPager
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.core.view.GravityCompat
+import androidx.viewpager.widget.ViewPager
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.View
@@ -45,12 +45,12 @@ import com.github.nasrat_v.maktaba_demo.TabFragment.TabLayoutCustomListener
  */
 
 class LibraryActivity : AppCompatActivity(),
-    LoaderManager.LoaderCallbacks<LibraryBModel>,
+    androidx.loader.app.LoaderManager.LoaderCallbacks<LibraryBModel>,
     IBookClickCallback,
     IGroupClickCallback,
     ITabLayoutSetupCallback {
 
-    private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mDrawerLayout: androidx.drawerlayout.widget.DrawerLayout
     private lateinit var mLibraryDataset: LibraryBModel
     private lateinit var mFolioReader: FolioReader
     private lateinit var mToolbar: Toolbar
@@ -58,8 +58,8 @@ class LibraryActivity : AppCompatActivity(),
     private lateinit var mContainerFragment: LibraryContainerFragment
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mDisplayMetrics: DisplayMetrics
-    private lateinit var mFragmentManager: FragmentManager
-    private lateinit var mFragmentTransaction: FragmentTransaction
+    private lateinit var mFragmentManager: androidx.fragment.app.FragmentManager
+    private lateinit var mFragmentTransaction: androidx.fragment.app.FragmentTransaction
     private lateinit var mNavigationViewProfile: NavigationView
     private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
@@ -118,17 +118,17 @@ class LibraryActivity : AppCompatActivity(),
         mFirstInit = false
     }
 
-    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<LibraryBModel> {
+    override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<LibraryBModel> {
         return LibraryBModelAsyncFetchData(this, mLanguage)
     }
 
-    override fun onLoadFinished(p0: Loader<LibraryBModel>, data: LibraryBModel?) {
+    override fun onLoadFinished(p0: androidx.loader.content.Loader<LibraryBModel>, data: LibraryBModel?) {
         mLibraryDataset = data!!
         mContainerFragment.setLibraryDataset(mLibraryDataset)
         mProgressBar.visibility = View.GONE
     }
 
-    override fun onLoaderReset(p0: Loader<LibraryBModel>) {
+    override fun onLoaderReset(p0: androidx.loader.content.Loader<LibraryBModel>) {
     }
 
     override fun onBackPressed() {
@@ -166,7 +166,7 @@ class LibraryActivity : AppCompatActivity(),
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
-    override fun setupTabLayout(viewPager: ViewPager) {
+    override fun setupTabLayout(viewPager: androidx.viewpager.widget.ViewPager) {
         val customListener = TabLayoutCustomListener(this)
 
         mTabLayout.setupWithViewPager(viewPager)

@@ -1,7 +1,7 @@
 package com.github.nasrat_v.maktaba_demo.AsyncTask
 
 import android.content.Context
-import android.support.v4.content.AsyncTaskLoader
+import androidx.loader.content.AsyncTaskLoader
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_demo.Listable.Model.BookDetailsBRModel
@@ -15,7 +15,7 @@ class BookDetailsBRModelAsyncFetchData(
     context: Context,
     private var languageCode: String
 ) :
-    AsyncTaskLoader<BookDetailsBRModel>(context) {
+    androidx.loader.content.AsyncTaskLoader<BookDetailsBRModel>(context) {
 
     override fun loadInBackground(): BookDetailsBRModel? {
         //android.os.Debug.waitForDebugger()

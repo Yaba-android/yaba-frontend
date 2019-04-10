@@ -1,6 +1,6 @@
 package com.github.nasrat_v.maktaba_demo.Listable.Book.Horizontal.Adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.github.nasrat_v.maktaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_demo.R
 
 class BigBRecyclerViewAdapter(private var languageCode: String, private var list: ArrayList<BModel>) :
-    RecyclerView.Adapter<BigBRecyclerViewAdapter.ViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<BigBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
 
@@ -52,7 +52,7 @@ class BigBRecyclerViewAdapter(private var languageCode: String, private var list
         mBookClickCallback = bookClickCallback
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         var mTitle = itemView.findViewById<TextView>(R.id.horizontal_title)!!
         var mAuthor = itemView.findViewById<TextView>(R.id.horizontal_author)!!
         var mImage = itemView.findViewById<ImageView>(R.id.horizontal_image)!!

@@ -6,7 +6,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardElevation="@dimen/size_shadow_big_book"
@@ -28,6 +28,6 @@
                 android:layout_marginBottom="@dimen/padding_bottom_button_download"
                 android:layout_marginEnd="@dimen/padding_start_button_download"/>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -26,7 +26,7 @@
             <include android:id="@+id/title_layout_first"
                      layout="@layout/title_viewall_recyclerview"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/first_book_vertical_recyclerview_recommended"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             <include android:id="@+id/title_layout_genre"
                      layout="@layout/title_viewall_recyclerview"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/genre_horizontal_recyclerview_recommended"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             <include android:id="@+id/title_layout_second"
                      layout="@layout/title_viewall_recyclerview"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/second_book_vertical_recyclerview_recommended"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                      android:layout_height="wrap_content"
                      layout="@layout/title_viewall_recyclerview"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/small_book_vertical_recyclerview_recommended"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,4 +99,4 @@
 
     </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -1,8 +1,8 @@
 package com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.ListAdapter
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -21,9 +21,9 @@ class ListEraseBRecyclerViewAdapter(
     private var bookClickCallback: IBookClickCallback,
     private var deleteBrowseBookClickCallback: IDeleteBrowseBookClickCallback,
     private var languageCode: String
-) : RecyclerView.Adapter<ListEraseBRecyclerViewAdapter.ViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<ListEraseBRecyclerViewAdapter.ViewHolder>() {
 
-    private var viewPool = RecyclerView.RecycledViewPool()
+    private var viewPool = androidx.recyclerview.widget.RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
@@ -52,7 +52,11 @@ class ListEraseBRecyclerViewAdapter(
         holder.mHorizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.mHorizontalRecyclerView.setHasFixedSize(true)
         holder.mHorizontalRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            androidx.recyclerview.widget.LinearLayoutManager(
+                context,
+                androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                false
+            )
         holder.mHorizontalRecyclerView.adapter = horizontalRecyclerViewAdapter
         GravitySnapHelper(Gravity.START).attachToRecyclerView(holder.mHorizontalRecyclerView)
         holder.mEraseButton.setOnClickListener {
@@ -60,9 +64,9 @@ class ListEraseBRecyclerViewAdapter(
         }
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         var mTitle = itemView.findViewById<TextView>(R.id.vertical_title)!!
-        var mHorizontalRecyclerView = itemView.findViewById<RecyclerView>(R.id.horizontal_recyclerview)!!
+        var mHorizontalRecyclerView = itemView.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.horizontal_recyclerview)!!
         var mEraseButton = itemView.findViewById<Button>(R.id.button_erase_recyclerview)!!
     }
 }

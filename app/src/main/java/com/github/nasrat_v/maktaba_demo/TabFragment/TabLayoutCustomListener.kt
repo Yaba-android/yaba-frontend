@@ -2,9 +2,9 @@ package com.github.nasrat_v.maktaba_demo.TabFragment
 
 import android.content.Context
 import android.graphics.Typeface
-import android.support.design.widget.TabLayout
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.res.ResourcesCompat
+import com.google.android.material.tabs.TabLayout
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import android.util.TypedValue
 import android.view.ViewGroup
 import android.widget.LinearLayout

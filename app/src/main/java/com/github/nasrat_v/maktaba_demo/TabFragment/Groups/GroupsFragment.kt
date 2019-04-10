@@ -1,9 +1,9 @@
 package com.github.nasrat_v.maktaba_demo.TabFragment.Groups
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +17,7 @@ import com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.ListModel.GroupLi
 import com.github.nasrat_v.maktaba_demo.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.maktaba_demo.R
 
-class GroupsFragment : Fragment() {
+class GroupsFragment : androidx.fragment.app.Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mGroupClickCallback: IGroupClickCallback
@@ -60,7 +60,7 @@ class GroupsFragment : Fragment() {
 
     private fun initVerticalRecyclerView(view: View, container: ViewGroup) {
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
-        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
+        val verticalRecyclerView = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.vertical_double_recyclerview)
         val sortButton = view.findViewById<Button>(R.id.sort_button)
 
         mAdapterBookVertical =
@@ -72,7 +72,11 @@ class GroupsFragment : Fragment() {
             )
         sortButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.sort))
         verticalRecyclerView.setHasFixedSize(true)
-        verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            container.context,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         verticalRecyclerView.adapter = mAdapterBookVertical
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(container.context, R.dimen.bottom_groups_vertical_recycler_view)

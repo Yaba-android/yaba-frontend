@@ -1,7 +1,7 @@
 package com.github.nasrat_v.maktaba_demo.Listable.Review.Vertical
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import android.widget.TextView
 import com.github.nasrat_v.maktaba_demo.R
 
 class RRecyclerViewAdapter(private var context: Context, private var list: ArrayList<RModel>) :
-    RecyclerView.Adapter<RRecyclerViewAdapter.ViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<RRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView =
@@ -36,7 +36,7 @@ class RRecyclerViewAdapter(private var context: Context, private var list: Array
         holder.mRating.rating = model.rating
     }
 
-    class ViewHolder(reviewView: View) : RecyclerView.ViewHolder(reviewView) {
+    class ViewHolder(reviewView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(reviewView) {
         var mImage = reviewView.findViewById<ImageView>(R.id.profile_picture_review)!!
         var mAuthor = reviewView.findViewById<TextView>(R.id.author_review)!!
         var mComment = reviewView.findViewById<TextView>(R.id.comment_review)!!

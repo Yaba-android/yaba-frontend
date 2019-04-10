@@ -1,7 +1,7 @@
 package com.github.nasrat_v.maktaba_demo.AsyncTask
 
 import android.content.Context
-import android.support.v4.content.AsyncTaskLoader
+import androidx.loader.content.AsyncTaskLoader
 import com.github.nasrat_v.maktaba_demo.Activity.GroupActivity
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Horizontal.Model.GroupBModel
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
@@ -10,7 +10,7 @@ class GroupNoTitleListBModelAsynFetchData(
     context: Context,
     private var selectedGroup: GroupBModel
 ) :
-    AsyncTaskLoader<ArrayList<NoTitleListBModel>>(context) {
+    androidx.loader.content.AsyncTaskLoader<ArrayList<NoTitleListBModel>>(context) {
 
     override fun loadInBackground(): ArrayList<NoTitleListBModel>? {
         //android.os.Debug.waitForDebugger()
