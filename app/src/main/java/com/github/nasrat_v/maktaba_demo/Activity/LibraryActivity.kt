@@ -74,7 +74,7 @@ class LibraryActivity : AppCompatActivity(),
         const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
         const val DOWNLOADED_BOOKS = "DownloadedBooks"
         const val CONTAINER_FRAGMENT = "ContainerFragment"
-        const val PATH_TO_EBOOK_EPUB = R.raw.jekyll_and_hyde
+        const val PATH_TO_EBOOK_EPUB = R.raw.jekyll_and_hyde_images
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
