@@ -1,7 +1,7 @@
 package com.github.nasrat_v.maktaba_demo.AsyncTask
 
 import android.content.Context
-import android.support.v4.content.AsyncTaskLoader
+import androidx.loader.content.AsyncTaskLoader
 import com.github.nasrat_v.maktaba_demo.Activity.RecommendedActivity
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
@@ -15,7 +15,7 @@ class RecommendedBRModelAsyncFetchData(
     context: Context,
     private var languageCode: String
 ) :
-    AsyncTaskLoader<RecommendedBRModel>(context) {
+    androidx.loader.content.AsyncTaskLoader<RecommendedBRModel>(context) {
 
     override fun loadInBackground(): RecommendedBRModel? {
         //android.os.Debug.waitForDebugger()

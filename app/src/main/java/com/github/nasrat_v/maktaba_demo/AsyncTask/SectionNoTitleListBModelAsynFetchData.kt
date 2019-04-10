@@ -1,7 +1,7 @@
 package com.github.nasrat_v.maktaba_demo.AsyncTask
 
 import android.content.Context
-import android.support.v4.content.AsyncTaskLoader
+import androidx.loader.content.AsyncTaskLoader
 import com.github.nasrat_v.maktaba_demo.Activity.SectionActivity
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_demo.Listable.Genre.GModel
@@ -12,7 +12,7 @@ class SectionNoTitleListBModelAsynFetchData(
     private var selectedSection: GModel,
     private var languageCode: String
 ) :
-    AsyncTaskLoader<ArrayList<NoTitleListBModel>>(context) {
+    androidx.loader.content.AsyncTaskLoader<ArrayList<NoTitleListBModel>>(context) {
 
     override fun loadInBackground(): ArrayList<NoTitleListBModel>? {
         //android.os.Debug.waitForDebugger()

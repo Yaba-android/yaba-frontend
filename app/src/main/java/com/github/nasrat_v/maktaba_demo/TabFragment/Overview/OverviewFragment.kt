@@ -1,9 +1,9 @@
 package com.github.nasrat_v.maktaba_demo.TabFragment.Overview
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +16,7 @@ import com.github.nasrat_v.maktaba_demo.Language.StringLocaleResolver
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.maktaba_demo.R
 
-class OverviewFragment : Fragment() {
+class OverviewFragment : androidx.fragment.app.Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mSelectedBook: BModel
@@ -140,7 +140,7 @@ class OverviewFragment : Fragment() {
         val viewAllButton = layoutTitle.findViewById<Button>(R.id.view_all_button)
         val linearLayout = view.findViewById<LinearLayout>(R.id.root_linear_layout_overview)
         val verticalRecyclerView =
-            view.findViewById<RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
+            view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.book_vertical_recyclerview_review_overview_footer)
 
         mAdapterBookVertical =
             NoTitleListBRecyclerViewAdapter(
@@ -152,7 +152,11 @@ class OverviewFragment : Fragment() {
         title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_review_overview_recyclerview))
         viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         verticalRecyclerView.setHasFixedSize(true)
-        verticalRecyclerView.layoutManager = LinearLayoutManager(container.context, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            container.context,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         verticalRecyclerView.adapter = mAdapterBookVertical
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(container.context, R.dimen.bottom_book_vertical_recycler_view)

@@ -2,19 +2,19 @@ package com.github.nasrat_v.maktaba_demo.Activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_demo.ICallback.IBookClickCallback
 import com.github.nasrat_v.maktaba_demo.R
-import android.support.design.widget.NavigationView
-import android.support.v4.app.LoaderManager
-import android.support.v4.content.Loader
-import android.support.v4.view.GravityCompat
-import android.support.v7.widget.*
-import android.support.v7.widget.Toolbar
+import com.google.android.material.navigation.NavigationView
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.core.view.GravityCompat
+import androidx.appcompat.widget.*
+import androidx.appcompat.widget.Toolbar
 import android.view.*
 import android.widget.*
 import com.github.nasrat_v.maktaba_demo.AsyncTask.RecommendedBRModelAsyncFetchData
@@ -35,11 +35,11 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
 
 class RecommendedActivity() : AppCompatActivity(),
-    LoaderManager.LoaderCallbacks<RecommendedBRModel>,
+    androidx.loader.app.LoaderManager.LoaderCallbacks<RecommendedBRModel>,
     IBookClickCallback,
     IRecommendedAdditionalClickCallback {
 
-    private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mDrawerLayout: androidx.drawerlayout.widget.DrawerLayout
     private lateinit var mAdapterBookVerticalCarousel: CarouselBRecyclerViewAdapter
     private lateinit var mAdapterBookVerticalFirstRecyclerView: NoTitleListBRecyclerViewAdapter
     private lateinit var mAdapterGenreHorizontal: GPSRecyclerViewAdapter
@@ -101,11 +101,11 @@ class RecommendedActivity() : AppCompatActivity(),
         mFirstInit = false
     }
 
-    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<RecommendedBRModel> {
+    override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<RecommendedBRModel> {
         return RecommendedBRModelAsyncFetchData(this, mLanguage)
     }
 
-    override fun onLoadFinished(p0: Loader<RecommendedBRModel>, data: RecommendedBRModel?) {
+    override fun onLoadFinished(p0: androidx.loader.content.Loader<RecommendedBRModel>, data: RecommendedBRModel?) {
         mDatasetCarousel.clear()
         mDatasetFirstRecyclerView.clear()
         mPopularList.clear()
@@ -126,7 +126,7 @@ class RecommendedActivity() : AppCompatActivity(),
         mProgressBar.visibility = View.GONE
     }
 
-    override fun onLoaderReset(p0: Loader<RecommendedBRModel>) {
+    override fun onLoaderReset(p0: androidx.loader.content.Loader<RecommendedBRModel>) {
     }
 
     override fun onBackPressed() {
@@ -331,9 +331,9 @@ class RecommendedActivity() : AppCompatActivity(),
     }
 
     private fun initCarouselRecycler() {
-        val carouselRecyclerView = findViewById<RecyclerView>(R.id.carousel_recyclerview_recommended)
+        val carouselRecyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.carousel_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
-        val linearManager = CarouselLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val linearManager = CarouselLinearLayoutManager(this, androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL, false)
         val viewAllButton = findViewById<Button>(R.id.view_all_button_carousel)
 
         mAdapterBookVerticalCarousel =
@@ -361,7 +361,7 @@ class RecommendedActivity() : AppCompatActivity(),
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_first)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val viewAllButton = layoutTitle.findViewById<Button>(R.id.view_all_button)
-        val verticalRecyclerView = findViewById<RecyclerView>(R.id.first_book_vertical_recyclerview_recommended)
+        val verticalRecyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.first_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
         mAdapterBookVerticalFirstRecyclerView =
@@ -374,7 +374,11 @@ class RecommendedActivity() : AppCompatActivity(),
         title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_first_recyclerview))
         viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         verticalRecyclerView.setHasFixedSize(true)
-        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         verticalRecyclerView.adapter = mAdapterBookVerticalFirstRecyclerView
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
@@ -387,7 +391,7 @@ class RecommendedActivity() : AppCompatActivity(),
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_genre)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val viewAllButton = layoutTitle.findViewById<Button>(R.id.view_all_button)
-        val horizontalRecyclerView = findViewById<RecyclerView>(R.id.genre_horizontal_recyclerview_recommended)
+        val horizontalRecyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.genre_horizontal_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
         mAdapterGenreHorizontal = GPSRecyclerViewAdapter(this, mPopularList, this)
@@ -395,7 +399,11 @@ class RecommendedActivity() : AppCompatActivity(),
         viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         //GravitySnapHelper(Gravity.END).attachToRecyclerView(horizontalRecyclerView)
         horizontalRecyclerView.setHasFixedSize(true)
-        horizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        horizontalRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+            false
+        )
         horizontalRecyclerView.adapter = mAdapterGenreHorizontal
         horizontalRecyclerView.addItemDecoration(
             LeftOffsetDecoration(this, R.dimen.left_popular_genre_horizontal_recycler_view)
@@ -411,7 +419,7 @@ class RecommendedActivity() : AppCompatActivity(),
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_second)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val viewAllButton = layoutTitle.findViewById<Button>(R.id.view_all_button)
-        val verticalRecyclerView = findViewById<RecyclerView>(R.id.second_book_vertical_recyclerview_recommended)
+        val verticalRecyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.second_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
         mAdapterBookVerticalSecondRecyclerView =
@@ -424,7 +432,11 @@ class RecommendedActivity() : AppCompatActivity(),
         title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_second_recyclerview))
         viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         verticalRecyclerView.setHasFixedSize(true)
-        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         verticalRecyclerView.adapter = mAdapterBookVerticalSecondRecyclerView
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_book_vertical_recycler_view)
@@ -437,7 +449,7 @@ class RecommendedActivity() : AppCompatActivity(),
         val layoutTitle = findViewById<RelativeLayout>(R.id.title_layout_small)
         val title = layoutTitle.findViewById<TextView>(R.id.vertical_title)
         val viewAllButton = layoutTitle.findViewById<Button>(R.id.view_all_button)
-        val verticalRecyclerView = findViewById<RecyclerView>(R.id.small_book_vertical_recyclerview_recommended)
+        val verticalRecyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.small_book_vertical_recyclerview_recommended)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_recommended)
 
         mAdapterBookVerticalSmallRecyclerView =
@@ -449,7 +461,11 @@ class RecommendedActivity() : AppCompatActivity(),
         title.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.title_small_recyclerview))
         viewAllButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.view_all))
         verticalRecyclerView.setHasFixedSize(true)
-        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         verticalRecyclerView.adapter = mAdapterBookVerticalSmallRecyclerView
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_small_book_vertical_recycler_view)

@@ -1,8 +1,8 @@
 package com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.ListAdapter
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
@@ -20,11 +20,11 @@ class GroupListBRecyclerViewAdapter(
     private var listAllBooks: ArrayList<NoTitleListBModel>,
     private var listDownloadedBooks: ArrayList<DownloadListBModel>,
     private var bookClickCallback: IBookClickCallback
-) : RecyclerView.Adapter<GroupListBRecyclerViewAdapter.ViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<GroupListBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mHorizontalRecyclerViewAdapter: GroupBRecyclerViewAdapter
     private lateinit var mDisplayMetrics: DisplayMetrics
-    private var viewPool = RecyclerView.RecycledViewPool()
+    private var viewPool = androidx.recyclerview.widget.RecyclerView.RecycledViewPool()
     private var mDecorationFlag = true
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
@@ -54,7 +54,11 @@ class GroupListBRecyclerViewAdapter(
         holder.horizontalRecyclerView.setRecycledViewPool(viewPool)
         holder.horizontalRecyclerView.setHasFixedSize(true)
         holder.horizontalRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            androidx.recyclerview.widget.LinearLayoutManager(
+                context,
+                androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                false
+            )
         holder.horizontalRecyclerView.adapter = mHorizontalRecyclerViewAdapter
         if (mDecorationFlag) {
             if (needNegativeDivider()) {
@@ -99,7 +103,7 @@ class GroupListBRecyclerViewAdapter(
         return size.toInt()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var horizontalRecyclerView = itemView.findViewById<RecyclerView>(R.id.horizontal_recyclerview)!!
+    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+        var horizontalRecyclerView = itemView.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.horizontal_recyclerview)!!
     }
 }

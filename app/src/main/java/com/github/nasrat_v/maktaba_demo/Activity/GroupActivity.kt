@@ -5,14 +5,14 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.LoaderManager
-import android.support.v4.content.Loader
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.widget.Toolbar
 import android.util.DisplayMetrics
 import android.view.*
 import android.widget.*
@@ -32,7 +32,7 @@ import com.github.nasrat_v.maktaba_demo.R
 
 @SuppressLint("Registered")
 class GroupActivity : AppCompatActivity(),
-    LoaderManager.LoaderCallbacks<ArrayList<NoTitleListBModel>>,
+    androidx.loader.app.LoaderManager.LoaderCallbacks<ArrayList<NoTitleListBModel>>,
     IBookClickCallback {
 
     companion object {
@@ -43,7 +43,7 @@ class GroupActivity : AppCompatActivity(),
     private lateinit var mSelectedGroup: GroupBModel
     private lateinit var mDownloadedBooks: ArrayList<DownloadListBModel>
     private lateinit var mAdapterBookVertical: GroupListBRecyclerViewAdapter
-    private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mDrawerLayout: androidx.drawerlayout.widget.DrawerLayout
     private lateinit var mFolioReader: FolioReader
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mDisplayMetrics: DisplayMetrics
@@ -84,11 +84,11 @@ class GroupActivity : AppCompatActivity(),
         mFirstInit = false
     }
 
-    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<ArrayList<NoTitleListBModel>> {
+    override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<ArrayList<NoTitleListBModel>> {
         return GroupNoTitleListBModelAsynFetchData(this, mSelectedGroup)
     }
 
-    override fun onLoadFinished(p0: Loader<ArrayList<NoTitleListBModel>>, data: ArrayList<NoTitleListBModel>?) {
+    override fun onLoadFinished(p0: androidx.loader.content.Loader<ArrayList<NoTitleListBModel>>, data: ArrayList<NoTitleListBModel>?) {
         mDataset.clear()
         mDataset.addAll(data!!)
         setGroupDetailsAttributes()
@@ -96,7 +96,7 @@ class GroupActivity : AppCompatActivity(),
         mProgressBar.visibility = View.GONE
     }
 
-    override fun onLoaderReset(p0: Loader<ArrayList<NoTitleListBModel>>) {
+    override fun onLoaderReset(p0: androidx.loader.content.Loader<ArrayList<NoTitleListBModel>>) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -322,7 +322,7 @@ class GroupActivity : AppCompatActivity(),
 
     private fun initVerticalRecyclerView() {
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_double_book)
-        val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_double_recyclerview)
+        val verticalRecyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.vertical_double_recyclerview)
         val sortButton = findViewById<Button>(R.id.sort_button)
 
         mAdapterBookVertical =
@@ -335,7 +335,11 @@ class GroupActivity : AppCompatActivity(),
         sortButton.text = getString(StringLocaleResolver(mLanguage).getRes(R.string.sort))
         mAdapterBookVertical.setDisplayMetrics(mDisplayMetrics)
         verticalRecyclerView.setHasFixedSize(true)
-        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         verticalRecyclerView.adapter = mAdapterBookVertical
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_all_books_vertical_recycler_view)

@@ -1,7 +1,7 @@
 package com.github.nasrat_v.maktaba_demo.ICallback
 
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 
 interface ITabLayoutSetupCallback {
-    fun setupTabLayout(viewPager: ViewPager)
+    fun setupTabLayout(viewPager: androidx.viewpager.widget.ViewPager)
 }

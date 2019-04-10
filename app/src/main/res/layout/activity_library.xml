@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<androidx.drawerlayout.widget.DrawerLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,11 +9,11 @@
         android:fitsSystemWindows="true"
         tools:context=".Activity.LibraryActivity">
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme.AppBarOverlay">
@@ -22,7 +22,7 @@
 
             <include layout="@layout/tablayout_library_book_details"/>
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <ProgressBar
                 android:id="@+id/progress_bar_library"
@@ -38,7 +38,7 @@
                 android:id="@+id/fragment_container_library"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -62,7 +62,7 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.NavigationView
+    <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view_profile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -78,6 +78,6 @@
 
         <include layout="@layout/nav_profile_footer"/>
 
-    </android.support.design.widget.NavigationView>
+    </com.google.android.material.navigation.NavigationView>
 
-</android.support.v4.widget.DrawerLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

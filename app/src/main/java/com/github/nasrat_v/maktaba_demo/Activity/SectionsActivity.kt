@@ -3,11 +3,11 @@ package com.github.nasrat_v.maktaba_demo.Activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.LoaderManager
-import android.support.v4.content.Loader
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
@@ -24,7 +24,7 @@ import com.github.nasrat_v.maktaba_demo.R
 
 @SuppressLint("Registered")
 class SectionsActivity : AppCompatActivity(),
-    LoaderManager.LoaderCallbacks<ArrayList<GModel>>,
+    androidx.loader.app.LoaderManager.LoaderCallbacks<ArrayList<GModel>>,
     ISectionAdditionalClickCallback {
 
     private lateinit var mAdapterBookVertical: GSRecyclerViewAdapter
@@ -58,18 +58,18 @@ class SectionsActivity : AppCompatActivity(),
         mFirstInit = false
     }
 
-    override fun onCreateLoader(p0: Int, p1: Bundle?): Loader<ArrayList<GModel>> {
+    override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<ArrayList<GModel>> {
         return SectionsGModelAsynFetchData(this, mLanguage)
     }
 
-    override fun onLoadFinished(p0: Loader<ArrayList<GModel>>, data: ArrayList<GModel>?) {
+    override fun onLoadFinished(p0: androidx.loader.content.Loader<ArrayList<GModel>>, data: ArrayList<GModel>?) {
         mGenreList.clear()
         mGenreList.addAll(data!!)
         mAdapterBookVertical.notifyDataSetChanged()
         mProgressBar.visibility = View.GONE
     }
 
-    override fun onLoaderReset(p0: Loader<ArrayList<GModel>>) {
+    override fun onLoaderReset(p0: androidx.loader.content.Loader<ArrayList<GModel>>) {
     }
 
     override fun finish() {
@@ -123,12 +123,16 @@ class SectionsActivity : AppCompatActivity(),
     }
 
     private fun initSectionNavVerticalRecycler() {
-        val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_recyclerview_section)
+        val verticalRecyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.vertical_recyclerview_section)
         val linearLayout = findViewById<LinearLayout>(R.id.root_linear_layout_section)
 
         mAdapterBookVertical = GSRecyclerViewAdapter(this, mGenreList, this)
         verticalRecyclerView.setHasFixedSize(true)
-        verticalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        verticalRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         verticalRecyclerView.adapter = mAdapterBookVertical
         verticalRecyclerView.addItemDecoration(
             BottomOffsetDecoration(this, R.dimen.bottom_section_vertical_recycler_view)

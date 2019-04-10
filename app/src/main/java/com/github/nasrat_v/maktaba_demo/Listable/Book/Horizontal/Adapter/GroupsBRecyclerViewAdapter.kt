@@ -1,8 +1,8 @@
 package com.github.nasrat_v.maktaba_demo.Listable.Book.Horizontal.Adapter
 
 import android.content.Context
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +15,7 @@ import com.github.nasrat_v.maktaba_demo.Listable.Book.Horizontal.Model.GroupBMod
 import com.github.nasrat_v.maktaba_demo.R
 
 class GroupsBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<GroupBModel>) :
-    RecyclerView.Adapter<GroupsBRecyclerViewAdapter.ViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<GroupsBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mGroupClickCallback: IGroupClickCallback
@@ -72,10 +72,10 @@ class GroupsBRecyclerViewAdapter(private var context: Context, private var list:
         }
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var mFirstCardView = itemView.findViewById<CardView>(R.id.cardview_first_group)!!
-        var mSecondCardView = itemView.findViewById<CardView>(R.id.cardview_second_group)!!
-        var mThirdCardView = itemView.findViewById<CardView>(R.id.cardview_third_group)!!
+    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+        var mFirstCardView = itemView.findViewById<androidx.cardview.widget.CardView>(R.id.cardview_first_group)!!
+        var mSecondCardView = itemView.findViewById<androidx.cardview.widget.CardView>(R.id.cardview_second_group)!!
+        var mThirdCardView = itemView.findViewById<androidx.cardview.widget.CardView>(R.id.cardview_third_group)!!
         var mFirstImage = itemView.findViewById<ImageView>(R.id.horizontal_first_image)!!
         var mSecondImage = itemView.findViewById<ImageView>(R.id.horizontal_second_image)!!
         var mThirdImage = itemView.findViewById<ImageView>(R.id.horizontal_third_image)!!

@@ -1,14 +1,14 @@
 package com.github.nasrat_v.maktaba_demo.TabFragment
 
 import android.content.Context
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
-import android.support.v4.view.ViewPager
+import androidx.fragment.app.FragmentManager
+import androidx.viewpager.widget.ViewPager
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
-import android.support.v4.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.github.nasrat_v.maktaba_demo.*
 import com.github.nasrat_v.maktaba_demo.Activity.BookDetailsActivity
 import com.github.nasrat_v.maktaba_demo.ICallback.IBookClickCallback
@@ -20,7 +20,7 @@ import com.github.nasrat_v.maktaba_demo.Services.Factory.BookDetailsBRModelFacto
 import com.github.nasrat_v.maktaba_demo.TabFragment.Overview.OverviewFragment
 import com.github.nasrat_v.maktaba_demo.TabFragment.Review.ReviewFragment
 
-class BookDetailsContainerFragment : Fragment() {
+class BookDetailsContainerFragment : androidx.fragment.app.Fragment() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
     private lateinit var mTabLayoutSetupCallback: ITabLayoutSetupCallback
@@ -59,7 +59,7 @@ class BookDetailsContainerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_container, container, false)
-        val viewPager = view.findViewById(R.id.viewpager_container_fragment) as ViewPager
+        val viewPager = view.findViewById(R.id.viewpager_container_fragment) as androidx.viewpager.widget.ViewPager
 
         viewPager.adapter = ItemsPagerAdapter(childFragmentManager, mTabNamesList)
         mTabLayoutSetupCallback.setupTabLayout(viewPager)
@@ -115,10 +115,10 @@ class BookDetailsContainerFragment : Fragment() {
         mTabNamesList.add(getString(StringLocaleResolver(mLanguage).getRes(R.string.overview_tab)))
     }
 
-    internal inner class ItemsPagerAdapter(fm: FragmentManager, private var tabNames: ArrayList<String>) :
-        FragmentStatePagerAdapter(fm) {
+    internal inner class ItemsPagerAdapter(fm: androidx.fragment.app.FragmentManager, private var tabNames: ArrayList<String>) :
+        androidx.fragment.app.FragmentStatePagerAdapter(fm) {
 
-        override fun getItem(position: Int): Fragment? {
+        override fun getItem(position: Int): androidx.fragment.app.Fragment {
             when (position) {
                 0 -> {
                     mReview.setSelectedBook(mBookInfosProvider.getSelectedBook())
@@ -129,7 +129,7 @@ class BookDetailsContainerFragment : Fragment() {
                     return mOverview
                 }
             }
-            return null
+            return mReview
         }
 
         override fun getItemPosition(`object`: Any): Int {

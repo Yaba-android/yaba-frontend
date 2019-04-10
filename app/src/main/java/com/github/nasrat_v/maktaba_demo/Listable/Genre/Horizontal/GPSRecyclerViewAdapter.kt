@@ -1,7 +1,7 @@
 package com.github.nasrat_v.maktaba_demo.Listable.Genre.Horizontal
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.github.nasrat_v.maktaba_demo.R
 class GPSRecyclerViewAdapter(
     private var context: Context, private var list: ArrayList<GModel>,
     private var mAdditionalClickCallback: IRecommendedAdditionalClickCallback
-) : RecyclerView.Adapter<GPSRecyclerViewAdapter.ViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<GPSRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
@@ -36,7 +36,7 @@ class GPSRecyclerViewAdapter(
         }
     }
 
-    class ViewHolder(genreView: View) : RecyclerView.ViewHolder(genreView) {
+    class ViewHolder(genreView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(genreView) {
         var mName = genreView.findViewById<TextView>(R.id.genre_name)!!
     }
 }

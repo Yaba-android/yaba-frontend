@@ -1,7 +1,7 @@
 package com.github.nasrat_v.maktaba_demo.AsyncTask
 
 import android.content.Context
-import android.support.v4.content.AsyncTaskLoader
+import androidx.loader.content.AsyncTaskLoader
 import com.github.nasrat_v.maktaba_demo.ICallback.IInputBrowseCallback
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.maktaba_demo.Listable.Book.Model.BrowseBModel
@@ -15,7 +15,7 @@ class BrowseBModelAsynFetchData(
     private var inputCallback: IInputBrowseCallback,
     private var languageCode: String
 ) :
-    AsyncTaskLoader<BrowseBModel>(context) {
+    androidx.loader.content.AsyncTaskLoader<BrowseBModel>(context) {
 
     override fun loadInBackground(): BrowseBModel? {
         //android.os.Debug.waitForDebugger()

@@ -1,7 +1,7 @@
 package com.github.nasrat_v.maktaba_demo.Listable.Book.Vertical.Adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +15,7 @@ class BrowseBRecyclerViewAdapter(
     private var context: Context, private var list: ArrayList<BModel>,
     private var mBookClickCallback: IBookClickCallback,
     private var mDeleteBrowseBookClickCallback: IDeleteBrowseBookClickCallback
-) : RecyclerView.Adapter<BrowseBRecyclerViewAdapter.ViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<BrowseBRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ViewHolder {
         val rootView = LayoutInflater.from(container.context).inflate(
@@ -49,7 +49,7 @@ class BrowseBRecyclerViewAdapter(
 
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         var mTitle = itemView.findViewById<TextView>(R.id.title_vertical_browse_book)!!
         var mAuthor = itemView.findViewById<TextView>(R.id.author_vertical_browse_book)!!
         var mImage = itemView.findViewById<ImageView>(R.id.vertical_image)!!
