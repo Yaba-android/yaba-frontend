@@ -1,2 +1,2 @@
-# maktaba-android-frontend-mvp
-MVP for android maktaba project
+# mktb-android-frontend-mvp
+MVP for android mktb project
