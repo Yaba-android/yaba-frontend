@@ -1,2 +1,1 @@
-# mktb-android-frontend-mvp
-MVP for android mktb project
+All your digital books in one device free !
