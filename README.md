@@ -2,4 +2,4 @@
 
 
 Yaba is a free eBook app written in Kotlin and Golang.  
-All your digital books in one device free !
+All your digital books in one device for free !
