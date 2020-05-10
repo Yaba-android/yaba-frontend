@@ -5,11 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.github.nasrat_v.yaba_demo.ICallback.IBookClickCallback
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.DownloadBModel
 import com.github.nasrat_v.yaba_demo.R
+import com.github.nasrat_v.yaba_demo.Services.Provider.ServerRoutesSingleton
 
-class DownloadBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<DownloadBModel>) :
+class DownloadBRecyclerViewAdapter(
+    private var context: Context,
+    private var list: ArrayList<DownloadBModel>
+) :
     androidx.recyclerview.widget.RecyclerView.Adapter<DownloadBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
@@ -29,8 +34,10 @@ class DownloadBRecyclerViewAdapter(private var context: Context, private var lis
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
+        val url = (ServerRoutesSingleton.ROUTE_SRV_IMAGES + model.book.imagePath)
 
-        holder.mImage.setImageResource(model.book.image)
+        // load image asynchronously with cache and placeholder
+        Glide.with(context).load(url).placeholder(R.drawable.empty_book).into(holder.mImage)
         holder.itemView.setOnClickListener {
             mBookClickCallback.bookEventButtonClicked(list[position].book)
         }

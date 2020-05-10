@@ -1,7 +1,6 @@
 package com.github.nasrat_v.yaba_demo.Services.Factory.Book
 
 import android.content.Context
-import android.util.Log
 import com.github.nasrat_v.yaba_demo.Language.StringLocaleResolver
 import com.github.nasrat_v.yaba_demo.Listable.Author.AModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
@@ -9,11 +8,7 @@ import com.github.nasrat_v.yaba_demo.Listable.Genre.GModel
 import com.github.nasrat_v.yaba_demo.R
 import com.github.nasrat_v.yaba_demo.Services.Factory.Author.AModelFactory
 import com.github.nasrat_v.yaba_demo.Services.Factory.Genre.GModelFactory
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import org.json.JSONArray
 import org.json.JSONObject
-import java.lang.reflect.Array
 
 class BModelFactory(private var context: Context, private var languageCode: String) {
 
@@ -34,7 +29,6 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
 
     fun getInstanceFromJsonObject(jsonObject: JSONObject): BModel {
         return (BModel(
-            getEmptyImage(),
             jsonToString(jsonObject, JSON_BMODEL_IMAGEPATH), jsonToString(jsonObject, JSON_BMODEL_TITLE),
             AModelFactory(context, languageCode).getInstanceFromJsonObject(jsonObject), jsonToString(jsonObject, JSON_BMODEL_RATING).toFloat(),
             jsonToString(jsonObject, JSON_BMODEL_NUMBERRATING).toInt(), jsonToString(jsonObject, JSON_BMODEL_PRICE).toFloat(),
@@ -47,7 +41,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
 
     fun getEmptyInstance(): BModel {
         return (BModel(
-            getEmptyImage(), "", "",
+            "", "",
             AModelFactory(context, languageCode).getEmptyInstance(), 0f,
             0, 0f,
             0, GModelFactory(context, languageCode).getEmptyInstance(),
@@ -58,7 +52,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
 
     fun getInstance(index: Int): BModel {
         return (BModel(
-            getImage(index), "", getTitle(index),
+            "", getTitle(index),
             getAuthor(index), getRating(index),
             getNumberRating(index), getPrice(index),
             getLength(index), getGenre(index),
@@ -80,13 +74,13 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
         return img
     }
 
-    private fun getImage(index: Int): Int {
+    /*private fun getImage(index: Int): Int {
         val imgArray = context.resources.obtainTypedArray(R.array.images_books)
         val img = imgArray.getResourceId(index, -1)
 
         imgArray.recycle()
         return img
-    }
+    }*/
 
     private fun getTitle(index: Int): String {
         val titleArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {

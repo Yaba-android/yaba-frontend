@@ -36,6 +36,7 @@ class NoTitleListBRecyclerViewAdapter(
         val model = list[position]
         val horizontalRecyclerViewAdapter =
             BRecyclerViewAdapter(
+                context,
                 languageCode,
                 model.bookModels
             )

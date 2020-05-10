@@ -7,7 +7,7 @@ import com.github.nasrat_v.yaba_demo.Listable.Genre.GModel
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 data class BModel(
-    var image: Int, var imagePath: String, var title: String, var author: AModel,
+    var imagePath: String, var title: String, var author: AModel,
     var rating: Float, var numberRating: Int, var price: Float,
     var length: Int, var genre: GModel, var fileSize: String,
     var country: String, var datePublication: String,
@@ -15,7 +15,6 @@ data class BModel(
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readParcelable<AModel>(AModel::class.java.classLoader),
@@ -33,7 +32,6 @@ data class BModel(
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(image)
         parcel.writeString(imagePath)
         parcel.writeString(title)
         parcel.writeParcelable(author, flags)

@@ -13,7 +13,7 @@ class BModelRandomFactory(private var context: Context, private var languageCode
 
     fun getRandomInstance() : BModel {
         return (BModel(
-            getRandomImage(), "", getRandomTitle(),
+            "", getRandomTitle(),
             getRandomAuthor(), getRandomRating(),
             getRandomNumberRating(), getRandomPrice(),
             getRandomLength(), getRandomGenre(),
@@ -23,13 +23,13 @@ class BModelRandomFactory(private var context: Context, private var languageCode
         ))
     }
 
-    private fun getRandomImage() : Int {
+    /*private fun getRandomImage() : Int {
         val imgArray = context.resources.obtainTypedArray(R.array.images_books)
         val img = imgArray.getResourceId((0..(imgArray.length() - 1)).random(), -1)
 
         imgArray.recycle()
         return img
-    }
+    }*/
 
     private fun getRandomTitle() : String {
         val titleArray = context.resources.getStringArray(R.array.titles_books)

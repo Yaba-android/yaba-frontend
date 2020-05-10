@@ -1,10 +1,13 @@
 package com.github.nasrat_v.yaba_demo.Activity
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Environment
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -26,6 +29,7 @@ import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.NoTitleLis
 import com.github.nasrat_v.yaba_demo.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.yaba_demo.R
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelProvider
+import com.github.nasrat_v.yaba_demo.Services.Provider.Book.EBookProvider
 
 @SuppressLint("Registered")
 class GroupActivity : AppCompatActivity(),
@@ -44,6 +48,7 @@ class GroupActivity : AppCompatActivity(),
     private lateinit var mFolioReader: FolioReader
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mDisplayMetrics: DisplayMetrics
+    private lateinit var mBookToDownload: BModel
     private val mDataset = arrayListOf<NoTitleListBModel>()
     private var mBooksToAddToDownload = arrayListOf<BModel>()
     private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
@@ -231,24 +236,54 @@ class GroupActivity : AppCompatActivity(),
                 Toast.LENGTH_SHORT
             ).show()
             dialog.hide()
-            openBook()
+            openBook(book.filePath)
         }
         dialog.show()
     }
 
     private fun downloadBook(book: BModel) {
-        Toast.makeText(
-            this,
-            (getString(StringLocaleResolver(mLanguage).getRes(R.string.downloading)) + ' ' + book.title + " ..."),
-            Toast.LENGTH_SHORT
-        ).show()
+        mBookToDownload = book
+
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                LibraryActivity.STORAGE_PERMISSION_CODE
+            )
+        } else {
+            startDownloading()
+        }
         addDownloadedBook(book)
         mBooksToAddToDownload.add(book)
         mAdapterBookVertical.notifyDataSetChanged()
     }
 
-    private fun openBook() {
-        openFolioReader()
+    private fun startDownloading() {
+        Toast.makeText(
+            this,
+            (getString(StringLocaleResolver(mLanguage).getRes(R.string.downloading)) + ' ' + mBookToDownload.title + " ..."),
+            Toast.LENGTH_SHORT
+        ).show()
+        EBookProvider(this, mBookToDownload.filePath).startDownloading()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            LibraryActivity.STORAGE_PERMISSION_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startDownloading()
+                } else {
+                    Toast.makeText(
+                        this,
+                        (getString(StringLocaleResolver(mLanguage).getRes(R.string.error_permission_download))),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun openBook(bookPath: String) {
+        openFolioReader(bookPath)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
@@ -260,8 +295,10 @@ class GroupActivity : AppCompatActivity(),
         return false
     }
 
-    private fun openFolioReader() {
-        mFolioReader.openBook(LibraryActivity.PATH_TO_EBOOK_EPUB)
+    private fun openFolioReader(bookPath: String) {
+        val path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
+
+        mFolioReader.openBook("$path/$bookPath")
     }
 
     private fun addDownloadedBook(book: BModel) {

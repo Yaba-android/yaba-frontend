@@ -38,6 +38,7 @@ class BigListBRecyclerViewAdapter(
         val model = listNoTitleListBModel[position]
         val horizontalRecyclerViewAdapter =
             BigBRecyclerViewAdapter(
+                context,
                 languageCode,
                 model.bookModels
             )

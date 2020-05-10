@@ -3,7 +3,10 @@ package com.github.nasrat_v.yaba_demo.Activity
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.Manifest
+import android.os.Environment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import androidx.core.view.GravityCompat
@@ -11,6 +14,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.Window
@@ -31,6 +35,7 @@ import com.github.nasrat_v.yaba_demo.AsyncTask.LibraryBModelAsyncHydrate
 import com.github.nasrat_v.yaba_demo.ICallback.IBModelProviderCallback
 import com.github.nasrat_v.yaba_demo.Language.StringLocaleResolver
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelProvider
+import com.github.nasrat_v.yaba_demo.Services.Provider.Book.EBookProvider
 import com.github.nasrat_v.yaba_demo.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.yaba_demo.TabFragment.TabLayoutCustomListener
 
@@ -59,6 +64,7 @@ class LibraryActivity : AppCompatActivity(),
     private lateinit var mFragmentTransaction: androidx.fragment.app.FragmentTransaction
     private lateinit var mNavigationViewProfile: NavigationView
     private lateinit var mAllBooks: ArrayList<BModel>
+    private lateinit var mBookToDownload: BModel
     private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
@@ -72,7 +78,7 @@ class LibraryActivity : AppCompatActivity(),
         const val BOOKS_ADD_DOWNLOAD_LIST = "BooksToAddToDownloadList"
         const val DOWNLOADED_BOOKS = "DownloadedBooks"
         const val CONTAINER_FRAGMENT = "ContainerFragment"
-        const val PATH_TO_EBOOK_EPUB = R.raw.jekyll_and_hyde_images
+        const val STORAGE_PERMISSION_CODE = 1000
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -304,22 +310,50 @@ class LibraryActivity : AppCompatActivity(),
                 Toast.LENGTH_SHORT
             ).show()
             dialog.hide()
-            openBook()
+            openBook(book.filePath)
         }
         dialog.show()
     }
 
     private fun downloadBook(book: BModel) {
-        Toast.makeText(
-            this,
-            (getString(StringLocaleResolver(mLanguage).getRes(R.string.downloading)) + ' ' + book.title + " ..."),
-            Toast.LENGTH_SHORT
-        ).show()
+        mBookToDownload = book
+
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), STORAGE_PERMISSION_CODE)
+        } else {
+            startDownloading()
+        }
         addDownloadedBook(book)
     }
 
-    private fun openBook() {
-        openFolioReader()
+    private fun startDownloading() {
+        Toast.makeText(
+            this,
+            (getString(StringLocaleResolver(mLanguage).getRes(R.string.downloading)) + ' ' + mBookToDownload.title + " ..."),
+            Toast.LENGTH_SHORT
+        ).show()
+        EBookProvider(this, mBookToDownload.filePath).startDownloading()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            STORAGE_PERMISSION_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startDownloading()
+                } else {
+                    Toast.makeText(
+                        this,
+                        (getString(StringLocaleResolver(mLanguage).getRes(R.string.error_permission_download))),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun openBook(bookPath: String) {
+        openFolioReader(bookPath)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
@@ -331,8 +365,10 @@ class LibraryActivity : AppCompatActivity(),
         return false
     }
 
-    private fun openFolioReader() {
-        mFolioReader.openBook(PATH_TO_EBOOK_EPUB)
+    private fun openFolioReader(bookPath: String) {
+        val path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
+
+        mFolioReader.openBook("$path/$bookPath")
     }
 
     private fun addDownloadedBooks(books: ArrayList<BModel>) {

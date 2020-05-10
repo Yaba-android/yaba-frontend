@@ -41,6 +41,7 @@ class ListEraseBRecyclerViewAdapter(
         val title = model.title
         val horizontalRecyclerViewAdapter =
             BRecyclerViewAdapter(
+                context,
                 languageCode,
                 model.bookModels
             )

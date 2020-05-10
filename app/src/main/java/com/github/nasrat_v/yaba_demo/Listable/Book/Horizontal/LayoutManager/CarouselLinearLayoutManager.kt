@@ -21,7 +21,7 @@ class CarouselLinearLayoutManager(context: Context, direction: Int, reverseLayou
         val s0 = 1f
         val s1 = (1f - mShrinkAmount)
 
-        for (index in 0..(childCount - 1)) {
+        for (index in 0 until childCount) {
             val child = getChildAt(index)
             val childMidPoint = ((getDecoratedLeft(child!!) + getDecoratedRight(child)) / 2f)
             val d = Math.min(d1, Math.abs(scalePoint - childMidPoint))

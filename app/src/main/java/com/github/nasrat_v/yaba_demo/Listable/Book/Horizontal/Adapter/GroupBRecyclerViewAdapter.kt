@@ -1,18 +1,23 @@
 package com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.github.nasrat_v.yaba_demo.ICallback.IBookClickCallback
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.yaba_demo.R
+import com.github.nasrat_v.yaba_demo.Services.Provider.ServerRoutesSingleton
 
 class GroupBRecyclerViewAdapter(
+    private var context: Context,
     private var downloadedBooks: ArrayList<DownloadListBModel>,
     private var list: ArrayList<BModel>
-) : androidx.recyclerview.widget.RecyclerView.Adapter<GroupBRecyclerViewAdapter.ViewHolder>() {
+) :
+    androidx.recyclerview.widget.RecyclerView.Adapter<GroupBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
 
@@ -31,10 +36,12 @@ class GroupBRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
+        val url = (ServerRoutesSingleton.ROUTE_SRV_IMAGES + model.imagePath)
 
         if (isBookAlreadyDownloaded(model))
             holder.mImageDownload.visibility = View.INVISIBLE
-        holder.mImage.setImageResource(model.image)
+        // load image asynchronously with cache and placeholder
+        Glide.with(context).load(url).placeholder(R.drawable.empty_book).into(holder.mImage)
         holder.itemView.setOnClickListener {
             mBookClickCallback.bookEventButtonClicked(list[position])
         }

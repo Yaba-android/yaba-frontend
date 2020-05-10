@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import android.view.*
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.github.nasrat_v.yaba_demo.AsyncTask.BookDetailsBRModelAsyncHydrate
 import com.github.nasrat_v.yaba_demo.ICallback.IBModelProviderCallback
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
@@ -19,6 +20,7 @@ import com.github.nasrat_v.yaba_demo.Language.StringLocaleResolver
 import com.github.nasrat_v.yaba_demo.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.yaba_demo.R
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelProvider
+import com.github.nasrat_v.yaba_demo.Services.Provider.ServerRoutesSingleton
 import com.github.nasrat_v.yaba_demo.TabFragment.TabLayoutCustomListener
 
 class BookDetailsActivity : AppCompatActivity(),
@@ -175,8 +177,10 @@ class BookDetailsActivity : AppCompatActivity(),
         val ratingBar = findViewById<RatingBar>(R.id.rating_bar_book)
         val numberRating = findViewById<TextView>(R.id.number_rating_book)
         val buyButton = findViewById<Button>(R.id.button_buy_book)
+        val url = (ServerRoutesSingleton.ROUTE_SRV_IMAGES + mSelectedBook.imagePath)
 
-        image.setImageResource(mSelectedBook.image)
+        // load image asynchronously with cache and placeholder
+        Glide.with(this).load(url).placeholder(R.drawable.empty_book).into(image)
         title.text = mSelectedBook.title
         author.text = mSelectedBook.author.name
         ratingBar.rating = mSelectedBook.rating

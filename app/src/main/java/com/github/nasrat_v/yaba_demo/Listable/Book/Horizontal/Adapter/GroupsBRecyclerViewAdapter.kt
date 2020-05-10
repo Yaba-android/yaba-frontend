@@ -6,13 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.github.nasrat_v.yaba_demo.ICallback.IBookClickCallback
 import com.github.nasrat_v.yaba_demo.ICallback.IGroupClickCallback
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.GroupBModel
 import com.github.nasrat_v.yaba_demo.R
+import com.github.nasrat_v.yaba_demo.Services.Provider.ServerRoutesSingleton
 
-class GroupsBRecyclerViewAdapter(private var context: Context, private var list: ArrayList<GroupBModel>) :
+class GroupsBRecyclerViewAdapter(
+    private var context: Context,
+    private var list: ArrayList<GroupBModel>
+) :
     androidx.recyclerview.widget.RecyclerView.Adapter<GroupsBRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var mBookClickCallback: IBookClickCallback
@@ -36,9 +41,11 @@ class GroupsBRecyclerViewAdapter(private var context: Context, private var list:
         val books = group.bookModels
         val firstBook = books.first()
         val genre = group.genre
+        val urlFirstImage = (ServerRoutesSingleton.ROUTE_SRV_IMAGES + firstBook.imagePath)
 
+        // load image asynchronously with cache and placeholder
+        Glide.with(context).load(urlFirstImage).placeholder(R.drawable.empty_book).into(holder.mFirstImage)
         setSecondAndThirdImage(holder, books)
-        holder.mFirstImage.setImageResource(firstBook.image)
         holder.mGenreName.text = (genre.name + " (" + books.size + ")")
         holder.itemView.setOnClickListener {
             mGroupClickCallback.groupEventButtonClicked(group)
@@ -56,11 +63,18 @@ class GroupsBRecyclerViewAdapter(private var context: Context, private var list:
     private fun setSecondAndThirdImage(holder: ViewHolder, books: ArrayList<BModel>) {
         when {
             books.size > 2 -> {
-                holder.mSecondImage.setImageResource(books[1].image)
-                holder.mThirdImage.setImageResource(books[2].image)
+                val urlSecondImage = (ServerRoutesSingleton.ROUTE_SRV_IMAGES + books[1].imagePath)
+                val urlThirdImage = (ServerRoutesSingleton.ROUTE_SRV_IMAGES + books[2].imagePath)
+
+                // load image asynchronously with cache and placeholder
+                Glide.with(context).load(urlSecondImage).placeholder(R.drawable.empty_book).into(holder.mSecondImage)
+                Glide.with(context).load(urlThirdImage).placeholder(R.drawable.empty_book).into(holder.mThirdImage)
             }
             books.size > 1 -> {
-                holder.mThirdImage.setImageResource(books[1].image)
+                val urlSecondImage = (ServerRoutesSingleton.ROUTE_SRV_IMAGES + books[1].imagePath)
+
+                // load image asynchronously with cache and placeholder
+                Glide.with(context).load(urlSecondImage).placeholder(R.drawable.empty_book).into(holder.mSecondImage)
                 holder.mSecondCardView.visibility = View.INVISIBLE
             }
             else -> {

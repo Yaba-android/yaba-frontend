@@ -36,6 +36,8 @@
     <string name="sign_out">Sign Out</string>
     <string name="sign_out_arabic">خروج</string>
 
+    <string name="error_permission_download">Cannot download book without permission granted !</string>
+
     <string name="downloading">Downloading</string>
     <string name="downloading_arabic">جارى التحميل</string>
 

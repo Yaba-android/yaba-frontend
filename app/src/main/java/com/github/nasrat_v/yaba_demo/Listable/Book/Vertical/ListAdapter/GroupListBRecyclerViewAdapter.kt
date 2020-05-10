@@ -45,6 +45,7 @@ class GroupListBRecyclerViewAdapter(
 
         mHorizontalRecyclerViewAdapter =
             GroupBRecyclerViewAdapter(
+                context,
                 listDownloadedBooks,
                 model.bookModels
             )

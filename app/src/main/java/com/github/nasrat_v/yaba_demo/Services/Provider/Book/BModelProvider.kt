@@ -11,6 +11,7 @@ import com.github.nasrat_v.yaba_demo.ICallback.IBModelProviderCallback
 import com.github.nasrat_v.yaba_demo.Services.Factory.Book.BModelFactory
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.yaba_demo.R
+import com.github.nasrat_v.yaba_demo.Services.Provider.ServerRoutesSingleton
 import com.github.nasrat_v.yaba_demo.Services.Provider.VolleySingleton
 import org.json.JSONArray
 
@@ -31,15 +32,14 @@ class BModelProvider(private var context: Context, private var languageCode: Str
     }
 
     fun getAllBooksFromDatabase(callback: IBModelProviderCallback) {
-        val url = "http://192.168.1.101:8080/getAllBooks"
+        val url = (ServerRoutesSingleton.ROUTE_GET_ALL_BOOKS)
 
         val jsonArrayRequest = JsonArrayRequest(Request.Method.GET, url, null,
             Response.Listener { response ->
-                Log.d("httpgetrequest", response.toString())
                 callback.onGetAllBooksRequestSuccess(getInstancesFromJsonArray(response))
             },
             Response.ErrorListener { error ->
-                Log.d("errorhttpgetrequest", error.toString())
+                Log.d("errorhttprequest", error.toString())
             }
         )
         jsonArrayRequest.retryPolicy = DefaultRetryPolicy(

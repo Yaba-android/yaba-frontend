@@ -45,6 +45,7 @@ class AllBooksListBRecyclerViewAdapter(
 
         mHorizontalRecyclerViewAdapter =
             AllBooksBRecyclerViewAdapter(
+                context,
                 listDownloadedBooks,
                 model.bookModels
             )
