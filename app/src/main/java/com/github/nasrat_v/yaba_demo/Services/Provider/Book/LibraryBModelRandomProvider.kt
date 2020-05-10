@@ -14,7 +14,7 @@ class LibraryBModelRandomProvider {
         val indexSelected = getAllRandomIndex((nbY * nbX), simpleList.size)
         val listBooksSelected = arrayListOf<DownloadListBModel>()
 
-        for (index in 0..(nbY - 1)) {
+        for (index in 0 until nbY) {
             listBooksSelected.add(
                 DownloadListBModel(
                     getRandomDownloadedBookFromList(nbX, simpleList, indexSelected)
@@ -29,7 +29,7 @@ class LibraryBModelRandomProvider {
 
         val booksSelected = arrayListOf<DownloadBModel>()
 
-        for (index in 0..(nbX - 1)) {
+        for (index in 0 until nbX) {
             booksSelected.add(
                 DownloadBModel(
                     list[indexSelected.first()]
@@ -44,7 +44,7 @@ class LibraryBModelRandomProvider {
         val indexSelected = arrayListOf<Int>()
         var randomIndex: Int
 
-        for (index in 0..(nbAllIndex - 1)) {
+        for (index in 0 until nbAllIndex) {
             randomIndex = randomizeIndex(indexSelected, sizeList)
             indexSelected.add(randomIndex)
         }
@@ -71,6 +71,6 @@ class LibraryBModelRandomProvider {
     }
 
     private fun initRandomIndex(size: Int): Int {
-        return (0..(size - 1)).random()
+        return (0 until size).random()
     }
 }

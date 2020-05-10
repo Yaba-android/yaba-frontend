@@ -27,8 +27,8 @@ class LibraryBModelAsyncHydrate(
         val groupsLibrary = arrayListOf<GroupListBModel>()
 
         mockDatasetAllBooks(allbooksLibrary)
-        mockDatasetGroups(allbooksLibrary, groupsLibrary)
-        mockDatasetDownload(allbooksLibrary, downloadsLibrary)
+        hydrateDatasetGroups(allbooksLibrary, groupsLibrary)
+        hydrateDatasetDownload(allbooksLibrary, downloadsLibrary)
 
         return LibraryBModel(
             downloadsLibrary,
@@ -52,7 +52,7 @@ class LibraryBModelAsyncHydrate(
         )
     }
 
-    private fun mockDatasetGroups(
+    private fun hydrateDatasetGroups(
         allbooksLibrary: ArrayList<NoTitleListBModel>,
         dataset: ArrayList<GroupListBModel>
     ) {
@@ -64,13 +64,12 @@ class LibraryBModelAsyncHydrate(
         )
     }
 
-    private fun mockDatasetDownload(
+    private fun hydrateDatasetDownload(
         allbooksLibrary: ArrayList<NoTitleListBModel>,
         dataset: ArrayList<DownloadListBModel>
     ) {
         dataset.addAll(
-            LibraryBModelRandomProvider().getRandomDownloadedListBookFromList(
-                LibraryActivity.DOWNLOAD_NB_BOOK_COLUMNS,
+            LibraryBModelProvider().getDownloadedListBookFromList(
                 LibraryActivity.DOWNLOAD_NB_BOOK_PER_ROW,
                 allbooksLibrary
             )

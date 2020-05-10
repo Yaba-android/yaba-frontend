@@ -1,12 +1,53 @@
 package com.github.nasrat_v.yaba_demo.Services.Provider.Book
 
+import android.os.Environment
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
+import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.DownloadBModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.GroupBModel
+import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.GroupListBModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.yaba_demo.Listable.Genre.GModel
+import java.io.File
 
 class LibraryBModelProvider {
+
+    fun getDownloadedListBookFromList(nbX: Int, allBooks: ArrayList<NoTitleListBModel>)
+            : ArrayList<DownloadListBModel> {
+
+        val simpleList = allBooksInSimpleList(allBooks)
+        val booksSelected = arrayListOf<DownloadBModel>()
+        val listBooksSelected = arrayListOf<DownloadListBModel>()
+        val location = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
+
+        simpleList.forEach {
+            val file = File(location + '/' + it.filePath)
+
+            if (file.exists()) {
+                if (booksSelected.size == nbX) {
+                    val tmpBooksSelected = arrayListOf<DownloadBModel>()
+
+                    tmpBooksSelected.addAll(booksSelected)
+                    listBooksSelected.add(DownloadListBModel(tmpBooksSelected))
+                    booksSelected.clear()
+                }
+                booksSelected.add(DownloadBModel(it))
+            }
+        }
+        listBooksSelected.add(DownloadListBModel(booksSelected))
+        return listBooksSelected
+    }
+
+    private fun allBooksInSimpleList(allBooks: ArrayList<NoTitleListBModel>): ArrayList<BModel> {
+        val simpleList = arrayListOf<BModel>()
+
+        allBooks.forEach {
+            it.bookModels.forEach { book ->
+                simpleList.add(book)
+            }
+        }
+        return simpleList
+    }
 
     fun getGroupListFromList(nb: Int, allBooks: ArrayList<NoTitleListBModel>)
             : ArrayList<GroupListBModel> {
@@ -14,7 +55,7 @@ class LibraryBModelProvider {
         val genresSelected = getRandomGenresFromList(allBooks)
         val booksSelected = arrayListOf<GroupListBModel>()
 
-        for (index in 0..(getNbColumns(nb, genresSelected.size) - 1)) {
+        for (index in 0 until getNbColumns(nb, genresSelected.size)) {
             booksSelected.add(
                 GroupListBModel(
                     getGroupFromList(nb, allBooks, genresSelected)
@@ -38,7 +79,7 @@ class LibraryBModelProvider {
 
         val booksSelected = arrayListOf<GroupBModel>()
 
-        for (index in 0..(nb - 1)) {
+        for (index in 0 until nb) {
             findBookFromGenre(genresSelected, allBooks, booksSelected)
         }
         return booksSelected
@@ -66,7 +107,7 @@ class LibraryBModelProvider {
         val filteredList = ArrayList(list.filter { it.genre == genre })
 
         if (filteredList.isNotEmpty()) {
-            if (!booksSelected.isEmpty() && (booksSelected.last().genre == genre))
+            if (booksSelected.isNotEmpty() && (booksSelected.last().genre == genre))
                 booksSelected.last().bookModels.addAll(filteredList)
             else
                 booksSelected.add(GroupBModel(genre, filteredList))

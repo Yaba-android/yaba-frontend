@@ -13,6 +13,7 @@ import org.json.JSONObject
 class BModelFactory(private var context: Context, private var languageCode: String) {
 
     companion object {
+        const val JSON_BMODEL_REMOTEID = "RemoteId"
         const val JSON_BMODEL_IMAGEPATH = "ImagePath"
         const val JSON_BMODEL_TITLE = "Title"
         const val JSON_BMODEL_RATING = "Rating"
@@ -29,6 +30,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
 
     fun getInstanceFromJsonObject(jsonObject: JSONObject): BModel {
         return (BModel(
+            jsonToString(jsonObject, JSON_BMODEL_REMOTEID),
             jsonToString(jsonObject, JSON_BMODEL_IMAGEPATH), jsonToString(jsonObject, JSON_BMODEL_TITLE),
             AModelFactory(context, languageCode).getInstanceFromJsonObject(jsonObject), jsonToString(jsonObject, JSON_BMODEL_RATING).toFloat(),
             jsonToString(jsonObject, JSON_BMODEL_NUMBERRATING).toInt(), jsonToString(jsonObject, JSON_BMODEL_PRICE).toFloat(),
@@ -41,7 +43,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
 
     fun getEmptyInstance(): BModel {
         return (BModel(
-            "", "",
+            "", "", "",
             AModelFactory(context, languageCode).getEmptyInstance(), 0f,
             0, 0f,
             0, GModelFactory(context, languageCode).getEmptyInstance(),
@@ -52,7 +54,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
 
     fun getInstance(index: Int): BModel {
         return (BModel(
-            "", getTitle(index),
+            "", "", getTitle(index),
             getAuthor(index), getRating(index),
             getNumberRating(index), getPrice(index),
             getLength(index), getGenre(index),

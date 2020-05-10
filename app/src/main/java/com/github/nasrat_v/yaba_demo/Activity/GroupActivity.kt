@@ -289,7 +289,7 @@ class GroupActivity : AppCompatActivity(),
 
     private fun isBookAlreadyDownloaded(book: BModel): Boolean {
         mDownloadedBooks.forEach { list ->
-            if (list.bookModels.find { it.book == book } != null)
+            if (list.bookModels.find { it.book.remoteId == book.remoteId } != null)
                 return true
         }
         return false

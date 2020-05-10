@@ -13,7 +13,7 @@ class BModelRandomFactory(private var context: Context, private var languageCode
 
     fun getRandomInstance() : BModel {
         return (BModel(
-            "", getRandomTitle(),
+            "", "", getRandomTitle(),
             getRandomAuthor(), getRandomRating(),
             getRandomNumberRating(), getRandomPrice(),
             getRandomLength(), getRandomGenre(),
@@ -34,7 +34,7 @@ class BModelRandomFactory(private var context: Context, private var languageCode
     private fun getRandomTitle() : String {
         val titleArray = context.resources.getStringArray(R.array.titles_books)
 
-        return titleArray[(0..(titleArray.size - 1)).random()]
+        return titleArray[(titleArray.indices).random()]
     }
 
     private fun getRandomAuthor() : AModel {
@@ -44,7 +44,7 @@ class BModelRandomFactory(private var context: Context, private var languageCode
     private fun getRandomRating() : Float {
         val ratingArray = context.resources.getStringArray(R.array.ratings_books)
 
-        return ratingArray[(0..(ratingArray.size - 1)).random()].toFloat()
+        return ratingArray[(ratingArray.indices).random()].toFloat()
     }
 
     private fun getRandomNumberRating() : Int {
@@ -54,43 +54,43 @@ class BModelRandomFactory(private var context: Context, private var languageCode
     private fun getRandomPrice() : Float {
         val priceArray = context.resources.getStringArray(R.array.prices_books)
 
-        return priceArray[(0..(priceArray.size - 1)).random()].toFloat()
+        return priceArray[(priceArray.indices).random()].toFloat()
     }
 
     private fun getRandomLength() : Int {
         val lengthArray = context.resources.getIntArray(R.array.lengths_books)
 
-        return lengthArray[(0..(lengthArray.size - 1)).random()]
+        return lengthArray[(lengthArray.indices).random()]
     }
 
     private fun getRandomGenre() : GModel {
         val genreList = GModelProvider(context, languageCode).getAllGenres()
 
-        return genreList[(0..(genreList.size - 1)).random()]
+        return genreList[(0 until genreList.size).random()]
     }
 
     private fun getRandomFileSize() : String {
         val fileSizeArray = context.resources.getStringArray(R.array.filesizes_books)
 
-        return fileSizeArray[(0..(fileSizeArray.size - 1)).random()]
+        return fileSizeArray[(fileSizeArray.indices).random()]
     }
 
     private fun getRandomCountry() : String {
         val countryArray = context.resources.getStringArray(R.array.countries_books)
 
-        return countryArray[(0..(countryArray.size - 1)).random()]
+        return countryArray[(countryArray.indices).random()]
     }
 
     private fun getRandomDatePublication() : String {
         val datePublicationArray = context.resources.getStringArray(R.array.datepublications_books)
 
-        return datePublicationArray[(0..(datePublicationArray.size - 1)).random()]
+        return datePublicationArray[(datePublicationArray.indices).random()]
     }
 
     private fun getRandomPublisher() : String {
         val datePublicationArray = context.resources.getStringArray(R.array.publishers_books)
 
-        return datePublicationArray[(0..(datePublicationArray.size - 1)).random()]
+        return datePublicationArray[(datePublicationArray.indices).random()]
     }
 
     private fun getRandomResume(): String {
@@ -100,6 +100,6 @@ class BModelRandomFactory(private var context: Context, private var languageCode
             context.resources.getStringArray(R.array.resume_books)
         }
 
-        return resumeArray[(0..(resumeArray.size - 1)).random()]
+        return resumeArray[(resumeArray.indices).random()]
     }
 }
