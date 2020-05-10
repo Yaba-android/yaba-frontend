@@ -1,7 +1,7 @@
 <resources>
 
     <!-- No Translation Strings -->
-    <string name="app_name">Maktaba</string>
+    <string name="app_name">Yaba</string>
     <string name="back">Back</string>
     <string name="profile_name">Jane Doe</string>
     <string name="profile_email">jane.doe@gmail.com</string>
