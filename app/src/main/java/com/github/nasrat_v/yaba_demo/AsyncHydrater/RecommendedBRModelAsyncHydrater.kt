@@ -1,8 +1,7 @@
-package com.github.nasrat_v.yaba_demo.AsyncTask
+package com.github.nasrat_v.yaba_demo.AsyncHydrater
 
 import android.content.Context
 import com.github.nasrat_v.yaba_demo.Activity.RecommendedActivity
-import com.github.nasrat_v.yaba_demo.ICallback.IBModelProviderCallback
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.yaba_demo.Listable.Genre.GModel
@@ -11,7 +10,7 @@ import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.Genre.GModelProvider
 
-class RecommendedBRModelAsyncHydrate(
+class RecommendedBRModelAsyncHydrater(
     context: Context,
     private var languageCode: String,
     private var allBooks: ArrayList<BModel>

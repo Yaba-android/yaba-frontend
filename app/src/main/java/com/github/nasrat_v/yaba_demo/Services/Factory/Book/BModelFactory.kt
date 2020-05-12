@@ -32,7 +32,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
         return (BModel(
             jsonToString(jsonObject, JSON_BMODEL_REMOTEID),
             jsonToString(jsonObject, JSON_BMODEL_IMAGEPATH), jsonToString(jsonObject, JSON_BMODEL_TITLE),
-            AModelFactory(context, languageCode).getInstanceFromJsonObject(jsonObject), jsonToString(jsonObject, JSON_BMODEL_RATING).toFloat(),
+            AModelFactory(context, languageCode).getInstanceFromBModelJsonObject(jsonObject), jsonToString(jsonObject, JSON_BMODEL_RATING).toFloat(),
             jsonToString(jsonObject, JSON_BMODEL_NUMBERRATING).toInt(), jsonToString(jsonObject, JSON_BMODEL_PRICE).toFloat(),
             jsonToString(jsonObject, JSON_BMODEL_LENGTH).toInt(), GModelFactory(context, languageCode).getInstanceFromJsonObject(jsonObject),
             jsonToString(jsonObject, JSON_BMODEL_FILESIZE), jsonToString(jsonObject, JSON_BMODEL_COUNTRY),
@@ -95,7 +95,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
     }
 
     private fun getAuthor(index: Int): AModel {
-        return AModelFactory(context, languageCode).getInstance(index)
+        return AModelFactory(context, languageCode).getEmptyInstance()
     }
 
     private fun getRating(index: Int): Float {

@@ -16,8 +16,7 @@ import android.view.*
 import android.widget.*
 import com.folioreader.Config
 import com.folioreader.FolioReader
-import com.github.nasrat_v.yaba_demo.AsyncTask.GroupNoTitleListBModelAsyncHydrate
-import com.github.nasrat_v.yaba_demo.ICallback.IBModelProviderCallback
+import com.github.nasrat_v.yaba_demo.AsyncHydrater.GroupNoTitleListBModelAsyncHydrater
 import com.github.nasrat_v.yaba_demo.ICallback.IBookClickCallback
 import com.github.nasrat_v.yaba_demo.Language.StringLocaleResolver
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
@@ -28,7 +27,6 @@ import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.DownloadLi
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.yaba_demo.Listable.BottomOffsetDecoration
 import com.github.nasrat_v.yaba_demo.R
-import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.EBookProvider
 
 @SuppressLint("Registered")
@@ -87,7 +85,7 @@ class GroupActivity : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<ArrayList<NoTitleListBModel>> {
-        return GroupNoTitleListBModelAsyncHydrate(this, mSelectedGroup)
+        return GroupNoTitleListBModelAsyncHydrater(this, mSelectedGroup)
     }
 
     override fun onLoadFinished(p0: androidx.loader.content.Loader<ArrayList<NoTitleListBModel>>, data: ArrayList<NoTitleListBModel>?) {

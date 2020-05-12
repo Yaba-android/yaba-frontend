@@ -1,12 +1,11 @@
-package com.github.nasrat_v.yaba_demo.AsyncTask
+package com.github.nasrat_v.yaba_demo.AsyncHydrater
 
 import android.content.Context
 import com.github.nasrat_v.yaba_demo.Activity.GroupActivity
-import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.GroupBModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
 
-class GroupNoTitleListBModelAsyncHydrate(
+class GroupNoTitleListBModelAsyncHydrater(
     context: Context,
     private var selectedGroup: GroupBModel
 ) :

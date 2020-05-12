@@ -21,7 +21,7 @@ import android.view.inputmethod.InputMethodManager
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListAdapter.ListEraseBRecyclerViewAdapter
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import com.github.nasrat_v.yaba_demo.AsyncTask.BrowseBModelAsyncHydrate
+import com.github.nasrat_v.yaba_demo.AsyncHydrater.BrowseBModelAsyncHydrater
 import com.github.nasrat_v.yaba_demo.ICallback.IInputBrowseCallback
 import com.github.nasrat_v.yaba_demo.Language.StringLocaleResolver
 import com.github.nasrat_v.yaba_demo.Listable.Book.Model.BrowseBModel
@@ -86,7 +86,7 @@ class BrowseActivity : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<BrowseBModel> {
-        return BrowseBModelAsyncHydrate(this, this, mLanguage)
+        return BrowseBModelAsyncHydrater(this, this, mLanguage)
     }
 
     override fun onLoadFinished(p0: androidx.loader.content.Loader<BrowseBModel>, data: BrowseBModel?) {

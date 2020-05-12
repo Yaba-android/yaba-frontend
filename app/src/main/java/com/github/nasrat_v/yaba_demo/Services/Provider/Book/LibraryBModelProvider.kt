@@ -12,6 +12,12 @@ import java.io.File
 
 class LibraryBModelProvider {
 
+    fun getAllLibraryBook(): ArrayList<NoTitleListBModel> {
+        TODO(// on recupere les ids des livres enregistrés dans le fichier local)
+            // ecrire aussi la fonction pour enregistré dans le fichier local
+        return arrayListOf()
+    }
+
     fun getDownloadedListBookFromList(nbX: Int, allBooks: ArrayList<NoTitleListBModel>)
             : ArrayList<DownloadListBModel> {
 
@@ -36,17 +42,6 @@ class LibraryBModelProvider {
         }
         listBooksSelected.add(DownloadListBModel(booksSelected))
         return listBooksSelected
-    }
-
-    private fun allBooksInSimpleList(allBooks: ArrayList<NoTitleListBModel>): ArrayList<BModel> {
-        val simpleList = arrayListOf<BModel>()
-
-        allBooks.forEach {
-            it.bookModels.forEach { book ->
-                simpleList.add(book)
-            }
-        }
-        return simpleList
     }
 
     fun getGroupListFromList(nb: Int, allBooks: ArrayList<NoTitleListBModel>)
@@ -128,5 +123,16 @@ class LibraryBModelProvider {
             if (genresSelected.find { it == bmodel.genre } == null)
                 genresSelected.add(bmodel.genre)
         }
+    }
+
+    private fun allBooksInSimpleList(allBooks: ArrayList<NoTitleListBModel>): ArrayList<BModel> {
+        val simpleList = arrayListOf<BModel>()
+
+        allBooks.forEach {
+            it.bookModels.forEach { book ->
+                simpleList.add(book)
+            }
+        }
+        return simpleList
     }
 }

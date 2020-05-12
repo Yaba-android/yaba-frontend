@@ -1,4 +1,4 @@
-package com.github.nasrat_v.yaba_demo.AsyncTask
+package com.github.nasrat_v.yaba_demo.AsyncHydrater
 
 import android.content.Context
 import com.github.nasrat_v.yaba_demo.Activity.LibraryActivity
@@ -10,25 +10,22 @@ import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.Model.LibraryBModel
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.LibraryBModelProvider
-import com.github.nasrat_v.yaba_demo.Services.Provider.Book.LibraryBModelRandomProvider
 
-class LibraryBModelAsyncHydrate(
+class LibraryBModelAsyncHydrater(
     context: Context,
     private var languageCode: String,
-    private var allBooks: ArrayList<BModel>
+    private var allbooksLibrary: ArrayList<NoTitleListBModel>
 ) :
     androidx.loader.content.AsyncTaskLoader<LibraryBModel>(context) {
 
     override fun loadInBackground(): LibraryBModel? {
         //android.os.Debug.waitForDebugger()
 
-        val allbooksLibrary = arrayListOf<NoTitleListBModel>()
         val downloadsLibrary = arrayListOf<DownloadListBModel>()
         val groupsLibrary = arrayListOf<GroupListBModel>()
 
-        mockDatasetAllBooks(allbooksLibrary)
-        hydrateDatasetGroups(allbooksLibrary, groupsLibrary)
-        hydrateDatasetDownload(allbooksLibrary, downloadsLibrary)
+        hydrateDatasetGroups(groupsLibrary)
+        hydrateDatasetDownload(downloadsLibrary)
 
         return LibraryBModel(
             downloadsLibrary,
@@ -41,8 +38,7 @@ class LibraryBModelAsyncHydrate(
         return BModelProvider(context, languageCode).getAllBooksFromResource()
     }
 
-
-    private fun mockDatasetAllBooks(dataset: ArrayList<NoTitleListBModel>) {
+    /*private fun mockDatasetAllBooks(dataset: ArrayList<NoTitleListBModel>) {
         dataset.addAll(
             BModelRandomProvider(context, languageCode).getRandomsInstancesFromListToNoTitleListBModel(
                 LibraryActivity.ALLBOOKS_NB_BOOK_COLUMNS,
@@ -50,10 +46,9 @@ class LibraryBModelAsyncHydrate(
                 allBooks
             )
         )
-    }
+    }*/
 
     private fun hydrateDatasetGroups(
-        allbooksLibrary: ArrayList<NoTitleListBModel>,
         dataset: ArrayList<GroupListBModel>
     ) {
         dataset.addAll(
@@ -65,7 +60,6 @@ class LibraryBModelAsyncHydrate(
     }
 
     private fun hydrateDatasetDownload(
-        allbooksLibrary: ArrayList<NoTitleListBModel>,
         dataset: ArrayList<DownloadListBModel>
     ) {
         dataset.addAll(

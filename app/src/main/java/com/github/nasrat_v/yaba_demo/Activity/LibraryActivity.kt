@@ -14,7 +14,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.Window
@@ -31,11 +30,12 @@ import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.GroupBModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.DownloadListBModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.Model.LibraryBModel
 import com.github.nasrat_v.yaba_demo.R
-import com.github.nasrat_v.yaba_demo.AsyncTask.LibraryBModelAsyncHydrate
+import com.github.nasrat_v.yaba_demo.AsyncHydrater.LibraryBModelAsyncHydrater
 import com.github.nasrat_v.yaba_demo.ICallback.IBModelProviderCallback
 import com.github.nasrat_v.yaba_demo.Language.StringLocaleResolver
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.EBookProvider
+import com.github.nasrat_v.yaba_demo.Services.Provider.Book.LibraryBModelProvider
 import com.github.nasrat_v.yaba_demo.TabFragment.LibraryContainerFragment
 import com.github.nasrat_v.yaba_demo.TabFragment.TabLayoutCustomListener
 
@@ -118,6 +118,11 @@ class LibraryActivity : AppCompatActivity(),
             setListenerButtonSignOut()
 
             BModelProvider(this, mLanguage).getAllBooksFromDatabase(this) // fetch data in async task
+            TODO(
+            LibraryBModelProvider().getAllLibraryBook() // on recupere tous les id des livres enregistré dans un fichier en local
+            // puis on appel BModelProvider.getBookFromDatabase pour recuper chaque book
+            // puis on force load hydrater avec la liste de book
+            )
         }
         mFirstInit = false
     }
@@ -127,8 +132,12 @@ class LibraryActivity : AppCompatActivity(),
         supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
     }
 
+    override fun onGetBookRequestSuccess(book: BModel) {
+        TODO("Not needed")
+    }
+
     override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<LibraryBModel> {
-        return LibraryBModelAsyncHydrate(this, mLanguage, mAllBooks)
+        return LibraryBModelAsyncHydrater(this, mLanguage, mAllBooks)
     }
 
     override fun onLoadFinished(p0: androidx.loader.content.Loader<LibraryBModel>, data: LibraryBModel?) {

@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import com.github.nasrat_v.yaba_demo.AsyncTask.SectionsGModelAsyncHydrate
+import com.github.nasrat_v.yaba_demo.AsyncHydrater.SectionsGModelAsyncHydrater
 import com.github.nasrat_v.yaba_demo.ICallback.ISectionAdditionalClickCallback
 import com.github.nasrat_v.yaba_demo.Language.StringLocaleResolver
 import com.github.nasrat_v.yaba_demo.Listable.BottomOffsetDecoration
@@ -55,7 +55,7 @@ class SectionsActivity : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<ArrayList<GModel>> {
-        return SectionsGModelAsyncHydrate(this, mLanguage)
+        return SectionsGModelAsyncHydrater(this, mLanguage)
     }
 
     override fun onLoadFinished(p0: androidx.loader.content.Loader<ArrayList<GModel>>, data: ArrayList<GModel>?) {

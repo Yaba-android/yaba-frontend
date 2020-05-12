@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import android.util.DisplayMetrics
 import android.view.*
 import android.widget.*
-import com.github.nasrat_v.yaba_demo.AsyncTask.SectionNoTitleListBModelAsyncHydrate
+import com.github.nasrat_v.yaba_demo.AsyncHydrater.SectionNoTitleListBModelAsyncHydrater
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListAdapter.BigListBRecyclerViewAdapter
 import com.github.nasrat_v.yaba_demo.ICallback.IBookClickCallback
@@ -67,7 +67,7 @@ class SectionActivity : AppCompatActivity(),
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<ArrayList<NoTitleListBModel>> {
-        return SectionNoTitleListBModelAsyncHydrate(this, mSelectedSection, mLanguage)
+        return SectionNoTitleListBModelAsyncHydrater(this, mSelectedSection, mLanguage)
     }
 
     override fun onLoadFinished(p0: androidx.loader.content.Loader<ArrayList<NoTitleListBModel>>, data: ArrayList<NoTitleListBModel>?) {

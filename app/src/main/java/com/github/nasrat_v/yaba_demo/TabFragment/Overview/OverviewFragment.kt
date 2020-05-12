@@ -1,10 +1,12 @@
 package com.github.nasrat_v.yaba_demo.TabFragment.Overview
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListAdapter.NoTitleListBRecyclerViewAdapter
 import com.github.nasrat_v.yaba_demo.Listable.BottomOffsetDecoration
@@ -12,6 +14,7 @@ import com.github.nasrat_v.yaba_demo.ICallback.IBookClickCallback
 import com.github.nasrat_v.yaba_demo.Language.StringLocaleResolver
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.yaba_demo.R
+import com.github.nasrat_v.yaba_demo.Services.Provider.ServerRoutesSingleton
 
 class OverviewFragment : androidx.fragment.app.Fragment() {
 
@@ -28,6 +31,7 @@ class OverviewFragment : androidx.fragment.app.Fragment() {
     private lateinit var mLayoutGenre: LinearLayout
     private lateinit var mLayoutCountry: LinearLayout
     private lateinit var mLayoutPublisher: LinearLayout
+    private lateinit var mContext: Context
     private val mDataset = arrayListOf<NoTitleListBModel>()
     private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
 
@@ -35,6 +39,7 @@ class OverviewFragment : androidx.fragment.app.Fragment() {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_overview, container, false)
 
+        mContext = container!!.context
         mAuthorTitle = rootView.findViewById(R.id.author_title_review_overview)
         mAuthorDesc = rootView.findViewById(R.id.author_desc_review_overview)
         mAuthorPicture = rootView.findViewById(R.id.author_picture_review_overview)
@@ -47,7 +52,7 @@ class OverviewFragment : androidx.fragment.app.Fragment() {
         mLayoutPublisher = rootView.findViewById(R.id.overview_category_publisher)
 
         initAuthorButtonText(rootView)
-        initVerticalRecyclerView(rootView, container!!)
+        initVerticalRecyclerView(rootView, container)
         return rootView
     }
 
@@ -78,9 +83,12 @@ class OverviewFragment : androidx.fragment.app.Fragment() {
     }
 
     private fun initAuthorAttributes() {
+        val url = (ServerRoutesSingleton.ROUTE_SRV_AUTHORS + mSelectedBook.author.imagePath)
+
+        // load image asynchronously with cache and placeholder
+        Glide.with(mContext).load(url).placeholder(R.drawable.empty_author).into(mAuthorPicture)
         mAuthorTitle.text = mSelectedBook.author.name
         mAuthorDesc.text = mSelectedBook.author.desc
-        mAuthorPicture.setImageResource(mSelectedBook.author.picture)
     }
 
     private fun initAuthorButtonText(view: View) {

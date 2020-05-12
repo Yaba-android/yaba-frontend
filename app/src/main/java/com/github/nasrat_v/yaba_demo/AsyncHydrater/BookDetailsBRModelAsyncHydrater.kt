@@ -1,4 +1,4 @@
-package com.github.nasrat_v.yaba_demo.AsyncTask
+package com.github.nasrat_v.yaba_demo.AsyncHydrater
 
 import android.content.Context
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
@@ -10,10 +10,10 @@ import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelRandomProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.Review.RModelProvider
 import com.github.nasrat_v.yaba_demo.TabFragment.BookDetailsContainerFragment
 
-class BookDetailsBRModelAsyncHydrate(
+class BookDetailsBRModelAsyncHydrater(
     context: Context,
     private var languageCode: String,
-    private var allBooks: ArrayList<BModel>
+    private var authorBooks: ArrayList<BModel>
 ) :
     androidx.loader.content.AsyncTaskLoader<BookDetailsBRModel>(context) {
 
@@ -23,7 +23,7 @@ class BookDetailsBRModelAsyncHydrate(
         val datasetBooks = arrayListOf<NoTitleListBModel>()
         val datasetReviews = arrayListOf<RModel>()
 
-        mockDatasetBook(datasetBooks)
+        hydrateDatasetBook(datasetBooks)
         fetchDatasetReviewVerticalRecyclerView(datasetReviews)
 
         return BookDetailsBRModel(
@@ -40,12 +40,12 @@ class BookDetailsBRModelAsyncHydrate(
         dataset.addAll(RModelProvider(context).getAllReviews())
     }
 
-    private fun mockDatasetBook(dataset: ArrayList<NoTitleListBModel>) {
+    private fun hydrateDatasetBook(dataset: ArrayList<NoTitleListBModel>) {
         dataset.addAll(
             BModelRandomProvider(context, languageCode).getRandomsInstancesFromListToNoTitleListBModel(
                 BookDetailsContainerFragment.RECYCLER_VIEW_NB_COLUMNS,
                 BookDetailsContainerFragment.RECYCLER_VIEW_NB_BOOKS_PER_ROW,
-                allBooks
+                authorBooks
             )
         )
     }

@@ -8,9 +8,11 @@ class AModelRandomFactory(private var context: Context) {
 
     fun getRandomInstance(): AModel {
         return (AModel(
-            getRandomPicture(),
+            "",
+            "",
             getRandomName(),
-            getRandomDescription()
+            getRandomDescription(),
+            arrayListOf()
         ))
     }
 
@@ -21,12 +23,12 @@ class AModelRandomFactory(private var context: Context) {
     private fun getRandomName(): String {
         val nameArray = context.resources.getStringArray(R.array.name_authors_books)
 
-        return nameArray[(0..(nameArray.size - 1)).random()]
+        return nameArray[(nameArray.indices).random()]
     }
 
     private fun getRandomDescription(): String {
         val descArray = context.resources.getStringArray(R.array.desc_authors_books)
 
-        return descArray[(0..(descArray.size - 1)).random()]
+        return descArray[(descArray.indices).random()]
     }
 }

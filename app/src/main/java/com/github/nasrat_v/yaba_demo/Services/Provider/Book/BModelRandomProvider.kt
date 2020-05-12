@@ -65,13 +65,14 @@ class BModelRandomProvider(private var context: Context, private var languageCod
 
     fun getRandomsInstancesFromListToNoTitleListBModel(
         nbPerColumns: Int,
-        nbPerRow: Int,
+        maxNbPerRow: Int,
         allBooks: ArrayList<BModel>
     ): ArrayList<NoTitleListBModel> {
 
         val selectedIndex = arrayListOf<Int>()
         val tmpList = arrayListOf<BModel>()
         val dataset = arrayListOf<NoTitleListBModel>()
+        val nbPerRow = if (allBooks.size > maxNbPerRow) maxNbPerRow else allBooks.size
 
         tmpList.addAll(allBooks)
         for (index in 0 until nbPerColumns) {

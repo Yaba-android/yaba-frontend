@@ -9,16 +9,15 @@ import androidx.appcompat.widget.Toolbar
 import android.view.*
 import android.widget.*
 import com.bumptech.glide.Glide
-import com.github.nasrat_v.yaba_demo.AsyncTask.BookDetailsBRModelAsyncHydrate
-import com.github.nasrat_v.yaba_demo.ICallback.IBModelProviderCallback
+import com.github.nasrat_v.yaba_demo.AsyncHydrater.BookDetailsBRModelAsyncHydrater
+import com.github.nasrat_v.yaba_demo.ICallback.*
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.yaba_demo.TabFragment.BookDetailsContainerFragment
-import com.github.nasrat_v.yaba_demo.ICallback.IBookClickCallback
-import com.github.nasrat_v.yaba_demo.ICallback.IBookInfosProvider
-import com.github.nasrat_v.yaba_demo.ICallback.ITabLayoutSetupCallback
 import com.github.nasrat_v.yaba_demo.Language.StringLocaleResolver
+import com.github.nasrat_v.yaba_demo.Listable.Author.AModel
 import com.github.nasrat_v.yaba_demo.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.yaba_demo.R
+import com.github.nasrat_v.yaba_demo.Services.Provider.Author.AModelProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.ServerRoutesSingleton
 import com.github.nasrat_v.yaba_demo.TabFragment.TabLayoutCustomListener
@@ -28,7 +27,8 @@ class BookDetailsActivity : AppCompatActivity(),
     IBookClickCallback,
     ITabLayoutSetupCallback,
     IBookInfosProvider,
-    IBModelProviderCallback {
+    IBModelProviderCallback,
+    IAModelProviderCallback {
 
     private lateinit var mSelectedBook: BModel
     private lateinit var mDrawerLayout: androidx.drawerlayout.widget.DrawerLayout
@@ -37,7 +37,7 @@ class BookDetailsActivity : AppCompatActivity(),
     private lateinit var mContainerFragment: BookDetailsContainerFragment
     private lateinit var mBookDetailsBRModel: BookDetailsBRModel
     private lateinit var mProgressBar: ProgressBar
-    private lateinit var mAllBooks: ArrayList<BModel>
+    private var mAuthorBooks = arrayListOf<BModel>()
     private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
@@ -71,18 +71,36 @@ class BookDetailsActivity : AppCompatActivity(),
             setListenerRecommendedButtonFooter()
             setListenerLibraryButtonFooter()
 
-            BModelProvider(this, mLanguage).getAllBooksFromDatabase(this) // fetch data in async task
+            AModelProvider(this, mLanguage).getAuthorFromDatabase(mSelectedBook.author.remoteId, this)
         }
         mFirstInit = false
     }
 
     override fun onGetAllBooksRequestSuccess(allBooks: ArrayList<BModel>) {
-        mAllBooks = allBooks
-        supportLoaderManager.initLoader(0, null, this).forceLoad() // init BookDetailsBRModel in async task
+        TODO("Not needed")
+    }
+
+    override fun onGetBookRequestSuccess(book: BModel) {
+        mAuthorBooks.add(book)
+        if (mAuthorBooks.size == mSelectedBook.author.booksId.size) {
+            // init BookDetailsBRModel in async task when all authors book are saved
+            supportLoaderManager.initLoader(0, null, this).forceLoad()
+        }
+    }
+
+    override fun onGetAuthorRequestSuccess(author: AModel) {
+        mSelectedBook.author = author
+        mSelectedBook.author.booksId.forEach {
+            BModelProvider(this, mLanguage).getBookFromDatabase(it, this)
+        }
+    }
+
+    override fun onGetAllAuthorsRequestSuccess(authors: ArrayList<AModel>) {
+        TODO("Not needed")
     }
 
     override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<BookDetailsBRModel> {
-        return BookDetailsBRModelAsyncHydrate(this, mLanguage, mAllBooks)
+        return BookDetailsBRModelAsyncHydrater(this, mLanguage, mAuthorBooks)
     }
 
     override fun onLoadFinished(p0: androidx.loader.content.Loader<BookDetailsBRModel>, data: BookDetailsBRModel?) {

@@ -1,4 +1,4 @@
-package com.github.nasrat_v.yaba_demo.AsyncTask
+package com.github.nasrat_v.yaba_demo.AsyncHydrater
 
 import android.content.Context
 import com.github.nasrat_v.yaba_demo.Activity.SectionActivity
@@ -6,7 +6,7 @@ import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.NoTitleLis
 import com.github.nasrat_v.yaba_demo.Listable.Genre.GModel
 import com.github.nasrat_v.yaba_demo.Services.Provider.Genre.GModelProvider
 
-class SectionNoTitleListBModelAsyncHydrate(
+class SectionNoTitleListBModelAsyncHydrater(
     context: Context,
     private var selectedSection: GModel,
     private var languageCode: String

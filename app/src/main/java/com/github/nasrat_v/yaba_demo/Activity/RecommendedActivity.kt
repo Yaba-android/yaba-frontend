@@ -13,7 +13,7 @@ import androidx.core.view.GravityCompat
 import androidx.appcompat.widget.Toolbar
 import android.view.*
 import android.widget.*
-import com.github.nasrat_v.yaba_demo.AsyncTask.RecommendedBRModelAsyncHydrate
+import com.github.nasrat_v.yaba_demo.AsyncHydrater.RecommendedBRModelAsyncHydrater
 import com.github.nasrat_v.yaba_demo.ICallback.IBModelProviderCallback
 import com.github.nasrat_v.yaba_demo.Listable.Genre.GModel
 import com.github.nasrat_v.yaba_demo.ICallback.IRecommendedAdditionalClickCallback
@@ -106,8 +106,12 @@ class RecommendedActivity() : AppCompatActivity(),
         supportLoaderManager.initLoader(0, null, this).forceLoad() // init RecommendedBRModel in async task
     }
 
+    override fun onGetBookRequestSuccess(book: BModel) {
+        TODO("Not needed")
+    }
+
     override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<RecommendedBRModel> {
-        return RecommendedBRModelAsyncHydrate(this, mLanguage, mAllBooks)
+        return RecommendedBRModelAsyncHydrater(this, mLanguage, mAllBooks)
     }
 
     override fun onLoadFinished(p0: androidx.loader.content.Loader<RecommendedBRModel>, data: RecommendedBRModel?) {
