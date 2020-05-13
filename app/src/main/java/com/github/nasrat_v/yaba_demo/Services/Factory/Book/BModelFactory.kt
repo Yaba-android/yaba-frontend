@@ -85,7 +85,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
     }*/
 
     private fun getTitle(index: Int): String {
-        val titleArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+        val titleArray = if (languageCode == StringLocaleResolver.FRENCH_LANGUAGE_CODE) {
              context.resources.getStringArray(R.array.titles_books_arabic)
         } else {
             context.resources.getStringArray(R.array.titles_books)
@@ -133,7 +133,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
     }
 
     private fun getCountry(index: Int): String {
-        val countryArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+        val countryArray = if (languageCode == StringLocaleResolver.FRENCH_LANGUAGE_CODE) {
             context.resources.getStringArray(R.array.countries_books_arabic)
         } else {
             context.resources.getStringArray(R.array.countries_books)
@@ -143,7 +143,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
     }
 
     private fun getDatePublication(index: Int): String {
-        val datePublicationArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+        val datePublicationArray = if (languageCode == StringLocaleResolver.FRENCH_LANGUAGE_CODE) {
             context.resources.getStringArray(R.array.datepublications_books_arabic)
         } else {
             context.resources.getStringArray(R.array.datepublications_books)
@@ -159,7 +159,7 @@ class BModelFactory(private var context: Context, private var languageCode: Stri
     }
 
     private fun getResume(index: Int): String {
-        val resumeArray =  if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+        val resumeArray =  if (languageCode == StringLocaleResolver.FRENCH_LANGUAGE_CODE) {
             context.resources.getStringArray(R.array.resume_books_arabic)
         } else {
             context.resources.getStringArray(R.array.resume_books)

@@ -18,13 +18,13 @@ class GModelProvider(
         val hmodels = arrayListOf<GModel>()
         val genreNumberArray = context.resources.getIntArray(R.array.genres_numbers)
         val genrePopularArray = context.resources.getIntArray(R.array.genres_popular)
-        val genreArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
-            context.resources.getStringArray(R.array.genres_arabic)
+        val genreArray = if (languageCode == StringLocaleResolver.FRENCH_LANGUAGE_CODE) {
+            context.resources.getStringArray(R.array.genres_french)
         } else {
             context.resources.getStringArray(R.array.genres)
         }
 
-        for (index in 0..(genreArray.size - 1)) {
+        for (index in genreArray.indices) {
             hmodels.add(
                 GModel(
                     genreArray[index],
@@ -94,7 +94,7 @@ class GModelProvider(
     ) {
         val books = arrayListOf<BModel>()
 
-        for (index in 0..(nbPerRow - 1)) {
+        for (index in 0 until nbPerRow) {
             if (filteredList.isEmpty()) {
                 noTitleList.add(NoTitleListBModel(books))
                 return

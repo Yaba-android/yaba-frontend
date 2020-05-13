@@ -26,7 +26,7 @@ class GModelFactory(private var context: Context, private var languageCode: Stri
     }
 
     fun getInstance(index: Int): GModel {
-        val genreList = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+        val genreList = if (languageCode == StringLocaleResolver.FRENCH_LANGUAGE_CODE) {
             context.resources.getStringArray(R.array.genres_books_arabic)
         } else {
             context.resources.getStringArray(R.array.genres_books)

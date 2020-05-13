@@ -9,144 +9,145 @@
     <string name="navigation_drawer_profile_open">Open navigation drawer profile</string>
     <string name="navigation_drawer_profile_close">Close navigation drawer profile</string>
     <string name="english">English</string>
-    <string name="arabic">عربى</string>
+    <string name="french">Français</string>
     <!-- No Translation Strings -->
 
     <string name="saved_library">saved to your library</string>
-    <string name="saved_library_arabic">saved to your library</string>
+    <string name="saved_library_french">sauvegardé dans votre librairie</string>
 
     <string name="results">Results</string>
-    <string name="results_arabic">النتائج</string>
+    <string name="results_french">Résultat</string>
 
     <string name="find_the_books_you_love">Find the books you love</string>
-    <string name="find_the_books_you_love_arabic">ابحث عن الكتب التي تحبها</string>
+    <string name="find_the_books_you_love_french">Trouvez les livres que vous aimez</string>
 
     <string name="search_by">Search by title, author, genre, country, publisher or word</string>
-    <string name="search_by_arabic">البحث حسب العنوان أو المؤلف أو النوع أو البلد أو الناشر أو الكلمة</string>
+    <string name="search_by_french">Recherche par titre, auteur, genre, pays, éditeur ou mot</string>
 
     <string name="profile">Profile</string>
-    <string name="profile_arabic">الملف الشخصي</string>
+    <string name="profile_french">Profil</string>
 
     <string name="settings">Settings</string>
-    <string name="settings_arabic">الإعدادات</string>
+    <string name="settings_french">Paramètres</string>
 
     <string name="help">Help</string>
-    <string name="help_arabic">مساعدة</string>
+    <string name="help_french">Aide</string>
 
     <string name="wish_list">Wish list</string>
-    <string name="wish_list_arabic">الأماني</string>
+    <string name="wish_list_french">Liste d\'envie</string>
 
     <string name="sign_out">Sign Out</string>
-    <string name="sign_out_arabic">خروج</string>
+    <string name="sign_out_french">Déconnexion</string>
 
     <string name="error_permission_download">Cannot download book without permission granted !</string>
+    <string name="error_permission_download_french">Impossible de télécharger le livre sans autorisation !</string>
 
     <string name="downloading">Downloading</string>
-    <string name="downloading_arabic">جارى التحميل</string>
+    <string name="downloading_french">Téléchargement</string>
 
     <string name="download">Download</string>
-    <string name="download_arabic">تحميل</string>
+    <string name="download_french">Télécharger</string>
 
     <string name="opening">Opening</string>
-    <string name="opening_arabic">افتتاح</string>
+    <string name="opening_french">Ouverture</string>
 
     <string name="open_it">Open it</string>
-    <string name="open_it_arabic">افتحه</string>
+    <string name="open_it_french">L\'ouvrir</string>
 
     <string name="sections">Sections</string>
-    <string name="sections_arabic">الأقسام</string>
+    <string name="sections_french">Genres</string>
 
     <string name="carousel_title_first">Recommended\nreading for you</string>
-    <string name="carousel_title_first_arabic">أوصت القراءة\nبالنسبة لك</string>
+    <string name="carousel_title_first_french">Lectures\nrecommandées</string>
 
     <string name="carousel_title_second">Based on your purchase history</string>
-    <string name="carousel_title_second_arabic">استنادًا إلى سجل الشراء</string>
+    <string name="carousel_title_second_french">Basé sur vos achats</string>
 
     <string name="book_store">Book Store</string>
-    <string name="book_store_arabic">مكتبة لبيع الكتب</string>
+    <string name="book_store_french">Boutique de livres</string>
 
     <string name="view_all">View all</string>
-    <string name="view_all_arabic">عرض الكل</string>
+    <string name="view_all_french">Tout</string>
 
     <string name="not_found_what_you_re_looking_for">Not found what you\'re looking for ?</string>
-    <string name="not_found_what_you_re_looking_for_arabic">لم يتم العثور على ما تبحث عنه؟</string>
+    <string name="not_found_what_you_re_looking_for_french">Vous n\'avez pas trouvé ce que vous cherchiez ?</string>
 
     <string name="search_or_browse_categories">
         Search or browse categories to access your upcoming story
     </string>
-    <string name="search_or_browse_categories_arabic">
-        ابحث أو تصفح الفئات للوصول إلى قصتك القادمة
+    <string name="search_or_browse_categories_french">
+        Recherchez ou parcourez les catégories pour accéder à votre prochaine histoire
     </string>
 
     <string name="browse_sections">Browse sections</string>
-    <string name="browse_sections_arabic">تصفح الفئات</string>
+    <string name="browse_sections_french">Parcourir</string>
 
     <string name="sort">Sort</string>
-    <string name="sort_arabic">فرز</string>
+    <string name="sort_french">Trier</string>
 
     <string name="add_to_wish_list">Add to Wish list</string>
-    <string name="add_to_wish_list_arabic">أضف إلى قائمة الامنيات</string>
+    <string name="add_to_wish_list_french">Ajouter à votre liste d\'envie</string>
 
     <string name="try_the_sample">Try the sample</string>
-    <string name="try_the_sample_arabic">حاول عينة</string>
+    <string name="try_the_sample_french">Essayer un échantillon</string>
 
     <string name="buy">Buy</string>
-    <string name="buy_arabic">يشترى</string>
+    <string name="buy_french">Acheter</string>
 
     <string name="title_category">Title Category</string>
     <string name="content_category">Content Category</string>
 
     <string name="read_more">Read More</string>
-    <string name="read_more_arabic">اقرأ المزيد</string>
+    <string name="read_more_french">Lire plus</string>
 
     <string name="view_all_reviews">View all reviews</string>
-    <string name="view_all_reviews_arabic">عرض جميع الاستعراضات</string>
+    <string name="view_all_reviews_french">Tout voir</string>
 
     <string name="title_first_recyclerview">Recommended Authors</string>
-    <string name="title_first_recyclerview_arabic">مستوحاة من تاريخك</string>
+    <string name="title_first_recyclerview_french">Auteurs recommendés</string>
 
     <string name="title_second_recyclerview">Inspired by Your Reading History</string>
-    <string name="title_second_recyclerview_arabic">المزيد من الخيال</string>
+    <string name="title_second_recyclerview_french">Inspiré de votre historique</string>
 
     <string name="title_small_recyclerview">Other Books for you</string>
-    <string name="title_small_recyclerview_arabic">المزيد من القراءة لك</string>
+    <string name="title_small_recyclerview_french">D\'autres livres pour vous</string>
 
     <string name="title_popular_species_recyclerview">Popular species</string>
-    <string name="title_popular_species_recyclerview_arabic">الأنواع الشعبية</string>
+    <string name="title_popular_species_recyclerview_french">Genres populaires</string>
 
     <string name="title_review_overview_recyclerview">More Books from this Authors</string>
-    <string name="title_review_overview_recyclerview_arabic">المزيد من الخيال</string>
+    <string name="title_review_overview_recyclerview_french">Plus de livres de l\'auteur</string>
 
     <string name="download_tab">Download</string>
-    <string name="download_tab_arabic">تحميل</string>
+    <string name="download_tab_french">Téléchargements</string>
 
     <string name="groups_tab">Groups</string>
-    <string name="groups_tab_arabic">مجموعات</string>
+    <string name="groups_tab_french">Groupes</string>
 
     <string name="allbooks_tab">All Books</string>
-    <string name="allbooks_tab_arabic">كل الكتب</string>
+    <string name="allbooks_tab_french">Tous les livres</string>
 
     <string name="review_tab">Reviews</string>
-    <string name="review_tab_arabic">استعراض</string>
+    <string name="review_tab_french">Commentaires</string>
 
     <string name="overview_tab">Overview</string>
-    <string name="overview_tab_arabic">نظرة عامة</string>
+    <string name="overview_tab_french">Aperçu</string>
 
     <string name="length">Length</string>
-    <string name="length_arabic">الطول</string>
+    <string name="length_french">Pages</string>
 
     <string name="file_size">File size</string>
-    <string name="file_size_arabic">حجم الملف</string>
+    <string name="file_size_french">Taille du fichier</string>
 
     <string name="date_publication">Date of publication</string>
-    <string name="date_publication_arabic">تاريخ النشر</string>
+    <string name="date_publication_french">Date de publication</string>
 
     <string name="genre">Genre</string>
-    <string name="genre_arabic">نوع أدبي</string>
+    <string name="genre_french">Genre</string>
 
     <string name="country">Country</string>
-    <string name="country_arabic">البلد</string>
+    <string name="country_french">Pays</string>
 
     <string name="publisher">Publisher</string>
-    <string name="publisher_arabic">الناشر</string>
+    <string name="publisher_french">Publieur</string>
 </resources>

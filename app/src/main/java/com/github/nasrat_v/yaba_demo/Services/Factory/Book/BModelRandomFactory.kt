@@ -94,7 +94,7 @@ class BModelRandomFactory(private var context: Context, private var languageCode
     }
 
     private fun getRandomResume(): String {
-        val resumeArray =  if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+        val resumeArray =  if (languageCode == StringLocaleResolver.FRENCH_LANGUAGE_CODE) {
             context.resources.getStringArray(R.array.resume_books_arabic)
         } else {
             context.resources.getStringArray(R.array.resume_books)

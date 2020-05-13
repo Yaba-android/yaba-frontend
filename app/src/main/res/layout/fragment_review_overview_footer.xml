@@ -55,6 +55,8 @@
                 android:layout_height="@dimen/button_read_more_author_height"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="50dp"
+                android:layout_marginEnd="10dp"
+                android:paddingEnd="10dp"
                 android:layout_below="@+id/author_desc_review_overview"
                 android:layout_toStartOf="@id/author_picture_review_overview"
                 android:gravity="start|center"

@@ -243,10 +243,10 @@ class RecommendedActivity() : AppCompatActivity(),
     private fun setListenerChangeLanguage() {
         val switchLanguage = findViewById<Switch>(R.id.switch_language)
 
-        switchLanguage.isChecked = (mLanguage == StringLocaleResolver.ARABIC_LANGUAGE_CODE)
+        switchLanguage.isChecked = (mLanguage == StringLocaleResolver.FRENCH_LANGUAGE_CODE)
         switchLanguage.setOnClickListener {
             mLanguage = if (switchLanguage.isChecked) {
-                StringLocaleResolver.ARABIC_LANGUAGE_CODE
+                StringLocaleResolver.FRENCH_LANGUAGE_CODE
             } else {
                 StringLocaleResolver.ENGLISH_LANGUAGE_CODE
             }

@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/switch_language"
             android:padding="10dp"
-            android:text="@string/arabic"
+            android:text="@string/french"
             android:textColor="@color/colorTextBlack"
             android:textSize="14sp"
             android:fontFamily="@font/noto_sans_family"/>

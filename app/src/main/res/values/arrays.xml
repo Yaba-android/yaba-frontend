@@ -2241,29 +2241,29 @@
         <item>Counseling</item>
     </string-array>
 
-    <string-array name="genres_arabic">
-        <item>فن</item>
-        <item>اعمال</item>
-        <item>الحوسبة</item>
-        <item>التعليم</item>
-        <item>الصحة</item>
-        <item>المنزل والحديقة</item>
-        <item>الأدب</item>
-        <item>عائلة</item>
-        <item>المهنيين</item>
-        <item>رومانسي</item>
-        <item>الخيال العلمي</item>
-        <item>سيرة ذاتية شخصية</item>
-        <item>كتب الأطفال</item>
-        <item>الجريمة والإثارة</item>
-        <item>طعام شراب</item>
-        <item>التاريخ</item>
-        <item>فكاهة</item>
-        <item>غير الخيالية</item>
-        <item>سياسات</item>
-        <item>دين</item>
-        <item>العلوم والرياضيات</item>
-        <item>تقديم المشورة</item>
+    <string-array name="genres_french">
+        <item>Art</item>
+        <item>Entreprise</item>
+        <item>Informatique</item>
+        <item>Education</item>
+        <item>Santé</item>
+        <item>Maison &amp; Jardin</item>
+        <item>Littérature</item>
+        <item>Famille</item>
+        <item>Professionels</item>
+        <item>Romantique</item>
+        <item>Science-Fiction</item>
+        <item>Biographie</item>
+        <item>Livres pour Enfant</item>
+        <item>Crime &amp; excitation</item>
+        <item>Nourriture &amp; boissons</item>
+        <item>Histoire</item>
+        <item>Humour</item>
+        <item>Non-Fiction</item>
+        <item>Policier</item>
+        <item>Dette</item>
+        <item>Science &amp; Mathématiques</item>
+        <item>Conseil</item>
     </string-array>
 
     <integer-array name="genres_numbers">

@@ -80,7 +80,7 @@ class AModelFactory(private var context: Context, private var languageCode: Stri
     }
 
     private fun getDescription(index: Int): String {
-        val descArray = if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+        val descArray = if (languageCode == StringLocaleResolver.FRENCH_LANGUAGE_CODE) {
             context.resources.getStringArray(R.array.desc_authors_books_arabic)
         } else {
             context.resources.getStringArray(R.array.desc_authors_books)

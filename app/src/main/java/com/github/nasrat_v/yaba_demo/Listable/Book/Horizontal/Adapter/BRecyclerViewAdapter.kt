@@ -46,7 +46,7 @@ class BRecyclerViewAdapter(
         holder.mAuthor.text = model.author.name
         holder.mRating.rating = model.rating
         holder.mNumberRating.text = ("(" + model.numberRating + ")")
-        if (languageCode == StringLocaleResolver.ARABIC_LANGUAGE_CODE) {
+        if (languageCode == StringLocaleResolver.FRENCH_LANGUAGE_CODE) {
             holder.mPrice.text = ("$" + model.price)
         } else {
             holder.mPrice.text = (model.price.toString() + "$")
