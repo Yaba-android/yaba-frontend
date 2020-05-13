@@ -57,6 +57,7 @@
             android:layout_below="@id/horizontal_author"
             android:layout_marginStart="@dimen/size_shadow_big_book"
             android:paddingBottom="6dp"
+            android:isIndicator="true"
             style="@style/RatingBarBig"/>
 
     <TextView

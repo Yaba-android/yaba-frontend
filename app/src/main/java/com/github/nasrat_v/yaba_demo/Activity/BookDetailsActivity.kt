@@ -19,6 +19,7 @@ import com.github.nasrat_v.yaba_demo.Listable.Model.BookDetailsBRModel
 import com.github.nasrat_v.yaba_demo.R
 import com.github.nasrat_v.yaba_demo.Services.Provider.Author.AModelProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.Book.BModelProvider
+import com.github.nasrat_v.yaba_demo.Services.Provider.Book.LibraryBModelProvider
 import com.github.nasrat_v.yaba_demo.Services.Provider.ServerRoutesSingleton
 import com.github.nasrat_v.yaba_demo.TabFragment.TabLayoutCustomListener
 
@@ -67,6 +68,7 @@ class BookDetailsActivity : AppCompatActivity(),
         super.onStart()
 
         if (mFirstInit) {
+            setListenerButtonBuyBook()
             setListenerBrowseButtonFooter()
             setListenerRecommendedButtonFooter()
             setListenerLibraryButtonFooter()
@@ -156,6 +158,19 @@ class BookDetailsActivity : AppCompatActivity(),
 
     override fun getSelectedBook(): BModel {
         return mSelectedBook
+    }
+
+    private fun setListenerButtonBuyBook() {
+        val button = findViewById<Button>(R.id.button_buy_book)
+
+        button.setOnClickListener {
+            LibraryBModelProvider(this, mLanguage).saveInternalStorageBookLibraryId(mSelectedBook.remoteId)
+            Toast.makeText(
+                this,
+                (mSelectedBook.title + ' ' + getString(StringLocaleResolver(mLanguage).getRes(R.string.saved_library))),
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     private fun setListenerRecommendedButtonFooter() {

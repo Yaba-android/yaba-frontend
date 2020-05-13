@@ -63,8 +63,9 @@ class LibraryActivity : AppCompatActivity(),
     private lateinit var mFragmentManager: androidx.fragment.app.FragmentManager
     private lateinit var mFragmentTransaction: androidx.fragment.app.FragmentTransaction
     private lateinit var mNavigationViewProfile: NavigationView
-    private lateinit var mAllBooks: ArrayList<BModel>
+    private lateinit var mBooksIdList: ArrayList<String?>
     private lateinit var mBookToDownload: BModel
+    private val mAllLibraryBooks = arrayListOf<BModel>()
     private var mLanguage = StringLocaleResolver.DEFAULT_LANGUAGE_CODE
     private var mFirstInit = true
 
@@ -117,27 +118,41 @@ class LibraryActivity : AppCompatActivity(),
             setListenerChangeLanguage()
             setListenerButtonSignOut()
 
-            BModelProvider(this, mLanguage).getAllBooksFromDatabase(this) // fetch data in async task
-            TODO(
-            LibraryBModelProvider().getAllLibraryBook() // on recupere tous les id des livres enregistré dans un fichier en local
-            // puis on appel BModelProvider.getBookFromDatabase pour recuper chaque book
-            // puis on force load hydrater avec la liste de book
-            )
+            fetchLibraryData()
         }
         mFirstInit = false
     }
 
-    override fun onGetAllBooksRequestSuccess(allBooks: ArrayList<BModel>) {
-        mAllBooks = allBooks
-        supportLoaderManager.initLoader(0, null, this).forceLoad() // init library in async task
+    private fun fetchLibraryData() {
+        mBooksIdList = LibraryBModelProvider(this, mLanguage).fetchInternalStorageAllBooksLibraryId()
+
+        if (mBooksIdList.isEmpty()) {
+            // init LibraryBModel in async task with empty library list
+            supportLoaderManager.initLoader(0, null, this).forceLoad()
+        } else {
+            mBooksIdList.forEach {
+                if (it != null) {
+                    // get library book info from server
+                    BModelProvider(this, mLanguage).getBookFromDatabase(it, this)
+                }
+            }
+        }
     }
 
-    override fun onGetBookRequestSuccess(book: BModel) {
+    override fun onGetAllBooksRequestSuccess(allBooks: ArrayList<BModel>) {
         TODO("Not needed")
     }
 
+    override fun onGetBookRequestSuccess(book: BModel) {
+        mAllLibraryBooks.add(book)
+        if (mAllLibraryBooks.size == mBooksIdList.size) {
+            // init LibraryBModel in async task
+            supportLoaderManager.initLoader(0, null, this).forceLoad()
+        }
+    }
+
     override fun onCreateLoader(p0: Int, p1: Bundle?): androidx.loader.content.Loader<LibraryBModel> {
-        return LibraryBModelAsyncHydrater(this, mLanguage, mAllBooks)
+        return LibraryBModelAsyncHydrater(this, mLanguage, mAllLibraryBooks)
     }
 
     override fun onLoadFinished(p0: androidx.loader.content.Loader<LibraryBModel>, data: LibraryBModel?) {

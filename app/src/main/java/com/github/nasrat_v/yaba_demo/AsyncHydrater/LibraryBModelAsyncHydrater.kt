@@ -14,23 +14,25 @@ import com.github.nasrat_v.yaba_demo.Services.Provider.Book.LibraryBModelProvide
 class LibraryBModelAsyncHydrater(
     context: Context,
     private var languageCode: String,
-    private var allbooksLibrary: ArrayList<NoTitleListBModel>
+    private var booksLibrary: ArrayList<BModel>
 ) :
     androidx.loader.content.AsyncTaskLoader<LibraryBModel>(context) {
 
     override fun loadInBackground(): LibraryBModel? {
         //android.os.Debug.waitForDebugger()
 
+        val allBooksLibrary = arrayListOf<NoTitleListBModel>()
         val downloadsLibrary = arrayListOf<DownloadListBModel>()
         val groupsLibrary = arrayListOf<GroupListBModel>()
 
-        hydrateDatasetGroups(groupsLibrary)
-        hydrateDatasetDownload(downloadsLibrary)
+        hydrateDatasetAllBooks(allBooksLibrary)
+        hydrateDatasetGroups(groupsLibrary, allBooksLibrary)
+        hydrateDatasetDownload(downloadsLibrary, allBooksLibrary)
 
         return LibraryBModel(
             downloadsLibrary,
             groupsLibrary,
-            allbooksLibrary
+            allBooksLibrary
         )
     }
 
@@ -48,24 +50,35 @@ class LibraryBModelAsyncHydrater(
         )
     }*/
 
+    private fun hydrateDatasetAllBooks(dataset: ArrayList<NoTitleListBModel>) {
+        dataset.addAll(
+            LibraryBModelProvider(context, languageCode).getAllBooksListBookFromList(
+                LibraryActivity.ALLBOOKS_NB_BOOK_PER_ROW,
+                booksLibrary
+            )
+        )
+    }
+
     private fun hydrateDatasetGroups(
-        dataset: ArrayList<GroupListBModel>
+        dataset: ArrayList<GroupListBModel>,
+        allBooks: ArrayList<NoTitleListBModel>
     ) {
         dataset.addAll(
-            LibraryBModelProvider().getGroupListFromList(
+            LibraryBModelProvider(context, languageCode).getGroupListFromList(
                 LibraryActivity.GROUPS_NB_GROUP_PER_ROW,
-                allbooksLibrary
+                allBooks
             )
         )
     }
 
     private fun hydrateDatasetDownload(
-        dataset: ArrayList<DownloadListBModel>
+        dataset: ArrayList<DownloadListBModel>,
+        allBooks: ArrayList<NoTitleListBModel>
     ) {
         dataset.addAll(
-            LibraryBModelProvider().getDownloadedListBookFromList(
+            LibraryBModelProvider(context, languageCode).getDownloadedListBookFromList(
                 LibraryActivity.DOWNLOAD_NB_BOOK_PER_ROW,
-                allbooksLibrary
+                allBooks
             )
         )
     }

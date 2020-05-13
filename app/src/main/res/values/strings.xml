@@ -12,6 +12,9 @@
     <string name="arabic">عربى</string>
     <!-- No Translation Strings -->
 
+    <string name="saved_library">saved to your library</string>
+    <string name="saved_library_arabic">saved to your library</string>
+
     <string name="results">Results</string>
     <string name="results_arabic">النتائج</string>
 

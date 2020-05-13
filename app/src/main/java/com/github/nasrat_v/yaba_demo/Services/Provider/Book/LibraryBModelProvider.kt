@@ -1,5 +1,6 @@
 package com.github.nasrat_v.yaba_demo.Services.Provider.Book
 
+import android.content.Context
 import android.os.Environment
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.BModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Horizontal.Model.DownloadBModel
@@ -8,14 +9,36 @@ import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.DownloadLi
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.GroupListBModel
 import com.github.nasrat_v.yaba_demo.Listable.Book.Vertical.ListModel.NoTitleListBModel
 import com.github.nasrat_v.yaba_demo.Listable.Genre.GModel
-import java.io.File
+import java.io.*
+import java.lang.Exception
 
-class LibraryBModelProvider {
+class LibraryBModelProvider(private var context: Context, private var languageCode: String) {
 
-    fun getAllLibraryBook(): ArrayList<NoTitleListBModel> {
-        TODO(// on recupere les ids des livres enregistrés dans le fichier local)
-            // ecrire aussi la fonction pour enregistré dans le fichier local
-        return arrayListOf()
+    companion object {
+        private const val FILEPATH_LIBRARY_ID = "yaba_library_books_id"
+    }
+
+    fun getAllBooksListBookFromList(
+        nbX:Int,
+        booksLibrary: ArrayList<BModel>
+    ): ArrayList<NoTitleListBModel> {
+
+        val allBooksList = arrayListOf<NoTitleListBModel>()
+        val booksSelected = arrayListOf<BModel>()
+
+        booksLibrary.forEach {
+
+            if (booksSelected.size == nbX) {
+                val tmpBooksSelected = arrayListOf<BModel>()
+
+                tmpBooksSelected.addAll(booksSelected)
+                allBooksList.add(NoTitleListBModel(tmpBooksSelected))
+                booksSelected.clear()
+            }
+            booksSelected.add(it)
+        }
+        allBooksList.add(NoTitleListBModel(booksSelected))
+        return allBooksList
     }
 
     fun getDownloadedListBookFromList(nbX: Int, allBooks: ArrayList<NoTitleListBModel>)
@@ -58,6 +81,35 @@ class LibraryBModelProvider {
             )
         }
         return booksSelected
+    }
+
+    fun fetchInternalStorageAllBooksLibraryId(): ArrayList<String?> {
+        return try {
+            var text: String? = null
+            val fileInputStream: FileInputStream? = context.openFileInput(FILEPATH_LIBRARY_ID)
+            val inputStreamReader = InputStreamReader(fileInputStream)
+            val bufferedReader = BufferedReader(inputStreamReader)
+            val bookIdList = arrayListOf<String?>()
+
+            while ({ text = bufferedReader.readLine(); text }() != null) {
+                bookIdList.add(text)
+            }
+            bookIdList
+        } catch (e: Exception) {
+            arrayListOf()
+        }
+    }
+
+    fun saveInternalStorageBookLibraryId(remoteId: String) {
+        val fileOuputStream: FileOutputStream
+
+        try {
+            fileOuputStream = context.openFileOutput(FILEPATH_LIBRARY_ID, Context.MODE_PRIVATE)
+            fileOuputStream.write(remoteId.toByteArray())
+            fileOuputStream.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     private fun getNbColumns(nbRows: Int, nbGenres: Int): Int {
